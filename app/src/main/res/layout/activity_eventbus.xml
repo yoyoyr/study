@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.test.viewpagedemo.Glide.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/sendEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send event" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+
+</com.test.viewpagedemo.Glide.MyLinearLayout>

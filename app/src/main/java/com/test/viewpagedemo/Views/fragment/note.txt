@@ -1,0 +1,24 @@
+
+1.主要对象
+FragmentController 将Activity的生命周期dispatch给fragment
+
+FragmentManagerImpl
+	管理 事务
+	管理fragment栈
+	真正增删改fragment，调用fragment对应生命周期
+
+BackStackRecord	增删改的op操作
+
+2.事务
+  add - remove onDestory
+  attach - detach  onDestoryView
+  hide - show onHiddenChange
+  replace onResume onDestoryView
+
+3.参数传递  segArgument  getArgument
+
+4.恢复机制  onsaveInstance != null 的时候，根据tag去获取fragment
+
+5.activity  fragment之间通讯  eventBus
+
+6.fragment的好处是提供了比activity粒度更小的界面业务风格，并且有比布局更开放的实现

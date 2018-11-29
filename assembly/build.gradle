@@ -1,0 +1,70 @@
+
+if (project.ext.isModule) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+//apply plugin: 'com.jakewharton.butterknife'
+
+
+android {
+    compileSdkVersion project.ext.param.compileSdkVersion
+
+    defaultConfig {
+        if (!project.ext.isModule) {
+            applicationId "com.assembly"
+        }
+        minSdkVersion project.ext.param.minSdkVersion
+        targetSdkVersion project.ext.param.targetSdkVersion
+        versionCode project.ext.param.versionCode
+        versionName project.ext.param.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resourcePrefix "aroute_"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME   : project.getName()
+                             , AROUTER_GENERATE_DOC: 'enable']
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "isModule", "$project.ext.isModule"
+//            shrinkResources true
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField "boolean", "isModule", "$project.ext.isModule"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (project.ext.isModule) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/app/AndroidManifest.xml'
+            }
+        }
+    }
+
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project.ext.dependences.appcompat
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation project.ext.dependences.aroute
+    annotationProcessor project.ext.dependences.aroutercompiler
+    implementation project.ext.dependences.eventbus
+    implementation project.ext.dependences.v4
+    implementation project.ext.dependences.butterknife
+    annotationProcessor project.ext.dependences.butterknifecompiler
+    implementation project(':log')
+    //    annotationProcessor project(':arouter-compiler')
+    implementation project(':annotation')
+}

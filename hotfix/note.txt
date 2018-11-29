@@ -1,0 +1,72 @@
+class文件
+一个java文件对应一个class文件
+一个android工程对应一个dex文件，相比于class文件，体积更小。
+
+DV和ART
+jvm  基于栈
+dalvik  基于寄存器，执行更快
+ART     安装程序的时候会将字节码转换为机器语言，因此后续运行更快跟更省电，但占用空间大
+
+Android ClassLoader
+双亲委托，父类加载共享，类加载隔离
+同一个class  类绝对路径相同且同一个classLoader加载
+getClass()  .class  装载类
+forName()   装载类并执行静态代码块和属性的初始化
+
+android动态加载的难点
+1.组件，资源需要注册
+2不同的版本对于组件和资源的注册实现方式不同
+
+技术选型的步骤
+根据需求选择
+优先选择在更新或者大公司方案
+
+tinker 支持so替换和资源替换，功能最为齐全，但不能即时生效
+
+流程
+  生成基准app
+  根据基准app生成patch.apk
+  下载patch后，根据路径加载app
+  ResultService开始加载合并文件。LoadReporter监听文件加载过程，PatchReporter监听文件合并过程。
+  文件合并完成后回调通知
+
+热修复的局限性
+只能对单一版本进行修改
+不能修改AndroidManifest
+
+使用场景
+轻量快速的升级
+远程调试
+
+类加载过程
+加载  singleTon = null,count1 = 0,count2 = 0
+连接
+初始化
+      初始化静态代码   new singleTon(),count1 = count2 = 1;
+      初始化非静态代码  count2 = 0;
+使用
+卸载
+
+
+class SingleTon {
+    private static SingleTon singleTon = new SingleTon();
+    public static int count1;
+    public static int count2 = 0;
+
+    private SingleTon() {
+        count1++;
+        count2++;
+    }
+
+    public static SingleTon getInstance() {
+        return singleTon;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        SingleTon singleTon = SingleTon.getInstance();
+        System.out.println("count1=" + singleTon.count1); //1
+        System.out.println("count2=" + singleTon.count2); //0
+    }
+}

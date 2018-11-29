@@ -1,0 +1,135 @@
+https://blog.csdn.net/guolin_blog/article/details/53759439
+http://frodoking.github.io/2015/10/10/android-glide/ 简易版本
+
+流程:
+    构建一个request对象
+    engine根据request对象获取图片
+    target将图片设置到view上面
+
+监听生命周期  一个不可见的fragment
+
+Target		保存request，图片加载流程监听,返回需要加载图片尺寸
+
+GenericRequestBuilder  各种设置，保存loadprovider
+Request(GenericRequest)
+ResourceDecoder	将流转换为bitmap，调用的Downsampler封装了bitmap的相关方法
+ModuleLoader 	 DataFetcher<Y> getResourceFetcher(T model, int width, int height);
+DataFetcher		获取数据的流
+
+engine 加载图片，编解码并且转码的执行器，处理缓存
+	   dataFecher.loadData() 下载原始数据
+	   //图片大小根据override()或者target.getSize()返回
+	   ResourceDecoder.decode() 解码返回Resource<Bitmap>
+
+	   Resource<Bitmap>	Transformation.transform(Resource<Bitmap>)
+	   //静图Resource<GlideBitmapDrawable>，动图Resource<GifDrawable>
+	   Resource<GlideDrawable> ResourceTranscoder.transcode(Resource<Bitmap>)
+
+	   target.onResourceReady(Resource<GlideBitmapDrawable>)
+
+GlideModule 替换配置和组件
+
+内存缓存
+取 	从lrucache取，然后删除加入到弱引用map里面。
+	从弱引用map取，acqure+1
+
+存	图片加载解码转码完成以后，engineJob会调用engine.onEngineJobComplete，在方法里面将数据保存到弱引用map
+	当弱引用的对应的acqure为0是，从弱引用map删除加入到lrucache
+
+磁盘缓存 	disklrucache。
+			缓存原始图片则在转码转换前就保存图片，缓存key也只有datafetcher.getid()
+			缓存转换后图片则是在转码转换之后保存。缓存key就是12个参数
+
+预加载 preLoad()
+BitmapRegionDecoder     加载大图
+
+=======================================================================================
+Glide.with(context)//根据传入的context回调控制Glide的生命周期
+    .load(resource)//传入resource的定位方式,构建个GenericRequestBuilder，提供了图片转码，缓存等方法
+    .asGif()|asBitmap()//指定加载图片类型
+    .placeHolder(resourceId)//图片加载时候的占位图
+    .error(resourceId)//图片加载时候显示的图片
+    .skipMemoryCache(true//关闭内存缓存)//内存缓存是否关闭
+    .diskCacheStrategy()//指定硬盘缓存策略
+    .override(width,height)//指定加载图片的大小
+    .transform(Transformation)//变换图片
+    .listener(RequestListener)//监听图片是否加载成功
+    .into(target)
+    //1.将GenericRequestBuilder对象创建的参数全部赋值给Request.
+    //2.Request.根据override()或者target.getSize()确定onSizeReady(width,height)确定宽高
+    //3.engine.load()判断图片是否从缓存获取或者加载图片原始数据。
+    //4.从内存获取数据
+            以十个参数确定key
+            从lrucache获取
+            弱引用队列获取
+    //5.从硬盘获取数据，
+            如果缓存策略是Source，这以fetcher.getId()为key，并且调用transcode()跟transform()
+            如果是Result，这以十个参数为key获取,只调用transcode()
+    //6.从资源标识处获取，
+            通过DataFetcher.loadData()获取原始数据
+            Downsampler处理图片的编码和采样率，转换成Resource
+            tranform()转换
+            transcode()转码，
+    //7.onComplete()方法调用target.onResourceReady()显示图片
+
+从资源标识处加载图片大体流程
+public void run() {
+	Resource<?> resource = decode();{
+		//利用DataFetcher获取原始数据，然后通过StreamBitmapDecoder.decode()转化为Resource对象(Resource包含一个bitmap对象)
+			Resource<T> decoded = decodeSource();
+		//对调用Transformation.transform()变换和ResourceTranscoder.transcode()解码Resource
+			return transformEncodeAndTranscode(decoded);
+	}
+	//调用target.onResourceReady(resource.get(), animation)
+	onLoadComplete(resource);
+}
+
+
+1.
+1)Glide.with(context).load(path).into(view)  context决定图片加载的生命周期。比如传入的是fragment，则fragment被
+销毁时，图片停止加载。如果是application，这应用退出才会停止加载。gilde是通过添加隐藏fragment的方法
+来得知生命周期
+2)通过asGif()或asBitmap()指定加载动图或者静图。如果asBitmap加载gif，则值加载gif的第一帧
+3)glide会根据传入imageView的大小，压缩图片得到图片合适的采样率
+4)placeholder(R.mipmap.ic_launcher_round)  图片尚未加载完成的占位图
+  error()  图片加载错误是的占位图
+
+2.内存缓存相关  Engine.load  核心方法
+1)正在使用的图片通过activeResources集合缓存。EngineResource.acquired 字段标识图片引用次数。如果
+acquired大于0，标识图片正在使用，图片缓存在activeResources集合里面。activeResources是弱引用集合，
+如果GC扫描到这个对象就会被回收
+
+
+2)如果图片的acquired等于0，标识图片没有被使用，放在lrucache中。
+#LruCache算法（Least Recently Used），也叫近期最少使用算法。它的主要算法原理就是把最近使用的对象
+ 用强引用存储在LinkedHashMap中，并且把最近最少使用的对象在缓存值达到预设定值之前从内存中移除。
+
+调用Engine.onComplite()方法时，保存图片到弱引用列表
+
+3)缓存的key：Engine.load方法里面的 keyFactory.buildKey(id(fetcher.getId()), signature, width, height, loadProvider.getCacheDecoder(),
+                                         loadProvider.getSourceDecoder(), transformation, loadProvider.getEncoder(),
+                                         transcoder, loadProvider.getSourceEncoder());
+  传入参数每一个都必须相等，才认为是同一个key
+
+4)skipMemoryCache(true)  禁用缓存
+
+3.硬盘缓存
+diskCacheStrategy()  缓存策略
+NONE： 表示不缓存任何内容。
+SOURCE： 表示只缓存原始图片。    缓存key只有fetcher的getid()确定
+RESULT： 表示只缓存转换过后的图片（默认选项）。 缓存key对应于Key对象，与内存缓存相同。10个参数决定
+ALL ： 表示既缓存原始图片，也缓存转换过后的图片。
+Glide.get(this).clearDiskCache();//清理磁盘缓存 需要在子线程中执行
+
+4.target preload()（预加载图片） 缓存策略最好设置成DiskCacheStrategy.SOURCE
+
+5.FutureTarget<File> target = downloadOnly(int width, int height) 用于子线程下载缓存图片
+  downloadOnly(Y target)  用于主线程下载缓存图片
+
+6.自定义glide模块
+  1.manifest文件注册
+  2.实现GlideModle类
+  3.在对应方法更换配置和组件
+
+7.Fiddler抓包工具
+

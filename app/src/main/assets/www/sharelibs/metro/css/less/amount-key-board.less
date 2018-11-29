@@ -1,0 +1,66 @@
+@import "custom-variables";
+
+.key-board-box {
+  position: absolute;
+  bottom: 0;
+}
+
+table.amount-key-board {
+  box-sizing: border-box;
+  width: @deviceWidth;
+  border: 1px solid #ccc;
+  tr {
+    height: auto;
+    width: 100%;
+    td {
+      font-size: 1.6em;
+      height: 3em;
+      width: 30%;
+      a {
+        background: #fff;
+        color: @font-gray;
+        border: 0.5px solid @border-gray;
+        text-decoration: none;
+        display: block;
+        height: 3em;
+        line-height: 3em;
+        width: 100%;
+        &:active {
+          background: @bg-gray;
+        }
+        &.backspace {
+          background: url("../images/backspace.png") center no-repeat #fff;
+          background-size: 45%;
+          &:active {
+            background-color: @bg-gray;
+          }
+        }
+        &.confirm {
+          color: @white;
+          background: @mainGreen;
+          &:active {
+            background: @mainGreen - #222;
+          }
+        }
+        &.btn-green,&.btn-green-deep{
+          color: @white;
+          width: 50%;
+          display: inline-block;
+        }
+        &.btn-green {
+          background: @greenA;
+          &:active {
+            background: @greenA - #222;
+          }
+        }
+        &.btn-green-deep {
+          background: @greenB;
+          &:active {
+            background: @greenB - #222;
+          }
+        }
+      }
+
+    }
+  }
+}

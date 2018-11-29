@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.test.viewpagedemo.Glide.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/loadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="loadImage" />
+
+
+        <Button
+            android:id="@+id/qualityDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="qualityDown" />
+
+        <Button
+            android:id="@+id/sampleSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sampleSize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bigBitmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bigBitmap" />
+
+        <Button
+            android:id="@+id/release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="release" />
+
+
+        <Button
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="play" />
+    </LinearLayout>
+    <!--<Button-->
+    <!--android:id="@+id/matrix"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="matrix" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/creatScaleBitmap"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="creatScaleBitmap" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/RGB"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="RGB" />-->
+
+
+    <ImageView
+        android:id="@+id/bitmap"
+        android:layout_width="384px"
+        android:layout_height="216px"
+        android:background="@color/colorAccent" />
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="gif" />
+
+</com.test.viewpagedemo.Glide.MyLinearLayout>

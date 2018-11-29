@@ -1,0 +1,115 @@
+#wrap{
+  background: @bg-gray;
+  color: @font-gray;
+  height: @wrapHeight;
+  width: 100%;
+  display : -moz-box;
+  display : -webkit-box;
+  display : box;
+  -moz-box-orient : horizontal;
+  -webkit-box-orient : horizontal;
+  box-orient : horizontal;
+  overflow: hidden;
+  //position: relative;
+}
+header{
+  height: @headerHeight;
+  background: @mainBlue;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7) inset;
+  h1{
+    line-height: 2em;
+  }
+  .title{
+    font-size: 1.5em;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    line-height: 2em;
+
+  }
+  .back-btn{
+    .cleanBtnStyle;
+    background: url("../images/back.png") center no-repeat;
+    background-size: 70%;
+    width: 40px;
+    height: 40px;
+    margin-left:  5px;
+    position: absolute;
+    &:active{
+      background-color: @mainBlue - #222;
+    }
+  }
+  #logo{
+    background: url(../images/icon.png) no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 50px;
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 36px;
+    line-height: 50px;
+    text-indent: 50px;
+  }
+}
+#side{
+  background: url(../images/bg01.png);
+  color: #f0f0f0;
+  height: 730px;
+  width: 200px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+#workspace{
+  height: 100%;
+  width: 100%;
+  //min-width: 760px;
+  text-align: center;
+  -moz-box-flex : 1;
+  -webkit-box-flex : 1;
+  box-flex : 1;
+  #workspace-main{
+    position: relative;
+    height: 100%;
+    #pages{
+      position: absolute;
+      height: 100%;
+      left: 0;
+      width: auto;
+      -webkit-transition-duration: 300ms;
+      -webkit-transition-timing-function: ease-out;
+      -moz-transition-duration: 300ms;
+      -moz-transition-timing-function: ease-out;
+      .page-content{
+        float: left;
+        width: @deviceWidth;
+        height: 100%;
+      }
+    }
+
+  }
+}
+
+/**
+ * 交易区主要内容
+ */
+.main{
+  width: @deviceWidth;
+  .content{
+    width: 100%;
+    .content-box{
+      width: 100%;
+
+    }
+  }
+  .btn-box, .form-box{
+    width: 96%;
+    height: auto;
+    margin: 10px auto;
+  }
+  .btn-box{
+    text-align: center;
+  }
+}

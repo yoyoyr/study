@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" src="../upos-bundle/bundle-upos-android.min.js"></script>
+    <script language="javascript" src="../upos-bundle/bundle-loader.js"></script>
+    <script language="javascript" src="../libs/require.js"></script>
+    <title></title>
+</head>
+    <script language="javascript">
+        require.config({
+            paths:{
+                'ps':'../orm/persistence',
+                'ps.store.sql':'../orm/persistence.store.sql',
+                'ps.store.websql':'../orm/persistence.store.websql',
+                'gbkcoder':'../gbkcoder',
+                'utils':'../utils',
+                'dbManager':'../orm/dbManager',
+                'translog':'./translog',
+                'cups':'./cups'
+            },
+            shim:{
+                'ps':{
+                    deps:[],
+                    exports:'persistence',
+                },
+                'ps.store.sql':{
+                    deps:['ps'],
+                    exports:'persistence.store.sql',
+                }
+                ,
+                'ps.store.websql':{
+                    deps:['ps.store.sql'],
+                    exports:'persistence.store.websql',
+                }
+            }
+        });
+        require(['translog','dbManager','cups','utils'], function (translog,dbManager,cups,utils) {
+
+            dbManager.open('scjj','四川交警数据库'),  //这个方法应该放在全局的初始化里，一个应用只有一个数据库，且名称不能修改
+            translog.init();
+            translog.getVoucherNo(function(sno){
+                alert(sno);
+                translog.getNeedToSyncEntitys(cups.CUPS_CHANNEL,null,function(entitys){
+                    entitys.forEach(function(entity){
+                        alert(JSON.stringify(entity));
+                        alert(JSON.stringify(entity.entity));
+
+                        if(utils.isNull(entity.entity.reservalTimes)){
+                            entity.entity.reservalTimes = 1;
+                        }
+
+                        if(entity.entity.reservalTimes > 3){
+                            return;
+                        }
+
+                        //冲正成功
+                        try {
+                            translog.doReserval(entity);
+
+                        }catch(e){
+                            //冲正失败
+                            entity.entity.reservalTimes ++;
+
+                            translog.doReserval(entity,false);
+                        }
+
+                    });
+                });
+                translog.getNeedToUploadEntitys(cups.CUPS_CHANNEL,null,function(entitys){
+                    entitys.forEach(function(entity){
+                        alert(JSON.stringify(entity));
+
+
+                    });
+                });
+
+                translog.newTransEntity(cups.CUPS_CHANNEL,'000001',sno ,function(entity){
+                    entity.is_offline = true;
+                    entity.entity = {};
+                    entity.entity.iso8583 = {};
+                    entity.entity.iso8583.text = {};
+                    entity.entity.iso8583.req = {};
+                    entity.entity.iso8583.req[11] = '01012312312';
+                    entity.entity.iso8583.req[12] = 'asdfasdfasd';
+                    entity.entity.iso8583.req[13] = 'adsfasdfasdf';
+                    alert(JSON.stringify(entity));
+
+                    translog.sendToAcquirer(entity,function(entity){
+                        try{
+                            // 送后台交易..
+
+                            //交易成功则设置
+                            entity.entity.iso8583.resp={};
+//                            translog.doSuccess(entity);//部分成功
+
+                            //交易失败则设置
+//                            translog.doCancel(entity);
+
+                        }catch(e){
+                            //直接做失败的提示
+                            throw e;
+                        }
+                    });
+
+                });
+            });
+
+
+
+        });
+
+
+    </script>
+<body>
+
+</body>
+</html>

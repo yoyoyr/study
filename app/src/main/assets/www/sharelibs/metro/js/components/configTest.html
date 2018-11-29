@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link type="text/css" rel="stylesheet" href="../../css/metro.css">
+    <link type="text/css" rel="stylesheet" href="../../css/metro-icons.css">
+    <script language="javascript" src="../upos-bundle/bundle-upos-android.min.js"></script>
+    <script language="javascript" src="../upos-bundle/bundle-loader.js"></script>
+    <script language="javascript" src="../libs/require.js"></script>
+    <title>系统参数设置</title>
+    <style>
+        .button-box {
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        #content fieldset {
+            border-width: 1px 0 0;
+        }
+    </style>
+</head>
+<script language="javascript">
+    require.config({
+        shim: {
+            'jquery': {
+                exports: '$'
+            },
+            'ps': {
+                deps: [],
+                exports: 'persistence'
+            },
+            'ps.store.sql': {
+                deps: ['ps'],
+                exports: 'persistence.store.sql'
+            },
+            'ps.store.websql': {
+                deps: ['ps.store.sql'],
+                exports: 'persistence.store.websql'
+            },
+            'metro': {
+                deps: ['jquery']
+            },
+            'mui': {
+                deps: ['metro']
+            }
+        },
+        paths: {
+            'jquery': '../libs/jquery',
+            'ps': '../orm/persistence',
+            'ps.store.sql': '../orm/persistence.store.sql',
+            'ps.store.websql': '../orm/persistence.store.websql',
+            'dbManager': '../orm/dbManager',
+            'utils': '../utils',
+            'config': 'config',
+            "gbkcoder": '../gbkcoder',
+            'metro': '../libs/metro',
+            'mui': '../ui.metro.custom'
+        },
+        waitSeconds: 10
+    });
+    require([
+        'jquery',
+        'dbManager',
+        'config',
+        'mui'
+    ], function ($, database, config, mui) {
+
+        config.template = [
+            {
+                'legend': '商户信息',
+                'body': [
+                    {
+                        type: config.RowType.CELL2,
+                        'body': [
+                            {
+                                'description': '商户号：',
+                                'componentsType': config.ComponentsType.TEXTINPUT,
+                                'key': 'merchantNo',
+                                'defaultValue': '102980058140002'
+                            }, {
+                                'description': '终端号：',
+                                'componentsType': config.ComponentsType.TEXTINPUT,
+                                'key': 'terminalNo',
+                                'defaultValue': '00000013'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                'legend': '通讯参数',
+                'body': [
+                    {
+                        type: config.RowType.CELL3,
+                        'body': [
+                            {
+                                'description': 'IP：',
+                                'componentsType': config.ComponentsType.TEXTINPUT,
+                                'key': 'ip',
+                                'defaultValue': 'ipos.chinaums.com'
+                            },
+                            {
+                                'description': '端口：',
+                                'componentsType': config.ComponentsType.TEXTINPUT,
+                                'key': 'port',
+                                'defaultValue': '7210'
+                            },
+                            {
+                                'description': 'TPDU：',
+                                'componentsType': config.ComponentsType.TEXTINPUT,
+                                'key': 'tpdu',
+                                'defaultValue': '6000780000'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                'legend': '交易参数',
+                'body': [
+                    {
+                        type: config.RowType.CELL3,
+                        'body': [
+                            {
+                                'description': '交易超时秒数：',
+                                'componentsType': config.ComponentsType.SELECT,
+                                'key': 'timeout',
+                                'select': {'20秒': '20', '40秒': '40','60秒': '60'},
+                                'defaultValue': '60'
+                            },
+                            {
+                                'description': '签到重发次数：',
+                                'componentsType': config.ComponentsType.SELECT,
+                                'key': 'signUpFailTimes',
+                                'select': {'1次': '1', '2次': '2','3次': '3'},
+                                'defaultValue': '3'
+                            },
+                            {
+                                'description': '冲正重发次数：',
+                                'componentsType': config.ComponentsType.SELECT,
+                                'key': 'chongzFailTimes',
+                                'select': {'1次': '1', '2次': '2','3次': '3'},
+                                'defaultValue': '3'
+                            }
+                        ]
+                    },
+                    {
+                        type: config.RowType.CELL3,
+                        'body': [
+
+                            {
+                                'description': 'TC上送重发次数：',
+                                'componentsType': config.ComponentsType.SELECT,
+                                'key': 'tcFailTimes',
+                                'select': {'1次': '1', '2次': '2','3次': '3'},
+                                'defaultValue': '3'
+                            },
+                            {
+                                'description': '脚本上送重发次数：',
+                                'componentsType': config.ComponentsType.SELECT,
+                                'key': 'scriptFailTimes',
+                                'select': {'1次': '1', '2次': '2','3次': '3'},
+                                'defaultValue': '3'
+                            }
+
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        mui.myDialog.init("loading").init("success");
+        var d;
+        window.setTimeout(function () {
+            d = mui.myDialog.loading("数据库查询...");
+        }, 200);
+
+        dbManager.open('scjj','四川交警数据库');
+        config.setConfigParam('key', 'value1');
+        config.setConfigParam('key', 'value6');
+
+        config.getConfigParams(function (rslt) {
+            rslt.forEach(function (e) {
+                window.console.log(e.key + ':' + e.value);
+            });
+
+        });
+
+
+        $("#content").html(config.formFormatter(config.template));
+        config.refreshTheForm();
+
+
+        window.setTimeout(function () {
+            var temp = config.templateFromDB;
+            if (temp != null) {
+                $("#content").html(config.formFormatter(temp));
+                d.close();
+            } else {
+                d.close();
+            }
+        }, 2000);
+
+
+        $("#save-btn").click(function () {
+            config.setConfigParams(config.getFormParams());
+            //保存成功对话框，但需要返回值
+            mui.myDialog.success("参数保存成功！")
+        });
+
+    });
+
+
+</script>
+<body>
+<h1>系统参数设置</h1>
+
+<div id="content">
+</div>
+<div class="button-box">
+    <button id="save-btn" class="button primary">保存</button>
+</div>
+</body>
+</html>

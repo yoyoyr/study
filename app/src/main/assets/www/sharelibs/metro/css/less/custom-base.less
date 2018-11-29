@@ -1,0 +1,79 @@
+@charset "utf-8";
+.clearfix:after {content: "."; display: inline-block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+
+body,ul,li,dl,dd,ol,p,h1,h2{padding: 0;margin: 0; font-family: "微软雅黑";}
+ul li{list-style: none;}
+ol li{list-style-position: inside}
+.level1 a,.level2 a,.level3 a,#side2 a{text-decoration: none;color: #fff;text-shadow:2px -2px 2px rgba(0,0,0,0.8);}
+.hide{display: none}
+.show{display: block}
+.highlight{color:#FF6101}
+.left{float: left}
+.right{float: right}
+.alg-left{text-align: left}
+.alg-right{text-align: right}
+.alg-center{text-align: center}
+a {
+  color: #3B6E8E;
+  color: #2BACF0;
+  text-decoration: none;
+  transition: text-shadow .2s linear;
+  -moz-transition: text-shadow .2s linear;
+  -webkit-transition: text-shadow .2s linear;
+  &:hover, &:visited:hover{
+    text-decoration: underline;
+    text-shadow: 0 0 3px #585858;
+  }
+  &:hover{text-decoration: underline;}
+}
+
+
+/*******
+ * button style
+ */
+a.btn-back{
+  background-position: -150px -8px;
+  float: left;
+}
+a.btn-toBig{
+  background-position: -152px -103px;
+  float: right;
+}
+a.btn-refresh{
+  background-position: -150px -56px;
+  float: right;
+}
+
+.letter-spacing1{
+  letter-spacing: 1em;
+  margin-right: -1em;
+}
+.letter-spacing05{
+  letter-spacing: 0.5em;
+  margin-right: -0.5em;
+}
+.letter-spacing15{
+  letter-spacing: 1.5em;
+  margin-right: -1.5em;
+}
+.letter-spacing2{
+  letter-spacing: 2em;
+  margin-right: -2em;
+}
+.cleanBtnStyle{
+  background: none;
+  border:none;
+  margin: 0;
+  padding: 0;
+}
+.highlight{
+  color: #ff6b39;
+}
+.color-black{
+  color: @black;
+}
+//去除button点击完后的边框
+button{
+  outline: none;
+}

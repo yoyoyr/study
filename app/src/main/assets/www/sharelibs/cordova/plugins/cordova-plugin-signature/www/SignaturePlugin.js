@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-signature.SignaturePlugin",function(n,t,r){var e=function(){};e.prototype.startSignature=function(n,t,r){cordova.exec(t,r,"SignaturePlugin","startSignature",n)},r.exports=new e});

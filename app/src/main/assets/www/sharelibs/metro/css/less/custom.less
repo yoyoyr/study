@@ -1,0 +1,216 @@
+@import (once) "custom-colors";
+
+/**
+ * form layout style
+ */
+.form-box {
+	box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+	color: #555;
+	.f-s {
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		-webkit-box-orient: horizontal;
+		-moz-box-orient: horizontal;
+		box-orient: horizontal;
+		width: 100%;
+		.l {
+			background: url(../images/border01.png) no-repeat top right #fcfcfc;
+			border: 1px solid #CECECE;
+			border-right: 0px;
+			padding: 8px 5px;
+			text-align: center;
+			height: auto;
+			width: 48px;
+			span {
+				height: auto;
+				width: 20px;
+				display: block;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+			}
+		}
+		.r {
+			-webkit-box-flex: 1;
+			-moz-box-flex: 1;
+			box-flex: 1;
+			height: auto;
+			border: 1px solid #CECECE;
+			border-left: 0px;
+			padding-left: 15px;
+			background: #fff;
+		}
+		&:nth-of-type(1) .l {
+			border-radius: 5px 0 0 0
+		}
+		&:nth-of-type(1) .r {
+			border-radius: 0 5px 0 0
+		}
+		&:nth-last-of-type(1) .r {
+			border-radius: 0 0 5px 0
+		}
+		&:nth-last-of-type(1) .l {
+			border-radius: 0 0 0 5px
+		}
+	}
+	label {
+		color: #2285BB;
+	}
+	input {
+		background: #f8f8f8;
+		border-color: #cecece;
+		height: 26px;
+		width: 186px;
+		font-size: 14px;
+		&[type=checkbox], &[type=radio]{
+			width: 26px;
+		}
+	}
+	select {
+		height: 30px;
+	}
+}
+
+
+.ui-stepper {
+	background-color: #f4f4f4;
+	border-bottom: 1px solid #e3e3e3;
+	ul {
+		display: block;
+		padding-left: 35px;
+		li {
+			float: left;
+			font-size: 22px;
+			height: 65px;
+			line-height: 65px;
+			display: none;
+			.ui-stepper-arrow {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				border-top: 1px solid #000;
+				border-right: 1px solid #000;
+				-webkit-transform: rotate(45deg);
+				margin: 28px 10px 0;
+			}
+			&.selected {
+				color: #1081de;
+			}
+		}
+	}
+}
+
+.payment-info {
+	width: 96%;
+	height: 189px;
+	margin: 30px auto 20px;
+	background: url("../images/bill-info.png") no-repeat;
+	background-size: 100% 100%;
+	div {
+		height: 100%;
+	}
+	.l {
+		.left;
+		width: 215px;
+		color: #fff;
+		padding-top: 40px;
+		label {
+			font-size: 30px;
+		}
+		div {
+			margin-top: 10px;
+			font-size: 36px;
+			height: auto;
+		}
+	}
+	.r {
+		.left;
+		.alg-left;
+		font-size: 20px;
+		padding: 40px;
+		p {
+			margin-top: 10px;
+		}
+	}
+}
+
+#loading-dialog {
+	text-align: center;
+	.print-img {
+		background: url('../images/print-animation.gif') no-repeat;
+		background-size: 100% 100%;
+		width: 87px;
+		height: 93px;
+		margin: 0 auto;
+	}
+	.loading-img {
+		background: url('../images/loading.gif') no-repeat;
+		background-size: 100% 100%;
+		width: 6em;
+		height: 6em;
+		margin: 0 auto;
+	}
+}
+
+/**
+ * Metro UI CSS
+ */
+.button {
+	border-radius: 4px;
+	color: #fff;
+	&.primary {
+		background-color: #1081de;
+	}
+	&.info {
+
+	}
+	&.grayA {
+		background-color: @grayA;
+		border: 1px solid @grayA;
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		&:active {
+			background-color: @grayA;
+			border: 1px solid @grayA;
+		}
+	}
+	&.sBtn {
+		width: 105px;
+		height: 34px;
+		font-size: 18px;
+		border-radius: 2px;
+	}
+}
+
+#workspace, .mydialog {
+	.button {
+		&.primary {
+			background-color: @mainBlue;
+			border-color: @mainBlue;
+		}
+	}
+}
+#workspace{
+	.button-box{
+		.button {
+			font-size: 1.3em;
+			width: 90%;
+			height: 2.1em;
+		}
+	}
+}
+//����metro����ʱ��ʽ
+.countdown{
+  .disabled{
+	&.days,&.hours{
+	  display: none;
+	}
+  }
+  .disabled.days+.divider{
+	display: none;
+  }
+  .disabled.hours+.divider{
+	display: none;
+  }
+}
+
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/startActivityWithResult"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="startActivityWithResult"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startServiceByName"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="startServiceByName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startActivityWithResult" />
+
+    <Button
+        android:id="@+id/startServiceByType"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="startServiceByType"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startServiceByName" />
+
+    <Button
+        android:id="@+id/startFragment"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="startFragment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startServiceByType" />
+
+    <Button
+        android:id="@+id/interceptor"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="interceptor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startFragment" />
+
+    <Button
+        android:id="@+id/Degrade"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Degrade"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/interceptor" />
+
+    <Button
+        android:id="@+id/Dialog"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Dialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Degrade" />
+
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:text="startFragment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Dialog" />
+
+
+
+</android.support.constraint.ConstraintLayout>

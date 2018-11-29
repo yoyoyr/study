@@ -1,0 +1,201 @@
+重点：
+    响应编程的含义：基于异步数据流的编程框架。数据流可以被创建，观察，组合，变化，过滤。
+                    RxJava基于观察者模式和线程池，为我们提供了一个响应式编程框架。
+被观察者 Observable，观察者 Observer subscribe()订阅事件后Observable开始发送时间，Emitter 发射器
+OnSubscribe()指定被观察者执行线程，仅第一次指定有效，observeOn() 指定观察这执行线程.
+注意利用Disposable.disposable()取消任务。
+常用操作符有:
+    创建 create,just,interval
+    变换 map,flatmap,concatmap
+    合并 merge,concat,zip
+    过滤 fliter
+    生命周期监听  doOnNext
+    重复，错误获取等
+背压: Flowable&Subscriber
+      因为被观察者数据发送速度大于观察者消耗的速度，导致数据堆积可能产生oom。
+      新增接口  FlowableEmitter.requestd()  观察者要求可以处理的数据个数
+                Subscription.request(int)   观察者要求拉取的数据个数。
+
+                onBackpressureXX()  指定数据丢弃策略
+线程池
+    ThreadPoolExecutor(
+    int corePoolSize,//线程核心数。线程池会保证这个数量的线程存活。当设置allCoreThreadTimeOut为true的时候，核心线程也会因为keepAliveTime超时而被杀死
+    int maximumPoolSize,//线程所能容纳最大线程数。当任务数超过是，则任务被放在阻塞队列里面等待执行
+    long keepAliveTime,//当这个时间内的非核心线程不工作，会被回收
+    TimeUnit unit,
+    BlockingQueue<Runnable> workQueue,  //execute提交的认为会存储在这个队列里面
+    ThreadFactory factory)
+    特性
+    1)当线程数量还未达到核心线程数，则直接开启核心线程执行任务
+    2)当线程数达到或者超过核心线程数，则将任务放在队列里面
+    3)当无法插入队列满了，则启动非核心线程来执行任务
+    4)当非核心线程已经达到最大值，则拒绝执行任务，调用RejectedExecutionHandler.rejectedExecution()来通知调用者
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+https://www.jianshu.com/p/cd984dd5aae8   应用场景大全
+https://www.jianshu.com/u/c50b715ccaeb   背压详解
+https://www.jianshu.com/p/0cd258eecf60  有重点的版本
+
+一.创建
+  1.基础  create
+  2.快速创建 just，fromArray（数组），fromIteratable（集合）
+  3.延迟创建 interval 经过一段延时后，从0开始按照指定时间递增发送数据
+
+二.变换
+
+    map     变换数据
+    flatmap  如果observable是异步的，将被放在线程池执行，observer接收到的事件无序。
+    concatmap  返回observable是异步的，会被放在队列中取出执行，observer接收到的事件仍然有序.
+
+
+    buffer   缓冲到一定数量的事件后开始接受。并合并成一个list发送。
+            例如buffer(5,2)=(1,2,3,4,5,6,7,8,9)->[1,2,3,4],[3,4,5,6],[5,6,7,8]
+
+三.合并数据流(加入线程的影响)
+    合并被观察者
+        concat concatArray concatDelayError等  前一个observvable.complete才会发送下一个数据源，合并事件后串行发送。例如[just(1,2,3),just(4,5,6)]->(1,2,3,4,5,6)
+        merge  mergeArray mergeDelayError等  无序合并observable
+    合并数据
+        zip    按发送顺序合并变换后事件后发送，按少的那一个发送
+
+
+        combineLatest 按时间合并变换后发送
+        reduce  累加所有事件后，合并成一个事件发送
+        collect 累计成所有事件成一个集合后发送集合事件
+    发送数据前追加  startWith/startWithArray
+    统计发送事件个数  count
+
+四.功能
+   subscribe
+
+   线程调度相关
+   subscribeOn   指定被观察者运行的线程,即subscribe()函数运行的线程。不可多次指定，如果多次指定运行线程，以第一次为主。位置无所谓
+                 原因是，subscribeOn会将observable封装成一个SubscribeTask对象扔到线程里面运行
+   observeOn     指定观察者运行的线程，每次指定都会作用于下一次观察者运行的线程
+        AndroidSchedulers.mainThread()  在主线程运行
+        Schedulers.io()  适合于网络，文件等io密集操作
+        Schedulers.computation()  适合于大量计算
+        Schedulers.newThread() 创建一个新线程
+        Schedulers.immediate() 在当前线程运行，默认值
+
+   delay()  延时发送
+
+   事件生命周期内回调.这类函数均没有返回值，因此无法影响事件流接下去怎么发送
+        doOnEach()  onNext,onComplete,onError都会回调
+        doOnNext()  在观察者接受到next事件之前调用.和doOnEach的调用顺序根据注册顺序确定
+        doAfterNext() 在观察者处理完next事件之后调用
+        doOnError()
+        doOnCompleted()
+        doOnTerminate()     complete或者error都会调用
+        doFinally()     最后执行
+        doOnSubscribe()  订阅时调用
+        doOnUnSubscribe()   取消订阅时调用
+
+        send i = 1
+        doOnEach i = 1
+        doOnNext i = 1
+        rev i = 1
+        doAfterNext i = 1
+        end send i = 1
+
+   错误处理（发生错误）
+       1.打印 声明周期的方法。如上
+       2.将error转换成其他对象
+        onErrorReturn()  将错误转换成对象再发送
+        onErrorResumeNext()  将错误转换成一个Observable再发送
+        onExceptionResumeNext()
+       3.重试
+        retry()  整个调用链无限重发
+        retry(long) 重发几次
+        retry(predicate) 返回true，重发。返回false，不重发，回调onError
+        retry(BiPredicate)  增加重发次数的入参
+        retryWhen()    返回Observable
+
+   重复（onComplete.onError不会重复）
+       repeat()
+       repeatWhen()
+
+五.过滤
+   根据条件过滤
+     fliter     返回true，继续发送。返回false，过滤掉
+     ofType     筛选出指定类型.如果指定两个，会什么都筛选不出来
+     skip/skipLast  跳过第n个/倒数第n个事件
+     distinct   过滤掉重复的事件。(1,2,3,1,2)->(1,2,3)
+     distinctUntilChanged  过滤掉相邻的重复事件。(1,2,3,1,2,3,3,4,4)->(1,2,3,1,2,3,4)
+     take   指定最多接收几个事件
+     takeLast   指定接收最后几个事件
+   根据时间过滤
+     throttleFirst/throttleLast  响应一段时间内的第一个/最后一个事件
+     sample     只发送一段时间内的最后一个事件
+     throttleWithTimeout()/debounce()   发送数据事件时，若2次发送事件的间隔＜指定时间，就会丢弃前一次的数据，直到指定时间内都没有新数据发射时才会发送后一次的数据
+   根据事件位置
+     firstElement()/lastElement()/elementAt()/elementAtOrError(){出现数组越界的时候抛出异常}
+
+六.条件
+    takeWhile  返回false后，就再也不接受数据
+    sikpWhile  返回false后，就接收数据剩下所有数据
+    SequenceEqual 两个数据源发送的数据是否完全相同
+    contains    是否包含指定数据
+    isEmpty
+    amb     发送先发送的observable。其余的丢弃
+
+七.背压
+   在异步的情况下，被观察者发送事件缓存在队列里面，然后观察者从队列里面取。
+   如果出现，被观察者产生事件的速度远远的超过了观察者处理事件的速度，就会出现队列内容过多，严重的OOM。
+   背压就是为了解决这个问题。
+   解决方案:
+        针对观察者：响应式拉取，通过Subscription.request(n)来拉取n个事件
+        针对被观察者：
+            同步情况下
+                FlowableEmitter.requested()来得知观察者还能处理事件的剩余个数
+                requested()具有可叠加性，并且实时更新个数
+        针对缓冲区,一般用在异步情况下，流速不匹配:  指定缓冲区数据过多是的处理策略
+            构造函数指定策略:
+            BackpressureStrategy.ERROR      超过128个事件，发生MissingBackpressureException
+            BackpressureStrategy.BUFFER     缓冲区无限大
+            BackpressureStrategy.DROP       超过128丢弃最新的事件
+            BackpressureStrategy.MISSING
+            BackpressureStrategy.LATEST     超过128丢弃最老的事件
+            链式函数调用指定策略:
+            onBackpressureBuffer()
+            onBackpressureDrop()
+            onBackpressureLatest()
+   同步情况下，因为观察者和被观察者运行在同一个线程，所以不存在流速不同的情况。但被观察者发送
+==================================================================
+线程切换
+     ObserveOnObserver.onNext(){
+        //将消息加入到SpscLinkedArrayQueue队列。SpscLinkedArrayQueue为rxjava自己实现的队列
+           queue.offer(t);
+        //executor.submit(ObserveOnObserver)
+           schedule();
+        }
+
+     ObserveOnObserver.run(){
+        Observer.onNext(queue.poll())
+     }
+
+
+    CachedWorkerPool
+    ThreadWorker(Scheduler.Worker)
+        ScheduledExecutorService 线程池。
+        schedule()方法最后调用核心方法scheduleActual().执行runnable
+    Future
+线程池
+    IO Computer   ScheduledThreadPoolExecutor(指定延时执行任务  周期性执行任务)
+                    ->ThreadPoolExecutor(1, Integer.MAX_VALUE,10, MILLISECONDS,
+                         new DelayedWorkQueue(), threadFactory)
+    ThreadPoolExecutor(
+    int corePoolSize,//线程核心数。线程池会保证这个数量的线程存活。当设置allCoreThreadTimeOut为true的时候，核心线程也会因为keepAliveTime超时而被杀死
+    int maximumPoolSize,//线程所能容纳最大线程数。当任务数超过是，则任务被放在阻塞队列里面等待执行
+    long keepAliveTime,//当这个时间内的非核心线程不工作，会被回收
+    TimeUnit unit,
+    BlockingQueue<Runnable> workQueue,  //execute提交的认为会存储在这个队列里面
+    ThreadFactory factory)
+    特性
+    1)当线程数量还未达到核心线程数，则直接开启核心线程执行任务
+    2)当线程数达到或者超过核心线程数，则将任务放在队列里面
+    3)当无法插入队列满了，则启动非核心线程来执行任务
+    4)当非核心线程已经达到最大值，则拒绝执行任务，调用RejectedExecutionHandler.rejectedExecution()来通知调用者
+
+    DelayedWorkQueue 插入方法 offer(e)	移除方法 poll()	检查方法 peek()

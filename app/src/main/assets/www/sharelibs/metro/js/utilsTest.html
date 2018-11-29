@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" src="upos-bundle/bundle-upos-android.min.js"></script>
+    <script language="javascript" src="upos-bundle/bundle-loader.js"></script>
+    <script language="javascript" src="libs/require.js"></script>
+    <title></title>
+</head>
+<script language="javascript">
+    require.config({
+        paths:{
+            'gbkcoder':'gbkcoder',
+            'utils':'utils'
+        }
+    });
+    require(['utils'], function (utils) {
+        var self = this;
+
+        var ums = upos.require('ums.api');
+        var transutils = utils.transutils;
+        var isoutils = utils.isoutils;
+        /*
+         *统一48域组包器
+         *
+         */
+        this.getTrans48=function(tagsInField48,beforAdditional){
+            var additional =isoutils.decodeAsc(self.packet48SubField(tagsInField48));
+            var additionalLength = isoutils.paddingLeft(additional.length+"",3,"0");
+            var f48 = beforAdditional+additionalLength + additional+"#";
+            window.console.log("f48:"+f48);
+            return f48;
+        }
+
+        /*
+         *
+         */
+        this.packet48SubField=function (tagsInField48) {
+            var subField48 = "";
+            var tagsInField48 = tagsInField48;
+
+            for(var key in tagsInField48){
+                var value = tagsInField48[key];
+                if(value)
+                    subField48 += self.addTLVString(key,value);
+            }
+            return subField48;
+        }
+
+
+        /**
+         * 解缴费返回的48域
+         * 长度固定从150位取
+         *
+         */
+        this.getTlvEnty=function(f48){
+            var field48 = f48;
+            var subField48 = field48.substring(150,field48.length-2);
+            var buffer =ums.util.encoding.hexStringToBuffer(subField48);
+            window.console.log("buffer:"+buffer);
+            return self.getTLV(buffer,isoutils);
+        }
+
+        /*
+         *统一解析缴费响应的48域TLV
+         */
+        this.getTLV=function (buffer) {
+
+            var result = {};
+            var tlvList = ums.iso8583.tlv.parseAll(buffer);
+            for (var i = 0; i < tlvList.length; i++) {
+                var value = isoutils.decodeAsc(ums.util.encoding.bufferToHexString(tlvList[i].value));
+                console.log(tlvList[i].tag);
+                switch (tlvList[i].tag) {
+                    case 0xbf05://查询交易新一代流水
+                        result.sysRefNo = value;
+                        break;
+                    case 0x3f1b://决定书编码
+//                        result.ChnName =ums.util.encoding.gbk2utf8(tlvList[i].value.data);
+                        result.ChnName =value;
+                        break;
+                    case 0x3f2b://缴费金额
+                        result.IdNum = value;
+                        break;
+                }
+            }
+            return result;
+        }
+        /**
+         * 组TLV字段
+         *
+         */
+        this.addTLVString=function (tag, value) {
+            var outputBuf;  //encode中会计算outputBuf需要的大小
+            var t = new ums.iso8583.tlv.TLV(parseInt(tag, 16),
+                    ums.util.encoding.hexStringToBuffer(
+                            isoutils.encodeAsc(value)
+                    )
+            );
+            var returnedBuf = t.encode(outputBuf);
+            return ums.util.encoding.bufferToHexString(returnedBuf).toUpperCase();
+        }
+        /**
+         * return a Buffer containing the encoded TLV object
+         *
+         * @param {String} tag
+         * @param {Buffer} value
+         * @returns {String}
+         */
+        this.addTLVBuffer=function (tag, value) {
+            var outputBuf;  //encode中会计算outputBuf需要的大小
+            var t = new ums.iso8583.tlv.TLV(parseInt(tag, 16), value);
+            var returnedBuf = t.encode(outputBuf);
+            return (ums.util.encoding.bufferToHexString(returnedBuf).toUpperCase());
+        }
+
+//        var rslt = transutils.parsePosEntryMode('021');
+//        alert(JSON.stringify(rslt));
+//        alert(rslt.isMagCard());
+//        alert(rslt.cardInputType == '2');
+//
+//        var balance = '1002156C010000000000';
+//        alert(JSON.stringify(transutils.parseBalance(balance)));
+        this.tagsInField48 = {
+            "1F50": "0004",
+            "FF28": '123456789012345',
+            "FF29": '12345678',
+            "2F1A": "0106",
+            "BF05":'123456789012345'
+        };
+        var fillSpace = isoutils.paddingLeft("",50," ");
+        this.beforAdditional = "U0"+
+                "V2"+
+                "57"+
+                "11"+
+                "6500"+
+                "0000"+
+                fillSpace+
+                "000000";
+        this._payTrans48Value=self.getTrans48(tagsInField48,beforAdditional);
+
+        var rslt = transutils.packupField48(tagsInField48,beforAdditional);
+        window.console.log('rslt:'+rslt);
+        window.console.log('body:'+JSON.stringify(this.getTlvEnty(isoutils.encodeAsc(rslt))));
+        window.console.log('rslt:'+this._payTrans48Value);
+        window.console.log('unpack:'+JSON.stringify(transutils.unpackField48("5530563235373131363530303030303020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020203030303030303035311F500430303034FF280F313032393830303538313430303032FF29083030303030303133BF050C31303233303030313032333023")));
+        console.log('unpack:'+JSON.stringify(this.getTlvEnty('5530563235373131363530303030303020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020203030303030303035311F500430303034FF280F313032393830303538313430303032FF29083030303030303133BF050C31303233303030313032333023')));
+    });
+
+
+</script>
+<body>
+
+</body>
+</html>

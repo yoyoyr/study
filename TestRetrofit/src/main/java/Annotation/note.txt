@@ -1,0 +1,8 @@
+1.annotation可以理解为为代码打标签，@Retetion表示了标签保留到什么时候，@Target表示标签贴在哪里
+
+2.APK文件的生产流程是  java--class--dex--apk
+SOURCE的保留期是到java
+CLASS是到class
+Runtime是到apk
+
+3.apt方式一般是到class阶段

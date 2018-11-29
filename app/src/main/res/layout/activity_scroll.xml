@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="scroll" />
+
+
+    <Button
+        android:id="@+id/translate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="translate" />
+
+    <Button
+        android:id="@+id/offset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="offset" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:text="testButton" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="btn" />
+
+</LinearLayout>

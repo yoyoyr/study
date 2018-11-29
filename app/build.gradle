@@ -1,0 +1,235 @@
+import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
+import org.aspectj.bridge.IMessage
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'walle'
+apply plugin: 'com.test.plugin.mygroovy'
+//apply from: file("${project.project(":hotfix").projectDir}/tinker.gradle")
+
+def keystore = "C:\\resource\\platform.keystore"
+
+android {
+//    构建项目sdk版本号
+    compileSdkVersion project.ext.param.compileSdkVersion
+//    替换manifest属性
+    defaultConfig {
+        applicationId "com.androidstudypoint"
+        minSdkVersion project.ext.param.minSdkVersion
+//      已经在此版本做过测试，不需要系统兼容行为
+        targetSdkVersion project.ext.param.targetSdkVersion
+        versionCode project.ext.param.versionCode
+        versionName project.ext.param.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()
+                             , eventBusIndex    : 'com.test.viewpagedemo.EventBus.EventbusSubscriber']
+            }
+        }
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "pVIknmAYpS8dBY7EVI1CN9",
+                GETUI_APP_KEY   : "cDAmGAaqgn74htU58I72J5",
+                GETUI_APP_SECRET: "LVMcNMNJeq7UfUNfuo4dP4"
+        ]
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+//指定keystore路径,密码
+    signingConfigs {
+        release {
+            keyAlias 'platformkey'
+            keyPassword 'np9210'
+            storeFile file(keystore)
+            storePassword 'android'
+        }
+
+        debug {
+            keyAlias 'platformkey'
+            keyPassword 'np9210'
+            storeFile file(keystore)
+            storePassword 'android'
+        }
+    }
+    buildTypes {
+        debug {
+//            sdk 17以后支持
+            buildConfigField "boolean", "isModule", "$project.ext.isModule"
+            testCoverageEnabled = false
+        }
+
+        release {
+            testCoverageEnabled = false
+            buildConfigField "boolean", "isModule", "$project.ext.isModule"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/README.txt'
+    }
+
+    dataBinding {
+        enabled = true;
+    }
+
+}
+
+greendao {
+    targetGenDir 'src/main/java'
+    daoPackage 'com.test.viewpagedemo.GreenDao.resource'
+    /*
+    *schemaVersion 当前数据库结构的版本。结构版本变化时在OpenHelpers中被使用到。当你改变实体或者数据的结构时，这个值应该增加。
+     daoPackage 生成的DAO，DaoMaster和DaoSession的包名。默认是实体的包名。
+     targetGenDir 生成源文件的路径。默认源·文件目录是在build目录中的(build/generated/source/greendao)。
+     generateTests 设置是否自动生成单元测试。
+     targetGenDirTest 生成的单元测试的根目录。
+    * */
+}
+
+//assembleDebugChannels 输出文件
+
+walle {
+    // 指定渠道包的输出路径
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+    // 定制渠道包的APK的文件名称
+    apkFileNameFormat = '${appName}-${packageName}-${channel}.apk';
+    // 渠道配置文件
+    channelFile = new File("${project.getProjectDir()}/channel")
+
+    // 渠道&额外信息配置文件，与channelFile互斥
+    configFile = new File("${project.getProjectDir()}/config.json")
+}
+
+//获取自定义extensions值
+gradleExtensions {
+    name = 'yoyo'
+    age = 27
+}
+/**
+ * implementation   还在项目内部提供依赖，速度较快
+ * API  整个工程提供依赖
+ * runtimeOnly  只在运行是提供依赖，用于组件化
+ * compileOnly  只在编译是提供依赖，原生sdk在系统里面
+ * annotationProcessor  apt项目依赖
+ *
+ * gradle -q dependencies  返回详细的任务依赖图
+ */
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project.ext.dependences.appcompat
+    implementation project.ext.dependences.aroute
+    implementation project.ext.dependences.eventbus
+    implementation project.ext.dependences.v4
+    implementation project.ext.dependences.butterknife
+    annotationProcessor project.ext.dependences.butterknifecompiler
+    annotationProcessor project.ext.dependences.aroutercompiler
+    //  对应groovy中extension  group name version
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.google.dagger:dagger:2.16'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.didi.virtualapk:core:0.9.6'
+    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    annotationProcessor 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'org.aspectj:aspectjrt:1.9.1'
+    //多渠道打包
+    implementation 'com.meituan.android.walle:library:1.1.6'
+    if (project.ext.isModule) {
+        //组件化代码隔离，主工程无法访问module代码，带运行时可以访问
+        runtimeOnly project(':assembly')
+        runtimeOnly project(':hook')
+    }
+    implementation project(':aop')
+    implementation project(':log')
+    //    implementation project(':mvvm')
+    //    implementation project(':arouter-compiler')
+    //    implementation 'org.jooq:joor-java-8:0.9.9'
+    implementation files('libs/GetuiSDK2.12.5.0.jar')
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //    implementation 'com.github.bumptech.glide:okhttp-integration:1.5.0@aar'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
+    //    implementation 'com.tencent.tinker:tinker-android-lib:1.9.1'
+    //    annotationProcessor 'com.tencent.tinker:tinker-android-anno:1.9.1'
+    //    compileOnly 'com.tencent.tinker:tinker-android-anno:1.9.1'
+    implementation project(':hotfix')
+    implementation project(':annotation')
+}
+
+
+
+final def log = project.logger
+final def variants = project.android.applicationVariants
+
+variants.all { variant ->
+//    if (!variant.buildType.isDebuggable()) {
+//        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+//        return;
+//    }
+
+    JavaCompile javaCompile = variant.javaCompile
+    javaCompile.doLast {
+        String[] args = ["-showWeaveInfo",
+                         "-1.5",
+                         "-inpath", javaCompile.destinationDir.toString(),
+                         " -aspectpath", javaCompile.classpath.asPath,
+                         "-d", javaCompile.destinationDir.toString(),
+                         "-classpath", javaCompile.classpath.asPath,
+                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
+        println "ajc args: " + Arrays.toString(args)
+
+        MessageHandler handler = new MessageHandler(true)
+        new Main().run(args, handler)
+
+        for (IMessage message : handler.getMessages(null, true)) {
+            switch (message.getKind()) {
+                case IMessage.ABORT:
+                case IMessage.ERROR:
+                case IMessage.FAIL:
+                    log.error message.message, message.thrown
+                    break;
+                case IMessage.WARNING:
+                    log.warn message.message, message.thrown
+                    break;
+                case IMessage.INFO:
+                    log.info message.message, message.thrown
+                    break;
+                case IMessage.DEBUG:
+                    log.debug message.message, message.thrown
+                    break;
+            }
+        }
+    }
+}

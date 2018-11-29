@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/addf1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="addf1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/addf2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="addf2"
+        app:layout_constraintLeft_toRightOf="@id/addf1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/removef1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="removef1"
+        app:layout_constraintLeft_toRightOf="@id/addf2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/removef2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="removef2"
+        app:layout_constraintLeft_toRightOf="@id/removef1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/detachf1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detachf1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addf1" />
+
+
+    <Button
+        android:id="@+id/detachf2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detachf2"
+        app:layout_constraintLeft_toRightOf="@id/detachf1"
+        app:layout_constraintTop_toBottomOf="@id/addf1" />
+
+    <Button
+        android:id="@+id/repl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="repl1"
+        app:layout_constraintLeft_toRightOf="@id/detachf2"
+        app:layout_constraintTop_toBottomOf="@id/addf1" />
+
+    <Button
+        android:id="@+id/repl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="repl2"
+        app:layout_constraintLeft_toRightOf="@id/repl1"
+        app:layout_constraintTop_toBottomOf="@id/addf1" />
+
+
+    <Button
+        android:id="@+id/addf2hidef1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="addf2hidef1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detachf1" />
+
+
+    <Button
+        android:id="@+id/hide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hide1"
+        app:layout_constraintLeft_toRightOf="@id/addf2hidef1"
+        app:layout_constraintTop_toBottomOf="@id/detachf1" />
+
+    <Button
+        android:id="@+id/show1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show1"
+        app:layout_constraintLeft_toRightOf="@id/hide1"
+        app:layout_constraintTop_toBottomOf="@id/detachf1" />
+
+
+    <Button
+        android:id="@+id/attachf1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="attachf1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addf2hidef1" />
+
+    <LinearLayout
+        android:id="@+id/vp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/attachf1" />
+
+</android.support.constraint.ConstraintLayout>

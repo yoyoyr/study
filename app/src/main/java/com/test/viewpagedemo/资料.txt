@@ -1,0 +1,177 @@
+https://blog.csdn.net/huangqili1314/article/details/79824830
+
+一面
+
+Retrofit的实现与原理
+应用详细启动过程，设计的进程，fork新进程(Linux) Y
+HashMap原理，Hash冲突，并发集合
+Android两种虚拟机区别与联系
+GC机制
+Activity的onNewIntent    Y
+View的绘制原理
+类的加载机制
+requestLayout，invalidate，postInvalidate区别与联系
+
+二面
+
+项目架构
+项目详细优化
+项目难点与亮点
+Glide缓存源码，加载原理
+网络优化，服务端与客户端两方面
+
+三面
+
+ActivityThread工作原理   Y
+设计模式与实际应用
+adb常用命令行
+Android消息机制     Y
+多线程同步
+GC机制
+内存泄漏与分析
+博客与GitHub
+AndroidP新特性
+
+四面
+
+微信小程序实现原理
+Java反射
+Binder机制，共享内存实现原理   Y
+Android动画
+混合开发
+笔试（5道题，两小时）
+
+五面
+
+业务需求分析与建议
+黑盒排序算法
+
+2
+51信用卡
+一面
+
+项目介绍
+Retrofit的实现与原理，封装
+Java泛型
+设计模式与实际应用
+RecyclerView与ListView(缓存原理，区别联系，优缺点)
+ButterKnife实现原理
+EventBus实现原理
+AOP与APT
+RxJava
+自定义LayoutManager
+嵌套滑动实现原理
+混合开发
+微信小程序
+
+二面
+
+View的绘制原理
+第三方框架选择标准
+项目难点与亮点
+插件化，热修复
+项目优化
+
+51信用卡的整体面试表现还可以，面试官和蔼可亲，技术氛围，规模发展也很不错，值得一去的公司。
+
+3
+美术宝
+
+笔试
+
+具体场景分析Activity的生命周期 Y
+Android消息机制     Y
+Bitmap内存计算，如何压缩
+SurfaceView与View
+Application生命周期     Y
+Http与Https
+手写单例模式
+手写算法代码
+
+面试
+
+EventBus实现原理
+自定义View里，onDraw详细优化
+SurfaceView替换方案
+高清加载巨图且支持手势缩放的实现方案
+算法题目其他思路
+
+美术宝是一家专门做线上教育的平台，面试方向图片处理，自定义View多一些。差不多20多分钟做完的笔试，面试官看完后夸了下笔者基础不错便开始了接下来的面试，主要结合平时图片的处理方案以及自定义View心得交流了不少时间，整体表现还行。
+
+4
+贝贝
+一面
+
+项目介绍
+架构的搭建与原理
+MVC，MVP，MVVM模式理解与使用
+微信小程序实现原理
+ArrayList与LinkList区别与联系
+HashMap源码，JDK1.8前后详细区别，负载因子，Fail-Fast机制
+线程安全的集合及各自实现原理
+Synchronized原理
+Volatile实现原理
+详细描述应用从点击桌面图标到首页Activity展示的流程(应用启动流程，Activity，Window创建过程)   Y
+Glide加载原理
+组件化@
+
+二面
+
+Fragment的懒加载实现，参数传递与保存
+ViewPager的缓存实现
+Android消息机制，post与postDelay      Y
+ActivityThread工作原理      Y
+子线程访问UI的验证与后果   Y
+主线程Looper.loop为什么不会造成死循环    Y
+Android里的多线程与实现原理
+热修复实现方案
+EventBus实现原理
+Android内存优化与分析
+类加载机制，加载过程
+组件化实现方案，路由原理
+单链表添加具体实现
+
+三面
+
+进程与线程
+项目详细优化
+设计模式与实际应用
+ListView与RecyclerView的对比
+自定义View的优化
+具体场景分析高并发访问服务器的解决方案
+
+贝贝的技术实力很强，每一轮面试针对你的回答，面试官总能深入拓展到另外一个层级，对你不了解的部分会给你详细分析解答。组件化这一块我之前接触的比较少，只知道实现原理而没有实际使用过。二面时和面试官在这一块讨论了不少时间，面试官针对我给出的一些方案进行评价优化，然后再给出自己的解决方案，非常棒的一次面试体验。技术上贝贝真的很强。
+
+5
+小影
+一面
+
+项目介绍，整体框架搭建
+Glide加载原理，缓存方案，LRU算法
+Glide加载长图，图片背景变色
+ArrayList与LinkList区别与联系
+RecyclerView缓存原理，局部刷新原理
+Android事件分发机制
+结合具体场景处理滑动冲突事件
+Android消息机制     Y
+ActivityThread工作原理  Y
+
+二面
+
+EventBus实现原理
+View的绘制原理
+热修复实现原理，解决方案
+组件化具体实现
+项目详细优化
+Android权限管理
+编码风格与规范
+项目管理
+
+小影主要做的是短视频编辑，在海外市场与国内市场积累了不少的用户，在音视频处理，直播方面做的真的很不错。
+
+6
+蘑菇街
+
+蘑菇街的面试本来约在周一，因为当时自己正在参加面试无法赶到，面试官很友好的调到了周二。面试官表示之前有看过自己的博客，所以面试方向更多的是从项目角度切入。
+
+包括项目整体架构的搭建（MVP模式的优缺点），第三方框架选择的理由以及各自实现原理，RecyclerView的自定义LayoutManager，ItemTouchHelper的实现原理，自定义View的流程与注意事项，Android 65K问题，引入第三方包冲突解决方案等。

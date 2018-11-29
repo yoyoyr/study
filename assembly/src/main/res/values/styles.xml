@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="aroute_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/aroute_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/aroute_colorPrimaryDark</item>
+        <item name="colorAccent">@color/aroute_colorAccent</item>
+    </style>
+
+</resources>

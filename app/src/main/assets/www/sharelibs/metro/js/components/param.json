@@ -1,0 +1,272 @@
+{
+  "VERSION": "150803093703",
+  "BUSINESSID": "00000001",
+  "PARAMS": [
+    {
+      "tag": "03000001",
+      "value": "450001",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "01000006",
+      "value": "AnyPay",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000003",
+      "value": "1",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000004",
+      "value": "1",
+      "desc": "1表示3DES，0表示DES",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000005",
+      "value": "12345678",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000006",
+      "value": "888888",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000007",
+      "value": "11",
+      "desc": "第一位：收单行（1是，0否）第二位：发卡行（1是，0否）",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000008",
+      "value": "1",
+      "desc": "1表示旧，0表示新，可在终端修改",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000009",
+      "value": "2",
+      "desc": "1-9之间",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000010",
+      "value": "1",
+      "desc": "1是，0否",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000011",
+      "value": "3",
+      "desc": "1-3之间",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000012",
+      "value": "500",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000013",
+      "value": "0",
+      "desc": "1表示外置，0表示内置，可在终端修改",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000001",
+      "value": "4",
+      "desc": "0nac，1gprs，2cdma，3rs232，4以太网，可在终端修改",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000002",
+      "value": "6000830000",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000003",
+      "value": "60",
+      "desc": "秒",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000004",
+      "value": "3",
+      "desc": "1-3之间",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000005",
+      "value": "1",
+      "desc": "1是，0否，适用于GPRS、CDMA",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000006",
+      "value": "116.228.21.162",
+      "desc": "适用于GPRS、CDMA、以太网",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000007",
+      "value": "4008",
+      "desc": "适用于GPRS、CDMA、以太网",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000008",
+      "value": "116.228.21.162",
+      "desc": "适用于GPRS、CDMA、以太网",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000009",
+      "value": "4008",
+      "desc": "适用于GPRS、CDMA、以太网",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000010",
+      "value": "*#***1#",
+      "desc": "适用于GPRS、CDMA",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000011",
+      "value": "1",
+      "desc": "1是，0否，适用于NAC",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000012",
+      "value": "8134",
+      "desc": "适用于NAC",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000013",
+      "value": "8134",
+      "desc": "适用于NAC",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000014",
+      "value": "8134",
+      "desc": "适用于NAC",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000015",
+      "value": "cmnet",
+      "desc": "包含GPRS的APN、通讯协议等",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000016",
+      "value": "cmnet",
+      "desc": "CDMA用户名",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000017",
+      "value": "cmnet",
+      "desc": "CDMA密码",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "01000001",
+      "value": "102980058140002",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "01000002",
+      "value": "江西全民付",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "01000003",
+      "value": "ts",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "01000005",
+      "value": "00000013",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000026",
+      "value": "0",
+      "desc": "1是0否，默认为0。",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000029",
+      "value": "ipos.chinaums.com",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "04000030",
+      "value": "7210",
+      "desc": "null",
+      "edittype": "0",
+      "selData": ""
+    },
+    {
+      "tag": "03000002",
+      "value": "000001",
+      "desc": " ",
+      "edittype": "0",
+      "selData": ""
+    }
+  ]
+}

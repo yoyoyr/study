@@ -1,0 +1,1 @@
+cordova.define("org.chromium.system.network.system.network",function(e,o,t){var r=e("cordova/exec");o.getNetworkInterfaces=function(e){r(e,e,"ChromeSystemNetwork","getNetworkInterfaces",[])}});

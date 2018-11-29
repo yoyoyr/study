@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script language="javascript" src="../upos-bundle/bundle-upos-android.min.js"></script>
+    <script language="javascript" src="../upos-bundle/bundle-loader.js"></script>
+    <script language="javascript" src="../libs/require.js"></script>
+    <title></title>
+</head>
+<script language="javascript">
+    require.config({
+        paths:{
+            'ps':'./persistence',
+            'ps.store.sql':'./persistence.store.sql',
+            'ps.store.websql':'./persistence.store.websql',
+            'database':'./dbManager',
+            'gbkcoder':'../gbkcoder',
+            'utils':'../utils'
+        }
+    });
+    require(['dbManager'], function (database) {
+        database.open('umsscjj','forscjj');
+        var tableSchemas = database.defineTables([{
+            name:'t_flow',
+            schema: {
+                merchantName:'TEXT',
+                terminalName:'TEXT',
+                isEcOnly:'BOOL',
+                creTime:'DATE',
+            }
+        }]);
+        var flow  = new tableSchemas.t_flow({merchantName:'一民s',terminalName:'12345',isEcOnly:true});
+        database.saveOrUpdate(flow);
+
+        var rslt = tableSchemas.t_flow.all().filter('terminalName','=','12345').and(new database.PropertyFilter('merchantName','in',['1','一民s']));
+        database.inTransaction(function(tx){
+            rslt.list(tx,function(rslts){
+                rslts.forEach(function(r){
+                    alert(r.terminalName);
+                });
+            });
+        });
+
+    });
+
+
+</script>
+<body>
+
+</body>
+</html>

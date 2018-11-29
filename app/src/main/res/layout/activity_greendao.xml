@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/query"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="querySQl" />
+
+    <Button
+        android:id="@+id/queryJoin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="queryJoin" />
+
+    <Button
+        android:id="@+id/queryTwoThread"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="queryTwoThread" />
+
+    <Button
+        android:id="@+id/queryRxJava"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="queryRxJava" />
+
+    <!--<Button-->
+    <!--android:id="@+id/add"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:text="add" />-->
+    <!--<Button-->
+    <!--android:id="@+id/del"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:text="del" />-->
+
+
+    <!--<Button-->
+    <!--android:id="@+id/update"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:text="update" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/query"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:text="query" />-->
+
+</LinearLayout>

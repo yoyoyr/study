@@ -1,0 +1,77 @@
+https://www.jianshu.com/p/ba32488f9555  组件化编程
+https://cloud.tencent.com/developer/article/1005631 腾讯模块化
+https://blog.csdn.net/zhaoyanjun6/article/details/76165252 arouter
+http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2018/0423/9629.html  apt demo地址
+
+https://www.cnblogs.com/benchao/p/5417345.html      开发gradle插件
+https://blog.csdn.net/sbsujjbcy/article/details/50782830    开发gradle插件
+https://www.jianshu.com/p/af2b0a43133f  依然是插件
+
+APT技术   将注解转换成代码.详细看APTTest工程
+
+arouter简介:
+配置依赖
+    defaultConfig {
+        ...
+         javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [AROUTER_MODULE_NAME: project.getName()
+                    ,AROUTER_GENERATE_DOC:'enable']
+                }
+         }
+    }
+    dependencies {
+        compile 'com.alibaba:arouter-api:1.2.1.1'
+        annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
+    }
+
+1.@Router
+2.activity间跳转
+3.provide间跳转
+4.fragment间跳转
+5.@Autowired  参数注入
+6.@Interceptor  拦截器
+7.DegradeService  降级策略
+
+组件化 模块化的区别
+
+==================================
+_ARouter   实现的核心
+预编译:
+    APT技术收集@Router,@Interceptor,@Autowired等注解，并生成java类
+初始化：
+    调用XXXGroup,XXXInterceptors,XXXProviders的into方法，缓存关系map
+跳转流程:
+    postCard存储相关参数，在真正跳转的时候转换为intent参数，startActivity()方法完成activity跳转
+
+
+-------------------------------------------
+组件化，插件化是app越来越大催生出来的产物。当程序刚刚出现的时候，功能较为简单，所有的代码都放在方法里面。
+后来，功能复杂了以后，就需要分方法，在后来分类，分包。到现在，需要分模块。组件化和插件化都是分模块。
+组件化和插件化的区别，在于架构师对于这个功能模块的理解，两者最大的区别是组件化与主工程在同一个进程中，插件化
+不是。
+
+组件化需要解决的问题
+    代码隔离:
+        初始化资源   baseModule注册需要初始化的类，反射（joor）调用相关方法，buildType常量辨别组件模式或者app模式
+        组件之间通讯  ARouter
+        runtimeOnly引入module依赖
+    资源隔离:
+        resourcePrefix限制命名规范==============不够好的方式
+        butterknif等R文件问题    利用gradle，将R文件复制一份，加上final的R2文件
+    依赖冲突:   gradle dependences分析依赖树图。*表示上层由依赖  -> 表示更换的依赖版本
+                implementation 'com.google.code.gson:gson:2.8.5'{exclude ''}来确定依赖
+    混淆:
+          defaultConfig {
+                //会将混淆文件加入到aar中，当需要混淆的时候利用该文件混淆程序
+                consumerProguardFiles 'consumer-proguard-rules.pro'
+             }
+    组件和完整可运行程序切换:
+        组件和集成模式切换   aply plugin
+        manifest文件切换    sourceset
+        library依赖，sdk版本问题   ext{}代码块引入依赖版本
+
+
+
+模块间调用问题
+aop获取context

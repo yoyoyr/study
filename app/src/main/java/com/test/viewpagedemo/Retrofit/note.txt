@@ -1,0 +1,36 @@
+代码分析
+    create()  动态代理
+
+    callFactory  HttpClient，正在发起http请求
+    converterFactories  GsonConverterFactory(解析@Field，请求体，响应体的converter的工厂)
+    callAdapterFactories OkHttpCall 封装call给上层调用，返回response的时候调用converter转换数据
+
+注解
+    @Path   url添加参数
+    @GET @Query
+    @POST
+        @FormUrlEncoded @Field
+        @Multipart @Part
+        @Streaming
+        @Body  自定义读流程
+线程切换
+    new handler(Looper.MainLooper()).post(runnable)。looper持有messagequeue
+    postDelayed()会根据时间排序，next()方法会根据消息的时间确定是否弹出消息
+enqueue()方法回调默认在主线程
+
+ConcurrentHashMap  集合框架
+apt？
+    因为报文头参数，响应/请求体都需要提供定制方法
+动态代理为什么只能是接口
+    实现机制，如果类方法调用会导致递归调用，进入死循环
+
+Json（ReflectiveTypeAdapter）
+    // toJson 将bean对象转换为json字符串
+    String jsonStr = gson.toJson(user, User.class);
+    // fromJson 将json字符串转为bean对象
+    Student user= gson.fromJson(jsonStr, User.class);
+    @Expose true进行序列化
+    @SerializedName 指定序列化名字
+
+    自定义serializer  消耗大概16s,序列化1MB的数据需要大约11MB。TreeTypeAdapter解析多了中间数据
+    自定义TypeAdapter 消耗大概4s,序列化1MB的数据需要大约7.5MB.省去jsonObject和jsonArrsy中间数据

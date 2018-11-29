@@ -1,0 +1,12 @@
+
+1.主线程为什么要有looper机制
+  线程安全主要有两种处理方式:线程封闭和加锁。因为加锁机制影响运行性能，所以所有的UI控件都是
+  线程不安全的，这时候就需要使用到线程封闭机制确保线程安全。
+  looper机制就是一个典型的生产者消费者模型。其他线程负责生产事件，然后通过handler将Message投递
+  到MessageQueue，looper则不断的从MeesageQueue试图获取消息。至于如何确定每个线程的looper，则是
+  通过ThreadLocal对象保存
+
+2.Message,MessageQueue,Looper,Handler
+    MessageQueue Messge的链表结构
+
+3.Activity的完整启动流程

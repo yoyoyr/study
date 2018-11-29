@@ -1,0 +1,1 @@
+cordova.define("org.chromium.common.stubs",function(e,n,o){n.createStub=function(e,n,o){e.__defineGetter__(n,function(){return console.warn("Access made to stub: "+e.__namespace__+"."+n),o})}});

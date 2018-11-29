@@ -1,0 +1,59 @@
+
+
+select * from Person join OrderTable where Person.id =  OrderTable.otherid limit 3 offset 3
+
+select person.FirstName,sum(orderTable.price) from person
+join orderTable
+where person.id = orderTable.otherid
+group by person.FirstName               --这里会产生中间结果集，一个FirstName字段对应多个price。但是因为sum函数，将多个price求和
+having sum(orderTable.price)>9           --因为group by后面不支持where，所以用having替代
+
+选择person中的所有数据，按mounth分组。此时一条mounth会对应多条数据，通过聚合函数sum计算成一条数据
+select mounth,sum(mounth) from person group by mounth
+
+select count(distinct mounth) from person
+
+select count(mounth) from person
+
+select count(mounth),mounth from person group by mounth
+
+select * from orderTable
+where price >= (select avg(price) from orderTable)
+
+select otherid,avg(price) from orderTable group by otherid
+
+select LastName,id * ifnull(mounth,0) from person
+
+备份数据库
+CREATE TABLE BackupDatabase AS SELECT * FROM person
+join orderTable
+where person.rowid = orderTable.otherid
+
+不支持右连接和full连接
+select * from person
+full join orderTable
+on person.rowid = orderTable.otherid
+
+select * from person
+left join orderTable
+on person.rowid = orderTable.otherid
+
+select * from person
+inner join orderTable
+on person.rowid = orderTable.otherid
+
+select *
+from person,orderTable
+where person.rowid = orderTable.otherid
+
+insert into person (FirstName,LastName,Address,City,year,mounth) VALUES ('wp','z','sunqiao','fuzhou',1991,8)
+
+select * from person
+
+select * from person where (LastName = 'yoyo' or  year = 1990) and City like '%fu%' order by year,mounth desc
+
+update person set FirstName = 'young',Address = 'shunqiao' where FirstName = 'young'
+
+delete from person where rowid = 1
+
+select * from person where LastName in ('wp','sw')

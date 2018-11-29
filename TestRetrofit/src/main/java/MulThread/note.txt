@@ -1,0 +1,66 @@
+
+一。取消和关闭
+    1.volatile boolean cancel.如果遇到线程阻塞，将无法检查状态位，导致程序无法取消.比如BlockingQueue.put()
+    2.中断。可以避免上述情况.每个线程都有一个boolean类型的中断标志位。java框架有处理中断的，会以InterruptedException抛上来
+            interrupt() 设置线程中断位
+            isInterrupted()   读取线程中断位
+            Thread.interrupted()    重置中断位
+    3.线程池   shutdown()
+               shutdownNow()    立马关闭正在执行的任务，返回启动的任务
+
+二。锁
+    synchronized	互斥，内存可见。当线程在等待锁是无法终端。
+    ReentrainLock	互斥，内存可见，可重入。切记try{}finally{}中释放锁
+    lock.tryLock()	可见  可轮训。避免死锁
+
+三。future  callback
+
+CountDownLatch  线程计数器，用于一个线程需要等待其他线程都执行完在执行的情况
+
+四。并发容器
+    1.BlockQueue
+      存储  数组items
+      锁    ReentrainLock
+      唤醒  Condition  noFull，noEmpty
+
+      //如果队列满，这阻塞
+      public void put(E e) throws InterruptedException {
+          lock.lockInterruptibly();
+          try {
+              while (count == items.length)
+                  notFull.await();
+              items[putIndex] = x;
+              notEmpty.signal();
+          } finally {
+              lock.unlock();
+          }
+      }
+
+      //如果对列为空，这阻塞
+      public E take() throws InterruptedException {
+          lock.lockInterruptibly();
+          try {
+              while (count == 0)
+                  notEmpty.await();
+                  E x = (E) items[takeIndex];
+                  notFull.signal();
+                  return x;
+          } finally {
+              lock.unlock();
+          }
+      }
+
+    2.LinkBlockingQueue
+          1.ArrayBlockingQueue是有界的初始化必须指定大小，而LinkedBlockingQueue可以是有界的也可以是无界的
+          2.ArrayBlockingQueue采用的是数组作为数据存储容器，而LinkedBlockingQueue采用的链表。
+          3.LinkedBlockingQueue则会生成一个额外的Node对象，较为消耗内存
+          4.ArrayBlockingQueue实现的队列中的锁是没有分离的，即添加操作和移除操作采用的同一个ReenterLock锁，
+           而LinkedBlockingQueue实现的队列中的锁是分离的，其添加采用的是putLock，移除采用的则是takeLock，
+           这样能大大提高队列的吞吐量，也意味着在高并发的情况下生产者和消费者可以并行地操作队列中的数据，
+           以此来提高整个队列的并发性能。
+    3.ConcurrentHashMap	分段锁
+
+    4.CopyOnWriteArrayList
+          添加元素，先复制一个数组，在复制的数组添加完元素后，再引用复制数组。内存消耗大，读数据不实时。
+
+

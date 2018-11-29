@@ -1,0 +1,180 @@
+//  tinker替换为tinker.gradle文件所在模块名
+//apply from: file("${project.project(":tinker").projectDir}/tinker.gradle")
+
+//在app的build/bak文件夹下面生成patch文件相关
+def bakPath = file("${project.project(":app").buildDir}/bak")
+
+ext {
+    tinkerEnabled = true
+    tinkerId = project.ext.param.versionName    //替换为需要热修复app版本号
+    time = "1126-15-55-46"  //base app生成时间
+    loader = "com.test.viewpagedemo.MyTinkerApplication"   //tinkerApplication的实现类
+
+
+    oldApkPath = "${bakPath}/app-release-${time}.apk"
+    //proguard相关
+    tinkerApplyMappingPath = "${bakPath}/app-release-${time}-mapping.txt"
+    //资源文件混淆
+    tinkerApplyResourcePath = "${bakPath}/app-release-${time}-R.txt"
+
+    //多渠道
+    tinkerBuildFlavorDirectory = "${bakPath}/app-${time}"
+}
+
+//配置patch文件
+if (ext.tinkerEnabled) {
+    apply plugin: 'com.tencent.tinker.patch'
+
+    project.println 'apply tinker'
+    tinkerPatch {
+        //指定oldApk路径
+        oldApk = project.ext.oldApkPath
+
+        /**
+         * 指定不忽略tinker警告，发生警告会终止patch
+         * warring的4种情况
+         * 1.minSdkVersion < 14但是dexMode设置为raw
+         * 2.在AndroidManifest文件新增组件
+         * 3.resources.arcs改变但是没有使用applyRsourceMapping编译
+         * 4.
+         */
+        ignoreWarning = true
+
+        //是否启用tinker
+        tinkerEnable = project.ext.tinkerEnabled
+
+        buildConfig {
+            //指定混淆文件路径
+            applyMapping = project.ext.tinkerApplyMappingPath
+            //指定oldapk资源路径
+            applyResourceMapping = project.ext.tinkerApplyResourcePath
+            //指定tinkerid，一般为版本号
+            tinkerId = project.ext.tinkerId
+            keepDexApply = false
+        }
+
+        dex {
+            dexMode = "jar"
+            //指定dex路径
+            pattern = ["classes*.dex", "assets/secondary-dex-?.jar"]
+            //指定加载patch用到的类.实现tinkerApplication的类
+            loader = [project.ext.loader]
+        }
+
+        lib {
+            pattern = ["lib/*/*.so"]
+        }
+
+        res {
+            //指定可以修改的资源路径
+            pattern = ["res/*", "assets/*", "resources.arsc", "AndroidManifest.xml"]
+
+            //指定不受影响的资源路径
+//            ignoreChange = ["assets/sample.txt"]
+
+//            //资源修改大小默认值
+//            largeModeSize = 100
+        }
+
+        packageConfig {
+
+            configField("patchMessage", "fix the 1.0 version's bugs")
+
+            configField("patchVersion", "1.0")
+        }
+    }
+
+    //将生产patch文件所需要的文件复制到指定位置
+    List<String> flavors = new ArrayList<>();
+    project.android.productFlavors.each { flavor ->
+        flavors.add(flavor.name)
+    }
+    boolean hasFlavors = flavors.size() > 0
+    def date = new Date().format("MMdd-HH-mm-ss")
+
+    /**
+     * bak apk and mapping
+     */
+    android.applicationVariants.all { variant ->
+        /**
+         * task type, you want to bak
+         */
+        def taskName = variant.name
+
+        tasks.all {
+            if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+
+                it.doLast {
+                    copy {
+                        def fileNamePrefix = "${project.name}-${variant.baseName}"
+                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
+                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
+
+                        variant.outputs.each { output ->
+                            from output.outputFile
+                            into destPath
+                            rename { String fileName ->
+                                fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+                            }
+                        }
+
+                        from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+                        }
+
+                        from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 生成多渠道patch文件，重新修改每个变体对应参数
+     */
+    project.afterEvaluate {
+        //sample use for build all flavor for one time
+        if (hasFlavors) {
+            task(tinkerPatchAllFlavorRelease) {
+                group = 'tinker'
+                def originOldPath = getTinkerBuildFlavorDirectory()
+                for (String flavor : flavors) {
+                    def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Release")
+                    dependsOn tinkerTask
+                    def preAssembleTask = tasks.getByName("process${flavor.capitalize()}ReleaseManifest")
+                    preAssembleTask.doFirst {
+                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 15)
+                        project.tinkerPatch.oldApk = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release.apk"
+                        project.tinkerPatch.buildConfig.applyMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release-mapping.txt"
+                        project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release-R.txt"
+
+                    }
+
+                }
+            }
+
+            task(tinkerPatchAllFlavorDebug) {
+                group = 'tinker'
+                def originOldPath = getTinkerBuildFlavorDirectory()
+                for (String flavor : flavors) {
+                    def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Debug")
+                    dependsOn tinkerTask
+                    def preAssembleTask = tasks.getByName("process${flavor.capitalize()}DebugManifest")
+                    preAssembleTask.doFirst {
+                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 13)
+                        project.tinkerPatch.oldApk = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug.apk"
+                        project.tinkerPatch.buildConfig.applyMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-mapping.txt"
+                        project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-R.txt"
+                    }
+
+                }
+            }
+        }
+    }
+}

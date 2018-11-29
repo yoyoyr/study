@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion project.ext.param.compileSdkVersion
+    defaultConfig {
+
+        minSdkVersion project.ext.param.minSdkVersion
+//      已经在此版本做过测试，不需要系统兼容行为
+        targetSdkVersion project.ext.param.targetSdkVersion
+        versionCode project.ext.param.versionCode
+        versionName project.ext.param.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.tencent.tinker:tinker-android-lib:1.9.1'
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.1")
+    compileOnly 'com.tencent.tinker:tinker-android-anno:1.9.1'
+    implementation project(':log')
+    annotationProcessor project(':ann-process')
+    implementation project(':annotation')
+}

@@ -1,0 +1,17 @@
+
+1.bitmap大小计算(屏幕分辨率1920*1080)
+  ARGB_8888 1920*1080*32/(8*1024*1024) = 7.9M
+  RGB_565 1920*1080*16/(8*1024*1024) = 3.9M
+  所以ARGB_8888同样的图片是RGB_565大小的两倍。
+
+
+BitmapFactory   解析生成Bitmap
+BitmapFactory.Options   inJustDecodeBounds 测量宽高
+                        inSampleSize 宽高按1/inSampleSize缩放
+                        inPreferredConfig 设置图片的解码格式，如ARGB_8888,RBG_565
+                        inScaled 是否缩放
+                        outWidth，outHeight
+Bitmap      计算图片大小  width * height * 每个点字节数。3.0以后Bitmap保存在java层
+
+反射 jni hook可否创造新的属性或者方法
+

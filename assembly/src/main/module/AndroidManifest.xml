@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.assembly">
+
+    <application>
+
+        <activity android:name="TestActivity" />
+        <activity android:name="com.assembly.ARouterActivity" />
+        <activity android:name="com.assembly.InterceptActivity" />
+        <activity android:name="com.assembly.ErrorActivity" />
+        <activity android:name="com.assembly.BeInterceptActivity" />
+    </application>
+</manifest>

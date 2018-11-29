@@ -1,0 +1,74 @@
+android p
+
+
+
+方法数超过65536
+defaultConfig {
+        multiDexEnabled true
+}
+
+implementation 'com.android.support:multidex:1.0.3'
+
+MultiDex.install(this);
+
+//https://www.jianshu.com/p/46560895b42c
+--------------------apk瘦身(14.3 MB (15,069,680 字节))
+1.使用proguard混淆,压缩,优化,预检代码
+      当涉及到AndroidManifest,jni,发射，js nativie调用等硬编码引用到类时，不能够混淆。
+      自定义view，序列化文件等
+      -keep public class MyClass //保留不混淆类
+      对于第三方库，一般会给出混淆规则
+
+      build/outputs/mapping/debug/ 对应文件意义如下
+      mapping.txt   代码混淆前后映射
+      seeds.txt     未混淆的类
+      usage.txt     未被使用的，被删除的代码
+
+      混淆后的代码查看:在sdk的tools/proguard目录下执行命令
+      retrace.bat -verbose mapping.txt obfuscated_trace.txt
+
+2.shrinkResources 配置删除无用资源（可以通过/raw/keep文件配置模式，删除保留什么）
+    默认配置safe模式。 Resources.getIdentifier()所有匹配的资源都不会删除
+    strict  会删除
+    或者点击对应module的refactor->remove unuse resources
+
+    build/outputs/mapping/debug/resources.txt文件会记录那些被删除，那些被引用
+    :app:transformClassesAndDexWithShrinkResForDebug
+    Removed unused resources: Binary resource data reduced from 8415KB to 911KB: Removed 89%
+3. defaultConfig {
+      //匹配出需要的语言包
+      resConfigs "en"
+    }
+4.对于annotation，能用source就用source
+5.因为动态库是向下兼容的，因此可以使用高版本编译的so库。但是特定版本的动态库有做优化，
+  如果只使用高版本，会影响效率。
+6.使用svg图片 图标
+
+--------------------多渠道和批量打包        walle
+
+------------------------------app启动分析
+wall clock time 执行方法时间加上等待
+thread time cpu真正执行方法的时间
+
+
+--------------------进程保活
+    前台进程
+    可视进程
+    服务进程
+    后台进程   b6b6 bbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn b
+    空进程 没有四大组件的进程
+
+    回收机制
+
+    LMK （Low Memory Kill）  oom_adj进程优先级，值越大，优先级越低
+
+    方案  基本都是野路子
+    监听系统广播/服务
+    JobScheduler      周期执行的调度任务
+
+--------------------加速构建（freeline 3.0以上目前已知无法使用）
+
+开启并行构建 (org.gradle.parallel = true)  没用
+开启守护进程  org.gradle.daemon=true
+run 3.19    1.34 1.22   1.29
+run 1.36    1.28

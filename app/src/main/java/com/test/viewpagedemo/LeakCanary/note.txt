@@ -1,0 +1,21 @@
+内存泄露的根本原因
+  短生命周期的对象被长生命周期的对象持有
+  一些改关闭的资源没有关闭
+
+内存泄露的常见场景
+    静态变量
+    非静态内部类
+    流没有关闭
+ANR
+当AMS发现activity在5s内没有处理完输入事件时报的错误
+主线程消息模型
+非主线程更新UI   ViewRootImpl.checkThread()
+ThreadLocal 保存looper线程变量
+Message     消息
+MessageQueue    需要加锁确保线程安全
+                enqueue()   按照when排序链表
+                next()  根据when取出message并从链表移除。没消息时利用epoll卡在线程
+Looper  looper代码在主线程执行
+        looper()死循环获取消息，然后交给handler.dispatchMessage()
+因为任何消息都是发到主线程MessageQueue中，所以不存在任务还没执行完就退出。最好应对handler泄露取消任务
+

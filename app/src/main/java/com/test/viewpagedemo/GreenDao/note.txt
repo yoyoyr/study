@@ -1,0 +1,36 @@
+
+SQL语句
+    select column from table1
+    	where
+    			and/or
+    			like/in/between
+    	left join table2	//table1的和table2的匹配，即使没有匹配仍然会形成一行记录
+    			on table1.id=table2.id
+    	order by
+
+    select col1,sum(col2) from table
+    	group col1 //按照col1对col2求和
+    	having sum(col2) >100 //使用函数的时候，having替代where
+
+    update table set col = xx where
+    delete from table where
+    insert into table col1,col2 values 1,2
+
+    CREATE TABLE bak AS select * from table //给table备份
+    DROP table bak //删除备份表
+
+    sum() avg()等函数
+
+DaoMaster
+DaoSession  生产dao对象
+XXDao       提供增删改查数据库方法,直接的sql查询方法
+QueryBuilder    查询子句拼接
+
+@Entity,@Property,@Id,@NoNull,@ToMany/@ToOne(类似外键依赖),@Transient,@Convert
+
+数据库版本更新问题  gradle修改版本号，helper.upgrade()监听升级后，备份删除复制。
+多表关联  外键依赖#ToMany
+到达一定的数目自删除
+获取数据库条数
+select id from Person limit XX
+delete from Person where id in

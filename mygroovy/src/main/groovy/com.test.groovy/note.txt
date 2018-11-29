@@ -1,0 +1,14 @@
+
+androidstudio项目构建流程
+    初始化：解析setting文件，得出需要构建任务依赖的gradle文件 ->setting对象
+    配置：解析gradle文件，构建出任务依赖->project
+    执行：执行任务->task
+
+总目录下的gradle文件   引入maven仓库，gradle依赖库和所有gradle文件配置共同代码
+
+eclipse前移到androidstudio 将文件导入到对应androidstudio目录
+                           重新制定androidstudio编译目录    sourceSets{}
+
+提供给其他项目依赖:
+    jar     assemble出jar包，然后依赖项目  repositpries{flatDir {dirs 'lib'}}
+    maven   uploadArchives  apply from :''

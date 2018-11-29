@@ -1,0 +1,108 @@
+
+=================应用框架基础
+1.四大组件
+ activity service contentprovider broadcastreceiver
+
+2.生命周期
+ 	activity  onCreate--onStart--onResume--onPause--onStop--onDestory
+ 			  被遮挡，但仍然可见  onPause--onResume
+ 			  被完全遮挡，不可见  onStop--onStart
+ 			  内存不足	onPause/onStop--onCreate
+ 			  横竖屏切换时的生命周期	
+				  启动activity	 A  onCreate--onStart--onResume
+				  开始切换		 A onPause--onSaveInstanceState	B onCreate(bundle)--onStart--onPause    A onStop--onDestory
+				  设置了orientation|screenSize  横竖屏切换仅仅会调用onConfigurationChanged()方法
+			  被系统栏/对话框挡住	onWindowFocusChange()
+			  5s anr
+
+
+    service   onCreate--onStartCommand--onDestory
+    		  onCreate，onDestory只调用一次。startService()调用几次，onStartCommand就调用几次
+    		  onCreate--onBind--onUnbind--onDestory
+    		  通过IBinder通讯，当所有绑定者解绑以后，服务销毁
+    IntentService   Handler机制+Thread+Service
+    		  20s  anr
+
+    Content Provider	本质仍然是进程间通讯。
+
+    Broadcast Receiver 观察者模式。以AMS为媒介。广播发送至者通过Binder向AMS发送广播信息，AMS接收到以后，在广播接受者列表中寻找合适的，并调用其IBinder对象的onReceiver()方法。
+    					静态注册
+    					动态注册	需要取消，否则会内存泄露。在onResume注册，在onPause解注册。因为存在内存不足时，AMS调用onPause后就销毁acivity的情况。这时onStop就不会调用
+    		  10s  anr
+
+    Application 	OnCreate,onLowMemory等等
+
+3.acitivyt间数据通信 
+	intent
+
+4.activity的四种启动模式	
+	standard 无论Activity在不在任务栈中，都会在实例化一个。并且将Activity放在调用他的Activity的任务栈中。
+		 即如果Activity栈有B，启动A，则BA。
+		 如果Activity栈是BA，启动A，则BAA
+	SingleTop 栈顶复用。启动栈顶Activity时，直接调用Activity的onNewIntent。不会调用其他生命周期方法。如果不是栈顶Activity则新建。
+			 即如果Activity栈有BA，启动A，则BA
+			 如果是BAC，启动A，则BACA
+	SingleTask 栈内复用，仍然只调用noNewIntent。
+			   如果Activity栈S  ABCD  启动E，taskAffinity S  则Activity栈S 变成ABCDE
+			   如果Activity栈S  ABCD  启动A，taskAffinity S  则Activity栈S 变成A
+			   如果Activity栈S  ABCD  启动A  taskAffinity S1  则Activity栈S  ABCD Activity栈S1 A
+	SingleInstance 具有SingleTask特性以外，这个栈只能有这个Activity
+
+
+5.两个activity间跳转必然执行的方法 onPause.
+	一般情况下	A onPause  B onCreate--onStart--onResume  A onStop--onDestory
+	如果B为透明或者对话框模式	没有onStop--onDestory
+	SingleTop，SingleTask模式	没有onCreate--onStart--onResume
+
+6.activity状态的保存和恢复
+	AMS调用即将销毁的activity.onSaveInstanceState()方法，该方法会调用View的对应方法保存View参数，然后在OnCreate(bundle)和onRestoreInstanceState()将参数回传。本质是利用ams保存参数，ipc通讯
+
+7.activity和服务通讯
+	1.ipc  intent，广播等
+	2.回调
+	3.eventbus
+
+8.activity和application  context的区别
+  context是上线文对象，通过他调用ams的各种服务，方法。
+  application的context优势在于单例，防止内存泄露
+  activity的context优势在于，构造界面，如startActivity，LayoutInflater，dialog的context必须是activity
+
+9.应用详细启动过程，涉及的进程，fork新进程(Linux)，window创建
+  调用到ams的启动activity方法。
+  第一步	构造activityRecord对象。 涉及对象 ActivityStack，PKMS，intent，TaskRecord
+  第二步	ams fork一个新的进程出来。 zygote进程
+  第三步	启动主线程循环   ActvityThread，Handler，Looper，MessageQueue，Context
+  第四步	开启构建application和activity，配置界面的进程优先级和oom_adj.	LoaderApk。调用handlerLaunchActivity(),会依次调用onCreate，onStart，onResume
+  AMS通过调用ActivityThread的方法影响应用进程，所以四大组件都运行在主线程。应用进程通过Context调用AMS的资源。AMS管理所有的应用进程，系统进程服务。
+
+  第五步	加载布局。	涉及对象 PhoneWindow，DecorView，LayoutInflater。
+  						在Activity.setContentView()中，调用LayoutInflater服务的inflater(id,parent,isAdd)[isAdd true 返回添加了id View的parent。false  返回id对应的View]方法，加载和解析界面XMl文件。
+  第六步	测量，绘制，布局View，并加入到window中。涉及对象WMS，ViewRootImpl	在ActivityThread.handlerResumeActivity()中会调用WMS.addView()->ViewRootImpl.performTraversals(),开始了view的onMeasure,onLayout,onDraw绘制流程。绘制完成以后，通过onWindowFocusChanged通知界面绘制完成
+  Acivity和WMS是通过callback回调交互的。例如其中的回调，public boolean dispatchTouchEvent(MotionEvent event)，public void onWindowFocusChanged(boolean hasFocus);
+
+10.Android消息机制
+  与AMS通讯 IPC，线程安全机制的一种实现
+  主线程  消息机制  Handler(消息处理辅助类)，Looper(循环读取消息)，MessageQueue(单向链表)，message(消息对象),ThreadLocal(保存looper对象，线程独有)
+  有消息加入到MessageQueue中，Looper.loop()方法从Messagequeue.next()死循环读取消息。queue.next()底层是管道卡住线程，有消息是唤醒，所以不会卡死。涉及底层的epoll机制
+
+11.post与postDelay
+   通过handler给messageQueue加入消息，一个有延时，一个没有。
+   延时方案是通过now+delay计算出确切的执行时间。在looper中，执行消息前会先对比当前时间和message想要执行的时间
+
+12.HandlerThread  Thread+Looper
+
+13.在任何地方new Handler 都是什么线程下? 
+   都会通过ThreadLocal去获取当前线程下面的looper，否则抛出 throw new RuntimeException("Can't create handler inside thread that has not called Looper.prepare()");
+
+14.AsyncTask原理及不足 
+   Executor（一个进程独有一个，所有AsyncTask都在里面执行），FutureTask，Callable。
+   
+
+12.Binder机制
+   Android框架层实现了一个C/S架构。C和S不直接通讯，通过中间的Binder驱动进程相互调用，进程间数据通过Parcelable（适合进程间通讯，开销小。Serializable有大量io，开销大，适合持久化）序列化和反序列化，通过AIDL语言实现相互调用（协助我们处理binder和方法调用顺序问题），Binder就是C-Bindre驱动，Binder驱动到S的纽带。
+
+
+
+===================================并发
+
+ThreadLocal原理，实现及如何保证Local属性

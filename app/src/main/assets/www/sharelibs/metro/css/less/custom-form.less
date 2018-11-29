@@ -1,0 +1,148 @@
+
+.ui-form{
+  font-size: 18px;
+  border:2px solid #F2F2F2;
+  width: 96%;
+  margin: auto;
+  position: relative;
+  border-radius: 4px;
+  .prompt{
+    background: #fff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    .xx{
+      background: url("../images/xx.png");
+      background-size: 100% 100%;
+      width: 50px;
+      height: 44px;
+      position: absolute;
+      top: -1px;
+      right: 6px;
+    }
+  }
+  #swipe-prompt{
+    width: 295px;
+    height: 500px;
+    top: -154px;
+    left: 640px;
+    .arrow{
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-width: 1px 0 0 1px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 232px;
+      left: -15px;
+      background: #fff;
+    }
+    .swipe{
+      background: url("../images/swipe_animation2.gif");
+      width: 250px;
+      height: 250px;
+      margin: -50px 0 0 31px;
+    }
+    .ic{
+      background: url("../images/ic_animation2.gif");
+      width: 250px;
+      height: 250px;
+      margin: -50px 0 0 31px;
+    }
+  }
+  #pwd-prompt{
+    width: 295px;
+    height: 270px;
+    top: 0px;
+    left: 640px;
+    .arrow{
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-width: 1px 0 0 1px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 152px;
+      left: -15px;
+      background: #fff;
+    }
+    .pin{
+      background: url("../images/pin-input-animation.gif");
+      width: 250px;
+      height: 250px;
+      margin: -50px 0 0 31px;
+    }
+  }
+  .title{
+    height: 44px;
+    border-bottom: 2px solid #D0D0D1;
+    line-height: 40px;
+    width: 96%;
+    margin: 0 auto 15px;
+    text-align: left;
+  }
+  p{
+    margin-top: 30px;
+    label{
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+    }
+    input{
+      height: 40px;
+      width: 258px;
+      border: 1px solid #c4c4c4;
+    }
+    span.input-control.text{
+      width: auto;
+    }
+  }
+  .button-box{
+    margin: 30px 0;
+    button{
+      font-size: larger;
+    }
+  }
+  .note{
+    margin: 30px 0;
+    color: #666666;
+  }
+  .ui-form-info{
+    text-align: left;
+    position: relative;
+    p{
+      margin: 10px auto;
+      label{
+        display: inline-block;
+        width: 40%;
+        text-align: right;
+        height: 42px;
+        line-height: 42px;
+      }
+      span {
+        text-indent: 10px;
+        display: inline-block;
+        background: #F0F0F0;
+        border-radius: 3px;
+        width: 40%;
+        height: 42px;
+        line-height: 42px;
+      }
+    }
+    .process-tag{
+      width: 198px;
+      height: 190px;
+      background-image: url("../images/have_not_process.png");
+      position: absolute;
+      right: 0px;
+      bottom: -110px;
+      &.have-process{
+        background-image: url("../images/have_process.png");
+      }
+    }
+
+  }
+}

@@ -1,0 +1,67 @@
+if (project.ext.isModule) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+
+android {
+    compileSdkVersion project.ext.param.compileSdkVersion
+
+
+
+    defaultConfig {
+        if (!project.ext.isModule) {
+            applicationId "com.hook"
+        }
+        minSdkVersion project.ext.param.minSdkVersion
+        targetSdkVersion project.ext.param.targetSdkVersion
+        versionCode project.ext.param.versionCode
+        versionName project.ext.param.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resourcePrefix "hook_"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME   : project.getName()
+                             , AROUTER_GENERATE_DOC: 'enable']
+            }
+        }
+    }
+
+    sourceSets {
+        if (project.ext.isModule) {
+            main {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
+        } else {
+            main {
+                manifest.srcFile 'src/main/app/AndroidManifest.xml'
+            }
+        }
+    }
+
+    buildTypes {
+        debug{
+            buildConfigField "boolean", "isModule", "$project.ext.isModule"
+        }
+        release {
+            buildConfigField "boolean", "isModule", "$project.ext.isModule"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project.ext.dependences.appcompat
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation project.ext.dependences.aroute
+    annotationProcessor project.ext.dependences.aroutercompiler
+    implementation project(':log')
+    //    implementation 'org.jooq:joor:0.9.9'
+    implementation project(':annotation')
+}

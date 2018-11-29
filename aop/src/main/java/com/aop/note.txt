@@ -1,0 +1,28 @@
+https://blog.csdn.net/innost/article/details/49387395  阿拉神农
+http://linbinghe.com/2017/65db25bc.html
+http://johnnyshieh.me/posts/aspectj-grammar/  基本语法
+
+1.OOP和AOP
+ 两者都是看待问题的角度，即为编程的方法论。
+ OOP是将一个大问题划分为一个个更小问题，每个小问题用一个模块去解决，多个模块组合解决这个大问题。
+ AOP是将流程中横跨多个模块的功能统一处理。一般用于日志打印，函数执行时间统计和权限检查,无埋点统计
+
+2.AspectJ的基本概念
+    1)Join Point 程序执行的关键点，AspectJ可以插入代码执行的点
+                  例如函数的调用为call类型join point
+                  函数执行为execution类型
+    2)Pointcuts 筛选感兴趣的Join Point
+                筛选条件
+                    @annotation     不指定表示所有
+                    public/private/pretected    不指定表示所有
+                    */String    全部或者指定返回值
+                    类的绝对路径  ..  所有包
+                                  *   表示除.外所有字符串
+                                  +   指定类的子类
+                    .method(..)   方法    ..表示所有参数/或者指定类型
+    3)advice    筛选后需要做的事情   @Before @After @Around
+
+3.流程
+  gradle文件运行命令
+  编写aspectj文件和annotation，筛选合适的pointcuts
+  编写advice，处理问题

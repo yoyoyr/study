@@ -1,0 +1,547 @@
+@import "custom-variables";
+@import "custom-colors";
+
+.bottom-button-box {
+  width: @deviceWidth;
+  text-align: center;
+  position: absolute;
+  bottom: 30px;
+  color: #636466;
+}
+
+/* 金额输入页金额显示样式 */
+#amount-box {
+  h5 {
+    .alg-left;
+    font-size: 1.5em;
+    font-weight: initial;
+    margin: 35px;
+  }
+  div {
+    .alg-right;
+    font-size: 3em;
+    color: @amount-red;
+    margin-right: 20px;
+    .currency-symbol {
+      font-size: 0.5em;
+    }
+
+  }
+}
+
+/* 刷卡页样式 */
+#swipe-card-page {
+  width: 100%;
+  div {
+    width: 100%;
+    height: 155px;
+    margin: 10px auto;
+    .icon {
+      display: inline-block;
+      width: 131px;
+      height: 122px;
+      float: left;
+      margin-left: 33px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+    &.swipe {
+      .icon {
+        background-image: url("../images/img_swing_02.png");
+      }
+    }
+    &.tap {
+      .icon {
+        background-image: url("../images/img_swing_03.png");
+      }
+    }
+    &.insert {
+      .icon {
+        background-image: url("../images/img_swing_01.png");
+      }
+    }
+    .text {
+      font-size: 1em;
+      display: inline-block;
+      width: 103px;
+      text-align: left;
+      float: left;
+      margin: 46px 0 0 43px;
+    }
+  }
+}
+
+/* 电子小票页面 */
+.receipt {
+	width: 90%;
+	height: 450px;
+	background: #fff;
+	margin: 20px auto;
+	border: 14px solid transparent;
+	border-image: url("../images/border.png") 20 18 round;
+	.head {
+		font-size: 1.2em;
+		height: 2.6em;
+		border-bottom: 1px dashed @border-gray;
+		padding-bottom: 10px;
+		.icon {
+			display: inline-block;
+			background: url("../images/icon-success.png") no-repeat;
+			background-size: 100%;
+			width: 2em;
+			height: 2em;
+		}
+		.title {
+			display: inline-block;
+			height: 2em;
+			width: auto;
+			line-height: 0.9em;
+			vertical-align: middle;
+		}
+	}
+	.body {
+		border-top: 1px dashed @border-gray;
+		padding-top: 10px;
+		ul {
+			width: 100%;
+			height: auto;
+			li {
+				height: 2em;
+				width: 100%;
+				position: relative;
+				label {
+					.left;
+					width: auto;
+					display: inline-block;
+					text-align: left;
+					//letter-spacing: 5px;
+					//&.colon{
+					//width: auto;
+					//position: absolute;
+					//left: 100px;
+					//top: -2px;
+					//}
+					//&.ls3{
+					//letter-spacing: 25px;
+					//}
+					//&.ls4{
+					//letter-spacing: 12px;
+					//}
+					//&.ls5{
+					//letter-spacing: 5.5px;
+					//}
+				}
+				span {
+					.right;
+					&.amount {
+						color: @amount-red;
+						font-size: 1.3em;
+					}
+				}
+				i.currency-symbol {
+					.right;
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+	.button-box {
+		.bottom-button-box;
+	}
+}
+/*新版电子小票样式*/
+.receipt-new {
+  width: 344px;
+  height: 385px;
+  margin: 0px auto;
+  position: relative;
+  background-image: url("../images/receipts.png");
+  background-repeat: no-repeat;
+  .body {
+    padding: 20px 25px 0;
+    ul {
+      width: 100%;
+      height: auto;
+      li {
+        height: 2em;
+        line-height: 2em;
+        width: 100%;
+        position: relative;
+        &.border-bottom {
+          border-bottom: 1px dashed #c9c9c9;
+        }
+        &.h3em {
+          height: 3em;
+          line-height: 3em;
+        }
+        &.amount {
+          height: 75px;
+          label{
+            margin-top: 5px;
+          }
+          span{
+            font-size: 1.3em;
+            line-height: 90px;
+          }
+        }
+        label {
+          .left;
+          width: auto;
+          display: inline-block;
+          text-align: left;
+        }
+        span {
+          .right;
+          &.amount {
+            color: @amount-red;
+            font-size: 1.3em;
+          }
+        }
+        i.currency-symbol {
+          .right;
+          margin-right: 5px;
+        }
+      }
+    }
+    p {
+      width: 296px;
+      text-align: left;
+      position: absolute;
+      bottom: 25px;
+      .hot-line{
+        .right;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.failed-page {
+	.icon {
+		background: url("../images/icon-failed.png") no-repeat;
+		background-size: 100%;
+		width: 175px;
+		height: 156px;
+		margin: 50px auto 15px;
+	}
+	p {
+		font-size: 1.5em;
+		color: #00d1c9;
+		text-align: center;
+		margin: 15px auto;
+		border-bottom: 1px dashed #ccc;
+		padding-bottom: 10px;
+		width: 90%;
+	}
+	ul {
+		li {
+			height: auto;
+			width: 100%;
+			padding: 0 1.5em;
+			.alg-center;
+			font-size: 1.2em;
+			label {
+				display: block;
+				height: 1.5em;
+				line-height: 2em;
+			}
+			span {
+				display: block;
+				height: 1.5em;
+				line-height: 2em;
+				color: #000;
+			}
+		}
+	}
+	.button-box {
+		.bottom-button-box;
+	}
+}
+
+.success {
+  background-color: #f8f9fb;
+  .head {
+    width: 100%;
+    height: 120px;
+    position: relative;
+    top: -10px;
+    background: @greenA;
+    background-image: url("../images/icon-success1.png");
+    background-repeat: no-repeat;
+    background-position: center 5px;
+  }
+  h1 {
+    color: @white;
+    padding-top: 73px;
+    font-size: 2em;
+  }
+  .button {
+    height: 42px;
+    margin: 0;
+    border-radius: 0;
+    width: 100%;
+    font-size: 1.5rem;
+    background: @blueA !important;
+    font-weight: bold;
+    border: none;
+  }
+}
+.failed{
+  background-color: #f8f9fb;
+  .head {
+    width: 100%;
+    height: 120px;
+    position: relative;
+    top: -10px;
+    background: @redA;
+    background-image: url("../images/icon-failed1.png");
+    background-repeat: no-repeat;
+    background-position: center 5px;
+  }
+  h1 {
+    color: @white;
+    padding-top: 73px;
+    font-size: 2em;
+  }
+  .body{
+    height: 422px;
+    position: relative;
+    background: url("../images/error.png") no-repeat center center;
+    .hammock{
+      width: 127px;
+      height: 44px;
+      margin: 5px auto 0;
+      z-index: 10;
+      position: relative;
+      background: url("../images/hammock.png") no-repeat center !important;
+    }
+    p.tip{
+      width: 95%;
+      height: 110px;
+      margin: 0 auto;
+      background-color: @grayB;
+      border-radius: 5px;
+      border: 1px solid @grayA;
+      position: relative;
+      top: -15px;
+      span{
+        display: inline-block;
+        width: 95%;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 25px;
+        &.black{
+          color: #545454;
+          height: 55px;
+          line-height: 55px;
+          margin-top: 0px;
+          font-size: 1.3em;
+        }
+        &.border-bottom{
+          border-bottom: 1px dashed @grayA;
+        }
+      }
+    }
+    .button {
+      height: 42px;
+      margin: 0;
+      border-radius: 0;
+      width: 100%;
+      font-size: 1.5rem;
+      background: @blueA !important;
+      font-weight: bold;
+      border: none;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+    }
+  }
+}
+
+header.green {
+  background: @greenA;
+  box-shadow: none;
+  *{
+    display: none;
+  }
+}
+header.red{
+  background: @redA;
+  box-shadow: none;
+  *{
+    display: none;
+  }
+}
+
+//明细
+.content-box-detail {
+  height: 467px;
+  background: url("../images/norecord.png") no-repeat center center;
+  background-size: 160px 180px;
+  #wrapper {
+    height: 467px;
+    position: relative;
+    overflow: hidden;
+  }
+  .detail-list {
+    width: 100%;
+    min-height: 467px;
+    background: @bg-gray;
+    li {
+      height: 97px;
+      padding: 0 15px;
+      border: 1px solid #e9eaeb;
+      border-radius: 3px;
+      background: @white;
+      text-align: left;
+      font-size: 16px;
+      p {
+        height: 45px;
+        line-height: 45px;
+        &.line {
+          border-bottom: 1px dotted #e9eaeb;
+        }
+      }
+      span.r {
+        .right;
+      }
+      span.amount {
+        .highlight;
+      }
+      span.gray {
+        margin-left: 3px;
+        background: #dddddd;
+        padding-left: 2px;
+        padding-right: 2px;
+        color: #fff;
+      }
+      &.swipeout {
+        position: relative;
+        .swipeout-actions-right {
+          width: 97px;
+          height: 97px;
+          background: red;
+          position: absolute;
+          right: -98px;
+          top: -1px;
+          a {
+            color: #fff;
+            display: block;
+            width: 97px;
+            height: 97px;
+            text-align: center;
+            line-height: 97px;
+          }
+        }
+      }
+    }
+  }
+}
+.topMenu{
+  height: 70px;
+  border-bottom: 1px solid @grayA;
+  background: @white;
+  .l{
+    float: left;
+    width: 89px;
+    position: relative;
+    border-right: 1px solid @grayA;
+    label{
+      width: 100%;
+      display: inline-block;
+      height: 70px;
+      line-height: 70px;
+      color: @font-color-A;
+      background: url("../images/xiala.png") no-repeat right 3px bottom 3px;
+    }
+    ul{
+      .hide;
+      position: absolute;
+      z-index: 99;
+      background-color: #ffffff;
+      border:1px solid #d7d9db;
+      border-top:none;
+      border-left:none;
+      li{
+        width:88px;
+        height:30px;
+        line-height: 30px;
+      }
+    }
+  }
+  .m{
+    .left;
+    width: 200px;
+    height: 70px;
+    line-height: 26px;
+    text-align: left;
+    padding-left: 17px;
+    p{
+      span:first-child{
+        display: block;
+        padding-top: 10px;
+        label{
+          color:#57bc85;
+          padding: 0 5px;
+        }
+      }
+      span:last-child{
+        padding-left: 4px;
+      }
+    }
+  }
+}
+.detail-toast{
+  width: 344px;
+  background: #f8f9fb;
+  margin: 0 auto;
+  position: relative;
+  top: 86px;
+  .button-box {
+    position: relative;
+    top: 2px;
+    .button{
+      display: inline-block;
+      border: none;
+      border-radius: 0px;
+      margin: 0;
+      padding: 0;
+      width: 50%;
+      height: 40px;
+    }
+  }
+}
+#maskDiv {
+  .hide;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: @deviceWidth;
+  height: @deviceHeight;
+  background: rgba(0, 0, 0, 0.4);
+  .receipt {
+    position: relative;
+    border-image: none;
+    margin-top: 70px;
+    h2 {
+      text-align: center;
+    }
+  }
+}
+
+//撤销，凭证号输入样式
+.voucher-form {
+  padding-top: 1.5em;
+  label {
+    .alg-left;
+    margin: 15px;
+    font-size: 1.2em;
+  }
+  input {
+    width: 90%;
+    height: 2em;
+    font-size: 2em;
+    border-radius: 5px;
+    text-indent: 1em;
+  }
+}

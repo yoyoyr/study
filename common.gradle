@@ -1,0 +1,19 @@
+project.ext {
+    isModule = true
+    param = [
+            compileSdkVersion: 26,
+            minSdkVersion    : 19,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0.2"
+    ]
+    dependences = [
+            aroute             : 'com.alibaba:arouter-api:1.4.0',
+            aroutercompiler    : 'com.alibaba:arouter-compiler:1.2.1',
+            appcompat          : 'com.android.support:appcompat-v7:26.1.0',
+            v4                 : 'com.android.support:support-v4:26.1.0',
+            eventbus           : 'org.greenrobot:eventbus:3.1.1',
+            butterknife        : 'com.jakewharton:butterknife:8.5.1',
+            butterknifecompiler: 'com.jakewharton:butterknife-compiler:8.5.1',
+    ]
+}

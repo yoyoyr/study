@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>银联商务 综合收银台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link type="text/css" rel="stylesheet" href="../metro/css/metro.css">
+    <link type="text/css" rel="stylesheet" href="../metro/css/metro-icons.css">
+    <script src="../cordova/cordova.js" type="text/javascript"></script>
+    <script src="../upos/bundle-upos-android.min.js" type="text/javascript"></script>
+    <script src="../upos/bundle-loader.js" type="text/javascript"></script>
+    <script>
+        function onKeyBack(){
+            window.system.finish();
+        }
+    </script>
+    <script language="javascript" src="../metro/js/libs/require.js"></script>
+    <style>
+        .key-board-box .btns a{
+            float: left;
+            width: 67px;
+            height: 67px;
+            margin: 0 11px;
+            background-size: 67px 67px !important;
+            border-radius: 8px;
+        }
+        .key-board-box .consume{
+            background: url("../metro/images/ic_swing.png") no-repeat;
+        }
+        .consume:active{
+            background: url("../metro/images/ic_swing_pre.png") no-repeat !important;
+        }
+        .key-board-box .wechat{
+            background: url("../metro/images/ic_wechat.png") no-repeat;
+        }
+        .wechat:active{
+            background: url("../metro/images/ic_wechat_pre.png") no-repeat !important;
+        }
+        .key-board-box .postong{
+            background: url("../metro/images/ic_pos.png") no-repeat;
+        }
+        .postong:active{
+            background: url("../metro/images/ic_pos_pre.png") no-repeat !important;
+        }
+        .key-board-box .alipay{
+            background: url("../metro/images/ic_alipay.png") no-repeat;
+        }
+        .alipay:active{
+            background: url("../metro/images/ic_alipay_pre.png") no-repeat !important;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <button class="back-btn"></button>
+    <span class="title">综合收银台</span>
+</header>
+<div id="wrap">
+    <section id="workspace">
+        <div id="workspace-main">
+            <div class="main">
+                <div class="content">
+                    <div class="content-box" id="amount-box">
+                        <h5 style="margin: 0;padding: 35px">请输入消费金额：</h5>
+                        <div>
+                            <span class="currency-symbol">￥</span>
+                            <span id="amount" maxlength="11">0.00</span>
+                        </div>
+                    </div>
+                    <div class="key-board-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    require.config({
+        shim: {
+            'jquery': {
+                exports: '$'
+            },
+            'metro': {
+                deps: ['jquery']
+            },
+            'mui': {
+                deps: ['metro']
+            }
+        },
+        paths: {
+            'jquery': '../metro/js/libs/jquery',
+            'metro': '../metro/js/libs/metro',
+            'utils': '../metro/js/utils',
+            'mui': '../metro/js/ui.metro.custom',
+            'aKB':'../metro/js/components/amount-keyboard'
+        }
+    });
+    require([
+        'jquery',
+        'mui',
+        'aKB'
+    ],function($,mui,kb){
+        mui.myDialog.init("toast");
+        kb.init4BtKb($(".key-board-box"), $("#amount"), function (v) {
+            v = parseFloat(v);
+            if (v == 0) {
+                mui.myDialog.toast("请输入金额！")
+            } else {
+            }
+        }, function (v) {
+            v = parseFloat(v);
+            if (v == 0) {
+                mui.myDialog.toast("请输入金额！")
+            } else {
+            }
+        },function (v) {
+            v = parseFloat(v);
+            if (v == 0) {
+                mui.myDialog.toast("请输入金额！")
+            } else {
+            }
+        },function (v) {
+            v = parseFloat(v);
+            if (v == 0) {
+                mui.myDialog.toast("请输入金额！")
+            } else {
+            }
+        });
+        $(".back-btn").click(function(){
+            window.system.finish();
+        });
+    });
+</script>
+</body>
+</html>

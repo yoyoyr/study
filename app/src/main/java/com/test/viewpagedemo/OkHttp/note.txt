@@ -1,0 +1,125 @@
+https://blog.csdn.net/briblue/article/details/52911998  基础教程
+https://www.jianshu.com/p/5b7ccc7e5bb7    源码分析流程
+https://www.cnblogs.com/zxj015/p/6530766.html   https协议详解
+
+socket编程（socket是传输层的api）
+//客户端Socket，指定服务器地址和端口
+Socket socket = new Socket("localhost",10086);
+socket.getOutputStream().write(...)
+//服务端
+ ServerSocket serverSocket =new ServerSocket(10086);
+ Socket socket = serverocket.accept();
+ socket.getInputStream().read(..)
+
+okio
+输入source 输出sink。除了flush()，基本都是调用的buffer的方法
+超时机制  throw new InterruptedIOException("deadline reached");
+          socket因为经常阻塞，所以另开一个watchDog线程关注超时机制
+缓存机制  buffer 以segment为节点的链表，增删快。装饰设计模式
+          segment 数组，查快
+          segmentPool segment的缓存池，最多缓存8个
+
+源码分析
+request     地址，方法，请求头，请求体(source,socket),协议版本
+response    返回码，信息，响应头，响应体(非一次性读完需要关闭sink)，请求协议
+Dispatch    RealCall执行器。
+            同步
+            异步  runningAsyncCalls 正在执行的任务
+                  readyAsyncCalls   等待执行任务（最多64个任务，每个host5个）
+http协议没有明确规定get不能带body,但是一般用get获取信息，用post上传文件或者表单
+
+拦截链      chain.proceed(intercepts,i){
+                intercepts.getNext(i).intercept(chain){
+                    ....
+                    chain.process(intercept,index+1)
+                    ....
+                }
+            }
+
+            RetryAndFollowUpInterceptor  失败重连
+            BridgeInterceptor  加content-length,cookie,响应gzip解压缩
+                               处理cookie：服务器通过报文头 Set-Cookie 将需要保存的字段返回给客户端。BridgeInterceptor内处理cookie的保存和获取，
+            CacheInterceptor    缓存处理，LruCache，以request.url为key
+            ConnectInterceptor  初始化StreamAllocation(HttpCodec,RealConnection),socket连接
+                                ConnectionPool复用RealConnection(socket连接)，支持5个保留链路，保留时长5分钟。
+            CallServerInterceptor  HttpCodec写请求头/体，构建响应头/体
+
+
+缓存（如果资源匹配将返回304）
+    先使用强制缓存，如果无效在使用对比缓存
+        强制缓存cache-control 服务器返回字段，表示本地读取缓存还是直接从服务器摘取消息
+                              max-age  时长内直接读取缓存
+                              no-cache 使用对比缓存
+                              no-store 不缓存
+
+        对比缓存    last-modified/if-modified-since
+                    last-modified  响应报文，标识服务端资源最后修改时间
+                    if-modified-since 请求报文，告知服务器资源修改时间。
+
+                    etag/if-none-match(优先级高于last-modified/if-modified-sice)
+                    etag  响应服务器返回告知浏览器资源的tag
+                    if-none-match  浏览器再次请求相同资源时，告知服务器请求资源tag
+
+https
+   https加入了ssl(secure socket layer)，提高了安全性。ssl作用有一下三点:
+        1.通过非对称算法确保客户端  服务端正确
+        2.通过对称算法确保数据安全，完整。
+        所以https的优点是安全，缺点是因为加密算法速度比较慢
+
+   工作原理:
+        1.客户端将自己支持的加密和hash算法发送给服务端
+        2.服务端从中选择一套加密和hash算法，将证书返回给客户端。证书包含公钥，颁布机构和url
+        3.客户端交易证书如果合法，则生产一组随机数字，然后用证书中的公钥加密，返回给客户端
+        4.服务端用私钥解密数字，如果hash校验正确，这用这串数据加密返回一段握手信息
+        5.客户端进行解密，如果校验正确，则用这串数字作为通讯的加密密钥
+
+        客户端检查服务端返回的证书合法性，合法则利用证书的公钥加密一段随机数字。
+        服务端接受到数据后通过私钥解密，如果正确，则用这串随机数字当做通讯的加密密钥。
+
+   权威机构的正式okhttp默认信任，对于自己签发的证书，需要添加证书信任。
+
+
+连接建立
+        三次握手 1客户端发送请求2服务端同意连接3客户端确认连接
+                 最后一次客户端确认是为了防止步骤1发送请求很久后服务器才返回，客户端已经按请求失效处理，服务器又
+                 建立连接产生死链接。
+        四次挥手    1客户端断开连接请求2服务端发送确认报文3客户端收到确认报文后等待终止4服务的发送完数据后，发出释放报文
+                    5客户端收到释放报文后发出确认6服务端关闭
+
+12.fiddler使用
+statistics  数据统计	RTT:		0.45s  往返时间
+inspectors	请求和响应数据展示
+autoResponder	文件代理
+composer	伪造请求
+
+webscoket(协议，有心跳包保持连接)
+        发起连接时需要发起一个http请求
+        传统的http，包括长连接，都是一个request对应一个response。如果出现需要服务器主动发消息的
+        场景，就只能采用轮询的方式。
+        websocket实现了类似回调机制，服务器可以往客户端发送多个消息，不在一一对应
+
+http2
+        请求并行发送（http1需要一个请求返回才能发下一个请求），压缩报文头
+
+断点续传/多线程下载    range字段
+        请求头     Range: bytes=500-999(下载文件的第500到999个字节)
+        响应头     Content-Range: bytes 500-999/1234（文件总大小）
+
+上传超大文件的内存问题     okio分段发送
+
+
+
+websocket报文格式
+    请求连接
+            Connection:Upgrade
+            Sec-WebSocket-Extensions:x-webkit-deflate-frame
+            Sec-WebSocket-Key:puVOuWb7rel6z2AVZBKnfw==
+            Sec-WebSocket-Version:13
+            Upgrade:websocket
+    响应连接
+            Connection:Upgrade
+            Upgrade:WebSocket
+            Sec-WebSocket-Accept:FCKgUr8c7OsDsLFeJTWrJw6WO8Q=
+
+    后续报文
+            描述信息+报文长度+掩码(如果有)+数据

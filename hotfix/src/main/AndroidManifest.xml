@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hotfix">
+
+    <application android:name=".MyTinkerApplication">
+        <service
+            android:name=".CustomResultService"
+            android:process=":remount" />
+    </application>
+</manifest>

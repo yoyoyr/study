@@ -1,0 +1,9 @@
+
+1.PageAdatpter
+  FragmentPageAdapter attach detach fragment保存在内存中
+  FragmentPageStateAdapter  add remove  fragment会被销毁
+
+2.懒加载
+    PageAdapter.setPrimaryItem()调用的position  Fragement.onHiddenChange()第一次调用
+
+3.页面滑动状态监听

@@ -1,0 +1,64 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+//apply from: rootProject.getRootDir().getAbsolutePath() + "/util.gradle"
+
+
+buildscript {
+    ext.kotlin_version = '1.1.3-2'
+    ext.arouter_register_version = '1.0.2'
+
+    repositories {
+        jcenter()
+//        配置本地仓库
+        maven {
+            url uri("/repo")
+        }
+//        配置远程参数
+        maven{
+            url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        google()
+    }
+    dependencies {
+        //目前了解到的情况是不支持这个gradle3.0 3.1.1
+        classpath 'com.android.tools.build:gradle:3.2.1'
+
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
+        classpath 'org.aspectj:aspectjtools:1.8.9'
+
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+
+//        classpath 'com.antfortune.freeline:gradle:0.8.8'
+
+        //V1 V2签名多渠道打包
+        classpath 'com.meituan.android.walle:plugin:1.1.6'
+
+        classpath 'com.test.plugin:mygroovy:1.0.2'
+
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1"
+//
+//        classpath 'com.didi.virtualapk:gradle:0.9.8.4'
+    }
+
+}
+
+
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+
+allprojects {
+    apply from: "$rootProject.rootDir/common.gradle"
+    repositories {
+        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+    }
+}

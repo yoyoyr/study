@@ -1,0 +1,21 @@
+task indexFile {
+    doLast {
+        println 'index sharelibs file.'
+
+        def content =""
+        File index = file('/src/main/assets/index.txt')
+        def tree = fileTree('/src/main/assets/www')
+
+        tree.visit {FileVisitDetails details->
+            if(!details.isDirectory()){
+                content += details.relativePath+"\n"
+            }
+        }
+
+        index.write(content)
+
+    }
+
+}
+
+indexFile.mustRunAfter tasks.findByName('build')

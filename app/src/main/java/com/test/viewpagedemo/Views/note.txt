@@ -1,0 +1,91 @@
+
+1.事件传递
+    WMS通过Window.Callback发送事件，callback接收到dispatchTouchEvent()的时候通知给activity，经过activity的处理后，再有ViewGroup一层层
+    传递给view。整个流程可以理解为ViewGroup为项目经理，Activity为部门经理，View为组员。部门经理将任务交给项目经理，项目经理先看自己
+    要不要做，不做就给组员。如果组员都不能完成，这交给项目经理，项目经理还不能完成，交给部门经理。
+    dispatchtouchevet(),onintercepttouchevent()属于分发任务，ontouch,ontouchevent(),onclick()属于具体执行任务顺序
+
+    MotionEvent down up move cancels
+
+    Activity如何处理:
+        dispatchTouchEvent(MotionEvent ev) {
+        //调用decorView的dispatchTouchEvent()方法
+            if (getWindow().superDispatchTouchEvent(ev)) {
+                return true;
+            }
+        //如果事件没有被View或者ViewGroup消耗。默认方法值处理边界外事件
+            return onTouchEvent(ev);
+        }
+
+    ViewGroup如何处理:
+        //down 调用onintercepttouchevent
+        //不是down    如果没有子view拦截，view.dispatchtouchevent()
+        //            子view如果有并且设置标志位，则调用子view。dispatchTouchEvent(),否则view.dispatchtouchevent()
+        intercepted = true;
+        //down事件会重置标false。所以down事件总会调用viewGroup的onintercepttouchevent
+        if (actionMasked == MotionEvent.ACTION_DOWN || mFirstTouchTarget != null) {
+            boolean disallowIntercept = (mGroupFlags & FLAG_DISALLOW_INTERCEPT) != 0;
+            if (disallowIntercept) {
+                intercepted = false;
+            } else {
+                intercepted = onInterceptTouchEvent(ev);
+            }
+        }
+        if (!intercepted) {
+            ..//遍历子view，没有播放动画并且触摸点落在范围内
+            if (child.dispatchTouchEvent()) {//对mFirstTouchTarget（链表结构）赋值并退出循环
+                mFirstTouchTarget = child;
+                break;
+            }
+        }
+        if (mFirstTouchTarget == null)
+            view.dispatchtouchevent()
+
+    view如何处理: 先交给listener处理，如果没有消耗掉事件就交给onTouch()回调
+        dispatchTouchEvent(){
+            if(listener.onTouch() && Flg)
+               return true;
+            return onTouch();//这里回去根据情况回调onClick()
+        }
+
+
+2.滑动冲突
+    外部拦截(父容器处理滑动冲突)
+    onintercepttouchevent(){
+        case DOWN:
+             return false;
+        case MOVE:
+            if(横向滑动)
+                return true;
+            else
+                return false;
+    }
+
+    内部拦截法
+    dispatchtouchevent(){
+        case DOWN:
+            requestDisallowInterceptTouchEvent(true)
+        case MOVE:
+            if(父容器需要这个时间)
+                requestDisallowInterceptTouchEvent(false)
+        return super.dispatchtouchevent();
+    }
+
+https://www.jianshu.com/p/e9d8420b1b9c
+3.自定义View
+    绘制流程 （https://hk.saowen.com/a/cac75f542f937d8b06ec0a6db7b45df8a59fe7a1485349855d97e1d997aee37c）
+        ViewRootImpl.performTraversals(){
+            //子控件和父控件协商后的宽高
+            if(mRequestLayout) mView.measure(childWidthMeasureSpec,childHeightMeasureSpec)
+            if(mRequestLayout) mView.layout(0,0,mView.getMeasuredWidth(),mView.getMeasuredHeight())
+             mView.draw(canvas);
+        }
+        requestLayout()会设置mRequestLayout,所以会执行onMeasure，onLayout，onDraw
+        invalidate,postInvalidate只会调用onDraw()
+    坐标系
+    滑动方式  setTranslateY(),scrollBy(),offsetTopAndBottom()
+    Canvas  裁剪，变换，状态保存，图形绘制。setMatrix(matrix)
+    Paint   setColorFilter() 颜色过滤，setShadder() 设置着色器,setPathEffect()设置路径效果
+    Matrix  setTranslate()图片平移，canvas坐标系不变
+    动画  帧动画，属性动画
+    可见性 invisibile 不绘制  gone 布局需要重新measure layout draw

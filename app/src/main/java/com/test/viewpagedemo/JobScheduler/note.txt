@@ -1,0 +1,9 @@
+
+1.获取内存使用情况  /proc或者ams获取正在运行程序的pid，根据pid获取程序占用的内存.proc/meminfo获取总内存
+2.获取外部存储  StateFs
+3.获取流量，电量使用情况 反射调用BatteryStateHelper，RxJava/JobScheduler定时记录，监听关机广播记录
+4.cpu使用情况  /proc/stat 记录cpu使用的时间片和空闲的时间片
+4.网络情况  Runtime.exec("ping -c 4 XXX")  返回max/avg/min的rtt
+5.加速  ams kill process。 delete file
+6.信号强度  TelephonyManager
+7.JobSchedule  定时，一定条件下（如充电情况下）执行任务

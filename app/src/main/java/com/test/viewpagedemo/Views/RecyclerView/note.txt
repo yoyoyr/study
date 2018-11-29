@@ -1,0 +1,44 @@
+https://blog.csdn.net/zxt0601/article/details/52948009
+https://www.cnblogs.com/bugly/p/6264751.html
+
+1.Apapter   提供数据，返回viewType对应视图
+2.ItemDecoration 负责给item周边添加修饰
+3.OnScrollListener  滑动状态监听
+4.LayoutMamager  布局，处理滑动事件
+5.绘制流程
+
+6.重要函数
+  onLayoutChildren()  初始化界面或者adapter数据改变的时候，负责填充满界面
+  canScrollHorizontally()/canScrollVertically()     是否处理对应方向的滑动
+  scrollHorizontallyBy()/scrollVerticallyBy()   滑动事件回调
+  getViewForPosition(int)   detch获取，在从pool获取，最后create
+  detachAndScrapView(view,recycler) detach view
+  removeAndRecycleView(vie,recycler)    移除view，在次绑定会调用onBindViewHolder
+  offsetChildrenVertical(-dy)   竖直移动view.最终调用view.offsetTopAndBottom(int)
+
+7.listView和recyclerView对比
+    缓存机制    基于View缓存池，item离屏时回收，入屏时从缓存池获取
+                listview
+                        mactive 屏幕内view，用于快速刷新
+                        mscrap  离屏的缓存view，再次使用需要bind
+                recyclerview
+                        mattached   屏幕内view，用于快速刷新
+                        mcache  离屏的view，可以直接重新使用
+                        mviewcacheExtension 需要用户定制，默认不实现
+                        pool    缓存view，需要重新bind
+    ListView 支持addHeaderView()和addFooterView(),ListView也支持局部刷新
+    RecyclerView支持局部刷新（listview直接都重新绘制）和嵌套滑动机制。
+            可用装饰设计模式实现addHeaderView和addFooterView。
+局部刷新    找到具体的item更新值
+
+ListView局部刷新
+    public void updateItemView(ListView listview, int position, Data data){
+        int firstPos = listview.getFirstVisiblePosition();
+        int lastPos = listview.getLastVisiblePosition();
+        if(position >= firstPos && position <= lastPos){  //可见才更新，不可见则在getView()时更新
+            //listview.getChildAt(i)获得的是当前可见的第i个item的view
+            View view = listview.getChildAt(position - firstPos);
+            VH vh = (VH)view.getTag();
+            vh.text.setText(data.text);
+        }
+    }

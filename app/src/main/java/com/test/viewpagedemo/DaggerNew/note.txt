@@ -1,0 +1,46 @@
+@Component为注射器(可dependencies,build的时候需要赋值)，@Module，@Provides表示注入方法，@Inject标识注入点
+@Scope标识作用范围(需要注解在@Provide和@Component,同一个compoment对象内返回同一个对象)
+@Qualifier用于区分同一接口的不同实现
+
+一些重要的概念
+   依赖倒置（DIP） 上层底层实现都依赖于抽象,面向接口编程
+   控制反转（IOC） 通过ioc容器将底层实现注入到上层
+   依赖注入（DI）
+   DIP是一种设计原则，IOC是设计模式，DI是IOC的一种实现方式
+
+====================================================================================================
+1.@Inject
+  修饰构造函数  表示Dagger可用这个构造函数构造对象
+                表示需要注入构造函数的参数依赖
+  修饰属性  属性不能使private
+  修饰方法  在执行构造函数以后立即执行，可以提供可靠的this对象
+
+2.@Component    标识注入器
+    Man getMan()    注入单个类型
+    void inject(Activity)   注入所有activity有@Inject的属性和方法
+
+3.@Module  @Provides
+   @Provides  Dagger是通过返回类型来确定依赖关系的
+
+4.@Singleton  标识单例.需要注释@Component和@Provides.
+    标识了@Singleton之后，生成的Component对象会调用provideCardProvider.get()获取生成对象
+    这个方法会首先从缓存里面读数据，所以在同一个Component内对象是单例的。
+    一般情况下，更好的做法是自定义annotation，继承@Scop，标识作用域范围
+
+5.对于返回值类型一样，区分注入依赖的处理方法
+    @Name(name) 区分
+    @Qualifier  自定义annotation区分  最好的方式
+
+6.延时加载  Lazy<>
+
+7.每次都调用Module相关方法获取对象  Provider<>
+
+8.@Component之间的组合  dependencies
+
+9.@Component的继承
+
+10.一些重要的概念
+   依赖倒置（DIP） 上层底层实现都依赖于抽象,面向接口编程
+   控制反转（IOC） 通过ioc容器将底层实现注入到上层
+   依赖注入（DI）
+   DIP是一种设计原则，IOC是设计模式，DI是IOC的一种实现方式

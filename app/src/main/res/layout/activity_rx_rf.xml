@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/get"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="get网络请求" />
+
+
+    <Button
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="post网络请求" />
+
+
+    <Button
+        android:id="@+id/stream"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Stream请求响应" />
+
+    <Button
+        android:id="@+id/gson"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="gson" />
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+ 嵌套滑动
+
+ behavior:  介入CoordinatorLayout的measure，layout流程
+            事件拦截 onTouchEvent
+            监听布局其他组件的滑动  layoutDependesOn() onDependentViewChange()
+            监听嵌套滑动(NestedScrolling)
+                前提: 父布局实现NestedScrollingParent，子组件实现NestedScrollingChild接口
+                流程: child滑动前将滑动事件交给布局分发，布局遍历所有view让他们消耗事件，消耗剩余距离给child处理
+                    RecyclerView down事件CoordinatorLayout遍历child.onStartNestedScroll()
+                    RecyclerView move事件CoordinatorLayout遍历child.onNestedPreScroll(
+                    	..,
+                    	int dx, int dy, //RecyclerView滑动距离
+                    	int[] consumed, //消耗掉的距离
+                    	int type
+                    )

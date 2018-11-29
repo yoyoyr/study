@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--<View-->
+        <!--android:id="@+id/banner"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@color/gray"-->
+        <!--app:layout_constraintDimensionRatio="5:2"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--&lt;!&ndash;0dp的使用方法&ndash;&gt;-->
+    <!--<Button-->
+        <!--android:id="@+id/btn1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button1"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn2"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn2"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button2"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn1"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/banner" />-->
+
+    <!--&lt;!&ndash;                  设置比例                             &ndash;&gt;-->
+    <!--<Button-->
+        <!--android:id="@+id/btn3"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button3"-->
+        <!--app:layout_constraintHorizontal_weight="2"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn4"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn1" />-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn4"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button4"-->
+        <!--app:layout_constraintHorizontal_weight="1"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn3"-->
+        <!--app:layout_constraintRight_toRightOf="@id/btn5"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn1" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn5"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button5"-->
+        <!--app:layout_constraintHorizontal_weight="1"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn4"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn1" />-->
+
+    <!--&lt;!&ndash;chains的使用  app:layout_constraintHorizontal_chainStyle="spread"&ndash;&gt;-->
+    <!--<Button-->
+        <!--android:id="@+id/btn6"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button6"-->
+        <!--app:layout_constraintHorizontal_chainStyle="spread"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn7"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn3" />-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn7"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button7"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn6"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn8"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn3" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn8"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button8"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn7"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn3" />-->
+
+
+    <!--&lt;!&ndash;chains的使用  app:layout_constraintHorizontal_chainStyle="packed"&ndash;&gt;-->
+    <!--<Button-->
+        <!--android:id="@+id/btn9"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button9"-->
+        <!--app:layout_constraintHorizontal_chainStyle="packed"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn10"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn6" />-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn10"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button10"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn9"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn11"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn6" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn11"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button11"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn10"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn6" />-->
+
+
+    <!--&lt;!&ndash;chains的使用  app:layout_constraintHorizontal_chainStyle="spread_inside"&ndash;&gt;-->
+    <!--<Button-->
+        <!--android:id="@+id/btn12"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button12"-->
+        <!--app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn13"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn9" />-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn13"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button13"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn12"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/btn14"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn9" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn14"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button14"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/btn13"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn9" />-->
+
+    <!--&lt;!&ndash;设置拉力   app:layout_constraintHorizontal_bias="0.7" 距离左侧距离70%&ndash;&gt;-->
+
+    <!--<View-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@color/gray"-->
+        <!--app:layout_constraintHorizontal_bias="0.7"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btn12" />-->
+
+
+    <!--&lt;!&ndash;Guideline 辅助线&ndash;&gt;-->
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/guideline_h"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.8" />-->
+
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/guideline_w"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintGuide_percent="0.8" />-->
+
+
+</android.support.constraint.ConstraintLayout>

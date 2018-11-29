@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.test.viewpagedemo.Glide.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load" />
+
+
+        <Button
+            android:id="@+id/simpleTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="simpletarget" />
+
+
+        <Button
+            android:id="@+id/viewTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="viewtarget" />
+
+
+        <Button
+            android:id="@+id/preLoad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="preload" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/fitCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fit center" />
+
+
+        <!--<Button-->
+            <!--android:id="@+id/centerCrop"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="centerCrop" />-->
+
+        <Button
+            android:id="@+id/gif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gif" />
+
+
+        <Button
+            android:id="@+id/circleImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="self circle" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:background="@color/colorAccent"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.test.viewpagedemo.Glide.MyLinearLayout>
