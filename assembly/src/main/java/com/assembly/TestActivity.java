@@ -2,6 +2,7 @@ package com.assembly;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 @Route(path = RouteBean.modularize)
 public class TestActivity extends AppCompatActivity {
 
+    @NonNull
     NavCallback navigationCallback = new NavCallback() {
         @Override
         public void onFound(Postcard postcard) {

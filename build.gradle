@@ -9,9 +9,10 @@ buildscript {
 
     repositories {
         jcenter()
+        mavenLocal()
 //        配置本地仓库
         maven {
-            url uri("/repo")
+            url uri("repo")
         }
 //        配置远程参数
         maven{
@@ -56,6 +57,11 @@ allprojects {
     apply from: "$rootProject.rootDir/common.gradle"
     repositories {
         jcenter()
+//        mavenLocal()
+////        配置本地仓库
+//        maven {
+//            url uri("../repo")
+//        }
         maven {
             url 'https://maven.google.com/'
             name 'Google'

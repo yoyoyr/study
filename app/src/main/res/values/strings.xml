@@ -8,5 +8,7 @@
     <string name="behavior_sample_title">com.test.viewpagedemo.Views.TestCoordinatorLayout.TitleBehavior</string>
     <string name="behavior_sample_header">com.test.viewpagedemo.Views.TestCoordinatorLayout.HeaderBehavior</string>
     <string name="behavior_recycler">com.test.viewpagedemo.Views.TestCoordinatorLayout.RecyclerViewBehavior</string>
+    <string name="behavior_tab">com.test.viewpagedemo.Views.TestCoordinatorLayout.TabBehavior</string>
+
 
 </resources>

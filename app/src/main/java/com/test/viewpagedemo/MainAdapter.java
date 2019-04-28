@@ -1,6 +1,7 @@
 package com.test.viewpagedemo;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         LoggerUtils.LOGD("init static main adapter!");
     }
 
+    @NonNull
     public List<String> titles = new ArrayList<>();
+    @NonNull
     List<Intent> intents = new ArrayList<>();
     MainActivity context;
 
@@ -91,13 +94,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
 
     }
 
+    @NonNull
     @Override
-    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new VH(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main_recycler_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(VH holder, final int position) {
+    public void onBindViewHolder(@NonNull VH holder, final int position) {
         holder.textView.setText(titles.get(position));
         if (position == 0) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +146,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
 
         TextView textView;
 
-        public VH(View itemView) {
+        public VH(@NonNull View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.text);

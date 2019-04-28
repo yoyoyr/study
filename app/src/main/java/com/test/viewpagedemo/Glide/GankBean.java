@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Glide;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 public class GankBean {
@@ -15,6 +17,7 @@ public class GankBean {
         return results;
     }
 
+    @NonNull
     @Override
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer("GankBean{\n" +
@@ -75,6 +78,7 @@ public class GankBean {
             return who;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return "\nResult{" +

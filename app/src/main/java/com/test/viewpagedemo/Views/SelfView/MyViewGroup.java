@@ -7,6 +7,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,6 +37,7 @@ public class MyViewGroup extends ViewGroup {
     static int marginTop = 20;
     float lastX, lastY, mSlop, origX, origY;
     OverScroller scroller;
+    @Nullable
     View touchView;
 
     public MyViewGroup(Context context) {
@@ -127,7 +130,7 @@ public class MyViewGroup extends ViewGroup {
      * @return
      */
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(@NonNull MotionEvent ev) {
 
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
 
@@ -175,7 +178,7 @@ public class MyViewGroup extends ViewGroup {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
+    public boolean onTouchEvent(@NonNull MotionEvent ev) {
 //        LoggerUtils.LOGD("event = " + ev.getAction());
         if (ev.getAction() == MotionEvent.ACTION_MOVE) {
 //            LoggerUtils.LOGD("move " + Math.abs(ev.getX() - lastX));
@@ -198,7 +201,7 @@ public class MyViewGroup extends ViewGroup {
 
                 xAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
+                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
 
                         int x = (Integer) animation.getAnimatedValue();
 //                        LoggerUtils.LOGD("x = " + x + ",move = " + (x - lastX));
@@ -210,7 +213,7 @@ public class MyViewGroup extends ViewGroup {
                 ValueAnimator yAnimator = ValueAnimator.ofInt(touchView.getTop(), (int) origY);
                 yAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
+                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                         int y = (int) animation.getAnimatedValue();
                         touchView.offsetTopAndBottom((int) (y - lastY));
                         lastY = y;

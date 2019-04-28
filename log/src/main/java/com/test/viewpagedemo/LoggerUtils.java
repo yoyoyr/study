@@ -1,5 +1,7 @@
 package com.test.viewpagedemo;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Printer;
 
@@ -26,7 +28,8 @@ public class LoggerUtils implements Printer{
     }
 
 
-    private static String makeLogTag(StackTraceElement caller) {
+    @NonNull
+    private static String makeLogTag(@Nullable StackTraceElement caller) {
         if (caller == null) {
             return makeLogTag("service");
         }

@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class MySlideActivity extends AppCompatActivity {
         line.setData(lines);
         line.setOnPointClickListener(new Line.onPointClickListener() {
             @Override
-            public void onClick(LineB lineB) {
+            public void onClick(@NonNull LineB lineB) {
                 LoggerUtils.LOGD("line = " + lineB.toString());
             }
         });
@@ -164,6 +165,7 @@ public class MySlideActivity extends AppCompatActivity {
 //    StatFs获取外部存储空间的大小
 
     //    proc/meminfo 获取总内存 ams获取使用内存
+    @NonNull
     public Object getMeminfo() {
         String dir = "/proc/meminfo";
         try {
@@ -318,7 +320,7 @@ public class MySlideActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("否", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })

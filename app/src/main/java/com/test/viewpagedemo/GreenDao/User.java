@@ -1,5 +1,8 @@
 package com.test.viewpagedemo.GreenDao;
 
+import android.support.annotation.Keep;
+import android.support.annotation.Nullable;
+
 import com.test.viewpagedemo.GreenDao.resource.DaoSession;
 import com.test.viewpagedemo.GreenDao.resource.UserDao;
 
@@ -15,8 +18,8 @@ import org.greenrobot.greendao.annotation.Transient;
 /**
  * Entity表面类需要持久化
  */
-@Entity(active = true//自动生成update/delete/refresh方法
- )
+@Entity(active = true)//自动生成update/delete/refresh方法
+
 public class User {
     /**
      * 设置主键自增必须是包装数据类型
@@ -44,22 +47,14 @@ public class User {
     Integer mounth;
     int day;
 
-    /**
-     * Used to resolve relations
-     */
+    /** Used to resolve relations */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
 
-    /**
-     * Used for active entity operations.
-     */
+    /** Used for active entity operations. */
     @Generated(hash = 1507654846)
     private transient UserDao myDao;
 
-
-    @Generated(hash = 586692638)
-    public User() {
-    }
 
 
     @Generated(hash = 324891461)
@@ -74,6 +69,11 @@ public class User {
         this.mounth = mounth;
         this.day = day;
     }
+
+    @Generated(hash = 586692638)
+    public User() {
+    }
+
 
 
     public String getName() {
@@ -132,6 +132,24 @@ public class User {
         this.day = day;
     }
 
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public void setMounth(Integer mounth) {
+        this.mounth = mounth;
+    }
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     /**
      * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
      * Entity must attached to an entity context.
@@ -168,30 +186,10 @@ public class User {
         myDao.update(this);
     }
 
-    /**
-     * called by internal mechanisms, do not call yourself.
-     */
+    /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 2059241980)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getUserDao() : null;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public void setMounth(Integer mounth) {
-        this.mounth = mounth;
-    }
-
-
-    public Long getId() {
-        return this.id;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

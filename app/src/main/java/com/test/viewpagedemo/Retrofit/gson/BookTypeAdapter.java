@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Retrofit.gson;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -12,7 +14,7 @@ import java.util.List;
 public class BookTypeAdapter extends TypeAdapter<Book> {
 
     @Override
-    public void write(JsonWriter out, Book value) throws IOException {
+    public void write(@NonNull JsonWriter out, @NonNull Book value) throws IOException {
         out.beginObject();
         out.name("title").value(value.getTitle());
         out.name("isbn-10").value(value.getIsbn10());
@@ -26,8 +28,9 @@ public class BookTypeAdapter extends TypeAdapter<Book> {
         out.endObject();
     }
 
+    @NonNull
     @Override
-    public Book read(JsonReader in) throws IOException {
+    public Book read(@NonNull JsonReader in) throws IOException {
         LoggerUtils.LOGD("read by BookTypeAdapter");
         Book book = new Book();
         List as = new ArrayList();

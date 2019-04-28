@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Glide;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GenericLoaderFactory;
@@ -20,6 +21,7 @@ public class OkHttpGlideUrlLoader implements ModelLoader<GlideUrl, InputStream> 
         this.okHttpClient = okHttpClient;
     }
 
+    @NonNull
     @Override
     public DataFetcher<InputStream> getResourceFetcher(GlideUrl model, int width, int height) {
         return new OkHttpFetcher(okHttpClient, model);
@@ -43,6 +45,7 @@ public class OkHttpGlideUrlLoader implements ModelLoader<GlideUrl, InputStream> 
             return client;
         }
 
+        @NonNull
         @Override
         public ModelLoader<GlideUrl, InputStream> build(Context context, GenericLoaderFactory factories) {
             return new OkHttpGlideUrlLoader(getOkHttpClient());

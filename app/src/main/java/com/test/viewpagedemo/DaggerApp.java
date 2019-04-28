@@ -2,10 +2,11 @@ package com.test.viewpagedemo;
 
 import android.content.Context;
 import android.os.Debug;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
 import com.annotation.ApplicationAsyncInit;
-import com.igexin.sdk.PushManager;
+
 import com.meituan.android.walle.ChannelInfo;
 import com.meituan.android.walle.WalleChannelReader;
 import com.squareup.leakcanary.AndroidExcludedRefs;
@@ -13,8 +14,8 @@ import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.test.viewpagedemo.GreenDao.resource.DaoSession;
-import com.test.viewpagedemo.mqttGetTui.DemoIntentService;
-import com.test.viewpagedemo.mqttGetTui.DemoPushService;
+//import com.test.viewpagedemo.mqttGetTui.DemoIntentService;
+//import com.test.viewpagedemo.mqttGetTui.DemoPushService;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class DaggerApp {
 
 
     @ApplicationAsyncInit
-    public void init(Context context) {
+    public void init(@NonNull Context context) {
         //        startTract();
         //使应用支持分包
         MultiDex.install(context);
@@ -65,7 +66,7 @@ public class DaggerApp {
         Debug.startMethodTracing(context.getCacheDir() + "/hello.trace");
     }
 
-    private void initWalle(Context context) {
+    private void initWalle(@NonNull Context context) {
         LoggerUtils.LOGD("---------init walle");
         ChannelInfo channelInfo = WalleChannelReader.getChannelInfo(context);
         if (channelInfo != null) {
@@ -79,12 +80,12 @@ public class DaggerApp {
         //        890ms
         LoggerUtils.LOGD("---------init push");
         //开启个推服务
-        PushManager.getInstance().initialize(context, DemoPushService.class);
-        PushManager.getInstance().registerPushIntentService(context, DemoIntentService.class);
+//        PushManager.getInstance().initialize(context, DemoPushService.class);
+//        PushManager.getInstance().registerPushIntentService(context, DemoIntentService.class);
         LoggerUtils.LOGD("---------push end");
     }
 
-    private void initCompoment(Context context) {
+    private void initCompoment(@NonNull Context context) {
         LoggerUtils.LOGD("---------init cpmponent");
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(context, "test.db"))
                 .build();

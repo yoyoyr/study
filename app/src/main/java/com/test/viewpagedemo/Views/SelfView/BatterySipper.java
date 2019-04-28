@@ -1,9 +1,13 @@
 package com.test.viewpagedemo.Views.SelfView;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 public class BatterySipper {
     public int userId;
     public double value;
     public int drainType;
+    @Nullable
     public String[] packageNames;
 
     /**
@@ -28,6 +32,7 @@ public class BatterySipper {
         OVERCOUNTED
     }
 
+    @NonNull
     @Override
     public String toString() {
         String data = "BatterySipper{" +

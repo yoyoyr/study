@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Glide;
 
+import android.support.annotation.Nullable;
+
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GlideUrl;
@@ -28,6 +30,7 @@ public class OkHttpFetcher implements DataFetcher<InputStream> {
     }
 
 
+    @Nullable
     @Override
     public InputStream loadData(Priority priority) throws Exception {
 

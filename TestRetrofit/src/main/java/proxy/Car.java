@@ -1,5 +1,7 @@
 package proxy;
 
+import android.support.annotation.NonNull;
+
 public class Car implements ICar {
     static int count = 1;
 
@@ -11,6 +13,7 @@ public class Car implements ICar {
         System.out.println("car");
     }
 
+    @NonNull
     @Override
     public String run(String name) {
         return name + " run";

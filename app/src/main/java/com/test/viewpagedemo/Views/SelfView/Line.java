@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ public class Line extends View {
     float x, y;
     float width, height;
     List<Point> xPoint, yPoint;
+    @Nullable
     List<LineB> points;
     int selectPoint;
     int xPointCount;
@@ -38,7 +40,7 @@ public class Line extends View {
         this.onPointClickListener = onPointClickListener;
     }
 
-    public void setData(List<LineB> values) {
+    public void setData(@Nullable List<LineB> values) {
         selectPoint = -1;
         if (values == null || values.size() <= 0) {
 //            LoggerUtils.LOGE("value is null!");
@@ -131,13 +133,13 @@ public class Line extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
 //        LoggerUtils.LOGD("onDraw");
         super.onDraw(canvas);
         drawPoint(canvas);
     }
 
-    private void drawPoint(Canvas canvas) {
+    private void drawPoint(@NonNull Canvas canvas) {
         if (points.size() > 0) {
             path.reset();
             int radius = 15;
@@ -171,7 +173,7 @@ public class Line extends View {
     float oldTouchX, oldTouchY, downX, downY, lastPointX;
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             downX = oldTouchX = event.getX();
             downY = oldTouchY = event.getY();

@@ -1,5 +1,7 @@
 package MulThread;
 
+import android.support.annotation.NonNull;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ExecutionException;
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestExecutor {
 
+    @NonNull
     static ThreadFactory threadFactory = new ThreadFactory() {
         @Override
         public Thread newThread(Runnable r) {
@@ -19,10 +22,12 @@ public class TestExecutor {
         }
     };
 
+    @NonNull
     static ExecutorService executor = new ThreadPoolExecutor(1, Integer.MAX_VALUE, 5, TimeUnit.SECONDS,
             new DelayQueue());
 //    static ExecutorService executor = Executors.newCachedThreadPool();
 
+    @NonNull
     static Callable callable = new Callable() {
         @Override
         public String call() throws Exception {

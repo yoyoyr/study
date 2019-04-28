@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Views.RecyclerView;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +26,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.data = data;
     }
 
+    @NonNull
     @Override
-    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new VH(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(VH holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.textView.setText(data.get(position) + "");
     }
 
@@ -61,10 +64,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     class VH extends RecyclerView.ViewHolder {
 
+        @Nullable
         @BindView(R.id.tv)
         TextView textView;
 
-        public VH(View itemView) {
+        public VH(@NonNull View itemView) {
             super(itemView);
 //            textView = itemView.findViewById(R.id.tv);
             ButterKnife.bind(this, itemView);

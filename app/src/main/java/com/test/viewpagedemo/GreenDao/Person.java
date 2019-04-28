@@ -1,5 +1,8 @@
 package com.test.viewpagedemo.GreenDao;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.test.viewpagedemo.GreenDao.resource.DaoSession;
 import com.test.viewpagedemo.GreenDao.resource.OrderDao;
 import com.test.viewpagedemo.GreenDao.resource.PersonDao;
@@ -40,6 +43,7 @@ public class Person {
     @Transient
     String others;
 
+    @Nullable
     @ToMany(joinProperties = {@JoinProperty(name = "id", referencedName = "otherid")})
     List<Order> orders;
 
@@ -125,27 +129,6 @@ public class Person {
         this.mounth = mounth;
     }
 
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Order order : getOrders()) {
-            stringBuilder.append(order.toString() + "\n");
-        }
-        stringBuilder.append("Person{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", year=" + year +
-                ", mounth=" + mounth +
-                ", others='" + others + '\'' +
-                '}');
-
-        return stringBuilder.toString();
-    }
-
     /**
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
@@ -216,5 +199,6 @@ public class Person {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getPersonDao() : null;
     }
+
 
 }

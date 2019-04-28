@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Glide;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,14 +25,15 @@ public class ImageLoaderAdapter extends RecyclerView.Adapter {
         this.urls = urls;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new Item(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.image_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (urls.get(position) != null) {
             LoggerUtils.LOGD("load image from url " + urls.get(position));
             Glide.with(holder.itemView.getContext())
@@ -47,10 +50,11 @@ public class ImageLoaderAdapter extends RecyclerView.Adapter {
 
     class Item extends RecyclerView.ViewHolder {
 
+        @Nullable
         @BindView(R.id.imageItem)
         ImageView imageView;
 
-        public Item(View itemView) {
+        public Item(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

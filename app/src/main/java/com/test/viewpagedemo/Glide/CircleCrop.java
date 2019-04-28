@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -21,13 +22,14 @@ public class CircleCrop extends BitmapTransformation {
         super(bitmapPool);
     }
 
+    @NonNull
     @Override
     public String getId() {
         return "com.example.glidetest.CircleCrop";
     }
 
     @Override
-    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
 
         int R = Math.min(toTransform.getWidth(), toTransform.getHeight());
         Bitmap result = pool.get(outWidth, outHeight, Bitmap.Config.ARGB_8888);

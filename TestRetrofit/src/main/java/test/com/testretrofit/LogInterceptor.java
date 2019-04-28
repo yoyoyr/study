@@ -1,5 +1,7 @@
 package test.com.testretrofit;
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 
 import okhttp3.Headers;
@@ -11,7 +13,7 @@ public class LogInterceptor implements Interceptor {
     public static final String TAG = "LogInterceptor.java";
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(@NonNull Chain chain) throws IOException {
 
         Request.Builder builder = chain.request().newBuilder();
         builder.addHeader("SetCookie", "name:value");

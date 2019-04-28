@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -45,15 +46,19 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class BitmapActivity extends AppCompatActivity {
 
+    @Nullable
     @BindView(R.id.bitmap)
     ImageView imageView;
 
+    @Nullable
     @BindView(R.id.gif)
     GifImageView gifImageView;
 
     GifDrawable gifDrawable;
 
+    @Nullable
     Bitmap bitmap;
+    @NonNull
     String jpg = "http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg";
 
     @Override

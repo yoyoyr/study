@@ -3,6 +3,7 @@ package com.test.viewpagedemo;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             List observables = new ArrayList<ObservableSource>();
             observables.add(Observable.create(new ObservableOnSubscribe<Object>() {
                 @Override
-                public void subscribe(ObservableEmitter<Object> emitter) {
+                public void subscribe(@NonNull ObservableEmitter<Object> emitter) {
                     LoggerUtils.LOGD("work in " + Thread.currentThread().getName());
                     showDialog();
                     emitter.onNext(true);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             observables.add(Observable.create(new ObservableOnSubscribe<Object>() {
                 @Override
-                public void subscribe(ObservableEmitter<Object> emitter) {
+                public void subscribe(@NonNull ObservableEmitter<Object> emitter) {
                     LoggerUtils.LOGD("init arouter work in " + Thread.currentThread().getName());
                     ARouter.openLog();
                     ARouter.openDebug();
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
             Observable.zip(observables, new Function<Object[], Boolean>() {
                 @Override
-                public Boolean apply(Object[] aBoolean) throws Exception {
+                public Boolean apply(@NonNull Object[] aBoolean) throws Exception {
                     boolean flag = true;
                     for (int i = 0; i < aBoolean.length; ++i) {
                         LoggerUtils.LOGD("result = " + (boolean) aBoolean[i]);

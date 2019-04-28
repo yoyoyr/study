@@ -21,5 +21,6 @@ uploadArchives {
             //文件发布到下面目录
             repository(url: uri('../repo'))
         }
+//        mavenLoacal()
     }
 }

@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -39,9 +41,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class TestLeakCanaryActivity extends AppCompatActivity {
 
+    @Nullable
     @BindView(R.id.tv)
     TextView textView;
 
+    @NonNull
     static User user = new User();
 
     //非静态内部类会持有外部类的this应用，Meaasge又会持有handler引用。
@@ -52,12 +56,15 @@ public class TestLeakCanaryActivity extends AppCompatActivity {
     // 3.清除相关消息   最好的方式。因为如果发送到消息队列是一个runnable对象，则
     //                  runnable最为内部类还是会引用到外部的ACtivity，用以上的两种方式还是会内存泄漏
 
+    @NonNull
     MyHandler myHandler = new MyHandler();
 
     static class MyHandler extends Handler {
     }
 
+    @NonNull
     Handler handler = new Handler();
+    @NonNull
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -119,7 +126,7 @@ public class TestLeakCanaryActivity extends AppCompatActivity {
 //        所以需要disposable在activity退出的时候关闭任务，避免内存泄露
         disposable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) {
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) {
                 try {
                     Thread.sleep(1000 * 20);
                 } catch (InterruptedException e) {

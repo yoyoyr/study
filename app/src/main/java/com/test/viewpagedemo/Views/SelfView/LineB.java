@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Views.SelfView;
 
+import android.support.annotation.NonNull;
+
 public class LineB {
     String value;
     String bottomLeftText;
@@ -15,6 +17,7 @@ public class LineB {
         this.bottomRightText = bottomRightText;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "LineB{" +

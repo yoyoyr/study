@@ -1,5 +1,7 @@
 package com.hotfix;
 
+import android.support.annotation.NonNull;
+
 import com.tencent.tinker.lib.service.DefaultTinkerResultService;
 import com.tencent.tinker.lib.service.PatchResult;
 import com.tencent.tinker.lib.util.TinkerServiceInternals;
@@ -16,7 +18,7 @@ public class CustomResultService extends DefaultTinkerResultService {
 
     //返回patch文件的最终安装结果
     @Override
-    public void onPatchResult(PatchResult result) {
+    public void onPatchResult(@NonNull PatchResult result) {
         LoggerUtils.LOGD("patch result = " + result.toString());
         if (result == null) {
             LoggerUtils.LOGE("DefaultTinkerResultService received null result!!!!");

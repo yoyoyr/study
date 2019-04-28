@@ -2,10 +2,10 @@ package com.test.viewpagedemo.OkHttp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.study.point.R;
 import com.test.viewpagedemo.LoggerUtils;
 
@@ -47,6 +47,7 @@ import okio.BufferedSink;
 import okio.BufferedSource;
 import okio.Okio;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 public class OkHttpActivity extends AppCompatActivity {
 
@@ -54,8 +55,10 @@ public class OkHttpActivity extends AppCompatActivity {
     private static final String CAPK = "30820122300d06092a864886f70d01010105000382010f003082010a02820101009959a77d441ac8cc35ff5e4e117bd72460d13f689367d2564598c7b0f68869e8c11e80c9f8b964ffea75a05021fdccde7cbca9845fa95093260d1ac1187c3d8b5b59a4d0cef8f7189978dae067256a7108090a254d900220a2036f1bb4beaa3e90ee67ebb79ff74d5721f78bdc655eba041f67d97c476581fe362a91f14959df6e5e9d3040bf134ced84350afcba313c27273ad2b1557f0edd36fda9de52d010acaf4a6668ade927f00d29ef47bc91fd08ff67795d1f435e8fbdbaec612ba13b4bd081d4e4bf967c4d243f1add59e2858603c60cfe69d9f74cd88ba9bcce062c8095d37925620319d6ef08bfc3271a9fd549a0a07684bc43abe4a99411b1758d0203010001";
     Unbinder unbinder;
 
+    @NonNull
     static String url = "http://gank.io/api/data/Android/10/1";
 
+    @NonNull
     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
         @Override
         public void log(String message) {
@@ -64,7 +67,9 @@ public class OkHttpActivity extends AppCompatActivity {
     });
 
 
+    @Nullable
     MediaType stream = MediaType.parse("text/x-markdown; charset=utf-8");
+    @Nullable
     MediaType string = MediaType.parse("text/x-markdown; charset = utf-8");
 
 
@@ -101,8 +106,9 @@ public class OkHttpActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .map(new Function<ResponseBody, Integer>() {
+                    @NonNull
                     @Override
-                    public Integer apply(ResponseBody body) throws Exception {
+                    public Integer apply(@NonNull ResponseBody body) throws Exception {
                         FileUtils.writeFile2Disk(body, FileUtils.createFile(OkHttpActivity.this, "tmp", "gif"));
                         return 1;
                     }
@@ -135,7 +141,7 @@ public class OkHttpActivity extends AppCompatActivity {
                 .observeOn(Schedulers.io())
                 .flatMap(new Function<ResponseBody, ObservableSource<?>>() {
                     @Override
-                    public ObservableSource<?> apply(ResponseBody response) throws Exception {
+                    public ObservableSource<?> apply(@NonNull ResponseBody response) throws Exception {
                         long contentLen = response.contentLength();
                         LoggerUtils.LOGD("content length = " + contentLen);
 
@@ -143,8 +149,9 @@ public class OkHttpActivity extends AppCompatActivity {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(Schedulers.io())
                                 .map(new Function<ResponseBody, String>() {
+                                    @NonNull
                                     @Override
-                                    public String apply(ResponseBody response) throws Exception {
+                                    public String apply(@NonNull ResponseBody response) throws Exception {
                                         return FileUtils.writeFile2Disk(response, FileUtils.createFile(OkHttpActivity.this, "tmp1", "tmp"));
                                     }
                                 });
@@ -153,8 +160,9 @@ public class OkHttpActivity extends AppCompatActivity {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(Schedulers.io())
                                 .map(new Function<ResponseBody, String>() {
+                                    @NonNull
                                     @Override
-                                    public String apply(ResponseBody response) throws Exception {
+                                    public String apply(@NonNull ResponseBody response) throws Exception {
                                         return FileUtils.writeFile2Disk(response, FileUtils.createFile(OkHttpActivity.this, "tmp2", "tmp"));
                                     }
                                 });
@@ -163,14 +171,16 @@ public class OkHttpActivity extends AppCompatActivity {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(Schedulers.io())
                                 .map(new Function<ResponseBody, String>() {
+                                    @NonNull
                                     @Override
-                                    public String apply(ResponseBody response) throws Exception {
+                                    public String apply(@NonNull ResponseBody response) throws Exception {
                                         return FileUtils.writeFile2Disk(response, FileUtils.createFile(OkHttpActivity.this, "tmp3", "tmp"));
                                     }
                                 });
 
                         return Observable.zip(file1, file2, file3,
                                 new Function3<String, String, String, String>() {
+                                    @NonNull
                                     @Override
                                     public String apply(String file1, String file2, String file3) throws Exception {
                                         return FileUtils.mergeFiles(FileUtils.createFile(OkHttpActivity.this, "downloadMerge", "gif").getAbsolutePath(),
@@ -180,6 +190,7 @@ public class OkHttpActivity extends AppCompatActivity {
                     }
                 })
                 .onErrorReturn(new Function<Throwable, String>() {
+                    @NonNull
                     @Override
                     public String apply(Throwable throwable) throws Exception {
                         LoggerUtils.LOGE(throwable);
@@ -280,7 +291,7 @@ public class OkHttpActivity extends AppCompatActivity {
         }
 
         @Override
-        public void writeTo(BufferedSink sink) throws IOException {
+        public void writeTo(@NonNull BufferedSink sink) throws IOException {
             LoggerUtils.LOGD("write-------");
             BufferedSource bufferedSource = Okio.buffer(Okio.source(content));
             BufferedSink bufferedSink = Okio.buffer(sink);
@@ -311,6 +322,7 @@ public class OkHttpActivity extends AppCompatActivity {
 
     Call call;
 
+    @NonNull
     Callback callback = new Callback() {
         @Override
         public void onFailure(Call call, IOException e) {
@@ -355,7 +367,7 @@ public class OkHttpActivity extends AppCompatActivity {
      *
      * @param certificates
      */
-    private SSLSocketFactory getSocketFactory(List<InputStream> certificates) {
+    private SSLSocketFactory getSocketFactory(@NonNull List<InputStream> certificates) {
         try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -385,7 +397,7 @@ public class OkHttpActivity extends AppCompatActivity {
         return null;
     }
 
-    private void addCapk(InputStream inputStream, List<byte[]> CERTIFICATES_DATA) {
+    private void addCapk(@Nullable InputStream inputStream, @NonNull List<byte[]> CERTIFICATES_DATA) {
         try {
             if (inputStream != null) {
                 int ava = 0;// 数据当次可读长度

@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -20,7 +21,7 @@ public class SelfBitmapTransformation extends BitmapTransformation {
 
     // https://github.com/wasabeef/glide-transformations   各种变换效果实现
     @Override
-    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    protected Bitmap transform(BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
 
         LoggerUtils.LOGD("out width = " + outWidth + ",out height = " + outHeight);
         int r = Math.min(toTransform.getWidth(), toTransform.getHeight());
@@ -46,6 +47,7 @@ public class SelfBitmapTransformation extends BitmapTransformation {
         return bitmap;
     }
 
+    @NonNull
     @Override
     public String getId() {
         LoggerUtils.LOGD("get id");

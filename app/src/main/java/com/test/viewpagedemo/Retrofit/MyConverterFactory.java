@@ -1,5 +1,6 @@
 package com.test.viewpagedemo.Retrofit;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.test.viewpagedemo.LoggerUtils;
@@ -34,7 +35,7 @@ public class MyConverterFactory extends Converter.Factory {
 
     @Nullable
     @Override
-    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+    public Converter<ResponseBody, ?> responseBodyConverter(@NonNull Type type, @NonNull Annotation[] annotations, Retrofit retrofit) {
         LoggerUtils.LOGD("type = " + type.toString());
         for (Annotation annotation :
                 annotations) {
@@ -45,7 +46,7 @@ public class MyConverterFactory extends Converter.Factory {
 
     @Nullable
     @Override
-    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+    public Converter<?, RequestBody> requestBodyConverter(@NonNull Type type, @NonNull Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
         LoggerUtils.LOGD("type = " + type.toString());
         for (Annotation annotation :
                 parameterAnnotations) {
@@ -79,8 +80,9 @@ public class MyConverterFactory extends Converter.Factory {
          * @return
          * @throws IOException
          */
+        @Nullable
         @Override
-        public RequestBody convert(final Source value) throws IOException {
+        public RequestBody convert(@NonNull final Source value) throws IOException {
 
             RequestBody requestBody = new RequestBody() {
                 @Nullable
@@ -90,7 +92,7 @@ public class MyConverterFactory extends Converter.Factory {
                 }
 
                 @Override
-                public void writeTo(BufferedSink sink) throws IOException {
+                public void writeTo(@NonNull BufferedSink sink) throws IOException {
                     LoggerUtils.LOGD("write body");
                     byte[] bs = new byte[1024];
                     BufferedSink bufferedSink = Okio.buffer(sink);

@@ -44,6 +44,7 @@ public class MyDragViewGroup extends FrameLayout {
 
     float mSlop;
 
+    @Nullable
     View touchView;
 
     int lastTouchX, lastTouchY, downX, downY, scrollX, scrollY;
@@ -76,7 +77,7 @@ public class MyDragViewGroup extends FrameLayout {
             int origX, origY;
 
             @Override
-            public boolean tryCaptureView(View child, int pointerId) {
+            public boolean tryCaptureView(@NonNull View child, int pointerId) {
                 LoggerUtils.LOGD("child = " + child);
                 origX = child.getLeft();
                 origY = child.getTop();
@@ -136,7 +137,7 @@ public class MyDragViewGroup extends FrameLayout {
      * @return
      */
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
 
         viewDragHelper.processTouchEvent(event);
         return true;
@@ -214,7 +215,7 @@ public class MyDragViewGroup extends FrameLayout {
      * @return
      */
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(@NonNull MotionEvent ev) {
         boolean flg = viewDragHelper.shouldInterceptTouchEvent(ev);
         LoggerUtils.LOGD("flg = " + flg + ",action = " + MotionEventCompat.getActionMasked(ev));
         return flg;

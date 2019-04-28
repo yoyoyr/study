@@ -1,13 +1,17 @@
 package MulThread;
 
+import android.support.annotation.NonNull;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class Interrupted {
 
+    @NonNull
     static ArrayBlockingQueue blockingQueue = new ArrayBlockingQueue(10);
     static int count = 0;
+    @NonNull
     static ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new ArrayBlockingQueue(10));
 
     public static void main(String[] args) throws InterruptedException {
@@ -38,7 +42,7 @@ public class Interrupted {
             }
         }
 
-        public void cancel(Thread thread) {
+        public void cancel(@NonNull Thread thread) {
             thread.interrupt();
         }
     }

@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Retrofit.gson;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -22,8 +24,9 @@ import java.lang.reflect.Type;
 //            ]
 //    }
 public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Book> {
+    @NonNull
     @Override
-    public JsonElement serialize(Book src, Type typeOfSrc, JsonSerializationContext context) {
+    public JsonElement serialize(@NonNull Book src, Type typeOfSrc, JsonSerializationContext context) {
         LoggerUtils.LOGD("serialize by BookSerializer");
         JsonObject book = new JsonObject();
         book.addProperty("title", src.getTitle());
@@ -39,8 +42,9 @@ public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Bo
     }
 
     //    {} jsonObject  [] jsonArray
+    @NonNull
     @Override
-    public Book deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Book deserialize(@NonNull JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         LoggerUtils.LOGD("deserialize by BookSerializer");
         JsonObject book = json.getAsJsonObject();
         String title = book.get("title").getAsString();

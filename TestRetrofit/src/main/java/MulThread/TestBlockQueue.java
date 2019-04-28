@@ -1,13 +1,17 @@
 package MulThread;
 
+import android.support.annotation.NonNull;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class TestBlockQueue {
 
+    @NonNull
     static ArrayBlockingQueue blockingQueue = new ArrayBlockingQueue(20);
     static int count;
+    @NonNull
     static ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new ArrayBlockingQueue(2));
 
     public static void main(String[] args) {

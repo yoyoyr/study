@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.EventBus;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,11 +19,12 @@ import org.greenrobot.eventbus.ThreadMode;
 public class FragmentA extends Fragment {
 
     TextView textView;
+    @NonNull
     static FragmentB fragmentB = new FragmentB();
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragmenta, container, false);
 
@@ -58,12 +60,12 @@ public class FragmentA extends Fragment {
      *             @Subscribe(sticky = true ,threadMode = ThreadMode.MAIN)
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(Message data) {
+    public void onEvent(@NonNull Message data) {
         textView.setText(data.content);
     }
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
-    public void getEvent(Event event){
+    public void getEvent(@NonNull Event event){
         LoggerUtils.LOGD("get event "+event.toString());
     }
 

@@ -1,5 +1,6 @@
 package com.test.viewpagedemo.Views.RecyclerView;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ public class MyRecyclerViewAdapterWrapper extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == HEADER) {
             return new HeaderVH(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_header, parent, false));
@@ -61,7 +62,7 @@ public class MyRecyclerViewAdapterWrapper extends RecyclerView.Adapter {
 
     class HeaderVH extends RecyclerView.ViewHolder {
 
-        public HeaderVH(View itemView) {
+        public HeaderVH(@NonNull View itemView) {
             super(itemView);
         }
     }
@@ -69,7 +70,7 @@ public class MyRecyclerViewAdapterWrapper extends RecyclerView.Adapter {
 
     class FooterVH extends RecyclerView.ViewHolder {
 
-        public FooterVH(View itemView) {
+        public FooterVH(@NonNull View itemView) {
             super(itemView);
         }
     }

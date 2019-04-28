@@ -1,6 +1,8 @@
 package com.test.viewpagedemo.OkHttp;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.test.viewpagedemo.LoggerUtils;
 
@@ -22,6 +24,7 @@ import okhttp3.ResponseBody;
 
 public class FileUtils {
 
+    @Nullable
     public static File createFile(Context context, String fileName, String type) {
 
         File file = null;
@@ -37,7 +40,7 @@ public class FileUtils {
         return file;
     }
 
-    public static String writeFile2Disk(ResponseBody body, File file) throws Exception {
+    public static String writeFile2Disk(ResponseBody body, @NonNull File file) throws Exception {
 
         long currentLength = 0;
         OutputStream os = null;
@@ -77,7 +80,8 @@ public class FileUtils {
 
     public static final int BUFSIZE = 1024 * 8;
 
-    public static String mergeFiles(String outFile, String[] files) {
+    @NonNull
+    public static String mergeFiles(@NonNull String outFile, @NonNull String[] files) {
         FileChannel outChannel = null;
         LoggerUtils.LOGD("Merge " + Arrays.toString(files) + " into " + outFile);
         try {

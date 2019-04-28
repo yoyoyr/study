@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.OkHttp;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 public class GankResponse {
@@ -14,6 +16,7 @@ public class GankResponse {
         return results;
     }
 
+    @NonNull
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer("GankResponse{" +
@@ -76,6 +79,7 @@ public class GankResponse {
             return who;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return "Result{" +

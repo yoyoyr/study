@@ -2,6 +2,7 @@ package com.test.viewpagedemo;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import com.test.viewpagedemo.GreenDao.resource.DaoMaster;
 import com.test.viewpagedemo.GreenDao.resource.DaoSession;
@@ -38,13 +39,15 @@ public class AppModule {
         return new DaoMaster.DevOpenHelper(context, dbName).getWritableDatabase();
     }
 
+    @NonNull
     @Provides
     public DaoMaster provideDaoMaster(SQLiteDatabase sqLiteDatabase) {
         return new DaoMaster(sqLiteDatabase);
     }
 
+    @NonNull
     @Provides
-    public DaoSession provideDaoSession(DaoMaster daoMaster) {
+    public DaoSession provideDaoSession(@NonNull DaoMaster daoMaster) {
         LoggerUtils.LOGD("provideDaoSession");
         return daoMaster.newSession();
     }

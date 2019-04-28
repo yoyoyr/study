@@ -1,5 +1,7 @@
 package test.com.testretrofit;
 
+import android.support.annotation.NonNull;
+
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -43,15 +45,19 @@ public interface LXRequest {
      * @Query 参数生成在url
      * @Query 参数生成在请求体
      */
+    @NonNull
     @GET("/api/data/Android/10/{id}")
     public Call<GankResponse> getCall(@Path("id") int id, @Query("page") int page, @Query("num") int num);
 
+    @NonNull
     @GET("api/data/Android/10/1")
     public Call<GankResponse> getMapCall(@QueryMap Map<String, String> map);
 
+    @NonNull
     @GET("api/data/Android/{page}/{id}")
     public Call<GankResponse> getCallAbsPath(@Path("page") int pathPage, @Path("id") int id, @Query("page") int page, @Query("num") int num);
 
+    @NonNull
     @HTTP(method = "GET", path = "api/data/Android/{page}/{id}", hasBody = false)
     public Call<GankResponse> getCallHttp(@Path("page") int pathPage, @Path("id") int id, @Query("page") int page, @Query("num") int num);
 
@@ -68,15 +74,18 @@ public interface LXRequest {
      * 每个键值对需要用@Part来注解键名，随后的对象需要提供值。
      */
 //    @POST("api/data/Android/{page}/{id}")
+    @NonNull
     @Headers("Authorization: authorization")//添加报文头信息
     @HTTP(method = "POST", path = "api/data/Android/{page}/{id}", hasBody = true)
     @FormUrlEncoded
     public Call<GankResponse> postCall(@Path("page") int page, @Path("id") int id, @Field("userName") String userName, @Field("passWord") String passWord);
 
+    @NonNull
     @POST("api/data/Android/10/1")
     @FormUrlEncoded
     public Call<GankResponse> postCallFieldMap(@FieldMap Map<String, String> map);
 
+    @NonNull
     @POST("/form")
     @Multipart
     Call<ResponseBody> testFileUpload2(@PartMap Map<String, RequestBody> args, @Part MultipartBody.Part file);

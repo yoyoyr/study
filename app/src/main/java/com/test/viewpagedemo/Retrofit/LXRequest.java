@@ -1,8 +1,12 @@
 package com.test.viewpagedemo.Retrofit;
 
+import android.support.annotation.NonNull;
+
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import okio.Source;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -18,15 +22,21 @@ import retrofit2.http.Streaming;
  */
 public interface LXRequest {
 
+    @NonNull
     @GET("api/data/Android/10/{id}")
     Call<GankResponse> get(@Path("id") String id, @Query("name") String name);
 
+    @NonNull
     @POST("api/data/Android/10/{id}")
     @FormUrlEncoded
     Call<GankResponse> post(@Path("id") int id, @Field("name") String name);
 
+    @NonNull
     @POST("api/data/Android/10/{id}")
     @Streaming
     Observable<GankResponse> multipart(@Path("id") int id, @Body Source body);
 
+    @NonNull
+    @GET("s?ie=utf-8&")
+    Observable<ResponseBody> baidu();
 }

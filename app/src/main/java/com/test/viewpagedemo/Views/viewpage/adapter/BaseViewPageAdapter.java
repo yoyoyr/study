@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Views.viewpage.adapter;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class BaseViewPageAdapter extends PagerAdapter {
      * @return
      */
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LoggerUtils.LOGD(" position = " + position);
         View view = data.get(position);
         container.addView(view);
@@ -73,7 +74,7 @@ public class BaseViewPageAdapter extends PagerAdapter {
      * @param object
      */
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, Object object) {
         LoggerUtils.LOGD(" position = " + position);
         container.removeView(data.get(position));
     }

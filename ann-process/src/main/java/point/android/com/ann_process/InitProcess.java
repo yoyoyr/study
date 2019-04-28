@@ -1,12 +1,13 @@
 package point.android.com.ann_process;
 
-import android.content.Context;
-
 import com.annotation.ApplicationAsyncInit;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.Set;
@@ -31,13 +32,13 @@ public class InitProcess extends AbstractProcessor {
     Messager messager;
 
     @Override
-    public synchronized void init(ProcessingEnvironment processingEnv) {
+    public synchronized void init(@NonNull ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         messager = processingEnv.getMessager();
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+    public boolean process(@NonNull Set<? extends TypeElement> annotations, @NonNull RoundEnvironment roundEnv) {
         logE("------------------------------------------process");
         //只能获取引入module的注解
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(ApplicationAsyncInit.class);

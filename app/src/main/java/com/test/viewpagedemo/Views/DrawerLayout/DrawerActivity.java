@@ -24,13 +24,17 @@ public class DrawerActivity extends AppCompatActivity {
     FragmentJD fragmentJD;
     Unbinder unbinder;
 
+    @Nullable
     @BindView(R.id.drawer)
     DrawerLayout drawerLayout;
+    @Nullable
     @BindView(R.id.fl_container)
     FrameLayout content;
+    @Nullable
     @BindView(R.id.btn1)
     Button btn;
 
+    @Nullable
     @BindView(R.id.nav_view)
     RelativeLayout navView;
 

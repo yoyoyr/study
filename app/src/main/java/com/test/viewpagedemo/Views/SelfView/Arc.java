@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -35,7 +36,7 @@ public class Arc extends View {
     float percent;
     ValueAnimator valueAnimator;
 
-    public Arc(Context context) {
+    public Arc(@NonNull Context context) {
         super(context);
         init(context, null);
     }
@@ -70,7 +71,7 @@ public class Arc extends View {
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 percent = (float) animation.getAnimatedValue();
 //                LoggerUtils.LOGD("requestLayout");
                 postInvalidate();
@@ -80,7 +81,7 @@ public class Arc extends View {
         });
     }
 
-    public Arc(Context context, @Nullable AttributeSet attrs) {
+    public Arc(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
@@ -134,7 +135,7 @@ public class Arc extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
 //        LoggerUtils.LOGD("onDraw");
         super.onDraw(canvas);
         //画圆弧
@@ -172,7 +173,7 @@ public class Arc extends View {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
+    public boolean dispatchTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (Math.pow(Math.abs(event.getY() - y), 2) +
                     Math.pow(Math.abs(event.getX() - x), 2) <=
@@ -197,7 +198,7 @@ public class Arc extends View {
      * @return
      */
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             float clickX = event.getX();
             float clickY = event.getY();
@@ -218,7 +219,7 @@ public class Arc extends View {
         return true;
     }
 
-    public void setData(List<Integer> data, List<Integer> colors) {
+    public void setData(@Nullable List<Integer> data, @NonNull List<Integer> colors) {
         if (data != null && data.size() > 0) {
             arcs.clear();
             total = 0;

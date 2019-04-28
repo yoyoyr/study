@@ -1,6 +1,7 @@
 package com.hotfix;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.tencent.tinker.lib.listener.DefaultPatchListener;
 import com.test.viewpagedemo.LoggerUtils;
@@ -40,11 +41,12 @@ public class CustomPatchListener extends DefaultPatchListener {
         return super.patchCheck(path, patchMd5);
     }
 
+    @NonNull
     static char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6',
             '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     //检查文件md5是否与原始的匹配
-    public static boolean isFileMD5Matched(String filePath, String originalMD5) {
+    public static boolean isFileMD5Matched(@NonNull String filePath, @NonNull String originalMD5) {
         MessageDigest messagedigest = null;
         try {
             InputStream fis;

@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Retrofit.gson;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
@@ -14,6 +16,7 @@ public class Book {
     //为了代码简洁，这里移除getter和setter方法等
 
 
+    @NonNull
     @Override
     public String toString() {
         return "Book{" +
@@ -32,6 +35,7 @@ public class Book {
         return authors;
     }
 
+    @NonNull
     public String getAuthorsString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");

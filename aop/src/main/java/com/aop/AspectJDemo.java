@@ -4,6 +4,7 @@ package com.aop;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Binder;
+import android.support.annotation.NonNull;
 
 import com.test.viewpagedemo.AppConfig;
 import com.test.viewpagedemo.LoggerUtils;
@@ -20,7 +21,7 @@ public class AspectJDemo {
     //防止重复点击
     @Around("execution(* android.view.View.OnClickListener+.onClick(..)) " +
             "&& within(com.test.viewpagedemo.AOP.AOPActivity)")
-    public void click(ProceedingJoinPoint joinPoint) {
+    public void click(@NonNull ProceedingJoinPoint joinPoint) {
         LoggerUtils.LOGD("position = " + joinPoint.getSourceLocation()
                 + ",thread = " + Thread.currentThread().getName());
         if (doClick) {
@@ -38,7 +39,7 @@ public class AspectJDemo {
 
     //获取输入输出参数
     @Around("execution(* com.test.viewpagedemo.AOP.AOPActivity.param(..))")
-    public Object param(ProceedingJoinPoint joinPoint) {
+    public Object param(@NonNull ProceedingJoinPoint joinPoint) {
         LoggerUtils.LOGD("hook param()");
         Object[] params = joinPoint.getArgs();
         for (int i = 0; i < params.length; ++i) {
@@ -56,7 +57,7 @@ public class AspectJDemo {
 
     //根据注解筛选
     @Around("execution(@com.aop.CheckPermission * *(..))&&@annotation(checkPermission)")
-    public Object checkPermission(ProceedingJoinPoint joinPoint, CheckPermission checkPermission) {
+    public Object checkPermission(@NonNull ProceedingJoinPoint joinPoint, @NonNull CheckPermission checkPermission) {
         String permisson = checkPermission.permission();
         int result = AppConfig.context.checkCallingPermission(permisson);
         if (PackageManager.PERMISSION_GRANTED == result) {
@@ -89,7 +90,7 @@ public class AspectJDemo {
 
     //打印输入输出函数
     @Around("execution(public * com.test.viewpagedemo.AOP.AOPActivity.*(..))")
-    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object log(@NonNull ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         for (int i = 0; i < args.length; ++i) {
             LoggerUtils.LOGD("param = " + args[i]);

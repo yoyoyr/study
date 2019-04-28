@@ -67,12 +67,9 @@
 
         <Button
             android:id="@+id/fliter"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="fliter"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/function" />
+            android:text="fliter" />
 
         <Button
             android:id="@+id/selection"
@@ -92,6 +89,14 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="request48" />
+
+
+
+        <Button
+            android:id="@+id/selfObservable"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="selfObservable" />
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

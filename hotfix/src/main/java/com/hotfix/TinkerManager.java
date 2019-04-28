@@ -1,6 +1,7 @@
 package com.hotfix;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.tencent.tinker.lib.patch.UpgradePatch;
 import com.tencent.tinker.lib.reporter.DefaultLoadReporter;
@@ -23,7 +24,7 @@ public class TinkerManager {
      *
      * @param applicationLike
      */
-    public static void installTinker(ApplicationLike applicationLike, Context context) {
+    public static void installTinker(@NonNull ApplicationLike applicationLike, Context context) {
         mAppLike = applicationLike;
         if (isInstalled) {
             return;

@@ -3,12 +3,12 @@ package com.test.viewpagedemo.Retrofit;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.study.point.R;
 import com.test.viewpagedemo.LoggerUtils;
 import com.test.viewpagedemo.Retrofit.gson.Book;
@@ -32,6 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -43,6 +44,7 @@ public class RetrofitAndRxJava extends AppCompatActivity {
     //    OkHttpClient okHttpClient;
 //    Retrofit retrofit;
     //打印请求日志
+    @NonNull
     HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
         @Override
         public void log(String message) {
@@ -50,6 +52,7 @@ public class RetrofitAndRxJava extends AppCompatActivity {
             LoggerUtils.LOGD("NET MESSAGE=========" + message);
         }
     });
+    @NonNull
     String baseUrl = "http://gank.io";
 
     @Override
@@ -61,6 +64,7 @@ public class RetrofitAndRxJava extends AppCompatActivity {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
+    @NonNull
     Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
@@ -145,7 +149,7 @@ public class RetrofitAndRxJava extends AppCompatActivity {
                 .observeOn(Schedulers.io())
                 .subscribe(new Consumer<GankResponse>() {
                     @Override
-                    public void accept(GankResponse gankResponse) throws Exception {
+                    public void accept(@NonNull GankResponse gankResponse) throws Exception {
                         LoggerUtils.LOGD("body = " + gankResponse.toString());
                     }
                 });
@@ -167,7 +171,7 @@ public class RetrofitAndRxJava extends AppCompatActivity {
         Call<GankResponse> call = request.post(1, "yoyo");
         call.enqueue(new Callback<GankResponse>() {
             @Override
-            public void onResponse(Call<GankResponse> call, Response<GankResponse> response) {
+            public void onResponse(Call<GankResponse> call, @NonNull Response<GankResponse> response) {
                 LoggerUtils.LOGD("message = " + response.message()
                         + ",thread = " + Thread.currentThread().getName());
             }
@@ -196,7 +200,7 @@ public class RetrofitAndRxJava extends AppCompatActivity {
         Call<GankResponse> call = request.get("1", "yoyo");
         call.enqueue(new Callback<GankResponse>() {
             @Override
-            public void onResponse(Call<GankResponse> call, Response<GankResponse> response) {
+            public void onResponse(Call<GankResponse> call, @NonNull Response<GankResponse> response) {
                 LoggerUtils.LOGD("message = " + response.message());
                 LoggerUtils.LOGD("body = " + response.body().toString());
             }

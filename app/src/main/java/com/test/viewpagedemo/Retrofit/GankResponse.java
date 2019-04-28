@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.Retrofit;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 public class GankResponse {
@@ -7,6 +9,7 @@ public class GankResponse {
     String error;
     List<Result> results;
 
+    @NonNull
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder("GankResponse{" + "error='" + error + "\n");
@@ -29,6 +32,7 @@ public class GankResponse {
         String used;
         String who;
 
+        @NonNull
         @Override
         public String toString() {
             return "Result{" +

@@ -1,5 +1,7 @@
 package com.hook;
 
+import android.support.annotation.NonNull;
+
 public class DataProxy extends Data {
     Data data;
 
@@ -7,6 +9,7 @@ public class DataProxy extends Data {
         this.data = data;
     }
 
+    @NonNull
     @Override
     public String say() {
         return "proxy say hello";

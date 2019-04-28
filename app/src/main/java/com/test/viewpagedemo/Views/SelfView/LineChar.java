@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Shader;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -95,7 +96,7 @@ public class LineChar extends View {
         valueAnimator.setDuration(2000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 percent = (float) animation.getAnimatedValue();
 
                 /**
@@ -177,7 +178,7 @@ public class LineChar extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
 //        LoggerUtils.LOGD("onDraw");
         super.onDraw(canvas);
 
@@ -186,7 +187,7 @@ public class LineChar extends View {
         drawPoint(canvas);
     }
 
-    private void drawPoint(Canvas canvas) {
+    private void drawPoint(@NonNull Canvas canvas) {
         int drawPointCount = (int) (percent * points.size());
         if (drawPointCount > 0) {
             path.reset();
@@ -268,7 +269,7 @@ public class LineChar extends View {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
+    public boolean dispatchTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (event.getY() >= y / 5) {
                 getParent().requestDisallowInterceptTouchEvent(true);
@@ -280,7 +281,7 @@ public class LineChar extends View {
     float oldTouchX, oldTouchY, downX, downY, lastPointX;
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             downX = oldTouchX = event.getX();
             downY = oldTouchY = event.getY();
@@ -368,7 +369,7 @@ public class LineChar extends View {
         }
     }
 
-    public void setData(List<Integer> values, List<String> datas) {
+    public void setData(@NonNull List<Integer> values, @NonNull List<String> datas) {
 
         selectPoint = -1;
         for (int i = 0; i < values.size(); ++i) {

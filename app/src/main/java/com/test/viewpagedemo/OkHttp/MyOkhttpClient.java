@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.OkHttp;
 
+import android.support.annotation.NonNull;
+
 import com.test.viewpagedemo.LoggerUtils;
 
 import okhttp3.CacheControl;
@@ -9,7 +11,7 @@ import okhttp3.Request;
 
 public class MyOkhttpClient extends OkHttpClient {
     @Override
-    public Call newCall(Request request) {
+    public Call newCall(@NonNull Request request) {
         LoggerUtils.LOGD("add cache control");
         CacheControl cacheControl = new CacheControl.Builder()
                 .noCache()

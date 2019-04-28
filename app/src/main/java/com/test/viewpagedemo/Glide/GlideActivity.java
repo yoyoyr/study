@@ -3,6 +3,7 @@ package com.test.viewpagedemo.Glide;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -36,12 +37,15 @@ public class GlideActivity extends AppCompatActivity {
 
     Unbinder unbinder;
 
+    @Nullable
     @BindView(R.id.load)
     Button button;
 
+    @Nullable
     @BindView(R.id.imageView)
     ImageView imageView;
 
+    @Nullable
     @BindView(R.id.layout)
     MyLinearLayout linearLayout;
 
@@ -50,7 +54,9 @@ public class GlideActivity extends AppCompatActivity {
 
     List<String> urls;
 
+    @NonNull
     String jpg = "http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg";
+    @NonNull
     String gif = "http://p1.pstatp.com/large/166200019850062839d3";
 
     RequestManager requestManager;
@@ -175,6 +181,7 @@ public class GlideActivity extends AppCompatActivity {
     }
 
     //GlideDrawable可用以动图和静态图片。如果指定了asBitmap，可以用BitmapDrawable
+    @NonNull
     SimpleTarget<GlideDrawable> mySimpleTarger = new SimpleTarget<GlideDrawable>() {
         @Override
         public void onResourceReady(GlideDrawable resource, GlideAnimation glideAnimation) {
@@ -182,6 +189,7 @@ public class GlideActivity extends AppCompatActivity {
         }
     };
 
+    @NonNull
     Target<Drawable> downloadFile = new Target<Drawable>() {
         Request request;
 

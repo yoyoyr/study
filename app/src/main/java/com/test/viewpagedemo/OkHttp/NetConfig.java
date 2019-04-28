@@ -1,5 +1,8 @@
 package com.test.viewpagedemo.OkHttp;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -7,6 +10,7 @@ import java.util.List;
 
 public class NetConfig {
     // 证书数据
+    @NonNull
     private static List<byte[]> CERTIFICATES_DATA = new ArrayList<>();
 
     /**
@@ -14,7 +18,7 @@ public class NetConfig {
      *
      * @param inputStream
      */
-    public synchronized static void addCertificate(InputStream inputStream) {
+    public synchronized static void addCertificate(@Nullable InputStream inputStream) {
         if (inputStream != null) {
             try {
                 int ava = 0;// 数据当次可读长度
@@ -57,6 +61,7 @@ public class NetConfig {
      *
      * @return
      */
+    @NonNull
     public static List<byte[]> getCertificatesData() {
         return CERTIFICATES_DATA;
     }

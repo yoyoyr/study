@@ -1,5 +1,7 @@
 package refle;
 
+import android.support.annotation.Nullable;
+
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -18,7 +20,7 @@ public class MethodTest {
 	 * 一个完整方法包含的属性有： 方法上使用的注解、方法的修饰符、方法上定义的泛型参数、方法的返回值、方法名称、方法参数(泛型、注解)、方法抛出的异常
 	 */
 	@MethodAnnotation
-	private <T> boolean add(@ParamAnnotation List<T> list, T... params) throws RuntimeException,
+	private <T> boolean add(@Nullable @ParamAnnotation List<T> list, @Nullable T... params) throws RuntimeException,
 			Exception {
 		if (null == list) {
 			throw new RuntimeException("list=null");

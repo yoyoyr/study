@@ -1,5 +1,7 @@
 package com.test.viewpagedemo.EventBus;
 
+import android.support.annotation.NonNull;
+
 public class Event {
     String name;
     String value;
@@ -9,6 +11,7 @@ public class Event {
         this.value = value;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Event{" +

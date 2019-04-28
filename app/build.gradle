@@ -5,11 +5,9 @@ import org.aspectj.bridge.IMessage
 
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'walle'
-apply plugin: 'com.test.plugin.mygroovy'
+//apply plugin: 'walle'
+//apply plugin: 'com.test.plugin.mygroovy'
 //apply from: file("${project.project(":hotfix").projectDir}/tinker.gradle")
-
-def keystore = "C:\\resource\\platform.keystore"
 
 android {
 //    构建项目sdk版本号
@@ -48,19 +46,7 @@ android {
     }
 //指定keystore路径,密码
     signingConfigs {
-        release {
-            keyAlias 'platformkey'
-            keyPassword 'np9210'
-            storeFile file(keystore)
-            storePassword 'android'
-        }
 
-        debug {
-            keyAlias 'platformkey'
-            keyPassword 'np9210'
-            storeFile file(keystore)
-            storePassword 'android'
-        }
     }
     buildTypes {
         debug {
@@ -74,7 +60,6 @@ android {
             buildConfigField "boolean", "isModule", "$project.ext.isModule"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
     packagingOptions {
@@ -103,23 +88,23 @@ greendao {
 
 //assembleDebugChannels 输出文件
 
-walle {
-    // 指定渠道包的输出路径
-    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
-    // 定制渠道包的APK的文件名称
-    apkFileNameFormat = '${appName}-${packageName}-${channel}.apk';
-    // 渠道配置文件
-    channelFile = new File("${project.getProjectDir()}/channel")
-
-    // 渠道&额外信息配置文件，与channelFile互斥
-    configFile = new File("${project.getProjectDir()}/config.json")
-}
+//walle {
+//    // 指定渠道包的输出路径
+//    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+//    // 定制渠道包的APK的文件名称
+//    apkFileNameFormat = '${appName}-${packageName}-${channel}.apk';
+//    // 渠道配置文件
+//    channelFile = new File("${project.getProjectDir()}/channel")
+//
+//    // 渠道&额外信息配置文件，与channelFile互斥
+//    configFile = new File("${project.getProjectDir()}/config.json")
+//}
 
 //获取自定义extensions值
-gradleExtensions {
-    name = 'yoyo'
-    age = 27
-}
+//gradleExtensions {
+//    name = 'yoyo'
+//    age = 27
+//}
 /**
  * implementation   还在项目内部提供依赖，速度较快
  * API  整个工程提供依赖
@@ -154,7 +139,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
-    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+//    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
     implementation 'org.greenrobot:greendao:3.2.2'
@@ -177,7 +162,6 @@ dependencies {
     //    implementation project(':mvvm')
     //    implementation project(':arouter-compiler')
     //    implementation 'org.jooq:joor-java-8:0.9.9'
-    implementation files('libs/GetuiSDK2.12.5.0.jar')
     implementation 'com.google.code.gson:gson:2.8.5'
     //    implementation 'com.github.bumptech.glide:okhttp-integration:1.5.0@aar'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
@@ -186,6 +170,7 @@ dependencies {
     //    compileOnly 'com.tencent.tinker:tinker-android-anno:1.9.1'
     implementation project(':hotfix')
     implementation project(':annotation')
+    implementation 'com.android.support:support-annotations:28.0.0'
 }
 
 

@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Views.ScrollTest;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,7 +23,7 @@ public class ScrollAtivity extends AppCompatActivity {
         test = findViewById(R.id.test);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(@NonNull View v) {
                 LoggerUtils.LOGD("test = " + v.toString());
             }
         });

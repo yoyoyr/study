@@ -1,5 +1,7 @@
 package test.com.testretrofit;
 
+import android.support.annotation.NonNull;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -47,6 +49,7 @@ public class RetrofitDemo {
     }
 
     static Retrofit retrofit;
+    @NonNull
     static Callback callback = new Callback() {
         @Override
         public void onResponse(Call call, Response response) {

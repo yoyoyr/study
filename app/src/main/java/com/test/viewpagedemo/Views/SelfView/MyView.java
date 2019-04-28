@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -23,6 +24,7 @@ public class MyView extends View {
     float lastX, lastY;//, cirX, cirY;
     int mslop = 5;
     GestureDetector mDetector;
+    @NonNull
     Paint paint = new Paint();
 
     //    开启线程或者动画，避免内存泄露
@@ -44,7 +46,7 @@ public class MyView extends View {
      * @param canvas
      */
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
 
 
         float r = (getWidth() - getPaddingLeft()) / 2;
@@ -96,7 +98,7 @@ public class MyView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
 //        LoggerUtils.LOGD("action = " + event.getAction());
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             lastX = event.getX();
@@ -123,7 +125,7 @@ public class MyView extends View {
     }
 
     @Override
-    public void getDrawingRect(Rect outRect) {
+    public void getDrawingRect(@NonNull Rect outRect) {
         LoggerUtils.LOGD(outRect.toString());
         super.getDrawingRect(outRect);
     }
@@ -136,6 +138,7 @@ public class MyView extends View {
 //            boolean draw(Canvas canvas, ViewGroup parent, long drawingTime) {}
 
     int color;
+    @Nullable
     String name;
 
     private void init(Context context, AttributeSet attrs) {
@@ -156,7 +159,7 @@ public class MyView extends View {
      *
      * @param context
      */
-    public MyView(Context context) {
+    public MyView(@NonNull Context context) {
         super(context);
         init(context, null);
     }
@@ -167,12 +170,12 @@ public class MyView extends View {
      * @param context
      * @param attrs
      */
-    public MyView(Context context, @Nullable AttributeSet attrs) {
+    public MyView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MyView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }

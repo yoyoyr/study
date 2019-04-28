@@ -1,11 +1,13 @@
 package com.test.viewpagedemo.RxJavaNew;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.study.point.R;
 import com.test.viewpagedemo.LoggerUtils;
+import com.test.viewpagedemo.Retrofit.LXRequest;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -37,6 +39,14 @@ import io.reactivex.functions.Function;
 import io.reactivex.functions.Function3;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RxJavaNew extends AppCompatActivity {
 
@@ -57,6 +67,37 @@ public class RxJavaNew extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.selfObservable)
+    void selfObservable() {
+        disposable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("1");
+                emitter.onNext("2");
+                emitter.onNext("3");
+            }
+        }).map(new Function<String, String>() {
+            @NonNull
+            @Override
+            public String apply(String s) throws Exception {
+                LoggerUtils.LOGD("apply " + s);
+                return "map" + s;
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        LoggerUtils.LOGD("accept " + s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        LoggerUtils.LOGE(throwable);
+                    }
+                });
+    }
+
     @OnClick(R.id.request48)
     void request48() {
         subscription.request(48);
@@ -69,7 +110,7 @@ public class RxJavaNew extends AppCompatActivity {
 
         Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(@NonNull FlowableEmitter<Integer> emitter) throws Exception {
 
                 LoggerUtils.LOGD("观察者可接收事件数量 = " + emitter.requested());
                 boolean flag; //设置标记位控制
@@ -173,24 +214,37 @@ public class RxJavaNew extends AppCompatActivity {
         amb.subscribe(observer);
     }
 
+    int count = 0;
+
     @OnClick(R.id.fliter)
     void fliter() {
-//        observable.filter(new Predicate<Integer>() {
-//            @Override
-//            public boolean test(Integer i) throws Exception {
-//                //返回双数
-//                return i % 2 == 0;
-//            }
-//        }).subscribe(observer);
 
-//        Observable.just(1, "yoyo", "yr", 1.2)
-//                .ofType(String.class)
-//                .subscribe(observer);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new HttpCode429Intercept())
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl("http://www.baidu.com/")
+                .build();
 
-        Observable.just(1, 1, 2, 3, 3, 1, 2, 2, 4, 4)
-//                .distinct()
-                .distinctUntilChanged()
-                .subscribe(observer);
+        final LXRequest request = retrofit.create(LXRequest.class);
+        disposable = request.baidu()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(@NonNull ResponseBody responseBody) throws Exception {
+                        LoggerUtils.LOGV(responseBody.toString());
+                        LoggerUtils.LOGV(responseBody.string());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        LoggerUtils.LOGE(throwable);
+                    }
+                });
     }
 
     @OnClick(R.id.function)
@@ -207,76 +261,37 @@ public class RxJavaNew extends AppCompatActivity {
 //                .observeOn(Schedulers.io())
 //                .subscribe(observer);
 
-        observable.doOnNext(new Consumer() {
-            @Override
-            public void accept(Object o) throws Exception {
-                LoggerUtils.LOGD("doOnNext i = " + o);
-            }
-        })
-                .doAfterNext(new Consumer() {
+        observable
+                .onErrorReturn(new Function<Throwable, Integer>() {
+                    @NonNull
+                    @Override
+                    public Integer apply(Throwable throwable) throws Exception {
+                        LoggerUtils.LOGE("onErrorReturn recv error.");//捕获到throw new NullPointerException("throw from next!");
+                        return 6;
+                    }
+                })
+                .doOnNext(new Consumer() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        LoggerUtils.LOGD("doAfterNext i = " + o);
+                        LoggerUtils.LOGD("doOnNext i = " + o);
+//                        throw new NullPointerException("throw from next!");
                     }
                 })
-                .doOnError(new Consumer<Throwable>() {
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer() {
+                    @Override
+                    public void accept(@NonNull Object o) throws Exception {
+                        LoggerUtils.LOGD(o.toString());
+                        throw new NullPointerException("throw from accept!");
+                    }
+                }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE("doOnError");
+                        LoggerUtils.LOGE(throwable);//捕获到throw new NullPointerException("throw from accept!");
+                        return;
                     }
-                })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        LoggerUtils.LOGD("dofinally");
-                    }
-                })
-                .doOnEach(new Consumer<Notification>() {
-                    @Override
-                    public void accept(Notification notification) throws Exception {
-                        if (notification.isOnNext()) {
-                            LoggerUtils.LOGD("doOnEach i = " + notification.getValue());
-                        } else if (notification.isOnError()) {
-                            LoggerUtils.LOGE("doOnEach error");
-                        } else {
-                            LoggerUtils.LOGD("complite");
-                        }
-                    }
-                })
-//                .onErrorReturn(new Function<Throwable, Integer>() {
-//                    @Override
-//                    public Integer apply(Throwable throwable) throws Exception {
-//                        LoggerUtils.LOGE("onErrorReturn recv error.");
-//                        return 6;
-//                    }
-//                })
-                .onErrorResumeNext(new Function<Throwable, ObservableSource>() {
-                    @Override
-                    public ObservableSource apply(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE("onErrorResumeNext recv error.");
-                        return Observable.just(666);
-                    }
-                })
-//                .onExceptionResumeNext(new ObservableSource() {
-//                    @Override
-//                    public void subscribe(Observer observer) {
-//
-//                    }
-//                })
-//                .retry(new Predicate<Throwable>() {
-//                    @Override
-//                    public boolean test(Throwable throwable) throws Exception {
-//                        return false;
-//                    }
-//                })
-//                .retryWhen(new Function<Observable<Throwable>, ObservableSource<?>>() {
-//                    @Override
-//                    public ObservableSource<?> apply(Observable<Throwable> throwableObservable) throws Exception {
-//                        return null;
-//                    }
-//                })
-//                .repeat(5)
-                .subscribe(observer);
+                });
     }
 
     @OnClick(R.id.zip)
@@ -288,6 +303,7 @@ public class RxJavaNew extends AppCompatActivity {
                 observable2,
                 zipSendCir,
                 new Function3<String, String, String, String>() {
+                    @NonNull
                     @Override
                     public String apply(String arc, String rec, String cir) throws Exception {
                         LoggerUtils.LOGD("zip arc = " + arc + ",rec = " + rec + ",cir = " + cir + " thread = " + Thread.currentThread());
@@ -341,6 +357,7 @@ public class RxJavaNew extends AppCompatActivity {
     @OnClick(R.id.map)
     void exchange() {
         Observable map = observable.map(new Function<Integer, Integer>() {
+            @NonNull
             @Override
             public Integer apply(Integer o) throws Exception {
                 return o * 2;
@@ -391,7 +408,7 @@ public class RxJavaNew extends AppCompatActivity {
     void create() {
         Observable create = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
                 LoggerUtils.LOGD("create send data");
                 emitter.onNext(2);
             }
@@ -410,7 +427,7 @@ public class RxJavaNew extends AppCompatActivity {
     //观察者通过subscribe()方法注册
     Observable observable = Observable.create(new ObservableOnSubscribe<Integer>() {
         @Override
-        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
             LoggerUtils.LOGD("subscribe on thread = " + Thread.currentThread().getName());
             for (int i = 0; i < 10; ++i) {
                 LoggerUtils.LOGD("send " + i);
@@ -429,6 +446,7 @@ public class RxJavaNew extends AppCompatActivity {
     //Disposable 负责解注册
     //onXXX方法为被观察者回调
     Disposable disposable;
+    @NonNull
     Observer observer = new Observer() {
         @Override
         public void onSubscribe(Disposable d) {
@@ -460,7 +478,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Observable observableFast = Observable.create(new ObservableOnSubscribe<Integer>() {
         @Override
-        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
             for (int i = 0; true; ++i) {
                 LoggerUtils.LOGD("send " + i);
                 emitter.onNext(i);
@@ -470,7 +488,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Observable observableWhile = Observable.create(new ObservableOnSubscribe<Integer>() {
         @Override
-        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
             for (int i = 0; true; ++i) {
                 LoggerUtils.LOGD("send " + i);
                 emitter.onNext(i);
@@ -480,7 +498,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Flowable flowableSyn = Flowable.create(new FlowableOnSubscribe<Integer>() {
         @Override
-        public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+        public void subscribe(@NonNull FlowableEmitter<Integer> emitter) throws Exception {
             for (int i = 0; i < 6; ++i) {
                 emitter.onNext(i);
                 LoggerUtils.LOGD("send " + i + ",requested = " + emitter.requested());
@@ -490,7 +508,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Flowable flowableAsyn = Flowable.create(new FlowableOnSubscribe<Integer>() {
         @Override
-        public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+        public void subscribe(@NonNull FlowableEmitter<Integer> emitter) throws Exception {
             for (int i = 0; i < 6; ++i) {
                 emitter.onNext(i);
                 LoggerUtils.LOGD("send " + i + ",requested = " + emitter.requested());
@@ -500,6 +518,7 @@ public class RxJavaNew extends AppCompatActivity {
             .subscribeOn(Schedulers.io());
 
 
+    @NonNull
     Subscriber subscriber = new Subscriber<Integer>() {
         @Override
         public void onSubscribe(Subscription s) {
@@ -531,7 +550,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Observable startWithOb = Observable.create(new ObservableOnSubscribe<String>() {
         @Override
-        public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
             LoggerUtils.LOGD("send item");
             emitter.onNext("item");
             LoggerUtils.LOGD("send count");
@@ -541,7 +560,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Observable zipSendCir = Observable.create(new ObservableOnSubscribe<String>() {
         @Override
-        public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
             LoggerUtils.LOGD("cir1");
             emitter.onNext("cir1");
             Thread.sleep(500);
@@ -560,6 +579,7 @@ public class RxJavaNew extends AppCompatActivity {
         }
     }).subscribeOn(Schedulers.io());
 
+    @NonNull
     SingleObserver singleObserver = new SingleObserver<List<Integer>>() {
         @Override
         public void onSubscribe(Disposable d) {
@@ -577,6 +597,7 @@ public class RxJavaNew extends AppCompatActivity {
         }
     };
 
+    @NonNull
     SingleObserver singleBoolean = new SingleObserver<Boolean>() {
         @Override
         public void onSubscribe(Disposable d) {
@@ -594,6 +615,7 @@ public class RxJavaNew extends AppCompatActivity {
         }
     };
 
+    @NonNull
     MaybeObserver maybeObserver = new MaybeObserver<Integer>() {
         @Override
         public void onSubscribe(Disposable d) {
@@ -619,7 +641,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Observable observable1 = Observable.create(new ObservableOnSubscribe<String>() {
         @Override
-        public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
             LoggerUtils.LOGD("send arc1 thread = " + Thread.currentThread());
             emitter.onNext("arc1 ");
             LoggerUtils.LOGD("send arc2 thread = " + Thread.currentThread());
@@ -632,7 +654,7 @@ public class RxJavaNew extends AppCompatActivity {
 
     Observable observable2 = Observable.create(new ObservableOnSubscribe<String>() {
         @Override
-        public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+        public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
 
             LoggerUtils.LOGD("send rec1 thread = " + Thread.currentThread());
             emitter.onNext("rec1 ");

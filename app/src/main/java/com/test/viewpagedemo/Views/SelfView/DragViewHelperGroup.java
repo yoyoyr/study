@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Views.SelfView;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -15,17 +16,17 @@ public class DragViewHelperGroup extends FrameLayout {
 
     private ViewDragHelper mDragHelper;
 
-    public DragViewHelperGroup(Context context) {
+    public DragViewHelperGroup(@NonNull Context context) {
         this(context, null);
         init();
     }
 
-    public DragViewHelperGroup(Context context, AttributeSet attrs) {
+    public DragViewHelperGroup(@NonNull Context context, AttributeSet attrs) {
         this(context, attrs, 0);
         init();
     }
 
-    public DragViewHelperGroup(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DragViewHelperGroup(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
 
@@ -36,7 +37,7 @@ public class DragViewHelperGroup extends FrameLayout {
 
             int origX, origY;
             @Override
-            public void onViewCaptured(View capturedChild, int activePointerId) {
+            public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
                 LoggerUtils.LOGD("onViewCaptured");
                 super.onViewCaptured(capturedChild, activePointerId);
                 origX = capturedChild.getLeft();
@@ -111,7 +112,7 @@ public class DragViewHelperGroup extends FrameLayout {
 
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(@NonNull MotionEvent ev) {
         /** 是否应该拦截 children 的触摸事件，
          *只有拦截了 ViewDragHelper 才能进行后续的动作
          *将它放在 ViewGroup 中的 onInterceptTouchEvent() 方法中就好了
@@ -122,7 +123,7 @@ public class DragViewHelperGroup extends FrameLayout {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         /** 处理 ViewGroup 中传递过来的触摸事件序列
          * 在ViewGroup 中的 onTouchEvent() 方法中处理
          */

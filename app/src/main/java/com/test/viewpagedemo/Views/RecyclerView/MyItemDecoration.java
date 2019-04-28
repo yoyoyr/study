@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -13,7 +14,7 @@ class MyItemDecoration extends RecyclerView.ItemDecoration {
      * 绘制recyclerView的时候调用一次，
      */
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
         for (int i = 0; i < parent.getChildCount(); ++i) {
             View view = parent.getChildAt(i);
@@ -42,7 +43,7 @@ class MyItemDecoration extends RecyclerView.ItemDecoration {
      * @param state
      */
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         outRect.bottom = 20;
     }

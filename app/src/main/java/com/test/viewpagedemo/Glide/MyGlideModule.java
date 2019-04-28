@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Glide;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
@@ -42,7 +43,7 @@ public class MyGlideModule implements GlideModule {
      * @param builder
      */
     @Override
-    public void applyOptions(Context context, GlideBuilder builder) {
+    public void applyOptions(Context context, @NonNull GlideBuilder builder) {
         LoggerUtils.LOGD("applyOptions");
         //更换glide解码图片的配置为ARGB_8888
         builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);
@@ -51,7 +52,7 @@ public class MyGlideModule implements GlideModule {
     }
 
     @Override
-    public void registerComponents(Context context, Glide glide) {
+    public void registerComponents(Context context, @NonNull Glide glide) {
         LoggerUtils.LOGD("registerComponents");
         glide.register(GlideUrl.class, InputStream.class, new OkHttpGlideUrlLoader.Factory());
     }

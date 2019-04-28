@@ -1,5 +1,8 @@
 package com.test.viewpagedemo.GreenDao;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
@@ -40,8 +43,9 @@ public class Order {
     }
 
     public static class PriceConvert implements PropertyConverter<PriceLevel, Integer> {
+        @Nullable
         @Override
-        public PriceLevel convertToEntityProperty(Integer databaseValue) {
+        public PriceLevel convertToEntityProperty(@Nullable Integer databaseValue) {
             if (databaseValue != null) {
                 if (databaseValue < 100) {
                     return PriceLevel.LOW;
@@ -54,8 +58,9 @@ public class Order {
             return null;
         }
 
+        @Nullable
         @Override
-        public Integer convertToDatabaseValue(PriceLevel entityProperty) {
+        public Integer convertToDatabaseValue(@NonNull PriceLevel entityProperty) {
             if (entityProperty.equals(PriceLevel.HEIGHT)) {
                 return 110;
             } else if (entityProperty.equals(PriceLevel.LOW)) {
@@ -93,6 +98,7 @@ public class Order {
         this.otherid = otherid;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Order{" +

@@ -1,5 +1,8 @@
 package com.test.viewpagedemo;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -15,9 +18,13 @@ public class Reflector {
     public static final String LOG_TAG = "Reflector";
     
     protected Class<?> mType;
+    @Nullable
     protected Object mCaller;
+    @Nullable
     protected Constructor mConstructor;
+    @Nullable
     protected Field mField;
+    @Nullable
     protected Method mMethod;
     
     public static class ReflectedException extends Exception {
@@ -30,15 +37,18 @@ public class Reflector {
         }
     
     }
-    public static Reflector on(  String name) throws ReflectedException {
+    @NonNull
+    public static Reflector on(String name) throws ReflectedException {
         return on(name, true, Reflector.class.getClassLoader());
     }
     
-    public static Reflector on(  String name, boolean initialize) throws ReflectedException {
+    @NonNull
+    public static Reflector on(String name, boolean initialize) throws ReflectedException {
         return on(name, initialize, Reflector.class.getClassLoader());
     }
     
-    public static Reflector on(  String name, boolean initialize,    ClassLoader loader) throws ReflectedException {
+    @NonNull
+    public static Reflector on(String name, boolean initialize, ClassLoader loader) throws ReflectedException {
         try {
             return on(Class.forName(name, initialize, loader));
         } catch (Throwable e) {
@@ -46,13 +56,15 @@ public class Reflector {
         }
     }
     
-    public static Reflector on(  Class<?> type) {
+    @NonNull
+    public static Reflector on(Class<?> type) {
         Reflector reflector = new Reflector();
         reflector.mType = type;
         return reflector;
     }
     
-    public static Reflector with(  Object caller) throws ReflectedException {
+    @NonNull
+    public static Reflector with(Object caller) throws ReflectedException {
         return on(caller.getClass()).bind(caller);
     }
     
@@ -60,7 +72,8 @@ public class Reflector {
     
     }
     
-    public Reflector constructor(   Class<?>... parameterTypes) throws ReflectedException {
+    @NonNull
+    public Reflector constructor(Class<?>... parameterTypes) throws ReflectedException {
         try {
             mConstructor = mType.getDeclaredConstructor(parameterTypes);
             mConstructor.setAccessible(true);
@@ -72,6 +85,7 @@ public class Reflector {
         }
     }
     
+    @Nullable
     @SuppressWarnings("unchecked")
     public <R> R newInstance(   Object ... initargs) throws ReflectedException {
         if (mConstructor == null) {
@@ -86,14 +100,15 @@ public class Reflector {
         }
     }
     
-    protected Object checked(   Object caller) throws ReflectedException {
+    @Nullable
+    protected Object checked(@Nullable Object caller) throws ReflectedException {
         if (caller == null || mType.isInstance(caller)) {
             return caller;
         }
         throw new ReflectedException("Caller [" + caller + "] is not a instance of type [" + mType + "]!");
     }
     
-    protected void check(   Object caller,    Member member,   String name) throws ReflectedException {
+    protected void check(@Nullable Object caller, @Nullable Member member, String name) throws ReflectedException {
         if (member == null) {
             throw new ReflectedException(name + " was null!");
         }
@@ -103,17 +118,20 @@ public class Reflector {
         checked(caller);
     }
     
-    public Reflector bind(   Object caller) throws ReflectedException {
+    @NonNull
+    public Reflector bind(Object caller) throws ReflectedException {
         mCaller = checked(caller);
         return this;
     }
     
+    @NonNull
     public Reflector unbind() {
         mCaller = null;
         return this;
     }
     
-    public Reflector field(  String name) throws ReflectedException {
+    @NonNull
+    public Reflector field(String name) throws ReflectedException {
         try {
             mField = findField(name);
             mField.setAccessible(true);
@@ -140,11 +158,13 @@ public class Reflector {
         }
     }
     
+    @Nullable
     @SuppressWarnings("unchecked")
     public <R> R get() throws ReflectedException {
         return get(mCaller);
     }
     
+    @Nullable
     @SuppressWarnings("unchecked")
     public <R> R get(   Object caller) throws ReflectedException {
         check(caller, mField, "Field");
@@ -155,11 +175,13 @@ public class Reflector {
         }
     }
     
-    public Reflector set(   Object value) throws ReflectedException {
+    @NonNull
+    public Reflector set(Object value) throws ReflectedException {
         return set(mCaller, value);
     }
     
-    public Reflector set(   Object caller,    Object value) throws ReflectedException {
+    @NonNull
+    public Reflector set(Object caller, Object value) throws ReflectedException {
         check(caller, mField, "Field");
         try {
             mField.set(caller, value);
@@ -169,7 +191,8 @@ public class Reflector {
         }
     }
     
-    public Reflector method(  String name,    Class<?>... parameterTypes) throws ReflectedException {
+    @NonNull
+    public Reflector method(String name, Class<?>... parameterTypes) throws ReflectedException {
         try {
             mMethod = findMethod(name, parameterTypes);
             mMethod.setAccessible(true);
@@ -196,10 +219,12 @@ public class Reflector {
         }
     }
     
-    public <R> R call(   Object... args) throws ReflectedException {
+    @Nullable
+    public <R> R call(Object... args) throws ReflectedException {
         return callByCaller(mCaller, args);
     }
     
+    @Nullable
     @SuppressWarnings("unchecked")
     public <R> R callByCaller(   Object caller,    Object... args) throws ReflectedException {
         check(caller, mMethod, "Method");
@@ -215,17 +240,21 @@ public class Reflector {
     
     public static class QuietReflector extends Reflector {
         
+        @Nullable
         protected Throwable mIgnored;
     
-        public static QuietReflector on(  String name) {
+        @NonNull
+        public static QuietReflector on(String name) {
             return on(name, true, QuietReflector.class.getClassLoader());
         }
     
-        public static QuietReflector on(  String name, boolean initialize) {
+        @NonNull
+        public static QuietReflector on(String name, boolean initialize) {
             return on(name, initialize, QuietReflector.class.getClassLoader());
         }
     
-        public static QuietReflector on(  String name, boolean initialize,    ClassLoader loader) {
+        @NonNull
+        public static QuietReflector on(String name, boolean initialize, ClassLoader loader) {
             Class<?> cls = null;
             try {
                 cls = Class.forName(name, initialize, loader);
@@ -236,18 +265,21 @@ public class Reflector {
             }
         }
     
-        public static QuietReflector on(   Class<?> type) {
+        @NonNull
+        public static QuietReflector on(@Nullable Class<?> type) {
             return on(type, (type == null) ? new ReflectedException("Type was null!") : null);
         }
     
-        private static QuietReflector on(   Class<?> type,    Throwable ignored) {
+        @NonNull
+        private static QuietReflector on(Class<?> type, Throwable ignored) {
             QuietReflector reflector = new QuietReflector();
             reflector.mType = type;
             reflector.mIgnored = ignored;
             return reflector;
         }
     
-        public static QuietReflector with(   Object caller) {
+        @NonNull
+        public static QuietReflector with(@Nullable Object caller) {
             if (caller == null) {
                 return on((Class<?>) null);
             }
@@ -258,6 +290,7 @@ public class Reflector {
             
         }
     
+        @Nullable
         public Throwable getIgnored() {
             return mIgnored;
         }
@@ -270,6 +303,7 @@ public class Reflector {
             return mType == null;
         }
     
+        @NonNull
         @Override
         public QuietReflector constructor(   Class<?>... parameterTypes) {
             if (skipAlways()) {
@@ -285,6 +319,7 @@ public class Reflector {
             return this;
         }
     
+        @Nullable
         @Override
         public <R> R newInstance(   Object... initargs) {
             if (skip()) {
@@ -300,6 +335,7 @@ public class Reflector {
             return null;
         }
     
+        @NonNull
         @Override
         public QuietReflector bind(   Object obj) {
             if (skipAlways()) {
@@ -315,12 +351,14 @@ public class Reflector {
             return this;
         }
     
+        @NonNull
         @Override
         public QuietReflector unbind() {
             super.unbind();
             return this;
         }
     
+        @NonNull
         @Override
         public QuietReflector field(  String name) {
             if (skipAlways()) {
@@ -336,6 +374,7 @@ public class Reflector {
             return this;
         }
     
+        @Nullable
         @Override
         public <R> R get() {
             if (skip()) {
@@ -351,6 +390,7 @@ public class Reflector {
             return null;
         }
     
+        @Nullable
         @Override
         public <R> R get(   Object caller) {
             if (skip()) {
@@ -366,6 +406,7 @@ public class Reflector {
             return null;
         }
     
+        @NonNull
         @Override
         public QuietReflector set(   Object value) {
             if (skip()) {
@@ -381,6 +422,7 @@ public class Reflector {
             return this;
         }
     
+        @NonNull
         @Override
         public QuietReflector set(   Object caller,    Object value) {
             if (skip()) {
@@ -396,6 +438,7 @@ public class Reflector {
             return this;
         }
     
+        @NonNull
         @Override
         public QuietReflector method(  String name,    Class<?>... parameterTypes) {
             if (skipAlways()) {
@@ -411,6 +454,7 @@ public class Reflector {
             return this;
         }
     
+        @Nullable
         @Override
         public <R> R call(   Object... args)  {
             if (skip()) {
@@ -426,6 +470,7 @@ public class Reflector {
             return null;
         }
     
+        @Nullable
         @Override
         public <R> R callByCaller(   Object caller,    Object... args) {
             if (skip()) {

@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Views.RecyclerView;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,9 +19,11 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAct extends AppCompatActivity {
 
+    @Nullable
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @NonNull
     List<Integer> data = new ArrayList<>();
 
     @Override
@@ -51,6 +54,7 @@ public class RecyclerViewAct extends AppCompatActivity {
             data.add(i);
         }
     }
+    @NonNull
     RecyclerView.OnItemTouchListener onItemTouchListener = new RecyclerView.OnItemTouchListener() {
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {

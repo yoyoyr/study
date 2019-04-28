@@ -1,5 +1,7 @@
 package Annotation;
 
+import android.support.annotation.NonNull;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -23,7 +25,7 @@ import java.lang.annotation.Target;
 public @interface MethodAnnotation {
 
     //成员变量 注解的属性
-    String name() default "";
+    @NonNull String name() default "";
 
     int count() default 0;
 }

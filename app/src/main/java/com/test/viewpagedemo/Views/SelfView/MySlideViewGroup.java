@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Views.SelfView;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -125,7 +126,7 @@ public class MySlideViewGroup extends ViewGroup {
      * 导致设置无效。
      */
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(@NonNull MotionEvent ev) {
 //        LoggerUtils.LOGD(ev.getAction() + "==");
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             lastX = ev.getX();
@@ -154,7 +155,7 @@ public class MySlideViewGroup extends ViewGroup {
     VelocityTracker velocityTracker;
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
+    public boolean onTouchEvent(@NonNull MotionEvent ev) {
 //        LoggerUtils.LOGD(ev.getAction() + "==");
         boolean flg = super.onTouchEvent(ev);
         if (childHeight <= contentHeight) {
