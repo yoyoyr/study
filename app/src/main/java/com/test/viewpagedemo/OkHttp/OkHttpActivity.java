@@ -47,7 +47,7 @@ import okio.BufferedSink;
 import okio.BufferedSource;
 import okio.Okio;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 public class OkHttpActivity extends AppCompatActivity {
 
@@ -94,7 +94,7 @@ public class OkHttpActivity extends AppCompatActivity {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)
                 .baseUrl(GankRequest.baseUrl)
                 .build();
@@ -127,7 +127,7 @@ public class OkHttpActivity extends AppCompatActivity {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)
                 .baseUrl(GankRequest.baseUrl)
                 .build();

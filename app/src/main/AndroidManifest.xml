@@ -85,6 +85,7 @@
         <activity android:name="com.test.viewpagedemo.AOP.AOPActivity" />
         <activity android:name="com.test.viewpagedemo.Views.SelfView.MySlideActivity" />
         <activity android:name="com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity" />
+        <activity android:name="com.test.viewpagedemo.SVG.SVGActivity" />
 
         <meta-data
             android:name="com.test.viewpagedemo.Glide.MyGlideModule"

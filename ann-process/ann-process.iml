@@ -34,6 +34,5 @@
     <orderEntry type="library" exported="" name="Gradle: auto-common-0.3" level="project" />
     <orderEntry type="library" exported="" name="Gradle: guava-19.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: android" level="project" />
-    <orderEntry type="module" module-name="annotation" exported="" />
   </component>
 </module>

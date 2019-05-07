@@ -16,7 +16,6 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior {
 
     float removeY;
     boolean flg = false;
-    int marginTop;
 
     public HeaderBehavior() {
     }
@@ -25,13 +24,6 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior {
         super(context, attributeSet);
     }
 
-    @Override
-    public boolean onLayoutChild(CoordinatorLayout parent, @NonNull View child, int layoutDirection) {
-        View tabView = parent.findViewById(R.id.tab);
-
-        marginTop = tabView.getMeasuredHeight();
-        return super.onLayoutChild(parent, child, layoutDirection);
-    }
 
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
@@ -59,8 +51,8 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior {
                     flg = true;
                 }
                 //heard能向上滑动的最大距离
-                if (-removeY >= child.getHeight() - marginTop) {
-                    removeY = -child.getHeight() + marginTop;
+                if (-removeY >= child.getHeight()) {
+                    removeY = -child.getHeight();
                     flg = true;
                 }
                 //translation的最大可移动距离必须和layout的距离一致，否则会出现显示不完全

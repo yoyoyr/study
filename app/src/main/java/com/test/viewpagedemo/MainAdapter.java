@@ -20,6 +20,7 @@ import com.test.viewpagedemo.LeakCanary.TestLeakCanaryActivity;
 import com.test.viewpagedemo.OkHttp.OkHttpActivity;
 import com.test.viewpagedemo.Retrofit.RetrofitAndRxJava;
 import com.test.viewpagedemo.RxJavaNew.RxJavaNew;
+import com.test.viewpagedemo.SVG.SVGActivity;
 import com.test.viewpagedemo.Views.RecyclerView.RecyclerViewAct;
 import com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity;
 import com.test.viewpagedemo.Views.SelfView.MySlideActivity;
@@ -87,6 +88,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, GlideActivity.class));
         titles.add("EventBus");
         intents.add(new Intent(context, EventBusActivity.class));
+        titles.add("svg");
+        intents.add(new Intent(context, SVGActivity.class));
 //        titles.add("SPI");
 //        intents.add(new Intent(context, SPIActivity.class));
 //        titles.add("MVVM");

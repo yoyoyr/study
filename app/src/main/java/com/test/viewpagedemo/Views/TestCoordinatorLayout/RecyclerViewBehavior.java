@@ -34,7 +34,7 @@ public class RecyclerViewBehavior extends CoordinatorLayout.Behavior {
     @Override
     public boolean onLayoutChild(@NonNull CoordinatorLayout parent, View child, int layoutDirection) {
 
-        marginTop = parent.findViewById(R.id.title).getMeasuredHeight();
+//        marginTop = parent.findViewById(R.id.title).getMeasuredHeight();
 //        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
 //        layoutParams.topMargin = (int) (layoutParams.topMargin + marginTop);
 //        child.setLayoutParams(layoutParams);
@@ -59,7 +59,7 @@ public class RecyclerViewBehavior extends CoordinatorLayout.Behavior {
 //            y = 0;
 //        }
 
-        LoggerUtils.LOGV("margintop = " + marginTop + ",translation y = " + y);
+        LoggerUtils.LOGV("translation y = " + y);
         child.setTranslationY(y);
         return true;
     }
