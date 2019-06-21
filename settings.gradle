@@ -1,4 +1,4 @@
-include ':app', ':hotfix', ':eosiojavaabieos'
+include ':app', ':hotfix'
 include ':hook'
 include':mygroovy'
 include ':aop'
