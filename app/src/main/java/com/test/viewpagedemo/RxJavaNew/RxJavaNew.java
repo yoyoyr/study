@@ -194,6 +194,8 @@ public class RxJavaNew extends AppCompatActivity {
                     }
                 });
 
+
+
         Single sequenceEqual = Observable.sequenceEqual(Observable.just(1, 2, 3), Observable.just(1, 2, 3));
 
         //接收到先接收的observable对象发送的数据

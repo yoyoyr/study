@@ -16,4 +16,17 @@ project.ext {
             butterknife        : 'com.jakewharton:butterknife:8.5.1',
             butterknifecompiler: 'com.jakewharton:butterknife-compiler:8.5.1',
     ]
+
+    ShareSDK = {
+        version "3.4.0"
+        gui false
+        DevInfo {
+            Wechat {
+                id 1
+                sortId 1
+                appId "wxad6436d2d5856d83"
+                appSecret "12a8990e7ad03a81d4a82993f9943497"
+            }
+        }
+    }
 }

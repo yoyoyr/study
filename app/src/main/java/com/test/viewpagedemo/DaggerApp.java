@@ -44,7 +44,7 @@ public class DaggerApp {
 
     @ApplicationAsyncInit
     public void init(@NonNull Context context) {
-        //        startTract();
+        startTract(context);
         //使应用支持分包
         MultiDex.install(context);
         initCompoment(context);

@@ -1,6 +1,7 @@
 package com.test.viewpagedemo;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.study.point.BuildConfig;
 import com.study.point.R;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        startTract(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -151,6 +154,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    private void startTract(Context context) {
+        //启动app时间统计
+        File file = new File(context.getCacheDir() + "/hello.trace");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Debug.startMethodTracing(context.getCacheDir() + "/hello.trace");
+    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
 //        LoggerUtils.LOGD("---------app visiable");

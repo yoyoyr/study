@@ -19,8 +19,10 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
@@ -36,6 +38,7 @@
     <orderEntry type="library" exported="" name="Gradle: dagger-2.16" level="project" />
     <orderEntry type="library" exported="" name="Gradle: joor-java-8-0.9.9" level="project" />
     <orderEntry type="library" exported="" name="Gradle: support-annotations-28.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.springsource.org.apache.commons.codec-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: rxjava-2.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: okio-1.14.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.inject-1" level="project" />

@@ -1,4 +1,4 @@
-include ':app', ':hotfix', ':rxjavaretrofitadapter'
+include ':app', ':hotfix', ':eosiojavaabieos'
 include ':hook'
 include':mygroovy'
 include ':aop'
