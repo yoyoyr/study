@@ -1,5 +1,6 @@
 package com.test.viewpagedemo;
 
+import android.arch.lifecycle.LifecycleObserver;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.test.viewpagedemo.EventBus.EventBusActivity;
 import com.test.viewpagedemo.Glide.GlideActivity;
 import com.test.viewpagedemo.GreenDao.GreenDaoActivity;
 import com.test.viewpagedemo.LeakCanary.TestLeakCanaryActivity;
+import com.test.viewpagedemo.Lifecycle.ObserableActivity;
 import com.test.viewpagedemo.OkHttp.OkHttpActivity;
 import com.test.viewpagedemo.Retrofit.RetrofitAndRxJava;
 import com.test.viewpagedemo.RxJavaNew.RxJavaNew;
@@ -90,6 +92,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, EventBusActivity.class));
         titles.add("svg");
         intents.add(new Intent(context, SVGActivity.class));
+        titles.add("lifecycle");
+        intents.add(new Intent(context, ObserableActivity.class));
 //        titles.add("SPI");
 //        intents.add(new Intent(context, SPIActivity.class));
 //        titles.add("MVVM");

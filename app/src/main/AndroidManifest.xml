@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.study.point">
     <!--反射batterstatehelp需要用到-->
     <!--android:sharedUserId="android.uid.system"-->
@@ -51,17 +52,15 @@
         android:label="ViewPageDemo"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name="com.test.viewpagedemo.MainActivity2"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="com.test.viewpagedemo.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.test.viewpagedemo.Views.viewpage.adapter.BaseViewPageAdapterActivity" />
         <!--<activity android:name="com.test.viewpagedemo.Views.viewpage.restore.RestoreViewPageAdapterActivity" />-->
         <activity android:name="com.test.viewpagedemo.Views.fragment.FragmentBaseActivity" />
@@ -86,6 +85,7 @@
         <activity android:name="com.test.viewpagedemo.Views.SelfView.MySlideActivity" />
         <activity android:name="com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity" />
         <activity android:name="com.test.viewpagedemo.SVG.SVGActivity" />
+        <activity android:name="com.test.viewpagedemo.Lifecycle.ObserableActivity" />
 
         <meta-data
             android:name="com.test.viewpagedemo.Glide.MyGlideModule"
