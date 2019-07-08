@@ -14,6 +14,7 @@ import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
@@ -29,11 +30,14 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
+import io.reactivex.functions.BiConsumer;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Function3;
@@ -66,6 +70,77 @@ public class RxJavaNew extends AppCompatActivity {
         if (disposable != null) {
             disposable.dispose();
         }
+    }
+
+    class Data {
+        String key;
+        String value;
+
+        @Override
+        public String toString() {
+            return "Data{" +
+                    "key='" + key + '\'' +
+                    ", value='" + value + '\'' +
+                    '}';
+        }
+    }
+
+    /**
+     * 更新列表数据后，返回列表
+     */
+    @OnClick(R.id.list)
+    void list() {
+        final List<Data> datas = new ArrayList<>();
+        final List<Data> result = new ArrayList<>();
+
+        for (int i = 0; i < 10; ++i) {
+            Data data = new Data();
+            data.key = i + "";
+            datas.add(data);
+        }
+
+        disposable = Observable.create(new ObservableOnSubscribe<List<Data>>() {
+
+            @Override
+            public void subscribe(ObservableEmitter<List<Data>> emitter) throws Exception {
+                emitter.onNext(datas);
+            }
+        }).flatMap(new Function<List<Data>, Observable<List<Data>>>() {
+            @Override
+            public Observable<List<Data>> apply(List<Data> data) throws Exception {
+                LoggerUtils.LOGD(datas.toString());
+                return Observable.fromIterable(datas).map(new Function<Data, Data>() {
+                    @Override
+                    public Data apply(Data data) throws Exception {
+                        data.value = data.key + "--";
+                        return data;
+                    }
+                }).collect(new Callable<List<Data>>() {
+
+                    @Override
+                    public List<Data> call() throws Exception {
+                        return result;
+                    }
+                }, new BiConsumer<List<Data>, Data>() {
+                    @Override
+                    public void accept(List<Data> datas, Data data) throws Exception {
+                        result.add(data);
+                    }
+                }).toObservable().subscribeOn(Schedulers.io());
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<List<Data>>() {
+                    @Override
+                    public void accept(List<Data> data) throws Exception {
+                        LoggerUtils.LOGV(result.toString());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        LoggerUtils.LOGE(throwable);
+                    }
+                });
     }
 
     @OnClick(R.id.selfObservable)
@@ -193,7 +268,6 @@ public class RxJavaNew extends AppCompatActivity {
                         return integer < 3;
                     }
                 });
-
 
 
         Single sequenceEqual = Observable.sequenceEqual(Observable.just(1, 2, 3), Observable.just(1, 2, 3));

@@ -98,11 +98,11 @@
             android:layout_height="50dp"
             android:text="selfObservable" />
 
-        <!--<Button-->
-            <!--android:id="@+id/concat"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:text="concat" />-->
+        <Button
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="list get data" />
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
