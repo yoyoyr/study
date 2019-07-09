@@ -86,6 +86,8 @@
         <activity android:name="com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity" />
         <activity android:name="com.test.viewpagedemo.SVG.SVGActivity" />
         <activity android:name="com.test.viewpagedemo.Lifecycle.ObserableActivity" />
+        <activity android:name="com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1" />
+        <activity android:name="com.test.viewpagedemo.Views.shareanim.ShareAnimActivity2" />
 
         <meta-data
             android:name="com.test.viewpagedemo.Glide.MyGlideModule"

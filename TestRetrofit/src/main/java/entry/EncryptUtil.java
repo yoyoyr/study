@@ -39,19 +39,9 @@ public class EncryptUtil {
 //        String s = "\\{\\{\\s*" + key + "\\s*}}";
 //        System.out.println(ricardian.replaceAll(s, "yoyo"));
 
-        String str = "{\"amount\":\"0.0971\",\"tokenContract\":\"eosio.token\",\"tokenPrecision\":\"4\",\"tokenName\":\"EOS\",\"tokenContract\":\"eosio.token\",\"memo\":\"{\"type\":\"buy-limit\",\"symbol\":\"fight22death-nft-eos\",\"price\":\"0.0000789\",\"count\":\"1231.3054\",\"amount\":0.0971,\"channel\":\"dapp\",\"ref\":\"meetone\"}\",\"to\":\"newdexpocket\"}";
-        //        String str = "memo:{adbsaf},123";
-        if (str.contains("memo")) {
-
-            Pattern pattern = Pattern.compile("\"memo\":\"\\{.+\"\\}\",");
-            Matcher matcher = pattern.matcher(str);
-
-            String data = str.replaceAll("\"memo\":\"\\{.+\"\\}\",", "");
-            System.out.println(data);
-//            System.out.println(str.c(data,""));
-        }
         String memo = "";
-
+        String data = memo.split("-")[0];
+        System.out.println(data);
     }
 
     /**

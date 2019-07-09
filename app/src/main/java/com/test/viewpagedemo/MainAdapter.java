@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.lyl.animationtest.base.ShareAnimActivity;
 import com.study.point.R;
 import com.test.viewpagedemo.AOP.AOPActivity;
 import com.test.viewpagedemo.Bitmap.BitmapActivity;
@@ -28,6 +29,7 @@ import com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity;
 import com.test.viewpagedemo.Views.SelfView.MySlideActivity;
 import com.test.viewpagedemo.Views.TestCoordinatorLayout.TestCoordinatorLayoutActivity;
 import com.test.viewpagedemo.Views.fragment.FragmentBaseActivity;
+import com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1;
 import com.test.viewpagedemo.Views.viewpage.adapter.BaseViewPageAdapterActivity;
 
 import java.util.ArrayList;
@@ -94,6 +96,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, SVGActivity.class));
         titles.add("lifecycle");
         intents.add(new Intent(context, ObserableActivity.class));
+        titles.add("shareAnim");
+        intents.add(new Intent(context, ShareAnimActivity.class));
 //        titles.add("SPI");
 //        intents.add(new Intent(context, SPIActivity.class));
 //        titles.add("MVVM");
