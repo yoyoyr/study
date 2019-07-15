@@ -26,6 +26,7 @@ public class DialogHeadBehavior extends CoordinatorLayout.Behavior {
     boolean isAnima;
     float downX, downY;
     static final int MIN_MOVE = 5;
+    boolean isMoving;
 //    boolean isUp;
 //    boolean isDown;
 
@@ -77,6 +78,7 @@ public class DialogHeadBehavior extends CoordinatorLayout.Behavior {
                 + ",isAnima = " + isAnima + ",child.getHeight() = " + child.getHeight() + ",ev.getActionMasked() = " + ev.getActionMasked());
 
         if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+            isMoving = true;
             if (!isAnima) {
                 if (-removeY > MIN_MOVE && downY > ev.getY()) {
                     //向上滑动了removeY，滑动到child.getHeight()
@@ -112,8 +114,9 @@ public class DialogHeadBehavior extends CoordinatorLayout.Behavior {
             }
         } else if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             downY = ev.getY();
+            isMoving = false;
         } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-
+            isMoving = true;
         }
         return false;
     }
@@ -127,7 +130,7 @@ public class DialogHeadBehavior extends CoordinatorLayout.Behavior {
     @Override
     public void onNestedPreScroll(@NonNull final CoordinatorLayout coordinatorLayout, @NonNull final View child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
 
-        if (isAnima) {
+        if (isAnima || !isMoving) {
             return;
         }
 
