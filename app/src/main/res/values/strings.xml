@@ -11,4 +11,7 @@
     <string name="behavior_tab">com.test.viewpagedemo.Views.TestCoordinatorLayout.TabBehavior</string>
 
 
+    <string name="dialog_head_behavior">com.test.viewpagedemo.Views.TestCoordinatorLayout.dialog.DialogHeadBehavior</string>
+    <string name="dialog_content_behavior">com.test.viewpagedemo.Views.TestCoordinatorLayout.dialog.DialogContentBehavior</string>
+
 </resources>

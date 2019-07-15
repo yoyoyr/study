@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/clHeard"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/dialog_head_behavior" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/llContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_dialog"
+        app:layout_behavior="@string/dialog_content_behavior">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingRight="15dp"
+            android:text="order_confirm"
+            android:textColor="@color/black_323232"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvSenior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="senior"
+            android:textColor="@color/color_3E688F"
+            android:textSize="16sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="start_trans"
+            android:textColor="@color/black_323232"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestscroll"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:layout_marginTop="15dp"
+            android:fadeScrollbars="false"
+            android:overScrollMode="never"
+            android:scrollbarSize="4dp"
+            android:scrollbars="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+
+            <TextView
+                android:id="@+id/tvRawData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:text="s\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf\nsf"
+                android:textColor="@color/black_323232" />
+        </android.support.v4.widget.NestedScrollView>
+
+
+        <TextView
+            android:id="@+id/tvFull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="44dp"
+            android:text="confirm_without_remind"
+            android:textColor="@color/black_323232"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nestscroll" />
+
+
+        <Button
+            android:id="@+id/btDeny"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="deny"
+            android:textSize="17sp"
+            android:transitionName="shareDeny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+
+        <Button
+            android:id="@+id/tvConfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="accept"
+            android:textColor="@color/white_a"
+            android:textSize="17sp"
+            android:transitionName="shareAccept"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
+

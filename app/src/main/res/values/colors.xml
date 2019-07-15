@@ -4,5 +4,46 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name= "gray">#666666</color>
-    <color name= "white">#ffffff</color>
+    <color name="white">#ffffff</color>
+
+    <!--baselayout的颜色样式-->
+    <color name="title_bar_color">#323232</color>
+    <color name="black_292929">#292929</color>
+    <color name="dialog_content">#292929</color>
+    <color name="dialog_btn_one">#292929</color>
+    <color name="dialog_btn_cancle">#292929</color>
+    <color name="dialog_btn_ok">#292929</color>
+    <color name="item_line_color">#C8C8C8</color>
+    <color name="gray_f6f6f6">#F6F6F6</color>
+    <color name="color_0063c8transparent">#00ffffff</color>
+    <color name="ys_24_24_24">#181818</color>
+    <color name="ys_30_30_30">#1e1e1e</color>
+    <color name="ys_gary">#e5e3e4</color>
+    <color name="gray_757575">#757575</color>
+    <color name="gray_A9A9A9">#A9A9A9</color>
+    <color name="ys_234_205_118">#eacd76</color>
+    <color name="black_323232">#323232</color>
+    <color name="blue_C61BFD">#C61BFD</color>
+    <color name="ys_eeeeee">#eeeeee</color>
+    <color name="status_bar_color">#085d8d</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="layout_root_view_bg">#ffffff</color>
+
+    <color name="color_3E688F">#3E688F</color>
+    <color name="red_light">#ffff4444</color>
+    <color name="green_light">#ff99cc00</color>
+    <color name="orange_light">#ffffbb33</color>
+    <color name="blue_light">#ff33b5e5</color>
+    <color name="red_b">#ff5073</color>
+    <color name="white_a">#ffffff</color>
+    <color name="black_b">#888888</color>
+    <color name="black_e">#E8E8E8</color>
+    <color name="black_a">#323232</color>
+    <color name="red_a">#ff87a0</color>
+    <color name="red_ff545b">#ff545b</color>
+
+    <color name="color_main">#085d8d</color>
+    <color name="color_c53336">#c53336</color>
+
 </resources>
