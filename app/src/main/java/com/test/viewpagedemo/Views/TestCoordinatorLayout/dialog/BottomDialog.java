@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.study.point.R;
 import com.test.viewpagedemo.EventBus.Event;
@@ -48,6 +49,7 @@ public class BottomDialog extends BaseBottomDialog {
     private onDialogDisMissListener listener;
     private Map<String, Object> map;
     private DialogInterface.OnCancelListener cancelListener;
+    private TextView title, fulltitle;
 
     public void setData(Map<String, Object> map) {
         this.map = map;
@@ -67,6 +69,7 @@ public class BottomDialog extends BaseBottomDialog {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        EventBus.getDefault().register(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.BOTTOM);
@@ -77,10 +80,24 @@ public class BottomDialog extends BaseBottomDialog {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_dapp_transfer_confirm,container,false);
+        View view = inflater.inflate(R.layout.dialog_dapp_transfer_confirm, container, false);
+        title = view.findViewById(R.id.tvTitle);
+        fulltitle = view.findViewById(R.id.tvTitleFull);
         return view;
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAccountReflesh(Page2Visibily event) {
+        if (event.isFull()) {
+            title.setVisibility(View.GONE);
+            fulltitle.setVisibility(View.VISIBLE);
+        } else {
+            title.setVisibility(View.VISIBLE);
+            fulltitle.setVisibility(View.GONE);
+        }
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

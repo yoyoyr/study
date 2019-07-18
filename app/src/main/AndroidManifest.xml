@@ -55,6 +55,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.test.viewpagedemo.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,7 +75,9 @@
         <activity android:name="com.test.viewpagedemo.LeakCanary.TestLeakCanaryActivity" />
         <activity android:name="com.test.viewpagedemo.Glide.GlideActivity" />
         <activity android:name="com.test.viewpagedemo.OkHttp.OkHttpActivity" />
-        <activity android:name="com.test.viewpagedemo.Views.TestCoordinatorLayout.TestCoordinatorLayoutActivity" />
+        <activity android:name="com.test.viewpagedemo.Views.TestCoordinatorLayout.TestCoordinatorLayoutActivity">
+
+        </activity>
         <activity android:name="com.test.viewpagedemo.RxJavaNew.RxJavaNew" />
         <activity android:name="com.test.viewpagedemo.Views.RecyclerView.RecyclerViewAct" />
         <!--<activity android:name="com.test.viewpagedemo.SPI.SPIActivity" />-->

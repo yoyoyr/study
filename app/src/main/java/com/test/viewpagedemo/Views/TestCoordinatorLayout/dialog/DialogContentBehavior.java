@@ -27,7 +27,7 @@ public class DialogContentBehavior extends CoordinatorLayout.Behavior {
     @Override
     public boolean onLayoutChild(@NonNull CoordinatorLayout parent, View child, int layoutDirection) {
         parent.onLayoutChild(child, layoutDirection);
-        View headerView = parent.findViewById(R.id.clHeard);
+        View headerView = parent.getChildAt(0);
         child.offsetTopAndBottom((int) (headerView.getMeasuredHeight()));
         return true;
     }
@@ -44,10 +44,10 @@ public class DialogContentBehavior extends CoordinatorLayout.Behavior {
         if(height == 0 )
             height = child.getHeight();
 
-        ViewGroup.LayoutParams layoutParams = child.getLayoutParams();
-        layoutParams.height = (int) (height - y);
-//        LoggerUtils.LOGV("translation y = " + y + ",layoutParams.height " + layoutParams.height+",height = "+height);
-        child.setLayoutParams(layoutParams);
+//        ViewGroup.LayoutParams layoutParams = child.getLayoutParams();
+//        layoutParams.height = (int) (height - y);
+////        LoggerUtils.LOGV("translation y = " + y + ",layoutParams.height " + layoutParams.height+",height = "+height);
+//        child.setLayoutParams(layoutParams);
         child.setTranslationY(y);
         return true;
     }
