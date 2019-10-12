@@ -49,6 +49,7 @@ public class DaggerApp {
         MultiDex.install(context);
         initCompoment(context);
         initWalle(context);
+        startTract(context);
 //        initPush(context);
     }
 

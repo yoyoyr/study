@@ -112,6 +112,7 @@ public class BitmapActivity extends AppCompatActivity {
         LoggerUtils.LOGD("bitmap size = " + bitmap.getByteCount() + ",width = " + bitmap.getWidth()
                 + ",height = " + bitmap.getHeight());
         imageView.setImageBitmap(bitmap);
+        BitmapUtil.viewShot(findViewById(R.id.bitmap), "ViewShot");
     }
 
     @OnClick(R.id.bigBitmap)

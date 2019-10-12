@@ -93,43 +93,51 @@ public class RxJavaNew extends AppCompatActivity {
         final List<Data> datas = new ArrayList<>();
         final List<Data> result = new ArrayList<>();
 
-        for (int i = 0; i < 10; ++i) {
-            Data data = new Data();
-            data.key = i + "";
-            datas.add(data);
-        }
-
-        disposable = Observable.create(new ObservableOnSubscribe<List<Data>>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<List<Data>> emitter) throws Exception {
-                emitter.onNext(datas);
-            }
-        }).flatMap(new Function<List<Data>, Observable<List<Data>>>() {
-            @Override
-            public Observable<List<Data>> apply(List<Data> data) throws Exception {
-                LoggerUtils.LOGD(datas.toString());
-                return Observable.fromIterable(datas).map(new Function<Data, Data>() {
+//        for (int i = 0; i < 10; ++i) {
+//            Data data = new Data();
+//            data.key = i + "";
+//            datas.add(data);
+//        }
+        disposable = Observable.just(datas)
+                .flatMap(new Function<List<Data>, Observable<List<Data>>>() {
                     @Override
-                    public Data apply(Data data) throws Exception {
-                        data.value = data.key + "--";
-                        return data;
-                    }
-                }).collect(new Callable<List<Data>>() {
+                    public Observable<List<Data>> apply(List<Data> data) throws Exception {
+                        LoggerUtils.LOGD(datas.toString());
+                        return Observable.fromIterable(datas).map(new Function<Data, Data>() {
+                            @Override
+                            public Data apply(Data data) throws Exception {
+                                data.value = data.key + "--";
+                                return data;
+                            }
+                        }).collect(new Callable<List<Data>>() {
 
-                    @Override
-                    public List<Data> call() throws Exception {
-                        return result;
+                            @Override
+                            public List<Data> call() throws Exception {
+                                return result;
+                            }
+                        }, new BiConsumer<List<Data>, Data>() {
+                            @Override
+                            public void accept(List<Data> datas, Data data) throws Exception {
+                                result.add(data);
+                            }
+                        }).toObservable().subscribeOn(Schedulers.io())
+                                .onErrorReturn(new Function<Throwable, List<Data>>() {
+                                    @Override
+                                    public List<Data> apply(Throwable throwable) throws Exception {
+                                        LoggerUtils.LOGE(throwable);
+                                        return null;
+                                    }
+                                });
                     }
-                }, new BiConsumer<List<Data>, Data>() {
-                    @Override
-                    public void accept(List<Data> datas, Data data) throws Exception {
-                        result.add(data);
-                    }
-                }).toObservable().subscribeOn(Schedulers.io());
-            }
-        }).subscribeOn(Schedulers.io())
+                }).subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
+                .onErrorReturn(new Function<Throwable, List<Data>>() {
+                    @Override
+                    public List<Data> apply(Throwable throwable) throws Exception {
+                        LoggerUtils.LOGE(throwable);
+                        return null;
+                    }
+                })
                 .subscribe(new Consumer<List<Data>>() {
                     @Override
                     public void accept(List<Data> data) throws Exception {

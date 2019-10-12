@@ -29,6 +29,7 @@ import com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity;
 import com.test.viewpagedemo.Views.SelfView.MySlideActivity;
 import com.test.viewpagedemo.Views.TestCoordinatorLayout.TestCoordinatorLayoutActivity;
 import com.test.viewpagedemo.Views.fragment.FragmentBaseActivity;
+import com.test.viewpagedemo.Views.motionlayout.MotionLayoutActivity;
 import com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1;
 import com.test.viewpagedemo.Views.viewpage.adapter.BaseViewPageAdapterActivity;
 
@@ -98,6 +99,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, ObserableActivity.class));
         titles.add("shareAnim");
         intents.add(new Intent(context, ShareAnimActivity.class));
+        titles.add("MotionLyout");
+        intents.add(new Intent(context, MotionLayoutActivity.class));
 //        titles.add("SPI");
 //        intents.add(new Intent(context, SPIActivity.class));
 //        titles.add("MVVM");

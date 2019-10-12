@@ -52,9 +52,9 @@ public class PageFragment extends Fragment {
 
     protected void initData() {
         mDatas = new ArrayList<>();
-        for (int i = 'A'; i <= 'z'; i++) {
-            mDatas.add("" + (char) i);
-        }
+//        for (int i = 'A'; i <= 'z'; i++) {
+//            mDatas.add("" + (char) i);
+//        }
     }
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {

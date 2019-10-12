@@ -91,6 +91,7 @@
         <activity android:name="com.test.viewpagedemo.Lifecycle.ObserableActivity" />
         <activity android:name="com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1" />
         <activity android:name="com.test.viewpagedemo.Views.shareanim.ShareAnimActivity2" />
+        <activity android:name="com.test.viewpagedemo.Views.motionlayout.MotionLayoutActivity" />
 
         <meta-data
             android:name="com.test.viewpagedemo.Glide.MyGlideModule"

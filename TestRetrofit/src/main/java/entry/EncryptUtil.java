@@ -1,15 +1,21 @@
 package entry;
 
+import org.w3c.dom.ls.LSException;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,11 +44,50 @@ public class EncryptUtil {
 //        String key = "from";
 //        String s = "\\{\\{\\s*" + key + "\\s*}}";
 //        System.out.println(ricardian.replaceAll(s, "yoyo"));
-
-        String memo = "";
-        String data = memo.split("-")[0];
-        System.out.println(data);
     }
+
+    /**
+     * 将字节数组转换为16进制字符串
+     * @param bytes
+     * @return
+     */
+    public static String binaryToHexString(byte[] bytes) {
+        if (bytes == null || bytes.length == 0) return "";
+        String hexStr = "0123456789ABCDEF";
+        StringBuilder result = new StringBuilder("");
+        String hex = "";
+        for (byte b : bytes) {
+            hex = String.valueOf(hexStr.charAt((b & 0xF0) >> 4));
+            hex += String.valueOf(hexStr.charAt(b & 0x0F));
+            result.append(hex);
+            //result += hex + " ";//可加空格分割
+        }
+        return result.toString();
+    }
+
+    /**
+     * 正则表达式：验证邮箱
+     */
+    public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+
+
+    // 打乱列表实现方法1
+    public static  <T> void shuffle1(List<T> list) {
+        int size = list.size();
+        Random random = new Random();
+
+        for(int i = 0; i < size; i++) {
+            // 获取随机位置
+            int randomPos = random.nextInt(size);
+
+            // 当前元素与随机元素交换
+            T temp = list.get(i);
+            list.set(i, list.get(randomPos));
+            list.set(randomPos, temp);
+        }
+        System.out.println(list);
+    }
+
 
     /**
      * OpenSSL's magic initial bytes.

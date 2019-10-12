@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        startTract(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -153,20 +152,6 @@ public class MainActivity extends AppCompatActivity {
         LoggerUtils.LOGD("reflect time = " + (System.currentTimeMillis() - start));
     }
 
-
-
-    private void startTract(Context context) {
-        //启动app时间统计
-        File file = new File(context.getCacheDir() + "/hello.trace");
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        Debug.startMethodTracing(context.getCacheDir() + "/hello.trace");
-    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
 //        LoggerUtils.LOGD("---------app visiable");

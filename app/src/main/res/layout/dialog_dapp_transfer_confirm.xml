@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#50FFFFFF">
+    android:background="#50FFFFFF"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/clHeard"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:orientation="horizontal"
-        app:layout_behavior="@string/dialog_head_behavior" />
+        android:orientation="horizontal" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/llContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bottom_dialog"
-        app:layout_behavior="@string/dialog_content_behavior">
+        android:background="@drawable/bottom_dialog">
 
         <TextView
             android:id="@+id/tvName"
@@ -135,11 +134,11 @@
 
 
         <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:background="@color/black_e"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@id/btDeny" />-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@color/black_e"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/btDeny" />-->
     </android.support.constraint.ConstraintLayout>
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>
 

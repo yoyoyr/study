@@ -1,9 +1,14 @@
+https://www.jianshu.com/p/4c661166ff2a
 
-1.bitmap大小计算(屏幕分辨率1920*1080)
-  ARGB_8888 1920*1080*32/(8*1024*1024) = 7.9M
-  RGB_565 1920*1080*16/(8*1024*1024) = 3.9M
-  所以ARGB_8888同样的图片是RGB_565大小的两倍。
 
+
+1.bitmap大小计算(图片大小1920*1080 px为单位)
+  正常情况：
+    ARGB_8888 1920*1080*32/(8*1024*1024) = 7.9M
+    RGB_565 1920*1080*16/(8*1024*1024) = 3.9M
+    所以ARGB_8888同样的图片是RGB_565大小的两倍。
+  资源文件  加载方法:BitmapFactory.decodeResourceStream()
+        width*heigh*一个像数占用内存*(targetDensity(文件夹对应密度)/inDensity(当前屏幕的密度))
 
 BitmapFactory   解析生成Bitmap
 BitmapFactory.Options   inJustDecodeBounds 测量宽高
@@ -11,7 +16,29 @@ BitmapFactory.Options   inJustDecodeBounds 测量宽高
                         inPreferredConfig 设置图片的解码格式，如ARGB_8888,RBG_565
                         inScaled 是否缩放
                         outWidth，outHeight
-Bitmap      计算图片大小  width * height * 每个点字节数。3.0以后Bitmap保存在java层
+Bitmap      计算图片大小  width * height * 每个点字节数。
+                        api
+                            getByteCount()      占用内存大小
+                            getAllocationByteCount()    真实内存大小（考虑复用bitmap情况）
+
+            实现变迁：
+                   2.3之前，保存在native，需要用户控制生命周期，容易内存泄漏
+                   7.1之前Bitmap保存在java层。过多容易导致oom
+                   8.0以后恢复到native，但是不需要用户回收。native不分进程分配，空间较大。但是无限增长仍然会oom
+            图片压缩算法:
+                质量压缩
+                        Bitmap.compress() bitmap大小不变，保存的文件会比较小
+                        ARGB_8888或者RGB_565  缩小bitmap大小
+                采样率压缩
+                缩放
+            换成
+                lrucache
+            复用
+                inMutable = true
+                inSampleSize = 1
+                复用的bitmap大于使用的bitmap大小
+
+            BitmapShader+paint+canvas 裁剪图片
 
 反射 jni hook可否创造新的属性或者方法
 

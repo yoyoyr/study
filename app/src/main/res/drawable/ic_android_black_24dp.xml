@@ -19,7 +19,7 @@
 
         <path
             android:name="rect"
-            android:fillColor="#3F51B5"
+            android:fillColor="#888888"
             android:pathData="M 25,25 L 75,25 75,75 25,75Z"/>
     </group>
 </vector>

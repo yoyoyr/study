@@ -56,9 +56,9 @@ public class TestCoordinatorLayoutActivity extends AppCompatActivity {
     @NonNull
     private List<String> mockData() {
         List<String> data = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            data.add("item:" + i);
-        }
+//        for (int i = 0; i < 100; i++) {
+//            data.add("item:" + i);
+//        }
         return data;
     }
 

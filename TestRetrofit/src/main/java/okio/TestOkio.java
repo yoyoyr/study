@@ -2,6 +2,8 @@ package okio;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * segment 双向链表  segmentPool 缓存segment
@@ -54,7 +56,39 @@ public class TestOkio {
 
         }
 
+        System.out.println(switchBalance("990.123456789"));
+        System.out.println(switchBalance("999.123456789"));
+        System.out.println(switchBalance("999999.123456789"));
+        System.out.println(switchBalance("0.00000000000"));
 
+    }
+
+
+    /**
+     * 除eos外，默认余额保存小数点后8位
+     * >999,4位
+     * >999,999，2位
+     * >999,999,999，不保存小数
+     *
+     * @param balanace
+     * @return
+     */
+    public static String switchBalance(String balanace) {
+        BigDecimal bigDecimal = new BigDecimal(balanace);
+
+        if (bigDecimal.doubleValue() > 999999999) {
+            return bigDecimal.setScale(0, RoundingMode.HALF_DOWN).toString();
+        } else if (bigDecimal.doubleValue() > 999999) {
+            return bigDecimal.setScale(2, RoundingMode.HALF_DOWN).toString();
+        } else if (bigDecimal.doubleValue() > 999) {
+            return bigDecimal.setScale(4, RoundingMode.HALF_DOWN).toString();
+        } else {
+            String rlt =  bigDecimal.setScale(8, RoundingMode.HALF_DOWN).toString();
+            if("0E-8".equalsIgnoreCase(rlt)){
+                rlt = "0.00000000";
+            }
+            return rlt;
+        }
     }
 
     private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5',
