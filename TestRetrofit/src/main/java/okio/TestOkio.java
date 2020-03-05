@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import Gson.Book;
+
 /**
  * segment 双向链表  segmentPool 缓存segment
  * okio库
@@ -35,31 +37,34 @@ public class TestOkio {
 //        sink.writeUtf8("yr");
 //        sink.flush();
 //        sink.close();
+        Book book1 = new Book();
+        Book book2 = new Book();
+        System.out.println(book1.getClass() ==  book2.getClass());
 
-        File file = new File("text.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-        File tmp = new File("tmp.txt");
-        if (!tmp.exists()) {
-            tmp.createNewFile();
-        }
-        BufferedSource bufferedSource = Okio.buffer(Okio.source(file));
-        BufferedSink bufferedSink = Okio.buffer(Okio.sink(tmp));
-//              一个segment的大小
-        byte[] t = new byte[1024];
-        int count;
-        while ((count = bufferedSource.read(t)) != -1) {
-            bufferedSink.write(t, 0, count);
-            bufferedSink.flush();
-            bufferedSource.buffer().flush();
-
-        }
-
-        System.out.println(switchBalance("990.123456789"));
-        System.out.println(switchBalance("999.123456789"));
-        System.out.println(switchBalance("999999.123456789"));
-        System.out.println(switchBalance("0.00000000000"));
+//        File file = new File("text.txt");
+//        if (!file.exists()) {
+//            file.createNewFile();
+//        }
+//        File tmp = new File("tmp.txt");
+//        if (!tmp.exists()) {
+//            tmp.createNewFile();
+//        }
+//        BufferedSource bufferedSource = Okio.buffer(Okio.source(file));
+//        BufferedSink bufferedSink = Okio.buffer(Okio.sink(tmp));
+////              一个segment的大小
+//        byte[] t = new byte[1024];
+//        int count;
+//        while ((count = bufferedSource.read(t)) != -1) {
+//            bufferedSink.write(t, 0, count);
+//            bufferedSink.flush();
+//            bufferedSource.buffer().flush();
+//
+//        }
+//
+//        System.out.println(switchBalance("990.123456789"));
+//        System.out.println(switchBalance("999.123456789"));
+//        System.out.println(switchBalance("999999.123456789"));
+//        System.out.println(switchBalance("0.00000000000"));
 
     }
 

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        startTract(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -77,6 +78,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    private void startTract(Context context) {
+        //启动app时间统计
+        File file = new File(context.getCacheDir() + "/hello.trace");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Debug.startMethodTracing(context.getCacheDir() + "/hello.trace");
+    }
     //aroute初始化时间接近2s，用异步方式解决
     @SuppressLint("CheckResult")
     @OnClick(R.id.arouter)

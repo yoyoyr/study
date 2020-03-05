@@ -1,0 +1,3262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="biometric_dialog_cancel">Cancel</string>
+    <string name="biometric_dialog_title">Authentication</string>
+    <string name="biometric_dialog_subtitle">Press home button to verify fingerprint</string>
+    <string name="biometric_dialog_state_normal">Touch sensor</string>
+    <string name="biometric_dialog_state_failed">Failed to identify, please try again</string>
+    <string name="biometric_dialog_state_error">Verification error, please enter payment password</string>
+    <string name="biometric_dialog_state_error_enable_process">Verification error, setup failed</string>
+    <string name="biometric_dialog_state_succeeded">Verification successful</string>
+    <string name="biometric_dialog_use_password">Cancel</string>
+    <string name="finger_sign">Fingerprint verification</string>
+    <string name="finger_sign_tip">Identify fingerprints to start bio-secrecy</string>
+
+
+<!--idcard-->
+    <string name="livenessHomePromptFrontalFaceText">Please show your frontal face</string>
+    <string name="livenessHomePromptFaceEreaText">Invalid face area for detection</string>
+    <string name="livenessHomePromptBrighterText">Please under brighter lights conditions</string>
+    <string name="livenessHomePromptDarkerText">Please under less bright lights conditions</string>
+    <string name="livenessHomePromptCloserText">Please come closer</string>
+    <string name="livenessHomePromptFurtherText">Please be a little farther</string>
+    <string name="livenessHomePromptNoBacklightingText">Please avoid side lighting and backlighting</string>
+    <string name="livenessHomePromptFrontalFaceInBoundingBoxText">Please fit your full-frontal face in the bounding box</string>
+    <string name="livenessHomePromptNoEyesOcclusionText">Please avoid eyes occlusion</string>
+    <string name="livenessHomePromptNoMouthOcclusionText">Please avoid mouth occlusion</string>
+    <string name="livenessHomePromptStayStillText">Good, please stay still</string>
+    <string name="livenessHomePromptWaitText"> Please wait for verification</string>
+    <string name="livenessHomePromptShakeHeadText">Please turn your head to the left and right</string>
+    <string name="livenessHomePromptNodText"> Please nod your head</string>
+    <string name="livenessHomePromptOpenMouthText">Please open your mouth and close it</string>
+    <string name="livenessHomePromptBlinkText"> Please blink your eyes </string>
+    <string name="livenessExitTitlePromptText">Are you sure to quit?</string>
+    <string name="livenessExitLeftPromptText">No</string>
+    <string name="livenessExitRightPromptText">Yes</string>
+    <string name="livenessRetryLeftPromptText">Try again</string>
+    <string name="livenessRetryRightPromptText">Quit</string>
+    <string name="livenessHomePromptVerticalText">Please pick up the phone and keep it vertical</string>
+    <string name="livenessHomePromptTooBrightText">Lights too bright，please under less bright lights conditions</string>
+    <string name="init_fail">Detector init failed</string>
+    <string name="open_fail">Camera open failed </string>
+    <string name="persiom_fail">No camera permission </string>
+
+<!--    framework-->
+
+    <string name="loading_value">loading...</string>
+    <string name="loading_no_data">No data</string>
+    <string name="loading_net_error">Network exception, please check the network</string>
+    <string name="loading_click_tip">Click screen refresh</string>
+    <string name="str_loading">loading</string>
+    <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
+    <string name="pull_to_refresh_release_label">Release to refresh…</string>
+    <string name="pull_to_refresh_refreshing_label">Loading…</string>
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+
+<!--quickadapter-->
+    <string name="brvah_loading">Loading...</string>
+    <string name="brvah_load_failed">load more failed</string>
+    <string name="brvah_load_end">No more data</string>
+
+
+    <string name="accept">Accept</string>
+
+    <string name="about_us">About</string>
+
+    <string name="account">Account</string>
+
+    <string name="account_at_least_one">Need at least one account info</string>
+
+    <string name="account_auth">Account Authorized</string>
+
+    <string name="account_detail">Account Detail</string>
+
+    <string name="create_x_wallet">Create %1$s wallet</string>
+
+    <string name="account_info_advanced">Advance setting</string>
+
+    <string name="account_info_auth_manage">Authority management</string>
+
+    <string name="account_info_cpu_available">CPU available</string>
+
+    <string name="account_info_cpu_used">CPU used</string>
+
+    <string name="account_info_create_time">Created time</string>
+
+    <string name="account_info_holdingram">Holding RAM</string>
+
+    <string name="account_info_net_available">NET available</string>
+
+    <string name="account_info_net_used">NET used</string>
+
+    <string name="account_info_ram_available">RAM available</string>
+
+    <string name="account_info_ram_used">RAM used</string>
+
+    <string name="account_info_title">Account Details</string>
+
+    <string name="account_make_sure">交易额</string>
+
+    <string name="account_make_sure_1">To ensure the registration successfully, please make sure there is at least</string>
+
+    <string name="account_make_sure_2">to ensure successful registration</string>
+
+    <string name="account_make_sure_info">* The account name should be 12 digits</string>
+
+    <string name="account_make_sure_info_meetone">*The account name must be 12 digits and the last two digits are .m</string>
+
+    <string name="account_not_exist">Account does not exist</string>
+
+    <string name="account_signture">Authorization request</string>
+
+    <string name="accout_name_error">Account name required 12 digits</string>
+
+    <string name="active_key">Active Key</string>
+
+    <string name="add_a_new_eos_wallet">Add an EOS Wallet</string>
+
+    <string name="add_a_new_eth_wallet">Add an ETH Wallet</string>
+
+    <string name="add_account">Accounts</string>
+
+    <string name="add_new_one_account">Add a new one</string>
+
+    <string name="add_new_one_account_1">Each new account will be transferred to about</string>
+
+    <string name="add_new_one_account_2">and assign according to the following rules to ensure that the new account can be used normally.</string>
+
+    <string name="add_new_token">Add new token</string>
+
+    <string name="add_new_wallet">Import ETH Wallet</string>
+
+    <string name="add_resource_tip">Add more resources will increase the vote weight.</string>
+
+    <string name="add_tag">Add Tag</string>
+
+    <string name="add_to_token">Add attention</string>
+
+    <string name="added_to_token">Added attention</string>
+
+    <string name="address">Address</string>
+
+    <string name="address_book">Common address</string>
+
+    <string name="agree_protocol">1. I have carefully read and agree with $Terms of Service &amp; Privacy</string>
+
+    <string name="agreement">Terms of Service &amp; Privacy</string>
+
+    <string name="album">Ablum</string>
+
+    <string name="all_in">All</string>
+
+    <string name="app_name">MEET.ONE</string>
+
+    <string name="application_lock">Security</string>
+
+    <string name="application_lock_auth_required">Authentication</string>
+
+    <string name="application_lock_background">Lock when app in background</string>
+
+    <string name="application_lock_click">Click to Unlock</string>
+
+    <string name="application_lock_desc">Verify using fingerprint</string>
+
+    <string name="application_lock_face">Face recognition</string>
+
+    <string name="application_lock_fingerprint">Fingerprint recognition</string>
+
+    <string name="application_lock_login_psw">Application Passcode</string>
+
+    <string name="application_lock_modify_psw">Change password</string>
+
+    <string name="application_lock_old_psw_input">Please enter your old password</string>
+
+    <string name="application_lock_psw">Use Passcode verify</string>
+
+    <string name="application_lock_psw_error">Password is incorrect</string>
+
+    <string name="application_lock_psw_input">Please enter your password</string>
+
+    <string name="application_lock_psw_setting">Set password</string>
+
+    <string name="application_lock_psw_verify">Please check your new password</string>
+
+    <string name="application_lock_title">Welcome back</string>
+
+    <string name="application_lock_verify_failed">Verification Failed</string>
+
+    <string-array name="area">
+        <item>@string/area_filter_all</item>
+        <item>@string/area_filter_assia</item>
+        <item>@string/area_filter_america</item>
+        <item>@string/area_filter_europe</item>
+        <item>@string/area_filter_pecific</item>
+        <item>@string/area_filter_africa</item>
+    </string-array>
+
+    <string name="area_filter_africa">Africa</string>
+
+    <string name="area_filter_all">All</string>
+
+    <string name="area_filter_america">America</string>
+
+    <string name="area_filter_assia">Asia</string>
+
+    <string name="area_filter_europe">Europe</string>
+
+    <string name="area_filter_pecific">Oceania</string>
+
+    <string name="area_filter_text">Location</string>
+
+    <string name="arrive_notification_message"> Arrived a notification message. Content is \"%1$s\"</string>
+
+    <string name="ask_me_later">Ask me later</string>
+
+    <string name="assets">Asset</string>
+
+    <string name="auth_change_changewarning">The current operation will change the permission, is it changed? </string>
+
+    <string name="auth_change_delete">Delete</string>
+
+    <string name="auth_change_deletewarning">The current operation will delete the permission, is it deleteed? </string>
+
+    <string name="auth_change_newkey">New private key</string>
+
+    <string name="auth_change_newkey_placeholder">Please enter the new public key</string>
+
+    <string name="auth_change_newname">New account</string>
+
+    <string name="auth_change_newname_placeholder">Please enter the new account</string>
+
+    <string name="auth_change_note_1">- If you are replacing the currently public key, then you need to re-import the wallet with the private key again.</string>
+
+    <string name="auth_change_note_2">- Please confirm the saved public and private keys. </string>
+
+    <string name="auth_change_oldkey">Current public key</string>
+
+    <string name="auth_change_oldname">Account</string>
+
+    <string name="auth_change_submit">Submit</string>
+
+    <string name="auth_change_title">Change Authority</string>
+
+    <string name="auth_manage_change">Change</string>
+
+    <string name="auth_manage_note">Note：</string>
+
+    <string name="auth_manage_note_1">- - Owner: Have all permissions for the current %1$s account.</string>
+
+    <string name="auth_manage_note_2">- - Active: By default, all transactions can be done except to change the Owner.</string>
+
+    <string name="auth_manage_note_3">- For the security of your assets, it is recommended to use the Active Permissions to import the wallet and keep the Owner key safe. </string>
+
+    <string name="auth_manage_now">Now</string>
+
+    <string name="auth_manage_warning">You do not have permission for this account.</string>
+
+    <string name="authenticatiomomentn_fail">Verification Failed</string>
+
+    <string name="authentication_fail">Authentication failed</string>
+
+    <string name="authorization_account">Access Account</string>
+
+    <string name="authorization_change">Change</string>
+
+    <string name="authorization_confirm">Confirm</string>
+
+    <string name="authorization_desc">Need your EOS account name</string>
+
+    <string name="authorization_notice">This is a third party Dapp Please verify the authenticity.</string>
+
+    <string name="authorization_permission"> Confirm the request, the app will get access to: </string>
+
+    <string name="authorization_permission_01">· Read your account name</string>
+
+    <string name="authorization_permission_notice">Allow the app to read the account name will not reveal your private key.</string>
+
+    <string name="authorization_title">Account authorization</string>
+
+    <string name="auto_translate">Auto translation: </string>
+
+    <string name="backup_keystore">backup Keystore</string>
+
+    <string name="backup_private_key_tip_1">Save offline</string>
+
+    <string name="backup_private_key_tip_2">It is recommended to copy or print and place it in a safe place.</string>
+
+    <string name="backup_private_key_tip_3">Do not use network transmission</string>
+
+    <string name="backup_private_key_tip_4">Do not use a network tool to transfer private keys. Once acquired by hackers, it will cause irreparable loss of assets.</string>
+
+    <string name="backup_private_key_title">Backup private key</string>
+
+    <string name="backup_wallet">Backup wallet</string>
+
+    <string name="backup_wallet_notice">Please save your password well,  QR code import will require password.</string>
+
+    <string name="backup_wallet_notice2">Forgot your current wallet password will case importing failure, MEET.ONE is not responsible.</string>
+
+    <string name="balance_eos">Balance %1$s</string>
+
+    <string name="binance_wallet">Binance Wallet</string>
+
+    <string name="bind">Binding</string>
+
+    <string name="bind_email">Link with e-mail</string>
+
+    <string name="bio_free">Biological identification</string>
+
+    <string name="biological_identification">Biological identification</string>
+
+    <string name="block_number">Block Number</string>
+
+    <string name="bnb_dex">Trade</string>
+
+    <string name="bos_side_chain">BOS sidechain account</string>
+
+    <string name="bos_wallet">BOS Wallet</string>
+
+    <string name="broadcast_is_empty">Broadcast is empty</string>
+
+    <string name="bulk_account_tips1">Warning: New Account will use the same Private Key with </string>
+
+    <string name="bulk_account_tips2">Use the same pulic and private key</string>
+
+    <string name="buy_invite">Purchase invitation code</string>
+
+    <string name="buy_invite_notice">Fiat currency payment purchase invitation code</string>
+
+    <string name="buy_rex">Buy Rex</string>
+
+    <string name="buy_sell_ram">RAM</string>
+
+    <string name="cancel">cancel</string>
+
+    <string name="cancel_vote">Cancel vote</string>
+
+    <string name="cant_transferto_self">Can\"t transfer to yourself</string>
+
+    <string name="change_authority">Change Authority</string>
+
+    <string name="change_email_hint">If you change your email address, you need to re-verify the email address.</string>
+
+    <string name="change_name">Change account name</string>
+
+    <string name="change_password">Change password</string>
+
+    <string name="change_password_fail">Change password fail</string>
+
+    <string name="change_password_success">Change password success</string>
+
+    <string name="change_pwd">Change password</string>
+
+    <string name="change_wallet_name">Change wallet name</string>
+
+    <string name="check_again">Check again</string>
+
+    <string name="check_password">Verify password</string>
+
+    <string name="check_password_import">Verify the password and import the wallet</string>
+
+    <string name="check_update">Check for updates</string>
+
+    <string name="chinese">chinese</string>
+
+    <string name="choose_country">Region</string>
+
+    <string name="choose_eth_wallet">Choose an ETH wallet</string>
+
+    <string name="choose_token">Tokens</string>
+
+    <string name="choose_wallet">Choose a wallet</string>
+
+    <string name="choose_wallet_type">Net type</string>
+
+    <string name="clean_cache">Clear the cache</string>
+
+    <string name="clean_cache_no_need">Cache is cleared</string>
+
+    <string name="clean_cache_success">Cache clear complete</string>
+
+    <string name="clean_recent_visited_alert">Confirm whether to clear the history records</string>
+
+    <string name="click_notification_message"> Clicked a notification message. Content is \"%1$s\"</string>
+
+    <string name="close">Close</string>
+
+    <string name="close_fingerprint">close fingerprint secrecy-free</string>
+
+    <string name="close_free_password">Disable biological identification?</string>
+
+    <string name="collapsed_string">less</string>
+
+    <string name="comfirm_stake">Confirm stake</string>
+
+    <string name="commit_success">Submit success</string>
+
+    <string name="commit_to_link">The transaction has been submitted to the chain</string>
+
+    <string name="complete">Complete</string>
+
+    <string name="confirm">confirm</string>
+
+    <string name="confirm_the_change">Confirm</string>
+
+    <string name="confirm_to_transfer">confirm</string>
+
+    <string name="confirm_without_remind">No More Input Before Exit DApp.</string>
+
+    <string name="confirm_without_remind_fullscreen">Authorization can be modified via Setting, item involved token value is not suggested to select.</string>
+
+    <string name="confirm_without_remind_fullscreen_tip">Whitelist this action, no need to authorized again.</string>
+
+    <string name="confirming_transfer">Confirming</string>
+
+    <string name="contact_assistant">There seems an error while creating account, Please contact us for refund.</string>
+
+    <string name="content_behavior">com.meetone.binance.ui.token.detail.ContentBehavior</string>
+
+    <string name="continue_transfer">Continue transfer</string>
+
+    <string name="contract">Contract</string>
+
+    <string name="contract_account">Contract account</string>
+
+    <string name="contract_account_warning">This account has deployed a smart contract. Be sure to confirm the smart contract content before the transfer.</string>
+
+    <string name="contract_register">Self-Registration</string>
+
+    <string name="copy">copy</string>
+
+    <string name="copy_account">Copy receive account</string>
+
+    <string name="copy_account_success">Copy account success</string>
+
+    <string name="copy_address_success">Copy address success</string>
+
+    <string name="copy_assistant">ID copied</string>
+
+    <string name="copy_eos_account">Copied</string>
+
+    <string name="copy_link">Copy link</string>
+
+    <string name="copy_private_key">Copy private key</string>
+
+    <string name="copy_success">Already copied!</string>
+
+    <string name="copy_wallet_address">Copy wallet address</string>
+
+    <string name="cosmos_delegate_content_behavior">com.meetone.libcosmos.ui.delegate.ContentBehavior</string>
+
+    <string name="cosmos_delegate_head_behavior">com.meetone.libcosmos.ui.delegate.HeadBehavior</string>
+
+    <string name="cosmos_wallet">Cosmos wallet</string>
+
+    <string name="cost_tip_1">Note: In the amount of the EOS, 0.2 EOS will be staked for the CPU and NET, and the rest will purchase approximately 4KB RAM.</string>
+
+    <string name="cost_tip_2">* This service is provided by the open source DApp signupeoseos.</string>
+
+    <string name="country">{AD={sort=AN DAO ER, value=安道尔}, AE={sort=A LA BO LIAN HE QIU ZHANG GUO, value=阿拉伯联合酋长国}, AF={sort=A FU HAN, value=阿富汗}, AG={sort=AN TI GUA HE BA BU DA, value=安提瓜和巴布达}, AI={sort=AN GUI LA, value=安圭拉}, AL={sort=A ER BA NI YA, value=阿尔巴尼亚}, AM={sort=YA MEI NI LA, value=亚美尼亚}, AN={sort=HE SHU AN DE LIE SI, value=荷属安的列斯}, AO={sort=AN GE LA, value=安哥拉}, AR={sort=A GEN TING, value=阿根廷}, AT={sort=O DI LI, value=奥地利}, AU={sort=AO DA LI YA, value=澳大利亚}, AW={sort=A LU BA, value=阿鲁巴}, AZ={sort=A SAI BAI JIANG, value=阿塞拜疆}, BA={sort=BO SI NI YA HEI SAI GE WEI NA, value=波斯尼亚黑塞哥维那}, BB={sort=BA BA DUO SI, value=巴巴多斯}, BD={sort=MENG JIA LA GUO, value=孟加拉国}, BE={sort=BI LI SHI, value=比利时}, BF={sort=BU JI NA FA SUO, value=布基纳法索}, BG={sort=BAO JIA LI YA, value=保加利亚}, BH={sort=BA LIN, value=巴林}, BI={sort=BU LONG DI, value=布隆迪}, BJ={sort=BEI NING, value=贝宁}, BM={sort=BAI MU DA, value=百慕大}, BN={sort=WEN LAI DA LU SA LAN GUO, value=文莱达鲁萨兰国}, BO={sort=BO LI WEI YA, value=玻利维亚}, BR={sort=BA XI, value=巴西}, BS={sort=BA HA MA, value=巴哈马}, BT={sort=BU DAN, value=不丹}, BW={sort=BO CI WA NA, value=博茨瓦纳}, BY={sort=BAI E LUO SI, value=白俄罗斯}, BZ={sort=BO LI ZI, value=伯利兹}, CA={sort=JIA NA DA, value=加拿大}, CD={sort=GANG GUO MIN ZHU GONG HE GUO, value=刚果（民主共和国）}, CF={sort=ZHONG FEI GONG HE GUO, value=中非共和国}, CG={sort=GANG GUO GONG HE GUO, value=刚果（共和国）}, CH={sort=RUI SHI, value=瑞士}, CK={sort=KU KE QUN DAO, value=库克群岛}, CL={sort=ZHI LI, value=智利}, CM={sort=KA MAI LONG, value=喀麦隆}, CN={currency_name=人民币, sort=ZHONG GUO, value=中国}, CO={sort=GE LUN BI YA, value=哥伦比亚}, CR={sort=GE SI DA LI JIA, value=哥斯达黎加}, CU={sort=GU BA, value=古巴}, CV={sort=KA FU WEI DE, value=卡佛维德}, CY={sort=SAI PU LU SI, value=塞浦路斯}, CZ={sort=JIE KE GUO HE GUO, value=捷克共和国}, DE={sort=DE GUO, value=德国}, DJ={sort=JI BU TI, value=吉布提}, DK={sort=DAN MAI, value=丹麦}, DM={sort=DUO MI NI KE, value=多米尼克}, DO={sort=DUO MING NI YA GONG HE GUO, value=多明尼加共和国}, DZ={sort=A ER JI LI YA, value=阿尔及利亚}, EC={sort=E GUA DUO ER, value=厄瓜多尔}, EE={sort=AI SHA NI YA, value=爱沙尼亚}, EG={sort=AI JI, value=埃及}, ES={sort=XI BAN YA, value=西班牙}, ET={sort=AI SAI E BI YA, value=埃塞俄比亚}, FI={sort=FEN LAN, value=芬兰}, FJ={sort=FEI JI, value=斐济}, FM={sort=MI KE LUO NI XI YA, value=密克罗尼西亚}, FO={sort=FA LUO QUN DAO, value=法罗群岛}, FR={sort=FA GUO, value=法国}, GA={sort=JIA PENG, value=加蓬}, GB={sort=YING GUO, value=英国}, GD={sort=GE LIN NA DA, value=格林纳达}, GE={sort=GE LU JI YA, value=格鲁吉亚}, GF={sort=FA SHU GUI YA NA, value=法属圭亚那}, GG={sort=GEN XI DAO, value=根西岛}, GH={sort=JIA NA, value=加纳}, GI={sort=ZHI BU LUO TUO, value=直布罗陀}, GL={sort=GE LING LAN, value=格陵兰}, GM={sort=GANG BI YA, value=冈比亚}, GN={sort=JI NEI YA, value=几内亚}, GP={sort=GUA DE LUO PU, value=瓜德罗普}, GQ={sort=CI DAO JI NEI YA, value=赤道几内亚}, GR={sort=XI LA, value=希腊}, GT={sort=WEI DI MA LA, value=危地马拉}, GU={sort=GUAN DAO, value=关岛}, GW={sort=JI NEI YA BI SAO, value=几内亚比绍}, GY={sort=GUI YA NA, value=圭亚那}, HK={sort=XIANG GANG, value=香港}, HN={sort=HONG DU LA SI, value=洪都拉斯}, HR={sort=KE LUO DI YA, value=克罗地亚}, HT={sort=HAI DI, value=海地}, HU={sort=XIONG YA LI, value=匈牙利}, ID={sort=YIN DU NI XI YA, value=印度尼西亚}, IE={sort=AI ER LAN GONG HE GUO, value=爱尔兰共和国}, IL={sort=YI SE LIE, value=以色列}, IM={sort=MA ER DAO, value=马恩岛}, IN={sort=YIN DU, value=印度}, IQ={sort=YI LA KE, value=伊拉克}, IR={sort=YI LANG, value=伊朗}, IS={sort=BING DAO, value=冰岛}, IT={sort=YI DA LI, value=意大利}, JE={sort=ZE XI, value=泽西}, JM={sort=YA MAI JIA, value=牙买加}, JO={sort=YUE DAN, value=约旦}, JP={sort=RI BEN, value=日本}, KE={sort=KEN NI YA, value=肯尼亚}, KG={sort=JI ER JI SI SI TAN, value=吉尔吉斯斯坦}, KH={sort=JIAN PU ZAI, value=柬埔寨}, KI={sort=JI LI BA SI, value=基里巴斯}, KM={sort=KE MO LUO, value=科摩罗}, KN={sort=SHENG JI CI HE NI WEI SI, value=圣基茨和尼维斯}, KP={sort=BEI HAN, value=北韩}, KR={sort=NAN HAN, value=南韩}, KW={sort=KE WEI TE, value=科威特}, KY={sort=KAI MAN QUN DAO, value=开曼群岛}, KZ={sort=HA SA KE SI TAN, value=哈萨克斯坦}, LA={sort=LAO WO, value=老挝}, LB={sort=LI BA NEN, value=黎巴嫩}, LC={sort=SHENG LU XI YA, value=圣卢西亚}, LI={sort=LIE ZHI DUN SHI DENG, value=列支敦士登}, LK={sort=SI LI LAN KA, value=斯里兰卡}, LR={sort=LI BI LI YA, value=利比里亚}, LS={sort=LAI SUO TUO, value=莱索托}, LT={sort=LI TAO WAN, value=立陶宛}, LU={sort=LU SEN BAO, value=卢森堡}, LV={sort=LA TUO WEI YA, value=拉脱维亚}, LY={sort=LI BI YA, value=利比亚}, MA={sort=MO LUO GE, value=摩洛哥}, MC={sort=MO NA GE, value=摩纳哥}, MD={sort=MO ER DUO WA, value=摩尔多瓦}, ME={sort=HEI SHAN, value=黑山}, MF={sort=SHENG MA DING FA SHU, value=圣马丁（法属）}, MG={sort=MA DA JIA SI JIA, value=马达加斯加}, MK={sort=MA QI DUN, value=马其顿}, ML={sort=MA LI, value=马里}, MM={sort=MIAN DIAN, value=缅甸}, MN={sort=MENG GU, value=蒙古}, MO={sort=AO MEN, value=澳门}, MP={sort=BEI MA LI YA NA QUN DAO, value=北马里亚纳群岛}, MQ={sort=MA TI NI KE, value=马提尼克}, MR={sort=MAO LI TA NI YA, value=毛里塔尼亚}, MS={sort=MENG TE SAI LA TE, value=蒙特塞拉特}, MT={sort=MA QI TA, value=马耳他}, MU={sort=MAO LI QIU SI, value=毛里求斯}, MV={sort=MA ER DAI FU, value=马尔代夫}, MW={sort=MA LA WEI, value=马拉维}, MX={sort=MO XI GE, value=墨西哥}, MY={currency_name=马来西亚币（林吉特）, sort=MA LAI XI YA, value=马来西亚}, MZ={sort=MO SANG BI KE, value=莫桑比克}, NA={sort=NA NI BI YA, value=纳米比亚}, NC={sort=XIN KA LI DUO NI YA, value=新喀里多尼亚}, NE={sort=NI RI ER, value=尼日尔}, NF={sort=NUO FU KE DAO, value=诺福克岛}, NG={sort=NI RI LI YA, value=尼日利亚}, NI={sort=NI JIA LA GUA, value=尼加拉瓜}, NL={sort=HE LAN, value=荷兰}, NO={sort=NUO WEI, value=挪威}, NP={sort=NI BO ER, value=尼泊尔}, NR={sort=NAO LU, value=瑙鲁}, NZ={sort=XIN XI LAN, value=新西兰}, OM={sort=A MAN, value=阿曼}, PA={sort=BA NA MA, value=巴拿马}, PE={sort=MI LU, value=秘鲁}, PF={sort=FA SHU BO LI NI XI YA, value=法属波利尼西亚}, PG={sort=BA BU YA XIN JI NEI YA, value=巴布亚新几内亚}, PH={sort=FEI LV BIN, value=菲律宾}, PK={sort=BA JI SI TAN, value=巴基斯坦}, PL={sort=BO LAN, value=波兰}, PR={sort=BO DUO LI GE, value=波多黎各}, PS={sort=BA LE SI TAN GUO, value=巴勒斯坦国}, PT={sort=PU TAO YA, value=葡萄牙}, PW={sort=PA LAO, value=帕劳}, PY={sort=BA LA GUI, value=巴拉圭}, QA={sort=KA TA ER, value=卡塔尔}, RE={sort=LIU NI WANG, value=留尼汪}, RO={sort=LUO MA NI YA, value=罗马尼亚}, RS={sort=SAI ER WEI YA, value=塞尔维亚}, RU={sort=E LUO SI, value=俄罗斯}, RW={sort=LU WANG DA, value=卢旺达}, SA={sort=SHA TE A LA BO, value=沙特阿拉伯}, SC={sort=SAI SHE ER, value=塞舌尔}, SD={sort=SU DAN, value=苏丹}, SE={sort=RUI DIAN, value=瑞典}, SG={currency_name=新加坡元, sort=XIN JIA PO, value=新加坡}, SH={sort=SHENG HE LE NA A SEN SONG HE TE LI SI TAN DA KU NI YA, value=圣赫勒拿，阿森松和特里斯坦达库尼亚}, SI={sort=SI LUO WEN NI YA, value=斯洛文尼亚}, SK={sort=SI LUO FA KE, value=斯洛伐克}, SL={sort=SAI LA LI ANG, value=塞拉利昂}, SM={sort=SHENG MA LI NUO GONG HE GUO, value=圣马力诺（共和国）}, SN={sort=SAI NEI JIA ER, value=塞内加尔}, SR={sort=SU LI NAN, value=苏里南}, SV={sort=SA ER WA DUO, value=萨尔瓦多}, SY={sort=XU LI YA, value=叙利亚}, SZ={sort=SI WEI SHI LAN, value=斯威士兰}, TC={sort=TE KE SI HE KAI KE SI QUN DAO, value=特克斯和凯科斯群岛}, TD={sort=ZA DE, value=乍得}, TG={sort=DUO GE, value=多哥}, TH={sort=TAI GUO, value=泰国}, TJ={sort=TA JI KE SI TAN, value=塔吉克斯坦}, TL={sort=DONG DI WEN, value=东帝汶}, TM={sort=TU KU MAN SI TAN, value=土库曼斯坦}, TN={sort=TU NI SI, value=突尼斯}, TO={sort=TANG JIA, value=汤加}, TR={sort=TU ER QI, value=土耳其}, TT={sort=TE LI NI DA HE DUO BA GE, value=特立尼达和多巴哥}, TW={currency_name=新台币, sort=TAI WAN, value=台湾}, TZ={sort=TAN SANG NI YA, value=坦桑尼亚}, UA={sort=WU KE LAN, value=乌克兰}, UG={sort=WU GAN DA, value=乌干达}, US={currency_name=美元, sort=MEI GUO, value=美国}, UY={sort=WU LA GUI, value=乌拉圭}, UZ={sort=WU ZI BIE KE SI TAN, value=乌兹别克斯坦}, VC={sort=SHENG WEN SEN TE HE GE LIN NA DING SI, value=圣文森特和格林纳丁斯}, VE={sort=WEI NEI RUI LA, value=委内瑞拉}, VG={sort=YING SHU WEI ER JING QUN DAO, value=英属维尔京群岛}, VI={sort=WEI ER JING QUN DAO MEI GUO, value=维尔京群岛（美国）}, VN={sort=YUE NAN, value=越南}, VU={sort=WA NU A TU, value=瓦努阿图}, WS={sort=SA MO YA, value=萨摩亚}, YE={sort=YE MEN GONG HE GUO, value=也门共和国}, YT={sort=MA YUE TE, value=马约特}, ZA={sort=NAN FEI, value=南非}, ZM={sort=ZAN BI YA, value=赞比亚}, ZW={sort=JIN BA BU WEI, value=津巴布韦}}</string>
+
+    <string name="cpu">CPU</string>
+
+    <string name="cpu_available_tip">Can only stake %1$s NET according to your balance.</string>
+
+    <string name="cpu_scale">%1$s ms / %2$s ms</string>
+
+    <string name="creat_new_key">Generate a new public-private key pair</string>
+
+    <string name="creat_wallet">Create Wallet</string>
+
+    <string name="create_account">Create account</string>
+
+    <string name="create_again">Regenerate</string>
+
+    <string name="create_bnb_wallet">Create Binance wallet</string>
+
+    <string name="create_eos_account">Register by invitation code</string>
+
+    <string name="create_eos_account_tip">I have read these information:</string>
+
+    <string name="create_eos_account_tip2">· The EOS required to create the account is paid by MEET.ONE</string>
+
+    <string name="create_eos_account_tip3">· Account ownership/usership is owned by the user. All operations after creating an account are not relatedto MEET.ONE</string>
+
+    <string name="create_eos_wallet">Create EOS wallet</string>
+
+    <string name="create_key_error">Generate key fail, please enter again</string>
+
+    <string name="create_wallet">Create wallet</string>
+
+    <string name="create_wallet_fail">failed</string>
+
+    <string name="create_wallet_succ">Wallet created successfully</string>
+
+    <string name="cup_net">CPU + NET</string>
+
+    <string name="current_net_type_eos">Current network: EOS Mainnet Sidechain</string>
+
+    <string name="current_net_type_side_china">Current network: %1$s</string>
+
+    <string name="current_password">Current password</string>
+
+    <string name="current_password_error">Current password error</string>
+
+    <string name="current_price">Current price</string>
+
+    <string name="current_public_key">Current public key</string>
+
+    <string name="current_version">Current version: %1$s</string>
+
+    <string name="current_version2">Current version:</string>
+
+    <string name="custom_stake_from">Stake account</string>
+
+    <string name="custom_stake_receiver">Receiver</string>
+
+    <string name="custom_stake_tip">By default, you stake resources for others, and you can withdraw the staked resources at any time.
+        If you select "Transfer", the staked resources will not be recoverable. Please be cautious.</string>
+
+    <string name="custom_stake_title">Custom</string>
+
+    <string name="custom_stake_topright">Custom</string>
+
+    <string name="custom_stake_transfer">Transfer</string>
+
+    <string name="custom_stake_unstake">Unstake</string>
+
+    <string name="dapps_alert_body">This is a third party Dapp. Please go through the User Agreement and Privacy Policy of the third party DApp carefully, which will resume full responsibility for all actions and usage on the Dapp.</string>
+
+    <string name="dapps_alert_title">Notice</string>
+
+    <string name="default_share_content">Hey, Let me Share you a link</string>
+
+    <string name="default_value_kb">%1$s KB</string>
+
+    <string name="delegate_eos_stake">Stake resources</string>
+
+    <string name="delegate_eos_unstake">Unstake</string>
+
+    <string name="delegate_note">Note: </string>
+
+    <string name="delegate_note_1">- Any transaction on the %1$s network will occupy CPU and NET.</string>
+
+    <string name="delegate_note_2">- The resources used will be returned after a period of time.</string>
+
+    <string name="delegate_note_3">- You can unstake the resources at any time, but there will be a three-day waiting period.</string>
+
+    <string name="delegate_staked_eos">Staked</string>
+
+    <string name="delegatebwpage_available">Available</string>
+
+    <string name="delegatebwpage_availablebw">Available Resources</string>
+
+    <string name="delegatebwpage_confirm">Confirm</string>
+
+    <string name="delegatebwpage_cpu">CPU</string>
+
+    <string name="delegatebwpage_network">Network</string>
+
+    <string name="delegatebwpage_noenoughbw">No enough %1$s to stake</string>
+
+    <string name="delegatebwpage_nonegative">Negative number is not allowed</string>
+
+    <string name="delegatebwpage_rule">Rule*</string>
+
+    <string name="delegatebwpage_rule1">· Vote will use a little CPU and Net resources;</string>
+
+    <string name="delegatebwpage_rule2">· The voting weight will decrease over time;</string>
+
+    <string name="delegatebwpage_rule3">· You could &amp;apos;unstake EOS&amp;apos; at anytime, which will deduct corresponding votes from voted producers, and EOS will refund to account 3 days later;</string>
+
+    <string name="delegatebwpage_stakecount">Stake Count</string>
+
+    <string name="delegatebwpage_stakequantity">Stake Quantity</string>
+
+    <string name="delegatebwpage_title">Stake resources</string>
+
+    <string name="delegatebwpage_usevalidvalue">Please input valid value</string>
+
+    <string name="delegated_balance">Staked resources</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="delete_authority_fail">Delete public key fail</string>
+
+    <string name="delete_authority_success">Delete public key success</string>
+
+    <string name="delete_order">delete order</string>
+
+    <string name="delete_order_tip">Notice, Do you want to delete this order? If you already paid, choose don\"t.</string>
+
+    <string name="delete_public_key">Delete public key</string>
+
+    <string name="delete_wallet">Delete wallet</string>
+
+    <string name="deny">Reject</string>
+
+    <string name="describe">Description</string>
+
+    <string name="dialog_content_behavior">com.meetone.common.widget.coordinatorlayout.DialogContentBehavior</string>
+
+    <string name="dialog_head_behavior">com.meetone.common.widget.coordinatorlayout.DialogHeadBehavior</string>
+
+    <string name="dili_import_describle">Import account MEET.ONE created by account DILIDILI</string>
+
+    <string name="dili_password">Please enter the password in DiliDili</string>
+
+    <string name="disclaimer">Disclaimer</string>
+
+    <string name="disclaimer_tip">- The software is not liable for the loss of assets due to the loopholes in biometric technology.</string>
+
+    <string name="discovery">Discovery</string>
+
+    <string name="discovery_bp">EOS BP</string>
+
+    <string name="discovery_bp_title">EOS BP</string>
+
+    <string name="discovery_candy">EOS Candy</string>
+
+    <string name="discovery_candy_title">EOS Candy</string>
+
+    <string name="discovery_register">EOS Accounts</string>
+
+    <string name="discovery_registration">EOS Registration</string>
+
+    <string name="discovery_registration_title">EOS Registration</string>
+
+    <string name="display_set">Display Settings</string>
+
+    <string name="display_style">Gainers Color</string>
+
+    <string name="do_not_take_screenshots">Do not take screenshots</string>
+
+    <string name="do_not_use_net">Do not use network transmission</string>
+
+    <string name="do_not_use_net_info">Do not use a network tool to transfer private keys. Once acquired by hackers, it will cause irreparable loss of assets.</string>
+
+    <string name="donot_transfer_self">Can\"t transfer to yourself</string>
+
+    <string name="earn_to">Receive - %1$s</string>
+
+    <string name="email">Mail</string>
+
+    <string name="email_address">Mail address</string>
+
+    <string name="email_format_error">Please input the mail address</string>
+
+    <string name="empty_data">No data</string>
+
+    <string name="end_time">end time</string>
+
+    <string name="english">English</string>
+
+    <string name="enter_invite_code">Please enter the invitation code.</string>
+
+    <string name="enter_password">please enter the payment password</string>
+
+    <string name="eos_account">Register by friend</string>
+
+    <string name="eos_account_has_exist">This account has been registed</string>
+
+    <string name="eos_account_name">Account</string>
+
+    <string name="eos_account_name_can_not_be_null">Account name can not be empty</string>
+
+    <string name="eos_account_name_tip">Only a-z,1-5 and 12 digits required</string>
+
+    <string name="eos_account_register_warning">Can only be used by switching to EOS wallet</string>
+
+    <string name="eos_browser_banner_url">../../../imgs/eos-browser.png</string>
+
+    <string name="eos_browser_go">Enter</string>
+
+    <string name="eos_browser_history">History</string>
+
+    <string name="eos_browser_history_clear">Clear All</string>
+
+    <string name="eos_browser_placeholder">Please enter dapp\"s URL</string>
+
+    <string name="eos_entrance">The Portal to EOS Ecology</string>
+
+    <string name="eos_get_chainid_error">Can \"t get ChainID, please check the URL</string>
+
+    <string name="eos_key_save_tip_2">Please save the public and private keys properly: </string>
+
+    <string name="eos_key_save_tip_3">It is recommended to copy or print and place it in a safe place.</string>
+
+    <string name="eos_mapping_open_source">EOS mapping</string>
+
+    <string name="eos_mapping_submit_contract">Submit contract</string>
+
+    <string name="eos_mapping_submit_title">Submit a mapping contract</string>
+
+    <string name="eos_mapping_success_title">EOS mapping</string>
+
+    <string name="eos_mapping_tip_title">EOS mapping</string>
+
+    <string name="eos_mapping_title">EOS mapping</string>
+
+    <string name="eos_mapping_verify">Verification mapping</string>
+
+    <string name="eos_mapping_verify_title">Verification mapping</string>
+
+    <string name="eos_mapping_wallet">EOS mapping tool</string>
+
+    <string name="eos_node_chainid_placeholder">Default to Mainnet\"s Chain ID</string>
+
+    <string name="eos_node_customlabel">Custom Node</string>
+
+    <string name="eos_node_location">Node</string>
+
+    <string name="eos_node_ping_neterror">Network error</string>
+
+    <string name="eos_node_ping_timeout">Timeout</string>
+
+    <string name="eos_node_selection">Node Selection</string>
+
+    <string name="eos_node_selectlabel">Available Node</string>
+
+    <string name="eos_node_server_placeholder">e.g.: https://mainnet.meet.one</string>
+
+    <string name="eos_node_server_save">Save &amp; Apply</string>
+
+    <string name="eos_node_server_url">Node URL</string>
+
+    <string name="eos_node_speed">Ping</string>
+
+    <string name="eos_node_speed_tip">* The smaller is the Ping, the faster.</string>
+
+    <string name="eos_not_mapping_tip">Your EOS has not been mapped.</string>
+
+    <string name="eos_only">Only EOS wallet can use this feature</string>
+
+    <string name="eos_order_info">Order Info</string>
+
+    <string name="eos_private_key">Private Key</string>
+
+    <string name="eos_private_key_tip_1">If someone gets your wallet mnemonic it will get your assets directly! Please copy the private key and store it in a safe place.</string>
+
+    <string name="eos_public_key">Public Key</string>
+
+    <string name="eos_public_key_1">EOS wallet public key</string>
+
+    <string name="eos_public_key_for_return">Returned EOS public key:</string>
+
+    <string name="eos_receiver_address">Receiver</string>
+
+    <string name="eos_receiver_wallet_address">Receiver</string>
+
+    <string name="eos_receiver_wallet_address2">Receiver:</string>
+
+    <string name="eos_recenttrans_memotip">Note: Account and memo are consistent with previous transfer records, please confirm the information to avoid property lost.</string>
+
+    <string name="eos_recenttrans_recent">Recent Transaction</string>
+
+    <string name="eos_recenttrans_scan">Scan Code</string>
+
+    <string name="eos_recenttrans_transfer">Account Transfer</string>
+
+    <string name="eos_remark">Memo</string>
+
+    <string name="eos_rent"> Rex Rent</string>
+
+    <string name="eos_resources_from_others">From others:%1$s</string>
+
+    <string name="eos_sender_address">Payer</string>
+
+    <string name="eos_sender_address2">Payer:</string>
+
+    <string name="eos_staked_by_others">Staked %1$s by others</string>
+
+    <string name="eos_staked_by_self">Staked by yourself</string>
+
+    <string name="eos_token_addtolist">Add to Token list</string>
+
+    <string name="eos_token_publisher_title">Contract account</string>
+
+    <string name="eos_transfer_result_committrans">Transfer Commit</string>
+
+    <string name="eos_transfer_result_success">Success!</string>
+
+    <string name="eos_transfer_result_title">Transfer result</string>
+
+    <string name="eos_wallet">EOS Wallet</string>
+
+    <string name="eos_wallet_account">%1$s account</string>
+
+    <string name="eos_wallet_mapping_description">The "map" is to register the EOS wallet public key on Ethereum\"s EOS contract. So you need to generate a public key of the EOS wallet. MEET.ONE uses the official open source EOS address generator.</string>
+
+    <string name="eos_wallet_name_must_be_12">Account name required %1$s digits</string>
+
+    <string name="error">Unknow Failed</string>
+
+    <string name="error_3010000">chain type exception (3010000)</string>
+
+    <string name="error_3010001">Invalid name (3010001)</string>
+
+    <string name="error_3010002">Invalid public key (3010002)</string>
+
+    <string name="error_3010003">Invalid private key (3010003)</string>
+
+    <string name="error_3010004">Invalid authority(3010004)</string>
+
+    <string name="error_3010005">Invalid action (3010005)</string>
+
+    <string name="error_3010006">Invalid transaction(3010006)</string>
+
+    <string name="error_3010007">Invalid ABI (3010007)</string>
+
+    <string name="error_3010008">No ABI found (3010008)</string>
+
+    <string name="error_3010009">Invalid block ID (3010009)</string>
+
+    <string name="error_3010010">Invalid transaction ID (3010010)</string>
+
+    <string name="error_3010011">Invalid packed transaction(3010011)</string>
+
+    <string name="error_3010012">Invalid asset (3010012)</string>
+
+    <string name="error_3020000">fork database exception(3020000)</string>
+
+    <string name="error_3020001">unlinkable block (3020001)</string>
+
+    <string name="error_3030000">block exception (3030000)</string>
+
+    <string name="error_3030001">transaction outputs in block do not match transaction outputs from applying block (3030001)</string>
+
+    <string name="error_3030002">block does not guarantee concurrent execution without conflicts (3030002)</string>
+
+    <string name="error_3030003">shard locks in block are incorrect or mal-formed (3030003)</string>
+
+    <string name="error_3030004">block exhausted allowed resources (3030004)</string>
+
+    <string name="error_3030005">block is too old to push (3030005)</string>
+
+    <string name="error_3040000">transaction exception (3040000)</string>
+
+    <string name="error_3040001">Error decompressing transaction (3040001)</string>
+
+    <string name="error_3040002">transaction should have at least one normal action (3040002)</string>
+
+    <string name="error_3040003">transaction should have at least one required authority (3040003)</string>
+
+    <string name="error_3040004">context-free action should have no required authority (3040004)</string>
+
+    <string name="error_3040005">Expired Transaction (3040005)</string>
+
+    <string name="error_3040006">Transaction Expiration Too Far (3040006)</string>
+
+    <string name="error_3040007">Invalid Reference Block(3040007)</string>
+
+    <string name="error_3040008">duplicate transaction (3040008)</string>
+
+    <string name="error_3040009">duplicate deferred transaction (3040009)</string>
+
+    <string name="error_3050000">action exception (3050000)</string>
+
+    <string name="error_3050001">account name already exists (3050001)</string>
+
+    <string name="error_3050002">Invalid Action Arguments (3050002)</string>
+
+    <string name="error_3050003">eosio_assert_message assertion failure (3050003)</string>
+
+    <string name="error_3050004">eosio_assert_code assertion failure (3050004)</string>
+
+    <string name="error_3060000">database exception (3060000)</string>
+
+    <string name="error_3060001">Permission Query Exception (3060001)</string>
+
+    <string name="error_3060002">Account Query Exception (3060002)</string>
+
+    <string name="error_3060003">Contract Table Query Exception (3060003)</string>
+
+    <string name="error_3060004">Contract Query Exception (3060004)</string>
+
+    <string name="error_3070000">WASM Exception (3070000)</string>
+
+    <string name="error_3070001">error in WASM page memory (3070001)</string>
+
+    <string name="error_3070002">Runtime Error Processing WASM (3070002)</string>
+
+    <string name="error_3070003">Serialization Error Processing WASM (3070003)</string>
+
+    <string name="error_3070004">memcpy with overlapping memory (3070004)</string>
+
+    <string name="error_3080000">resource exhausted exception (3080000)</string>
+
+    <string name="error_3080001">account using more than allotted RAM usage (3080001)</string>
+
+    <string name="error_3080002">transaction exceeded the current network usage limit imposed on the transaction (3080002)</string>
+
+    <string name="error_3080003">transaction network usage is too much for the remaining allowable usage of the current block (3080003)</string>
+
+    <string name="error_3080004">transaction exceeded the current CPU usage limit imposed on the transaction (3080004)</string>
+
+    <string name="error_3080005">transaction CPU usage is too much for the remaining allowable usage of the current block (3080005)</string>
+
+    <string name="error_3080006">transaction took too long (3080006)</string>
+
+    <string name="error_3081001">Transaction timeout due to CPU resource limitations  (3081001)</string>
+
+    <string name="error_3090000">duplicate signature included (3090000)</string>
+
+    <string name="error_3090001">Authorization exception (3090001)</string>
+
+    <string name="error_3090002">irrelevant signature included (3090002)</string>
+
+    <string name="error_3090003">provided keys, permissions, and delays do not satisfy declared authorizations (3090003)</string>
+
+    <string name="error_3090004">missing required authority(3090004)</string>
+
+    <string name="error_3090005">irrelevant authority included (3090005)</string>
+
+    <string name="error_3090006">insufficient delay (3090006)</string>
+
+    <string name="error_3100000">Miscellaneous exception (3100000)</string>
+
+    <string name="error_3100001">internal state is no longer consistent (3100001)</string>
+
+    <string name="error_3100002">unknown block (3100002)</string>
+
+    <string name="error_3100003">unknown transaction (3100003)</string>
+
+    <string name="error_3100004">corrupted reversible block database was fixed (3100004)</string>
+
+    <string name="error_3100005">extracted genesis state from blocks.log (3100005)</string>
+
+    <string name="error_3100006">subjective exception thrown during block production (3100006)</string>
+
+    <string name="error_3110000">missing plugin exception (3110000)</string>
+
+    <string name="error_3110001">Missing Chain API Plugin (3110001)</string>
+
+    <string name="error_3110002">Missing Wallet API Plugin (3110002)</string>
+
+    <string name="error_3110003">Missing History API Plugin (3110003)</string>
+
+    <string name="error_3110004">Missing NET API Plugin (3110004)</string>
+
+    <string name="error_3120000">wallet exception (3120000)</string>
+
+    <string name="error_3120001">Wallet already exists (3120001)</string>
+
+    <string name="error_3120002">Nonexistent wallet (3120002)</string>
+
+    <string name="error_3120003">Locked wallet (3120003)</string>
+
+    <string name="error_3120004">Missing public key (3120004)</string>
+
+    <string name="error_3120005">Invalid wallet password (3120005)</string>
+
+    <string name="error_3120006">No available wallet (3120006)</string>
+
+    <string name="error_3120007">Already unlocked (3120007)</string>
+
+    <string name="error_3130000">actor or contract whitelist/blacklist exception (3130000)</string>
+
+    <string name="error_3130001">Authorizing actor of transaction is not on the whitelist (3130001)</string>
+
+    <string name="error_3130002">Authorizing actor of transaction is not on the blacklist (3130002)</string>
+
+    <string name="error_3130003">Contract to execute is not on the whitelist (3130003)</string>
+
+    <string name="error_3130004">Contract to execute is on the blacklist (3130004)</string>
+
+    <string name="error_3130005">Action to execute is on the blacklist (3130005)</string>
+
+    <string name="error_3130006"> Public key in authority is on the blacklist (3130006)</string>
+
+    <string name="error_parse">JSON parse failed, please switch nodes and retry.</string>
+
+    <string name="error_receiver">This payment account is not supported</string>
+
+    <string name="error_url">url error</string>
+
+    <string name="eth_address_for_mapping">ETH wallet for mapping:</string>
+
+    <string name="eth_create_wallet_tip_1">* Password is used to protect private keys and transaction authorization, strength is very important.</string>
+
+    <string name="eth_create_wallet_tip_2">* MEET.ONE does not store passwords and cannot retrieve them for you. Please keep in mind.</string>
+
+    <string name="eth_only">Only ETH Wallet Can use this feature</string>
+
+    <string name="eth_private_key_tip_1">If someone gets your private key it will get your assets directly! Please copy the private key and store it in a safe place.</string>
+
+    <string name="eth_wallet">ETH wallet</string>
+
+    <string name="eth_wallet_add_title">Add wallet</string>
+
+    <string name="eth_wallet_address">ETH wallet</string>
+
+    <string name="eth_wallet_keystore_can_not_be_null">Wallet Keystore cannot be empty</string>
+
+    <string name="eth_wallet_name_can_not_be_null">Wallet name cannot be empty</string>
+
+    <string name="eth_wallet_password_can_not_be_null">Password can not be blank</string>
+
+    <string name="eth_wallet_private_key_can_not_be_null">Wallet\"s private key cannot be empty</string>
+
+    <string name="eth_wallet_seed_phrase_can_not_be_null">Wallet mnemonic cannot be empty</string>
+
+    <string name="exchange">Exchange</string>
+
+    <string name="exchanges">Exchange</string>
+
+    <string name="exist_private">Exist public key</string>
+
+    <string name="expand_string">more</string>
+
+    <string name="export_keystore">Export Keystore</string>
+
+    <string name="export_private_key">Export private key</string>
+
+    <string name="fail_create_wallet">Failed createing wallet</string>
+
+    <string name="fail_create_wallet_reson">it seems Something wrong happened and the administrator has been notified.Please try again later(free)</string>
+
+    <string name="failed_to_get_permission">Failed to get permission</string>
+
+    <string name="failed_to_save_photo">Failed to save the picture</string>
+
+    <string name="failed_to_transfer">Transfer failed</string>
+
+    <string name="feedback">Feedback</string>
+
+    <string name="find_password">Retrieve password</string>
+
+    <string name="finger_verification">Click to use fingerprint</string>
+
+    <string name="fingerprint">fingerprint</string>
+
+    <string name="fingerprint_density_free">Fingerprint density free</string>
+
+    <string name="fingerprint_open">Privacy-free fingerprints have been opened</string>
+
+    <string name="fingerprint_tip">Fast Payment and Signature Completion by Verification System Biometric Recognition in Transactione</string>
+
+    <string name="finish_operation">Complete</string>
+
+    <string name="fix_password_success">Password modified successfully</string>
+
+    <string name="follow">Follow</string>
+
+    <string name="followed">Followed</string>
+
+    <string name="forget_password">forget password</string>
+
+    <string name="forgot_password">Forget password</string>
+
+    <string name="forgot_password_hint">You can find password by phone number</string>
+
+    <string name="frozen">Frozen</string>
+
+    <string name="game_center_dau">Transactions 24H</string>
+
+    <string name="game_center_recommend">Recommend</string>
+
+    <string name="game_center_volume">Volume 24H</string>
+
+    <string name="generat_pk">Generate public key</string>
+
+    <string name="generate_keys">Generate Key</string>
+
+    <string name="github_open_source_address">Github open source address</string>
+
+    <string name="global_development_team">Pomelo developer Team</string>
+
+    <string name="global_total_votes_percentage">Total Votes Percentage</string>
+
+    <string name="global_upgrade_description">We have released a new version,please&amp;apos;update&amp;apos;to see the new feature.</string>
+
+    <string name="global_upgrade_later">Later</string>
+
+    <string name="global_upgrade_notice">Update Notice</string>
+
+    <string name="global_upgrade_now">Update</string>
+
+    <string name="go_transfer">Trading</string>
+
+    <string name="good_saved">Saved </string>
+
+    <string name="green_down">Green</string>
+
+    <string name="green_red_fall">Green up red down</string>
+
+    <string name="has_selected_node">Selected Nodes</string>
+
+    <string name="hasimported">Imported</string>
+
+    <string name="have_new_version">New version%1$s</string>
+
+    <string name="head_behavior">com.meetone.binance.ui.token.detail.HeadBehavior</string>
+
+    <string name="help_create_wallet">Ask friends create account</string>
+
+    <string name="help_other">Help others registering new account</string>
+
+    <string name="homepage_choiceaccount">Choose account</string>
+
+    <string name="homepage_choose_one_net">Please choose one Net to connect</string>
+
+    <string name="homepage_hint">Please enter your private key</string>
+
+    <string name="homepage_importwallet">Import wallet</string>
+
+    <string name="homepage_invalidprivatekey">Invalid private key</string>
+
+    <string name="homepage_mainnet_not_ready">Main net is not ready, please try Testnet</string>
+
+    <string name="homepage_noaccountfound">No account name found for the key</string>
+
+    <string name="homepage_pleasecancel">Cancel</string>
+
+    <string name="homepage_pleaseentercomplete">Please input completely</string>
+
+    <string name="homepage_pleasesure">OK</string>
+
+    <string name="homepage_privatekey">Your Private Key</string>
+
+    <string name="homepage_somethingwrong">Network error</string>
+
+    <string name="homepage_submit">Confirm</string>
+
+    <string name="homepage_testnet_dialog_cancel">Close</string>
+
+    <string name="homepage_testnet_dialog_desc">Please use our testnet portal http://vote.eosio.sg to generate a testing private key.</string>
+
+    <string name="homepage_testnet_dialog_ok">Continue</string>
+
+    <string name="homepage_testnet_dialog_title">Notice</string>
+
+    <string name="hot_dapps">Hot Dapps</string>
+
+    <string name="how_get_invite_code">How to get？</string>
+
+    <string name="how_to_get_invite">How to Get</string>
+
+    <string name="how_to_get_invite_address">https://h5.ethte.com/voucher_zh.html</string>
+
+    <string name="how_to_get_invite_title">Get Invitation code</string>
+
+    <string name="how_to_get_regist_address">https://h5.ethte.com/account_zh.html</string>
+
+    <string name="how_to_regist_sub_title">Guide</string>
+
+    <string name="how_to_regist_title">Account registration tutorial</string>
+
+    <string name="i_know">I know</string>
+
+    <string name="im_new">New User</string>
+
+    <string name="im_old">Old User</string>
+
+    <string name="import_">Import</string>
+
+    <string name="import_bnb_wallet">Import Binance wallet</string>
+
+    <string name="import_current_private_key">Export private key</string>
+
+    <string name="import_eos_wallet">Import wallet</string>
+
+    <string name="import_eth_wallet">Import ETH wallet</string>
+
+    <string name="import_other_eth_wallet">Import other ETH wallets</string>
+
+    <string name="import_success">Success</string>
+
+    <string name="import_wallet">Import wallet</string>
+
+    <string name="import_x_wallet">Import %1$s wallet</string>
+
+    <string name="import_wallet_by_keystore">KeyStore</string>
+
+    <string name="import_wallet_by_keystore_title">Keystore</string>
+
+    <string name="import_wallet_by_private_key">Private key</string>
+
+    <string name="import_wallet_by_seed_phrase">Mnemonic</string>
+
+    <string name="import_wallet_error">Input wallet fail</string>
+
+    <string name="import_wallet_title">Import ETH wallet</string>
+
+    <string name="imported_be_used">Imported MainNet account could used in %1$s SideChain</string>
+
+    <string name="initiator">Payer</string>
+
+    <string name="input_account_name">Please input account name</string>
+
+    <string name="input_dili_password">Please enter the password to decrypt the private key</string>
+
+    <string name="input_dili_password_notice">* this password is also the password of the wallet after import. You can go to the "manage wallet" page to change the password.</string>
+
+    <string name="input_num_too_size">The inputs number cannot be greater than</string>
+
+    <string name="input_password">Enter password</string>
+
+    <string name="input_releate_private_key">Please enter the corresponding private key</string>
+
+    <string name="install_app">Install</string>
+
+    <string name="invalid_account_name">Invalid account name</string>
+
+    <string name="invalid_eos_account">Only EOS account can be identified</string>
+
+    <string name="invalid_eth_wallet_address">Only ETH wallet address can be identified</string>
+
+    <string name="invalid_eth_wallet_private_key">Wallet private key format is wrong</string>
+
+    <string name="invalid_key">Invalid or incorrect private key</string>
+
+    <string name="invalid_public_key">Invalid public key</string>
+
+    <string name="invalid_qr_code">Unrecognized QR code</string>
+
+    <string name="invalid_seed_phrase">Your mnemonic is in the wrong format</string>
+
+    <string name="invite_code">Invite code</string>
+
+    <string name="is_newest_version">This is the newest version</string>
+
+    <string name="json">json</string>
+
+    <string name="keystore_input_placeholder">Copy and paste the Ethereum wallet directly from the Keystore file content from here.</string>
+
+    <string name="keystore_password">Keystore password</string>
+
+    <string name="korean">한국어</string>
+
+    <string name="language_first">The first language ”%1$s” ?</string>
+
+    <string name="language_second">The second language ”%1$s” ?</string>
+
+    <string name="language_setting_title">Language</string>
+
+    <string name="lastest_version">This is the newest version</string>
+
+    <string name="launch">Submit</string>
+
+    <string name="link_to_mainnet">Connecting with mainnet</string>
+
+    <string name="loading">Loading...</string>
+
+    <string name="lock">Locked</string>
+
+    <string name="lock_app">Lock when app in background</string>
+
+    <string name="login">Login</string>
+
+    <string name="login_failed">Login failed, please try again later</string>
+
+    <string name="login_with_exist_account">Login</string>
+
+    <string name="logout">Sign out</string>
+
+    <string name="look_detail">More Detail</string>
+
+    <string name="look_more">read more</string>
+
+    <string name="main_net_account">Mainnet account</string>
+
+    <string name="mainpage_btn1_subtitle">Import wallet by private Key</string>
+
+    <string name="mainpage_btn1_title">Import wallet</string>
+
+    <string name="mainpage_btn2_subtitle">I have EOS in exchange, register account by withdraw EOS</string>
+
+    <string name="mainpage_btn2_title">Self-Registration</string>
+
+    <string name="mainpage_btn3_subtitle">I want to generate keys and ask friend to create account</string>
+
+    <string name="mainpage_btn3_title">Register by friend</string>
+
+    <string name="mainpage_btn4_subtitle">I have invitation code to create account</string>
+
+    <string name="mainpage_btn4_title">Register by invitation code</string>
+
+    <string name="mainpage_title_1">I have %1$s account</string>
+
+    <string name="mainpage_title_2">I don\"t have %1$s account</string>
+
+    <string name="make_sure_again">Double confirm</string>
+
+    <string name="make_sure_again_for_eos_private_key">MEET.ONE will not upload your EOS wallet private key. Once lost, it cannot be retrieved. Please keep it safe.</string>
+
+    <string name="manager_wallet">Manage wallet</string>
+
+    <string name="mapping_contract">Mapping contract</string>
+
+    <string name="mapping_not">Unmapped</string>
+
+    <string name="mapping_now">Map now</string>
+
+    <string name="mapping_status">Mapping state</string>
+
+    <string name="mapping_success">Map now</string>
+
+    <string name="max_buy">Max buy</string>
+
+    <string name="max_change">Max sell</string>
+
+    <string name="max_rent">Maximum Rex Rent %1$s</string>
+
+    <string name="max_sell">Max Sell </string>
+
+    <string name="max_stake">Maximum Stake %1$s</string>
+
+    <string name="max_unstake">Maximum Unstake %1$s</string>
+
+    <string name="meet">Asset</string>
+
+    <string name="meet_one">MEET.ONE</string>
+
+    <string name="meet_self">NEWS</string>
+
+    <string name="meet_term_title_1">Service &amp; Privacy Policy</string>
+
+    <string name="meet_term_title_2">I have carefully read and agree with %1$s</string>
+
+    <string name="meetone_buy_ram_tip">* Can\"t trade RAM until MEET.ONE chain activated at 13:00 UTC Feb 27th.</string>
+
+    <string name="meetone_imported_be_used">The imported main wallet can be used directly on the MEET.ONE chain</string>
+
+    <string name="meetone_side_chain">%1$s Account</string>
+
+    <string name="meetone_str_no_account_import_tip">2019/02/19 02:00 UTC+0 MEET.ONE chain has mapped;</string>
+
+    <string name="meetone_str_tip">- 2019/02/19 02:00 UTC+0 MEET.ONE chain has mapped;\t    \n- The account created after it will not be mapped;\t    \n- The public key changed after it will not update to MEET.ONE chain.</string>
+
+    <string name="meetone_wallet">MEET.ONE Wallet</string>
+
+    <string name="memo_tip_1">Copy the following information into Memo</string>
+
+    <string name="memo_tip_2">Smart Contract will register account via Memo</string>
+
+    <string name="message_title">Message</string>
+
+    <string name="mine">Me</string>
+
+    <string name="mine_feedback">Feedback</string>
+
+    <string name="miner_fee">Miners\" fees:</string>
+
+    <string name="mobile_or_email">mobile / mail</string>
+
+    <string name="modify_authority">Change authority</string>
+
+    <string name="modify_authority_fail">Public key change fail</string>
+
+    <string name="modify_authority_success">public change success</string>
+
+    <string name="modify_success">Successfully modified</string>
+
+    <string name="more_token">More Token</string>
+
+    <string name="mortgage_details">Stake detail</string>
+
+    <string name="mouse">\@</string>
+
+    <string name="multi_language">Multi-language</string>
+
+    <string name="my_eth_wallet">My ETH address</string>
+
+    <string name="need_choose_21_node">Holding REX must vote for at least 21 bp or proxy.</string>
+
+    <string name="need_help">Need registering new %1$s account</string>
+
+    <string name="net">NET</string>
+
+    <string name="net_available_tip">Can only stake %1$s CPU according to your balance.</string>
+
+    <string name="net_not_good">Network request fail, please try again later</string>
+
+    <string name="net_scale">%1$s KB / %2$s KB</string>
+
+    <string name="net_switch">Switch Chain</string>
+
+    <string name="net_switch_des">Notice: EOS don\"t supported data exchange between chains, should import wallet again after switch to side-chain.</string>
+
+    <string name="net_work">Network</string>
+
+    <string name="new_account_attention">Note: Registering account only needs to provide the public key.</string>
+
+    <string name="new_account_attention2">Do not disclose the following to anyone</string>
+
+    <string name="new_account_private_key">Private Key</string>
+
+    <string name="new_account_public_key">Public Key</string>
+
+    <string name="newest">Newest%1$s</string>
+
+    <string name="news">News</string>
+
+    <string name="news_more_1">Full Text</string>
+
+    <string name="news_more_2">Collapse</string>
+
+    <string name="news_share">share</string>
+
+    <string name="news_title">News</string>
+
+    <string name="next_step">Next</string>
+
+    <string name="next_time">Next time</string>
+
+    <string name="no_binding">No binding</string>
+
+    <string name="no_delete_order">"don't "</string>
+
+    <string name="no_find_account">Could not find the account</string>
+
+    <string name="no_info">No Information</string>
+
+    <string name="no_inptu_befor_exit">No More Input Before Exit</string>
+
+    <string name="no_install_app">Uninstall%1$s, try share in other APP</string>
+
+    <string name="no_install_meetone">Uninstall MEET.ONE</string>
+
+    <string name="no_internet_connect">No internet connect</string>
+
+    <string name="no_more">no more</string>
+
+    <string name="no_password_set">Password Free</string>
+
+    <string name="no_proxy">Close Proxy</string>
+
+    <string name="no_recognition_protocol">Unrecognized protocol:</string>
+
+    <string name="no_wallet">Not import wallet yet</string>
+
+    <string name="node_choose">Selected</string>
+
+    <string name="node_contact_method">Contact</string>
+
+    <string name="node_list_topright_text">Proxy</string>
+
+    <string name="node_select_notice">* The smaller is the Ping, the faster.</string>
+
+    <string name="node_selected">Selected</string>
+
+    <string name="node_server_desc">Server Hardware</string>
+
+    <string name="node_server_error">Can\"t get ChainID, please check the URL</string>
+
+    <string name="node_server_location">Location</string>
+
+    <string name="node_server_title">Server Configuration</string>
+
+    <string name="node_sysn">Node syncing</string>
+
+    <string name="node_sysn_finish">Node sync complete</string>
+
+    <string name="node_team_desc">Team Introduction</string>
+
+    <string name="node_vote">Vote</string>
+
+    <string name="node_vote_list">Selected Producers</string>
+
+    <string name="not_active">not active</string>
+
+    <string name="not_enough">Insufficient resources</string>
+
+    <string name="not_login_account">no login</string>
+
+    <string name="not_match_account">EOS account mismatch</string>
+
+    <string name="not_set">Not set</string>
+
+    <string name="notice">Notice</string>
+
+    <string name="notification_page_title">Notification</string>
+
+    <string name="official_website">Official website</string>
+
+    <string name="offline_save">Save offline</string>
+
+    <string name="offline_save_info">It is recommended to copy or print private key and place it in a safe place.</string>
+
+    <string name="ok">Confirm</string>
+
+    <string name="old_account_errormsg0">Public key format error</string>
+
+    <string name="old_account_key_info">The owner public key is the same as the active public key</string>
+
+    <string name="old_account_placeholder">Please enter the owner public key of the new account</string>
+
+    <string name="only_create">Create</string>
+
+    <string name="only_import">Import</string>
+
+    <string name="open_camera_permission">Please give the application access to the camera</string>
+
+    <string name="open_dapps_directly">Open page:</string>
+
+    <string name="open_fingerprint">Agree to open fingerprint secrecy-free</string>
+
+    <string name="operate">Operation</string>
+
+    <string name="operate_failed">Operation failed, please try again later</string>
+
+    <string name="order">Order</string>
+
+    <string name="order_close">Order closed</string>
+
+    <string name="order_complete">Order is complete</string>
+
+    <string name="order_confirm">Order confirm</string>
+
+    <string name="order_num">Order ID：</string>
+
+    <string name="order_timeout">Order timeout</string>
+
+    <string name="other">Others</string>
+
+    <string name="owner">Owner</string>
+
+    <string name="owner_key">Owner Key</string>
+
+    <string name="password">Password</string>
+
+    <string name="password2">Repeat password</string>
+
+    <string name="password_check">Please check your password</string>
+
+    <string name="password_clear">Clear Passwords</string>
+
+    <string name="password_format_hint">Please set a password</string>
+
+    <string name="password_hint">Password Hint:</string>
+
+    <string name="password_incorrect">Password is incorrect</string>
+
+    <string name="password_input">Please enter your password</string>
+
+    <string name="password_invalid">Password is not the same</string>
+
+    <string name="password_is_not_correct">Password is not correct</string>
+
+    <string name="password_is_not_same">Password is not the same</string>
+
+    <string name="password_is_not_the_same">Password is not the same</string>
+
+    <string name="password_is_tooshort">Password require at least 8 characters</string>
+
+    <string name="password_min_8">password at least 8 digits</string>
+
+    <string name="password_modify_success">Modified successfully, please Login again</string>
+
+    <string name="password_old">Old password</string>
+
+    <string name="password_prompt">Password prompt (optional)</string>
+
+    <string name="password_set">Setup Passcode</string>
+
+    <string name="password_set_success">Password set success</string>
+
+    <string name="password_shot_length_tip">Password min length is 8</string>
+
+    <string name="password_tip_hint">Password hint information (optional)</string>
+
+    <string name="password_verify">Please enter your password</string>
+
+    <string name="pause_push">Stop pushing</string>
+
+    <string name="pay_create">Pay and create wallets</string>
+
+    <string name="pay_to">Transfer - %1$s</string>
+
+    <string name="pay_way">Payment method</string>
+
+    <string name="paying_order_timeout">Paying order timeout </string>
+
+    <string name="phone_number">Phone number</string>
+
+    <string name="photograph">photograph</string>
+
+    <string name="please_agree_meet_term">Please agree to the service and privacy policy.</string>
+
+    <string name="please_input_amount">Please input the amount</string>
+
+    <string name="please_input_correct_account">Invalid account format</string>
+
+    <string name="please_input_private_key">Please enter the private key</string>
+
+    <string name="please_input_private_key_1">Please input private key</string>
+
+    <string name="please_input_receiver_account">Please enter the account of the recipient</string>
+
+    <string name="please_input_receiver_address">Please enter the address of the recipient</string>
+
+    <string name="please_input_seed_phrase">Please enter mnemonics and separated by spaces.</string>
+
+    <string name="please_input_verify_password">Please input verify password</string>
+
+    <string name="please_input_wallet_password">Please input the wallet password</string>
+
+    <string name="please_input_xx_wallet_password">Please input %1$s wallet password</string>
+
+    <string name="please_select_network">Please select network</string>
+
+    <string name="please_set_password_hint">Set password hint</string>
+
+    <string name="please_set_password_tip">Please set a password</string>
+
+    <string name="please_set_voucher_tip">Please input your invitation code</string>
+
+    <string name="please_set_wallet_name">Please set wallet name</string>
+
+    <string name="pls_input_account">Please input account</string>
+
+    <string name="pls_input_image_verify_code">Please enter the graphic verification code</string>
+
+    <string name="pls_input_phone">Please input Phone number</string>
+
+    <string name="pls_input_pwd">Please enter your password</string>
+
+    <string name="pls_input_token">Please input verify code</string>
+
+    <string name="press_to_refund">Press to unstake</string>
+
+    <string name="privacy">Privacy Policy</string>
+
+    <string name="producers_list_choose">Selected</string>
+
+    <string name="producers_list_title">Producers List</string>
+
+    <string name="producers_list_vote">Vote</string>
+
+    <string name="profile">Personal information</string>
+
+    <string name="progress_link">Progress link</string>
+
+    <string name="public_key">Public key</string>
+
+    <string name="push_setting_title">Message push</string>
+
+    <string name="qq">QQ</string>
+
+    <string name="qr_code_title">Collection code</string>
+
+    <string name="qr_scan_title">Scan</string>
+
+    <string name="qr_share_tip_1">Download MEET.ONE</string>
+
+    <string name="qr_share_tip_2">More than a EOS Wallet</string>
+
+    <string name="quickly">FAST</string>
+
+    <string name="quit_app">Click again to exit MEET.ONE</string>
+
+    <string name="ram_balance">Balance:</string>
+
+    <string name="ram_buy">Buy RAM</string>
+
+    <string name="ram_buy_sell">Buy/Sell RAM</string>
+
+    <string name="ram_count">Quantity</string>
+
+    <string name="ram_done">Transaction</string>
+
+    <string name="ram_estimate">About</string>
+
+    <string name="ram_price">Price</string>
+
+    <string name="ram_price_1k">1 KB = %1$s</string>
+
+    <string name="ram_sell">Sell RAM</string>
+
+    <string name="ram_tips1">* The result is estimated by the recent transactions.</string>
+
+    <string name="ram_tips2">Current RAM price: </string>
+
+    <string name="ram_tips3">Usage RAM can\"t be sold</string>
+
+    <string name="ram_tips4">* In order to ensure the success of the transaction, please keep at least 1KB of RAM </string>
+
+    <string name="ram_usage">Usage:</string>
+
+    <string name="raw_data">Raw data</string>
+
+    <string name="read_agree">1. I have carefully read and agree with $Terms of Service &amp; Privacy;</string>
+
+    <string name="read_agree2">2. The EOS required to create the account is paid by MEET.ONE;</string>
+
+    <string name="read_agree3">2. Account ownership/usership is owned by the user. All operations after creating an account are not related to MEET.ONE</string>
+
+    <string name="read_information">I have read these information</string>
+
+    <string name="receive">Receive</string>
+
+    <string name="receive_from">Receive from %1$s</string>
+
+    <string name="receive_hint">Please enter receive account</string>
+
+    <string name="receive_money">Receive</string>
+
+    <string name="receiver_address">Receive address</string>
+
+    <string name="receiver_wallet_address">Receiver\"s wallet address</string>
+
+    <string name="recent_transfer">Recently transferred accounts are here</string>
+
+    <string name="recent_used">Recent use</string>
+
+    <string name="recent_visited">Recent visit</string>
+
+    <string name="recommend_meet">Share MEET.ONE</string>
+
+    <string name="recommend_to_friends">Share MEET.ONE</string>
+
+    <string name="recovering_unfinish_order">recovering unfinish order</string>
+
+    <string name="recv_passthrough_message"> Receive a passthrough message. Content is \"%1$s\"</string>
+
+    <string name="red_up">Red</string>
+
+    <string name="register">Register</string>
+
+    <string name="register_account">Register Account</string>
+
+    <string name="register_account_error">Registration failed</string>
+
+    <string name="register_account_info">New account name should be 12 digits, including a-z or 1–5.</string>
+
+    <string name="register_account_successfully">Registration success</string>
+
+    <string name="register_account_title">Registering Account</string>
+
+    <string name="register_by_contract">Self-Registration</string>
+
+    <string name="register_fail">Register push fail.</string>
+
+    <string name="register_failed">Registration failed, please try again later</string>
+
+    <string name="register_hint">MEET.ONE only supports the registration of mobile phone numbers in mainland of China for the time being.</string>
+
+    <string name="register_loading_status_1">Registering</string>
+
+    <string name="register_loading_status_2">Registration success</string>
+
+    <string name="register_loading_tip_1">The transaction is being submitted</string>
+
+    <string name="register_loading_tip_2">Please save the private keys properly</string>
+
+    <string name="register_loading_tip_3">The invitation code has been used</string>
+
+    <string name="register_mean_agree">Registration is agreed</string>
+
+    <string name="register_meetone_account_info">New account name should be 11 digits, including a-z or 1–5 and ending with .m</string>
+
+    <string name="register_meetone_account_info_12">New account name should be 12 digits, including a-z or 1–5 and ending with .m</string>
+
+    <string name="register_new_account">Register new account</string>
+
+    <string name="register_one_account_amount">Transfer %1$s to each account.</string>
+
+    <string name="register_succes_count">Total %1$s account has been registered</string>
+
+    <string name="register_success">Register push success.</string>
+
+    <string name="registration_complete">Registration is complete</string>
+
+    <string name="registration_complete_1">共</string>
+
+    <string name="registration_complete_2">account has been registered</string>
+
+    <string name="remark">Memo</string>
+
+    <string name="remember_actions_tips">No More Prompts Before Exit DAPP</string>
+
+    <string name="remember_password_notice">Any action won\"t required password during this mode, Please properly keep your phone.</string>
+
+    <string name="remember_password_tips">No More Input Before Exit</string>
+
+    <string name="remove_from_whitelist">Remove from whitelist</string>
+
+    <string name="rent_cpu_price">CPU Rent：%1$s/ms/30d</string>
+
+    <string name="rent_estimate">Rent estimate</string>
+
+    <string name="rent_net_price">NET Rent：%1$s/ms/30d</string>
+
+    <string name="rent_note_1">- Any transaction on the EOS network will occpuy CPU and NET.</string>
+
+    <string name="rent_note_2">- The resources used will be return after a period of time.</string>
+
+    <string name="rent_note_3">- You can unstake the resources at any time, but there will be a three-day waitting period</string>
+
+    <string name="repeat_password">Repeat password</string>
+
+    <string name="repeat_password_error">Please re-enter the same password</string>
+
+    <string name="request_failed">Request failed, please try again later</string>
+
+    <string name="request_permission">Request for access</string>
+
+    <string name="request_permission_album">Want to save pictures to your album</string>
+
+    <string name="resend">Resend</string>
+
+    <string name="resend_count_down">Resend(%1$s)</string>
+
+    <string name="resource">Resources</string>
+
+    <string name="resume_push">resume push</string>
+
+    <string name="retry">retry</string>
+
+    <string name="retry_order">Wallet creation failed</string>
+
+    <string name="rex_amount">Amount</string>
+
+    <string name="rex_tip_1">- Trade REX could use balance or staked EOS.</string>
+
+    <string name="rex_tip_2">- After purchasing REX, it can be sold at least 4 days.</string>
+
+    <string name="rex_tip_3">- Current REX estimate price：%1$s</string>
+
+    <string name="ricardian">ricardian</string>
+
+    <string name="rise_and_fall">Up down display style</string>
+
+    <string name="risk_alert">Warning</string>
+
+    <string name="risk_alert_android">Please do NOT import or create wallet if your device has been root. It may have high risk.</string>
+
+    <string name="risk_alert_ios">Please do NOT import or create wallet if your device is jailbreaking. It may have high risk.</string>
+
+    <string name="risk_warning">Risk warning:</string>
+
+    <string name="risk_warning_tip">- The security of confidential fingerprint payment depends on the security level of mobile phone biometric identification.\n- Do not open your wallet with large assets.</string>
+
+    <string name="save_keystore_tip_1">If you need to save online, it is recommended that you use a password security software such as 1Password to save Keystore.</string>
+
+    <string name="save_keystore_tip_2">Do not use network transmission</string>
+
+    <string name="save_keystore_tip_3">Do not transfer Keystore files through network tools. Once acquired by hackers, it will cause irreparable loss of assets.</string>
+
+    <string name="save_keystore_tip_4">Password safe deposit</string>
+
+    <string name="save_keystore_tip_5">If you need to save online, it is recommended that you use a password security software such as 1Password to save Keystore.</string>
+
+    <string name="save_offline">Save offline</string>
+
+    <string name="save_pic_fail">Failed to share the picture</string>
+
+    <string name="scan">Scan</string>
+
+    <string name="scan_code">Scan</string>
+
+    <string name="scan_download_app">Scan QR code to download App</string>
+
+    <string name="scan_qr_code">Scan QR code</string>
+
+    <string name="scan_qr_to_pay">Scan QR code and pay me</string>
+
+    <string name="search">Search</string>
+
+    <string name="search_bar_url">Search or input the URL</string>
+
+    <string name="select">Select</string>
+
+    <string name="select_account">Select account</string>
+
+    <string name="select_account_tip">Please select accounts to import</string>
+
+    <string name="select_network">select network</string>
+
+    <string name="select_node_net">Select Node</string>
+
+    <string name="select_qr_code">Scan QR code and pay me</string>
+
+    <string name="select_wallet">Select wallet</string>
+
+    <string name="self_register_tip1">Create an EOS account by yourself through </string>
+
+    <string name="self_register_tip2">transferring to smart contract.</string>
+
+    <string name="sell_rex">Sell Rex</string>
+
+    <string name="sender_address">Receive address</string>
+
+    <string name="senior">advanced</string>
+
+    <string name="sent_verify_code_hint">We sent a SMS verify code to your phone %1$s , Please input.</string>
+
+    <string name="server_address">Server address</string>
+
+    <string name="set">Settings</string>
+
+    <string name="set_accept_time">set time</string>
+
+    <string name="set_accept_time_fail"> Set accept time fail for %1$s.</string>
+
+    <string name="set_accept_time_success"> Set accept time %1$s - %2$s success.</string>
+
+    <string name="set_account">set account</string>
+
+    <string name="set_account_fail"> Set account fail for %1$s.</string>
+
+    <string name="set_account_name">Set account name</string>
+
+    <string name="set_account_name_placeholder">Please enter a %1$s-digit account name</string>
+
+    <string name="set_account_success"> Set account \"%1$s\" success.</string>
+
+    <string name="set_alias">set alias</string>
+
+    <string name="set_alias_fail"> Set alias fail for %1$s.</string>
+
+    <string name="set_alias_success"> Set alias \"%1$s\" success.</string>
+
+    <string name="set_eos_account_name">Please set an account name</string>
+
+    <string name="set_new_password">Set new password</string>
+
+    <string name="set_password">Set password</string>
+
+    <string name="set_password_hint">Please set a password</string>
+
+    <string name="set_password_prompt">Set up a password prompt</string>
+
+    <string name="share">Share</string>
+
+    <string name="share_browserr">Browser</string>
+
+    <string name="share_bull">Share BULL</string>
+
+    <string name="share_cancle">Share cancel</string>
+
+    <string name="share_code_1">Copy this paragraph $ </string>
+
+    <string name="share_code_2"> $ then open the portal to EOS ecology MEET.ONE</string>
+
+    <string name="share_code_open">Open</string>
+
+    <string name="share_error">Share failed</string>
+
+    <string name="share_facebook">Facebook</string>
+
+    <string name="share_friend">share friend</string>
+
+    <string name="share_read_more">Download MEET.ONE read full</string>
+
+    <string name="share_sina">WEIBO</string>
+
+    <string name="share_success">Share Success</string>
+
+    <string name="share_telegram">Telegram</string>
+
+    <string name="share_title">Share</string>
+
+    <string name="share_wechat">WeChat</string>
+
+    <string name="short_import">Fast import</string>
+
+    <string name="short_import_des">Imported mainnet wallet can be used directly in the sidechain</string>
+
+    <string name="show_all_price">Total</string>
+
+    <string name="show_unit_price">Unit</string>
+
+    <string name="side_chain_notice">Note:\n- Cross-chain transfer is via %1$s contract, expected to arrive in 3-10 mins.\n- Tokens transferred to the sidechain cannot transfe back to the mainnet temporarily.</string>
+
+    <string name="side_chain_notice1">\n- %1$s cross-chain transfer at least %2$s，at most %3$s.</string>
+
+    <string name="side_chain_notice2">\n%1$s cross-chain transfer at least %2$s.</string>
+
+    <string name="side_chain_notice3">\n%1$s cross-chain transfer at most %2$s.</string>
+
+    <string name="sign_eos">Register EOS account</string>
+
+    <string name="sign_meetone">Register MEET.ONE account</string>
+
+    <string name="simple">Simpilfy</string>
+
+    <string name="skip">Skip</string>
+
+    <string name="slow">Slow</string>
+
+    <string name="sort_btn_text">Sort Type</string>
+
+    <string name="sort_by_hot">Hot</string>
+
+    <string name="sort_by_recommend">Sort Type</string>
+
+    <string name="sort_by_volume">Vol</string>
+
+    <string name="sort_by_voterate">Voting Ratio</string>
+
+    <string name="stake_cup_net">Stake CPU+NET</string>
+
+    <string name="stake_to">Stake %1$s</string>
+
+    <string name="stake_to_others">Staked For Others</string>
+
+    <string name="stake_to_others_new">For Others</string>
+
+    <string name="start_create">Go</string>
+
+    <string name="start_create_wallet">Successful payment, start to create a wallet</string>
+
+    <string name="start_register_account">Start</string>
+
+    <string name="start_time">start time</string>
+
+    <string name="start_trans">Transaction</string>
+
+    <string name="str_24_rate_change">24h Change</string>
+
+    <string name="str_24h_transaction_count">@string/game_center_dau</string>
+
+    <string name="str_24h_volume">@string/game_center_volume</string>
+
+    <string name="str_account_has_register">"*This account has been registed"</string>
+
+    <string name="str_action_white_list">Whitelist</string>
+
+    <string name="str_airdrop_proportion">Airdrop ratio</string>
+
+    <string name="str_airdrop_time">Airdrop time</string>
+
+    <string name="str_all_getrewards">Withdraw</string>
+
+    <string name="str_all_getrewards_new">Withdraw all</string>
+
+    <string name="str_always_inquiry">Always allow</string>
+
+    <string name="str_annual_yield">Annual yield</string>
+
+    <string name="str_app_ok">Confirm</string>
+
+    <string name="str_auth_success">Authorized success</string>
+
+    <string name="str_back_rewards">Rewards</string>
+
+    <string name="str_backup_new_tip">Password Free</string>
+
+    <string name="str_backup_notice_new_tip1">Don\"t take a screenshot and avoid the camera. If someone gets your QR code your assets will be at risk.</string>
+
+    <string name="str_backup_notice_new_tip2">We recommend making a copy and store in a safe place.</string>
+
+    <string name="str_backup_private_key_notice">MEET.ONE not upload your private EOS wallet, once lost can not be recovered, it should keep.</string>
+
+    <string name="str_balnace_type">Type</string>
+
+    <string name="str_batch">Edit</string>
+
+    <string name="str_batch_register_ram_cost_tip">About %1$s</string>
+
+    <string name="str_batch_register_tip">Each new account will be transferred to about %1$s, and assign according to the following rules to ensure that the new account can be used normally.</string>
+
+    <string name="str_batch_tip">* To ensure the registration successfully, please make sure there is at least 1 %1$s in account.</string>
+
+    <string name="str_biance_token_freeze_title">Freezing/UnFreezing the following assets</string>
+
+    <string name="str_binance_cancel_order">Canceling the following transactions</string>
+
+    <string name="str_binance_detail_title">Detail</string>
+
+    <string name="str_binance_dialog_title">Initiating the following transaction</string>
+
+    <string name="str_binance_new_order_id">Tx ID</string>
+
+    <string name="str_binance_unit_price">Price</string>
+
+    <string name="str_binance_vote_title">Initiating the following vote</string>
+
+    <string name="str_bnb_all_order">All orders</string>
+
+    <string name="str_bnb_backup_wallet_tip1">* Recommend copying or after printing in a secure location.</string>
+
+    <string name="str_bnb_backup_wallet_tip2">* It is not recommended to use a network transmission privatekey, such as sending a message to a computer using WeChat</string>
+
+    <string name="str_bnb_buy_in">Buy</string>
+
+    <string name="str_bnb_cancel_order">Cancel</string>
+
+    <string name="str_bnb_choose_send_or_receive">Side</string>
+
+    <string name="str_bnb_current_open_order">Open Orders</string>
+
+    <string name="str_bnb_max_buy">Max</string>
+
+    <string name="str_bnb_max_sell">Max</string>
+
+    <string name="str_bnb_min_amount">amount(min:%1$s )</string>
+
+    <string name="str_bnb_order_aready">Completed</string>
+
+    <string name="str_bnb_order_has_canceled">Canceled</string>
+
+    <string name="str_bnb_order_has_completed">Completed</string>
+
+    <string name="str_bnb_order_has_expired">Expired</string>
+
+
+    <string name="str_bnb_order_has_part_expired">PartialFill</string>
+
+
+    <string name="str_bnb_order_no_aready">Unfilled</string>
+
+    <string name="str_bnb_order_total">Total</string>
+
+    <string name="str_bnb_quanity">Amount（%1$s）</string>
+
+    <string name="str_bnb_screen">Filter</string>
+
+    <string name="str_bnb_search_token">Search Token</string>
+
+    <string name="str_bnb_sell_in">Sell</string>
+
+    <string name="str_bnb_title_price">Price（%1$s）</string>
+
+    <string name="str_bos_tip">- %1$s Sidechain account is randomly generated\t\n- %1$s SideChain and MainNet account used the Same key pair\t\n- Created after January 1st 2019 won\"t be mapped to sidechain</string>
+
+    <string name="str_buy_confirm">Buy %1$s</string>
+
+    <string name="str_buy_failed">Purchase fail</string>
+
+    <string name="str_buy_ram_success">Buy RAM success</string>
+
+    <string name="str_buy_rex_tip">Must vote for at least 21 producers or for a proxy before buying REX.</string>
+
+    <string name="str_can_not_import">Unable to import</string>
+
+    <string name="str_cancel">@string/votepage_cancel</string>
+
+    <string name="str_cancel_order">Cancel Order</string>
+
+    <string name="str_cancel_order_success">Cancelled</string>
+
+    <string name="str_candy_hold">Already Held</string>
+
+    <string name="str_candy_rule">Rule</string>
+
+    <string name="str_candy_title">Candy</string>
+
+    <string name="str_candy_total">Total candy</string>
+
+    <string name="str_change_wallet_content">Re-import the wallet after replacing the currently used publickey. Please confirm that the privatekey has been properly saved.</string>
+
+    <string name="str_choose_account_type">Choose account type</string>
+
+    <string name="str_clear">@string/eos_browser_history_clear</string>
+
+    <string name="str_close">Close</string>
+
+    <string name="str_collapse">Collapse</string>
+
+    <string name="str_commit">@string/homepage_submit</string>
+
+    <string name="str_confirm_change">Confirm change</string>
+
+    <string name="str_confirm_delete">Confirm Delete</string>
+
+    <string name="str_copy_link">@string/copy</string>
+
+    <string name="str_cos_delegate_ing">Delegating</string>
+
+    <string name="str_cos_delegate_number">Delegate amount:%1$s</string>
+
+    <string name="str_cos_mine_delegate_number_and_reward">Delegate amount:%1$s /Rewards：%2$s </string>
+
+    <string name="str_cos_reward">Rewards</string>
+
+    <string name="str_cos_rewards_number">Rewards:%1$s</string>
+
+    <string name="str_cos_undelegate_number">Undelegating:%1$s</string>
+
+    <string name="str_cos_undelegate_time">Return in %1$s days</string>
+
+    <string name="str_cos_undelegate_time_today">Return today</string>
+
+    <string name="str_cosmos_atom_balance">Balance</string>
+
+    <string name="str_cosmos_delegate">Delegate</string>
+
+    <string name="str_cosmos_delegate_tip1">- Delegation rewards come from validation bonuses and transaction fees;</string>
+
+    <string name="str_cosmos_delegate_tip2">- If the validator misbehaves, it may lose some of your delegated tokens. Please carefully select qualified validators.</string>
+
+    <string name="str_cosmos_delegate_tip3">- It takes 21 days to redeem and no reward obtained during waiting period</string>
+
+    <string name="str_cosmos_get_validator_delegate">Delegate  %1$s</string>
+
+    <string name="str_cosmos_get_validator_redelegate">Transfer Delegate  %1$s</string>
+
+    <string name="str_cosmos_get_validator_rewards">Withdraw  %1$s</string>
+
+    <string name="str_cosmos_get_validator_undelegate">Undelegate  %1$s</string>
+
+    <string name="str_cosmos_getwards">Withdraw</string>
+
+    <string name="str_cosmos_mulit">Multiple</string>
+
+    <string name="str_cosmos_transaction_fail">Transaction fails</string>
+
+    <string name="str_cosmos_undelegate">Withdraw</string>
+
+    <string name="str_cpu_used">CPU usage</string>
+
+    <string name="str_dangerous_tip">Risk Tip：</string>
+
+    <string name="str_dangerous_tip3">- Wallets with large amounts of assets are advised not to use the recognition feature.。</string>
+
+    <string name="str_dangerous_tip4">Disclaimer：</string>
+
+    <string name="str_dangerous_tip5">- The software does not assume legal responsibility for the loss of assets caused by biometric technology loopholes during use.</string>
+
+    <string name="str_deal_ing">Trading...</string>
+
+    <string name="str_default_sort">Default</string>
+
+    <string name="str_delegate_balance">Delegated tokens</string>
+
+    <string name="str_delegate_count">Amount</string>
+
+    <string name="str_delegate_has_delegate">Delegated</string>
+
+    <string name="str_delegate_new">"Delegate"</string>
+
+    <string name="str_delegate_type">Type</string>
+
+    <string name="str_delete_success">delete success</string>
+
+    <string name="str_delete_wallet_content">After deleting the currently used publickey, you need to re-import the wallet. Please confirm that the privatekey is properly saved.</string>
+
+    <string name="str_delete_wallet_title">Attention</string>
+
+    <string name="str_desc">Project introduction</string>
+
+    <string name="str_do_not_have_to_enter_again_before_exit">No More Input Before Exit Dapp</string>
+
+    <string name="str_dotm_account">.m account</string>
+
+    <string name="str_drop_date">Airdrop date：%1$s</string>
+
+    <string name="str_eos_candy">EOS Candy</string>
+
+    <string name="str_fast">fast</string>
+
+    <string name="str_fee_has_takeout">The fee has been deducted from the chain</string>
+
+    <string name="str_fees">Fee</string>
+
+    <string name="str_first_letter">A-z</string>
+
+    <string name="str_flash_snat_time">Snapshot time</string>
+
+    <string name="str_get_all_reward">Withdraw  %1$s</string>
+
+    <string name="str_get_all_reward2">%1$s Validators</string>
+
+    <string name="str_get_your_bnb_account_info">· Get your Binance DEX account information</string>
+
+    <string name="str_go_refer">To view</string>
+
+    <string name="str_has_choose_node">@string/has_selected_node</string>
+
+    <string name="str_has_copy">Copied</string>
+
+    <string name="str_has_drop">Airdropped</string>
+
+    <string name="str_has_snap">Snapshoted</string>
+
+    <string name="str_has_with_draw">Has WithDraw</string>
+
+    <string name="str_helps">Support Center</string>
+
+    <string name="str_hide_code">Hide QR code</string>
+
+    <string name="str_hide_token">Hide Small Assets</string>
+
+    <string name="str_hot_dapp">@string/hot_dapps</string>
+
+    <string name="str_illegal_parameterl">illegal parameterl</string>
+
+    <string name="str_import_wallet_ing">Importing</string>
+
+    <string name="str_invite_code_error">Invitation code error</string>
+
+    <string name="str_m_cancel">Cancel</string>
+
+    <string name="str_max_sell">Max</string>
+
+    <string name="str_memo_limit">Memo beyond limit of 256 characters</string>
+
+    <string name="str_min_tx_quanity">Exchange min：%1$s</string>
+
+    <string name="str_min_tx_quanity_tip2">You can only buy %1$s in multiples of %2$s</string>
+
+    <string name="str_mine_validator">My Delegations</string>
+
+    <string name="str_mine_vote">My vote</string>
+
+    <string name="str_more">More</string>
+
+    <string name="str_net_type_error">Current chain error, please switch</string>
+
+    <string name="str_new_order">Place Order</string>
+
+    <string name="str_new_tip_2">Do not use a network tool to transfer private keys. Once acquired by hackets.it will cause irreparable loss of assets.</string>
+
+    <string name="str_no_account_can_import">No account can be imported yet</string>
+
+    <string name="str_no_account_import_tip">2019/01/01 UTC+0  accounts will not be mapped to sidechains</string>
+
+    <string name="str_no_code_plz_refresh">No QR code detected, it is recommended to refresh the page and try again</string>
+
+    <string name="str_no_data">@string/empty_data</string>
+
+    <string name="str_no_inptu_befor_exit">No More Input Before Exit</string>
+
+    <string name="str_no_order">There are currently outstanding sell orders</string>
+
+    <string name="str_no_password_setting">Setting</string>
+
+    <string name="str_no_proxy">@string/not_set</string>
+
+    <string name="str_no_select_nodes">Please select at least one node</string>
+
+    <string name="str_no_undelegate">No data</string>
+
+    <string name="str_normal_account">General account</string>
+
+    <string name="str_open_album">Open album</string>
+
+    <string name="str_open_brower">Brower</string>
+
+    <string name="str_open_directry">Open directly:</string>
+
+    <string name="str_order_send_success">Order placed</string>
+
+    <string name="str_order_status">Status</string>
+
+    <string name="str_password_error">@string/password_incorrect</string>
+
+    <string name="str_password_min_8">@string/password_is_tooshort</string>
+
+    <string name="str_pay_method">Payment</string>
+
+    <string name="str_please_input_right_address">Please enter a valid address</string>
+
+    <string name="str_please_input_right_amount">Please enter a valid amount</string>
+
+    <string name="str_plz_backup_wallet">Back up your wallet immediately</string>
+
+    <string name="str_plz_enter_keystore_pwd">Please enter the password for the KeyStore</string>
+
+    <string name="str_plz_enter_mnemonic_words">Please enter the mnemonics, separated by spaces</string>
+
+    <string name="str_plz_enter_orgial_password">Please enter old wallet Password</string>
+
+    <string name="str_plz_enter_your_keystore">Please enter your KeyStore</string>
+
+    <string name="str_plz_input_memo">MEMO</string>
+
+    <string name="str_project_area">Area</string>
+
+    <string name="str_project_info">Information</string>
+
+    <string name="str_project_leader">Project</string>
+
+    <string name="str_project_progress">Project stage</string>
+
+    <string name="str_proxy_diy">@string/eos_node_customlabel</string>
+
+    <string name="str_proxy_diy_tip">Please input proxy account</string>
+
+    <string name="str_proxy_setting">@string/vote_proxy_setting</string>
+
+    <string name="str_pwd_must_contaion_letter_and_number">Password must contain letters and numbers</string>
+
+    <string name="str_qrcode_scan">Align the QR code into the box to automatically scan</string>
+
+    <string name="str_ram_change">RAM trading</string>
+
+    <string name="str_ram_transfer">About %1$s</string>
+
+    <string name="str_real_count">Amount</string>
+
+    <string name="str_recall">recall</string>
+
+    <string name="str_recent_research">@string/eos_browser_history</string>
+
+    <string name="str_recent_used">@string/recent_used</string>
+
+    <string name="str_recent_visit">@string/recent_visited</string>
+
+    <string name="str_refer_all">Full Text</string>
+
+    <string name="str_refer_code">View QR code</string>
+
+    <string name="str_refer_detail">View on the chain</string>
+
+    <string name="str_refresh">Refresh</string>
+
+    <string name="str_refresh_success">Get the latest news</string>
+
+    <string name="str_register_meetone_account">Resister and get the same MainNet account name</string>
+
+    <string name="str_register_meetone_account_v2">Resister and get the same side-chain account name</string>
+
+    <string name="str_reincest_tip">Withdraw all reward %1$s ATOM and pay transaction fee %2$s ATOM?</string>
+
+    <string name="str_rewards_must_0">The rewards must be greater than 0</string>
+
+    <string name="str_rex_balance">REX amount</string>
+
+    <string name="str_rex_no_finish_orders">Unfilled order</string>
+
+    <string name="str_rex_no_finish_tip">The following orders are pending. You may withdraw the order or wait for the transaction。</string>
+
+    <string name="str_rex_pond_total">Total Lendable EOS</string>
+
+    <string name="str_rex_price">REX Price价格</string>
+
+    <string name="str_rex_status">Total Lent EOS/Total Lendable EOS</string>
+
+    <string name="str_save_key">save private key</string>
+
+    <string name="str_save_key_content">Please save the private key in time. MEET.ONE is no responsible for any loss caused by not saving the private key.</string>
+
+    <string name="str_scan_import">Scan</string>
+
+    <string name="str_scan_import_tip">* This will be the new wallet password,you can change it in Manage wallet - Change password.</string>
+
+    <string name="str_seal_deal">Confirm</string>
+
+    <string name="str_search">@string/search</string>
+
+    <string name="str_search_hint">@string/eos_browser_placeholder</string>
+
+    <string name="str_search_validator">Search Validators</string>
+
+    <string name="str_selected_all">All</string>
+
+    <string name="str_sell_confirm">Sell %1$s</string>
+
+    <string name="str_sell_ram_success">Sell RAM success</string>
+
+    <string name="str_set_proxy">Set proxy</string>
+
+    <string name="str_share">@string/share</string>
+
+    <string name="str_share_to_">Share</string>
+
+    <string name="str_share_wechat">WeChat</string>
+
+    <string name="str_share_weibo">WEIBO</string>
+
+    <string name="str_show_private_key">Show Private Key</string>
+
+    <string name="str_slow">slow</string>
+
+    <string name="str_snap_date">Snapshot date：%1$s</string>
+
+    <string name="str_sort">Sort by</string>
+
+    <string name="str_sort_by_hot">@string/sort_by_hot</string>
+
+    <string name="str_sort_by_number">Delegators</string>
+
+    <string name="str_sort_by_recommend">@string/game_center_recommend</string>
+
+    <string name="str_sort_by_total">Total delegate</string>
+
+    <string name="str_sort_by_year">Yield rate</string>
+
+    <string name="str_sort_default">Default</string>
+
+    <string name="str_sort_total_price">Value</string>
+
+    <string name="str_stake_other">Staked by others</string>
+
+    <string name="str_start_create_account">Start create account</string>
+
+    <string name="str_str_dangerous_tip2">- The security of the fingerprint/FaceID recognition payment depends on the security level of the biometric of the cell phone.</string>
+
+    <string name="str_sub_buy">Confirm purchase</string>
+
+    <string name="str_sub_sell">Confirm sell</string>
+
+    <string name="str_switch_wallet">Switch wallet</string>
+
+    <string name="str_team_dsc">Team introduction</string>
+
+    <string name="str_time_no_time">Undetermined time</string>
+
+    <string name="str_title_no_password">Biometrics recognition</string>
+
+    <string name="str_token_list_setting">Token Display Setting</string>
+
+    <string name="str_token_price">Token Price</string>
+
+    <string name="str_tools">Resource tool</string>
+
+    <string name="str_total_candy">Total candy：%1$s</string>
+
+    <string name="str_trading_ram">Trading RAM data：</string>
+
+    <string name="str_tranfer_fee">Fee：%1$s</string>
+
+    <string name="str_transaction_inquiry">Ask when trading</string>
+
+    <string name="str_transfer_cannot_reset">Transaction irreversible</string>
+
+    <string name="str_transfer_fee">Fee :</string>
+
+    <string name="str_transfer_has_submit">Transaction requested, final result subject to chain confirmation.</string>
+
+    <string name="str_transfer_success">Transfer successful</string>
+
+    <string name="str_undelegate_ing">Undelegating</string>
+
+    <string name="str_undelegate_list">Undelegating</string>
+
+    <string name="str_use_fingerprint">Use fingerprint</string>
+
+    <string name="str_use_password">Or enter password</string>
+
+    <string name="str_valaidator">Validators</string>
+
+    <string name="str_validator_name">Validators</string>
+
+    <string name="str_verify_password">Verify password</string>
+
+    <string name="str_veryfy_fingerprint">Verify fingerprint</string>
+
+    <string name="str_vote">@string/producers_list_vote</string>
+
+    <string name="str_vote_id">ID</string>
+
+    <string name="str_vote_ing">Voting</string>
+
+    <string name="str_vote_mortgage_resources">CPU+NET+staked For Others</string>
+
+    <string name="str_vote_option">Option</string>
+
+    <string name="str_vote_success">Vote success</string>
+
+    <string name="str_votes_count">Votes：%1$s</string>
+
+    <string name="str_wallet_password">@string/wallet_password</string>
+
+    <string name="str_white_list_detail">Authorization MGT</string>
+
+    <string name="str_white_list_manager">Whitelist MGT</string>
+
+    <string name="str_year_rewards">Annual yield</string>
+
+    <string name="string_rex_del">REX trading</string>
+
+    <string name="submit">Submit</string>
+
+    <string name="submit_dapp">Submit DApp</string>
+
+    <string name="subscribe_topic">subscribe topic</string>
+
+    <string name="subscribe_topic_fail"> Subscribe topic fail for %1$s.</string>
+
+    <string name="subscribe_topic_success"> Subscribe topic \"%1$s\" success.</string>
+
+    <string name="success_to_change_wallet_password">Successfully changed password</string>
+
+    <string name="success_to_delete_wallet">Successfully deleted wallet</string>
+
+    <string name="success_to_save_photo">Failed to save the picture</string>
+
+    <string name="success_to_submit_order">Submit order successfully</string>
+
+    <string name="success_to_transfer">Success to transfer</string>
+
+    <string name="switch_main_net">MainNet</string>
+
+    <string name="switch_state_color">Red up green down</string>
+
+    <string name="switch_test_net">MEET.ONE（test net）</string>
+
+    <string name="switch_wallet_error">Failed to switch wallet</string>
+
+    <string name="system_settings">Settings</string>
+
+    <string name="telegram_assistant">via telegram</string>
+
+    <string name="tg">evemeetone</string>
+
+    <string name="the_cpu_number_is_illegal">The CPU Number is illegal</string>
+
+    <string name="the_main_net_is_not_start">The Main Net is not start</string>
+
+    <string name="the_network_number_is_illegal">The Network Number is illegal</string>
+
+    <string name="thirty_node_tip">You have selected up to 30 Nodes</string>
+
+    <string name="this_is_my_eos_wallet">This is my EOS account</string>
+
+    <string name="this_is_my_eth_wallet">This is my ETH address</string>
+
+    <string name="to_expand_hint">More</string>
+
+    <string name="to_shrink_hint">Less</string>
+
+    <string name="today">today</string>
+
+    <string name="token">Token</string>
+
+    <string name="token_balance_zero">%1$s the balance is 0. please select other Token</string>
+
+    <string name="token_detail_all">All</string>
+
+    <string name="token_detail_balance">Balance</string>
+
+    <string name="token_detail_in">Receive</string>
+
+    <string name="token_detail_nomoredata">No more data</string>
+
+    <string name="token_detail_out">Transfer</string>
+
+    <string name="token_detail_title">Token detail</string>
+
+    <string name="token_detail_tokendetail">Token Detail</string>
+
+    <string name="token_info">Project Information</string>
+
+    <string name="token_info_address">Contract address</string>
+
+    <string name="token_info_homepage">Homepage</string>
+
+    <string name="token_info_name">Project Name</string>
+
+    <string name="token_info_publish">Release Information</string>
+
+    <string name="token_info_publish_market">Market Capitalization</string>
+
+    <string name="token_info_publish_time">Release Time</string>
+
+    <string name="token_info_publish_total">Total Circulation</string>
+
+    <string name="token_list_title">Tokens</string>
+
+    <string name="token_market_price">Token Price display style</string>
+
+    <string name="token_search_hint">Token / Contract / Project Name</string>
+
+    <string name="token_search_title">Tokens</string>
+
+    <string name="token_update_fail">Update %1$s fail</string>
+
+    <string name="tokens">Tokens</string>
+
+    <string name="tokens_search">Search</string>
+
+    <string name="tokens_search_placeholder">Token / Contract / Project Name</string>
+
+    <string name="total_assets">Total</string>
+
+    <string name="total_balance">Total assets CNY</string>
+
+    <string name="total_price">Total price</string>
+
+    <string name="trans_attr">Transaction attribute</string>
+
+    <string name="trans_record">Transaction</string>
+
+    <string name="trans_record_all">all transfer</string>
+
+    <string name="trans_record_in">transfer in</string>
+
+    <string name="trans_record_out">transfer out</string>
+
+    <string name="transaction">Transaction</string>
+
+    <string name="transaction_all_money">All</string>
+
+    <string name="transaction_amount">Amount</string>
+
+    <string name="transaction_amount2">Amount:</string>
+
+    <string name="transaction_amount_1">Balance %1$s %2$s</string>
+
+    <string name="transaction_detail">Transaction Detail</string>
+
+    <string name="transaction_hash">Transaction Hash</string>
+
+    <string name="transaction_hash2">Transaction Hash:</string>
+
+    <string name="transaction_history">Transaction</string>
+
+    <string name="transaction_list_title">Transactions</string>
+
+    <string name="transaction_query">More Detail</string>
+
+    <string name="transaction_success">Successful</string>
+
+    <string name="transaction_time">Transaction Time</string>
+
+    <string name="transaction_tip">After the transfer is successful and the minimum amount is reached, the order is confirmed</string>
+
+    <string name="transfer">Transfer</string>
+
+    <string name="transfer_amount">Payment amount:</string>
+
+    <string name="transfer_earn">Receive - %1$s</string>
+
+    <string name="transfer_fail">Transfer fail</string>
+
+    <string name="transfer_pay">Transfer - %1$s</string>
+
+    <string name="transfer_progress_title">Transfer progress</string>
+
+    <string name="transfer_title">Transfer</string>
+
+    <string name="transfer_to">Transfer to %1$s</string>
+
+    <string name="transfers_yncing">synchronizing</string>
+
+    <string name="try_again_password">try again</string>
+
+    <string name="try_later">Try later </string>
+
+    <string name="twitter">TWITTER</string>
+
+    <string name="unStake_to">Unstake %1$s</string>
+
+    <string name="un_frozen">Un frozen</string>
+
+    <string name="unbind">Unbound</string>
+
+    <string name="undelegate_cpu_tip">The CPU amount to unstake is greater than staked.</string>
+
+    <string name="undelegate_net_tip">The NET amount to unstake is greater than staked.</string>
+
+    <string name="undelegate_note_1">- You can only unstake resources that belongs to yourself. </string>
+
+    <string name="undelegate_note_2">- If some resources have been consumed, you can not unstake all the resources. Try reducing the unstake number.</string>
+
+    <string name="undelegate_note_3">- - All the refunding %1$s will be returned 3 days after the last unstake action.</string>
+
+    <string name="undelegatebwpage_available">Available</string>
+
+    <string name="undelegatebwpage_availablebw">최대 할당 가능 자원</string>
+
+    <string name="undelegatebwpage_confirm">Confirm</string>
+
+    <string name="undelegatebwpage_cpu">CPU</string>
+
+    <string name="undelegatebwpage_network">Network</string>
+
+    <string name="undelegatebwpage_stakecount">Staked resources</string>
+
+    <string name="undelegatebwpage_stakecountinfo">* EOS will return to &amp;apos;account&amp;apos; 3 days later</string>
+
+    <string name="undelegatebwpage_stakequantity">Unstake Quantity</string>
+
+    <string name="undelegatebwpage_title">Unstake</string>
+
+    <string name="under_the_rest">Please do not keep clicking</string>
+
+    <string name="unit_price">Unit price</string>
+
+    <string name="unread_news_num">%1$d news</string>
+
+    <string name="unset_account">unset account</string>
+
+    <string name="unset_account_fail"> Unset account fail for %1$s.</string>
+
+    <string name="unset_account_success"> Unset account \"%1$s\" success.</string>
+
+    <string name="unset_alias">unset alias</string>
+
+    <string name="unset_alias_fail"> Unset alias fail for %1$s.</string>
+
+    <string name="unset_alias_success"> Unset alias \"%1$s\" success.</string>
+
+    <string name="unstake_all">Unstake all</string>
+
+    <string name="unstake_success">Unstake success</string>
+
+    <string name="unsubscribe_topic">unsubscribe topic</string>
+
+    <string name="unsubscribe_topic_fail"> Unsubscribe topic fail for %1$s.</string>
+
+    <string name="unsubscribe_topic_success"> Unsubscribe topic \"%1$s\" success.</string>
+
+    <string name="unverified">Unverified</string>
+
+    <string name="up_more">Slide up to expand more options</string>
+
+    <string name="update_now">Update now</string>
+
+    <string name="update_permission">Update %1$s permission</string>
+
+    <string name="update_remind">Update remind</string>
+
+    <string name="upload_mode">Please choose the upload mode</string>
+
+    <string name="usd_price">≈ $ %1$s</string>
+
+    <string name="used_stake_resource">Use staked resources</string>
+
+    <string name="user_agreement">User Agreement</string>
+
+    <string name="user_name">Account name</string>
+
+    <string name="user_name_exist">Name has been used</string>
+
+    <string name="verify">Verify</string>
+
+    <string name="verify_code">Verify Code</string>
+
+    <string name="verify_email_hint">This mail has not been verified. Please log in to your mail to check and verify.</string>
+
+    <string name="verify_email_resent">Resend verification mail</string>
+
+    <string name="verify_password">Verify Password</string>
+
+    <string name="verify_password_hint">Please enter your current password</string>
+
+    <string name="verify_phone">Phone verify</string>
+
+    <string name="verify_private_key">Verify the private key</string>
+
+    <string name="verify_success">Successful verification!</string>
+
+    <string name="verify_wallet_password">Verify Password</string>
+
+    <string name="view_more">View more</string>
+
+    <string name="view_progress">Check the progress</string>
+
+    <string name="view_progress_1">Check the progress: </string>
+
+    <string name="vote_add_resources">Add Resources</string>
+
+    <string name="vote_by_proxy">Proxy</string>
+
+    <string name="vote_confirm_title">Vote</string>
+
+    <string name="vote_proxy_setting">Proxy Setting</string>
+
+    <string name="vote_proxy_tip">After voting by proxy, there is no need to choose a node or update the voting. The proxy will vote on behalf of you and your previous vote will be reset. Please choose a trusted agent.</string>
+
+    <string name="vote_proxy_weigth">Proxed Vote:</string>
+
+    <string name="vote_staked_eos">Staked</string>
+
+    <string name="vote_total">Total</string>
+
+    <string name="voteindexpage_adddelegatebw">Stake EOS</string>
+
+    <string name="voteindexpage_balance">Balance</string>
+
+    <string name="voteindexpage_changewallet">Change Wallet</string>
+
+    <string name="voteindexpage_rambytes">RAM</string>
+
+    <string name="voteindexpage_refunding">Refunding: %1$s</string>
+
+    <string name="voteindexpage_revote">Vote Producers</string>
+
+    <string name="voteindexpage_title">Pomelo</string>
+
+    <string name="voteindexpage_totalasset">Total Asset</string>
+
+    <string name="voteindexpage_undelegatebw">Unstake</string>
+
+    <string name="voteindexpage_username">Account name</string>
+
+    <string name="voteindexpage_vote">Vote</string>
+
+    <string name="voteindexpage_votedbps">Voted Block Producers</string>
+
+    <string name="voteindexpage_votedesc">Unstake EOS will deduct corresponding votes from voted producers, and EOS will refund to &amp;apos;account&amp;apos; 3 days later.</string>
+
+    <string name="votepage_account">Account</string>
+
+    <string name="votepage_balance">Balance</string>
+
+    <string name="votepage_bplist">Selected BP list</string>
+
+    <string name="votepage_cancel">Cancel</string>
+
+    <string name="votepage_confirm">Confirm</string>
+
+    <string name="votepage_delegatebw">Stake</string>
+
+    <string name="votepage_gotit">Got it</string>
+
+    <string name="votepage_notice">Notice</string>
+
+    <string name="votepage_noticec">You could &amp;apos;Vote&amp;apos;, &amp;apos;Stake EOS&amp;apos;or&amp;apos;Unstake EOS&amp;apos; at any time. Vote will use CPU and Network stake.</string>
+
+    <string name="votepage_rule1">· Vote will use a little CPU and Net resources;</string>
+
+    <string name="votepage_rule2">· The voting weight will decrease over time;</string>
+
+    <string name="votepage_rule3">· You could &amp;apos;unstake EOS&amp;apos; at any time, which will deduct corresponding votes from voted producers, and EOS will refund to account 3 days later;</string>
+
+    <string name="votepage_rulet">Rule*</string>
+
+    <string name="votepage_stake">Stake count</string>
+
+    <string name="votepage_submit">Submit</string>
+
+    <string name="votepage_vote">Vote</string>
+
+    <string name="votepage_vote_fail">Request Failed</string>
+
+    <string name="votepage_vote_success">Successful</string>
+
+    <string name="voucher">Invitation Code</string>
+
+    <string name="wait_pay">Waiting for payment</string>
+
+    <string name="wait_pay_complite">Waiting for payment to complete</string>
+
+    <string name="wait_to_confirm_transaction">Pending order</string>
+
+    <string name="waiting_for_registrations">Waiting for registrations</string>
+
+    <string name="waiting_time_for_transaction">Waited for %1$s seconds</string>
+
+    <string name="wallet">Wallet</string>
+
+    <string name="wallet_address">Wallet address</string>
+
+    <string name="wallet_already_exist">Wallet already exist</string>
+
+    <string name="wallet_change_password">Change password</string>
+
+    <string name="wallet_delete">Delete wallet</string>
+
+    <string name="wallet_detail">Wallet detail</string>
+
+    <string name="wallet_edit_title">Edit wallet</string>
+
+    <string name="wallet_import">Manage wallet</string>
+
+    <string name="wallet_manager">Manage wallet</string>
+
+    <string name="wallet_manager_title">Manage wallet</string>
+
+    <string name="wallet_name">Wallet name</string>
+
+    <string name="wallet_name_change_title">Change wallet</string>
+
+    <string name="wallet_name_format_1">New wallet</string>
+
+    <string name="wallet_name_format_2">New wallet-%1$s</string>
+
+    <string name="wallet_password">Wallet password</string>
+
+    <string name="wallet_password_change_title">Change wallet password</string>
+
+    <string name="wallet_seed_phrase_show_title">Wallet mnemonic</string>
+
+    <string name="wallet_seed_phrase_tip_1">If someone gets your wallet mnemonic it will get your assets directly! Please copy the private key and store it in a safe place.</string>
+
+    <string name="walletpage_changewallet">Change Wallet</string>
+
+    <string name="walletpage_confirmcontent">Please backup the private key before changing the account.</string>
+
+    <string name="walletpage_pleasecancel">Cancel</string>
+
+    <string name="walletpage_pleasesure">Continue</string>
+
+    <string name="walletpage_title">Notice</string>
+
+    <string name="walletpage_totalassets">Total Assets</string>
+
+    <string name="wc_pay">WeChat Pay</string>
+
+    <string name="website_title">website</string>
+
+    <string name="wechart">moreeos</string>
+
+    <string name="wechat">WeChat</string>
+
+    <string name="wechat_assistant">via WeChat</string>
+
+    <string name="wechat_moment">Moments</string>
+
+    <string name="wechat_public_account">WeChat</string>
+
+    <string name="wechat_subscription">WeChat</string>
+
+    <string name="weibo">WEIBO</string>
+
+    <string name="white_list_dialog_content_behavior">com.meetone.common.widget.coordinatorlayout.WhiteListDialogContentBehavior</string>
+
+    <string name="white_list_dialog_head_behavior">com.meetone.common.widget.coordinatorlayout.WhiteListDialogHeadBehavior</string>
+
+    <string name="withdraw">withdraw</string>
+
+    <string name="withdraw_account">Receive Account</string>
+
+    <string name="withdraw_amount">Amount</string>
+
+    <string name="withdraw_title">Please follow the information below to withdraw EOS from the exchange</string>
+
+    <string name="withdraw_warn_tip">OTCBTC, Gate.io, Chaince, and Bitfinex are recommended. For the sake of security, don\"t withdraw EOS from other exchanges.</string>
+
+    <string name="withdrawal">Withdraw</string>
+
+    <string name="yesterday">yesterday</string>
+    <string name="account_resend">Receive again</string>
+    <string name="account_code_resend">%1$s Receive</string>
+    <string name="next">Next</string>
+    <string name="str_new_order_buy">Place Order - %1$s %2$s</string>
+    <string name="str_trade_history">History</string>
+    <string name="str_bnb_trade_time">Date</string>
+    <string name="str_bnb_trade_side">Type</string>
+    <string name="str_bnb_trade_price">Price</string>
+    <string name="str_cancel_order_new">Cancel the order - %1$s %2$s</string>
+
+
+    <string name="safety_level">Current account security:</string>
+    <string name="primary_certification">Basic Authentication</string>
+    <string name="advanced_authentication">Advanced Authentication</string>
+    <string name="primary_certification_tip">Daily Trading Volume %1$s USDT</string>
+    <string name="advanced_authentication_tip">The safer your account is, the more trading quota you can obtain</string>
+    <string name="google_certification">Google Authenticator</string>
+    <string name="transaction_safety_setting">Transaction Security Settings</string>
+    <string name="safety_setting">Settings</string>
+    <string name="amount_password">Asset Password</string>
+    <string name="phone_verification">Phone verification code</string>
+    <string name="enter_phone_verification">Please input phone verification code</string>
+    <string name="get_verification">Get verification code</string>
+    <string name="google_verification">Google auth code</string>
+    <string name="google_verification_tip">To ensure account security, please enter Google verification code</string>
+    <string name="enter_google_verification">Please input Google auth code</string>
+    <string name="set_amount_password">set a new money password</string>
+    <string name="enter_amount_password">Please enter a new money password</string>
+    <string name="password_verification">Verify assets password</string>
+    <string name="enter_password_verification_again">Re-enter assets password</string>
+    <string name="paste">Paste</string>
+    <string name="login_onetoken">Login account</string>
+    <string name="login_onetoken_tip">Cloud Wallet only for some centralized services, you can also login via MORE.ONE account.</string>
+    <string name="phone_email">phone number/email address</string>
+    <string name="signup">Sign Up</string>
+    <string name="safe_check">Security check</string>
+    <string name="phone_check">Phone verification</string>
+    <string name="email_check">Mail verification</string>
+    <string name="phone_check_tip">6-digits verify code has been sent to %1$s , please fill in below. </string>
+    <string name="google_check">Google Authenticator</string>
+    <string name="login_psw">Login Password</string>
+    <string name="check_login_psw">Verify login password</string>
+    <string name="enter_login_psw">Please enter your login password</string>
+    <string name="enter_login_psw_again">Enter your login password again</string>
+    <string name="set_login_psw">Set a new login password</string>
+    <string name="set_login_psw_tip">After changing account password, token withdrawal cannot be possible within 24 hours</string>
+    <string name="sign_account">Registered account</string>
+    <string name="mail_sign">Sign up with email</string>
+    <string name="mail_find_pwd">Email retrieve password</string>
+    <string name="phone_find_pwd">Phone retrieve password</string>
+    <string name="phone_sign">Mobile phone registered</string>
+    <string name="mail_login">Email login</string>
+    <string name="phone_login">Mobile phone login</string>
+    <string name="enter_phone">Please enter your mobile phone number</string>
+    <string name="sign_account_tip">Centralized exchange service, MORE.ONE accounts are available.</string>
+    <string name="has_regist">Email address/phone number registered</string>
+    <string name="set_password_tip"><![CDATA[For your account safety, please set an 8-16 digit password (support numbers, alpha & symbols).]]></string>
+    <string name="suc_login">log in</string>
+    <string name="pwd_error1">The password should be at least 6 digits</string>
+    <string name="pwd_error2">Entered password different from the original</string>
+    <string name="pwd_error3">The password is too weak</string>
+    <string name="pwd_error4">Cannot use consecutive numbers as password</string>
+    <string name="net_null">There is no network, please try again later</string>
+    <string name="find_psw_tip">After reset account password, token withdrawal cannot be handled within 24 hours</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="quite">General</string>
+    <string name="good">Good</string>
+    <string name="pls_input_phone_num">Please enter your mobile phone number</string>
+    <string name="pls_input_email">Please input e-mail</string>
+    <string name="bind_phone">Link with phone number</string>
+    <string name="has_set">have set</string>
+
+    <string name="open_google_one">1.To secure account, please activate Google Authenticator</string>
+    <string name="open_google_one_tip">Scan or save your account Google Authenticator private code</string>
+    <string name="cipher">Google Auth private code</string>
+    <string name="copy_cipher">Copy code</string>
+    <string name="open_google_two">2.Enter Google auth code to activate Google authentication</string>
+    <string name="open_google_two_tip">When the Google Authenticator is activated, it will display a 6-digit number, which changes every 30 seconds. This number is your Google verification code.</string>
+    <string name="open_google">Activate Google Authenticator</string>
+    <string name="download_google">Download Google Authenticator</string>
+    <string name="mission_certification">Real-name authentication</string>
+    <string name="name">Name</string>
+    <string name="enter_name">Please enter your name</string>
+    <string name="id_card">Passport/id card</string>
+    <string name="enter_id_card">Please enter ID No.</string>
+
+
+    <string name="have_asset">I have digital asset</string>
+    <string name="choose_chain">Choose chain to import wallet</string>
+    <string name="no_asset">I don\'t have digital asset</string>
+    <string name="create_new_wallet">Create a new digital wallet</string>
+    <string name="exchange_home">Market</string>
+    <string name="exchange_dex">Exchange</string>
+    <string name="exchange_asset">Assets</string>
+
+    <string name="bact_recharge">%1$s Deposit</string>
+    <string name="recharge_from_wallet">Local wallet transfer</string>
+    <string name="recharge_from_other">Other ways to transfer</string>
+    <string name="recharge_tips_1">Fill in the MEMO and %1$s address to receive transaction.</string>
+    <string name="recharge_tips_2">Min deposit：%1$s ,  Deposit amount less than Min recharge will not be credited and refunded.</string>
+    <string name="recharge_tips_3">Do not deposit any non- %1$s assets to the address above, otherwise the assets will not be retrieved.</string>
+    <string name="pls_finish_google_check">Go Google authentication</string>
+    <string name="has_send_code">A verification code has been issued to the %1$s account</string>
+    <string name="sign_up_now">Register now</string>
+    <string name="sign_up_now_tip">The current mobile phone number/email address has not been registered, do you want to register a new account?</string>
+
+    <string name="str_eth_token_name">name</string>
+    <string name="str_eth_token_symbol">symbol</string>
+    <string name="str_eth_token_decimals">digits</string>
+    <string name="str_plz_input_right_decimal">Please enter a valid number of digits</string>
+    <string name="str_eth_can_not_add_same_token">Cannot add duplicate Token</string>
+    <string name="str_eth_add_custom_token">Add customization Token</string>
+    <string name="choose_xx_wallet">Choose %1$s wallet</string>
+    <string name="import_x_wallet_desrible">Import wallet private key for an easier transaction</string>
+    <string name="create_x_wallet_desrible">Create a new wallet that stores all currencies on the %1$s chain</string>
+    <string name="recharge_num">Deposit amount</string>
+    <string name="recharge_btn">Deposit</string>
+    <string name="exchange_withdraw">%1$s withdraw</string>
+    <string name="exchange_withdraw_less_num">Min withdrawal %1$s %2$s</string>
+    <string name="recharge_confirm_withdraw">Submit withdrawal application</string>
+    <string name="not_less_fee">Minimum not less than %1$s</string>
+    <string name="not_beyond_balance">Excess of account balance</string>
+    <string name="str_bnb_buy_quanity">Buy Amount</string>
+    <string name="str_trade_depth">Depth</string>
+    <string name="str_price_open">Open</string>
+    <string name="str_max_price">High</string>
+    <string name="str_low_price">Low</string>
+    <string name="withdraw_success">Withdrawal success</string>
+    <string name="str_eth_add_token_success">Add a success</string>
+    <string name="str_eth_block_number">Block ：</string>
+    <string name="str_eth_wait_package">Await Block Producer Confirm</string>
+    <string name="str_eth_transfer_package_success">Packaging success</string>
+    <string name="str_bnb_buy_amount">Buy</string>
+    <string name="str_bnb_sell_amount">Sell</string>
+    <string name="str_eth_package_ing">Confirming</string>
+    <string name="str_eth_transfer_tip">The transaction is waiting for confirmation, it will take 1–3 minutes.</string>
+    <string name="recharge_token">Deposit %1$s</string>
+    <string name="withdraw_token">Withdraw %1$s</string>
+    <string name="str_onetoken_fail">failed</string>
+    <string name="str_part_finish_and_has_cancel">Partial closing (cancelled)</string>
+    <string name="cash_account">Exchange Account</string>
+    <string name="identity_auth">Identity authentication</string>
+    <string name="save_set">Security Settings</string>
+    <string name="passowrd_login">Login Password</string>
+    <string name="exchange_no_certify">Unauthenticated</string>
+    <string name="exchange_high_risk">High Risk</string>
+    <string name="exchange_has_risk">Low Risk</string>
+    <string name="str_dex_tip_content">Trading quota is insufficient today, the completion of security Settings can increase the trading quota</string>
+    <string name="str_go_to_setting">To set up</string>
+    <string name="exchange_withdraw_tips">Please input %1$s asset password</string>
+    <string name="withdraw_confirm">Confirm withdrawal</string>
+    <string name="exhange_withdraw_amount">Transfer amount</string>
+    <string name="identity_auth_finish">Identity Authentication Completed</string>
+    <string name="str_exchange_contract">Trading Pair</string>
+    <string name="str_exe_new_prcie">Latest Price</string>
+    <string name="str_up_or_down">Change(24h)</string>
+    <string name="depositdeposit">Record</string>
+    <string name="str_exe_history">Record</string>
+
+    <string name="str_are_you_sure_cancel_order">Confirm to revoke this order?</string>
+    <string name="str_are_you_sure_cancel_all_order">Confirm to revoke all orders?</string>
+
+    <string name="str_yes_shide">Yes</string>
+    <string name="str_all_cancel_order">Revoke all</string>
+    <string name="str_exe_all_order">All entrust</string>
+    <string name="str_all_order_history">All orders</string>
+    <string name="str_exe_search_order">Search the entrusted</string>
+
+    <string name="str_exe_title_price">Specific Price（%1$s）</string>
+    <string name="str_exe_title_quantity">Amount（%1$s）</string>
+    <string name="str_exe_title_av">Average Price（%1$s）</string>
+    <string name="str_exe_title_all">Total Amount</string>
+    <string name="not_less_balance">Not less than the minimum amount %1$s</string>
+
+    <string name="str_total_not_less">"Not less than  %1$s "</string>
+    <string name="str_no_password_in_one_hour">No need to verify password within 1 hour</string>
+    <string name="str_current_total_balance">Total assets of current account：</string>
+
+    <string name="str_unsupport_withdraw_and_deposit">%1$s Temporarily stop recharge, withdraw money</string>
+    <string name="str_unsupport_deposit">%1$s Temporarily stop recharge</string>
+
+    <string name="str_unsupport_withdraw">%1$s Temporarily stop withdrawing money</string>
+    <string name="do_finish_id_certification">Please complete the identification first</string>
+    <string name="do_finish_password_set">For the security of withdrawal,, please set asset password first.</string>
+
+    <string name="str_safe_for_google">For account safety, please verify by Google Authenticator .</string>
+    <string name="str_safe_for_fund">For safety trading, please set assets password.</string>
+    <string name="str_setting_google_ver">Set Google Authenticator</string>
+    <string name="str_setting_fund_ver">Set assets password</string>
+    <string name="biometric_dialog_cancel">Cancel</string>
+    <string name="biometric_dialog_state_error">Verification error, please enter payment password</string>
+    <string name="biometric_dialog_state_error_enable_process">Verification error, setup failed</string>
+    <string name="biometric_dialog_state_failed">Failed to identset_password_tipify, please try again</string>
+    <string name="biometric_dialog_state_normal">Touch sensor</string>
+    <string name="biometric_dialog_state_succeeded">Verification successful</string>
+    <string name="biometric_dialog_subtitle">Press home button to verify fingerprint</string>
+    <string name="biometric_dialog_title">Authentication</string>
+    <string name="biometric_dialog_use_password">Cancel</string>
+    <string name="advanced_authentication_tip1">Safer account and no limit to trading quota</string>
+    <string name="advanced_authentication_tip2">USDT The account is more secure, with a trading limit of  %1$s USDT</string>
+    <string name="str_dex_login_and_register">Login/Register</string>
+    <string name="str_sort_contract_name">Volume/Token</string>
+    <string name="str_exchange_add_collect">Favorites</string>
+    <string name="str_exhange_has_add">Added</string>
+    <string name="first_login">Please log in your account first</string>
+
+
+    <string name="str_trade_after_login">Login and Trade</string>
+
+    <string name="exchange_registered">Registered</string>
+    <string name="str_empty_text_new">No Data</string>
+    <string name="str_mex">MEX</string>
+    <string name="exchange_nation_name">Countries</string>
+
+
+    <string name="eos_key_save_tip_4">.It is not recommended to use the network to transmit private keys, such as sending them in moblie phone.</string>
+
+
+    <string name="exchange_registered_tip1">The account has been registered in MORE.ONE, you can login directly.</string>
+    <string name="exchange_registered_tip2">This account has been registered, you can login directly.</string>
+
+    <string name="withdraw_to_account_block">Please input account（ %1$s address）</string>
+
+    <string name="str_exchange_record_pending">pending</string>
+    <string name="str_exchange_record_pending_withdraw">pending</string>
+    <string name="switch_wallet_tip">%1$s  equires %1$s male chain account login, please select or import wallet.</string>
+    <string name="login_now">To login</string>
+    <string name="enter_correct_email">Please enter the correct email address</string>
+    <string name="str_exchange_record_frozen">frozen</string>
+    <string name="str_exchange_record_fail">withdraw failed</string>
+    <string name="exchange_login_warn"><Data><![CDATA[
+        <font color="#b5b5b5">Login means you agree to</font><br/>
+        <font color="#b5b5b5"> MEET.ONE</font><font color="#3e688f">《User agreement》and 《Privacy agreement》</font>!<br/>
+        ]]></Data></string>
+    <string name="exchange_regist_warn"><Data><![CDATA[
+        <font color="#b5b5b5">Registered means you agree to</font><br/>
+        <font color="#b5b5b5"> MEET.ONE</font><font color="#3e688f">《User agreement》and 《Privacy agreement》</font>!<br/>
+        ]]></Data></string>
+    <string name="str_exchange_dex_all">All</string>
+    <string name="exchange_rechange_fee">Miners fee %1$s</string>
+    <string name="exchange_rechange_balance_low">ETH balance is too low</string>
+    <string name="exchange_recharge_success">Recharge submitted successfully, please wait for a moment</string>
+    <string name="exchange_withdraw_success">Withdrawal submitted successfully, please wait for a moment</string>
+    <string name="custom_tab">center exchange</string>
+    <string name="pls_input_mail_code">Please input the email code</string>
+    <string name="ali_pay_set">Alipay Setting</string>
+    <string name="agree_loan_payment">Confirm and Pledge</string>
+    <string name="add_wallet">add new wallet</string>
+</resources>

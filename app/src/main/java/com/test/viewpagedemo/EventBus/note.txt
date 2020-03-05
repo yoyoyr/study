@@ -20,10 +20,10 @@
         CopyOnWriteArrayList<Subscription{
             Object subscriber;////包含了有@Subscribe的类
             SubscriberMethod subscriberMethod;//标注了@Subscribe的方法
-    }>> subscriptionsByEventType
+    }>> subscriptionsByEventType  // 记录了事件对应的方法集合
 
 //事件解绑的时候，可以根据这个集合获取到所有注册的事件，然后从subscriptionByEventType取消注册
-    Map<Object//包含了@Subscribe的类, List<Class<?>//事件对应的类>> typesBySubscriber
+    Map<Object//包含了@Subscribe的类, List<Class<?>//事件对应的类>> typesBySubscriber // 记录了fragment下的所有监听事件
 
 //粘性事件的Class为key，事件对象为value
     Map<Class<?>, Object> stickyEvents

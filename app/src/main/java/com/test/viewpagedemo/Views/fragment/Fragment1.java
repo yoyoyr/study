@@ -76,22 +76,22 @@ public class Fragment1 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment1, container, false);
 
-        final Button btn1 = view.findViewById(R.id.tv1);
-        final Button btn2 = view.findViewById(R.id.tv2);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn1.setBackground(getResources().getDrawable(R.drawable.stake_button_pressed));
-                btn2.setBackground(getResources().getDrawable(R.drawable.stake_button_normal));
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn2.setBackground(getResources().getDrawable(R.drawable.stake_button_pressed));
-                btn1.setBackground(getResources().getDrawable(R.drawable.stake_button_normal));
-            }
-        });
+//        final Button btn1 = view.findViewById(R.id.tv1);
+//        final Button btn2 = view.findViewById(R.id.tv2);
+//        btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                btn1.setBackground(getResources().getDrawable(R.drawable.stake_button_pressed));
+//                btn2.setBackground(getResources().getDrawable(R.drawable.stake_button_normal));
+//            }
+//        });
+//        btn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                btn2.setBackground(getResources().getDrawable(R.drawable.stake_button_pressed));
+//                btn1.setBackground(getResources().getDrawable(R.drawable.stake_button_normal));
+//            }
+//        });
         return view;
     }
 

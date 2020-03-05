@@ -47,6 +47,7 @@
 
 
     <application
+        android:name="com.hotfix.MyTinkerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="ViewPageDemo"
@@ -64,7 +65,9 @@
         </activity>
         <activity android:name="com.test.viewpagedemo.Views.viewpage.adapter.BaseViewPageAdapterActivity" />
         <!--<activity android:name="com.test.viewpagedemo.Views.viewpage.restore.RestoreViewPageAdapterActivity" />-->
-        <activity android:name="com.test.viewpagedemo.Views.fragment.FragmentBaseActivity" />
+        <activity
+            android:name="com.test.viewpagedemo.Views.fragment.FragmentBaseActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name="com.test.viewpagedemo.Views.viewpage.fragmentadapter.FragmentadapterActivity" />
         <activity android:name="com.test.viewpagedemo.Views.viewpage.fragmentstateadapter.FragmentStateadapterActivity" />
         <!--<activity android:name="com.test.viewpagedemo.Views.fragment.DialogFragmentTest.DialogFragmentActivity" />-->

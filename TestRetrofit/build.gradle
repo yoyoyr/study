@@ -13,6 +13,8 @@ dependencies {
     implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'org.apache:apache-resource-bundles:2'
     implementation 'org.apache.commons:com.springsource.org.apache.commons.codec:1.6.0'
+    implementation 'com.deepoove:poi-tl:+'
+    implementation files('libs/dom4j-2.0.0.jar')
 }
 
 sourceCompatibility = "1.7"

@@ -49,10 +49,19 @@ public class Main {
 //        System.out.println("bAdapter = " + bAdapter.toString());
 //        System.out.println("adapter result = " + result);
 //        System.out.println("serialize result = " + gsAdapter.fromJson(result, Book.class));
-        double provision = 18450913092639.922093576931431680;
-        double bonded = 17790091376203.3;
-        double rate = 9.1;
-        System.out.println("result = "+(provision/bonded)*rate);
+
+        System.out.println("result = "+subZeroAndDot("0.000000"));
+    }
+
+
+    public static String subZeroAndDot(String s) {
+        if (s == null)
+            return null;
+        if (s.indexOf(".") > 0) {
+            s = s.replaceAll("0+?$", "");
+            s = s.replaceAll("[.]$", "");
+        }
+        return s;
     }
 
     public static String UTCToCST(String UTCStr) throws ParseException {
