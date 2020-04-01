@@ -1,7 +1,6 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

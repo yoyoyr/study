@@ -1,7 +1,6 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //在编译时为该module生成注解处理器的声明文件。
     implementation 'com.google.auto.service:auto-service:1.0-rc3'
     //用来方便生成java代码

@@ -156,7 +156,6 @@ greendao {
  * gradle -q dependencies  返回详细的任务依赖图
  */
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project.ext.dependences.appcompat
     implementation project.ext.dependences.aroute
     implementation project.ext.dependences.eventbus
