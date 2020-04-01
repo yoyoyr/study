@@ -28,7 +28,9 @@ android {
             keyPassword var1
         }
     }
-
+    lintOptions {
+        abortOnError false
+    }
 //    构建项目sdk版本号
     compileSdkVersion project.ext.param.compileSdkVersion
 //    替换manifest属性
