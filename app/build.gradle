@@ -15,8 +15,8 @@ apply plugin: 'org.greenrobot.greendao'
 //apply plugin: 'com.test.plugin.mygroovy'
 apply from: file("${project.project(":hotfix").projectDir}/tinker.gradle")
 
-Properties props = new Properties()
-props.load(new FileInputStream(file(rootProject.file("signing.properties"))))
+//Properties props = new Properties()
+//props.load(new FileInputStream(file(rootProject.file("signing.properties"))))
 
 
 android {
@@ -65,16 +65,16 @@ android {
         }
     }
 
-    signingConfigs {
-        release {
-            storeFile file(props['keyStoreFile'])
-            storePassword props['storePassword']
-            keyAlias props['keyAlias']
-            keyPassword props['keyPassword']
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file(props['keyStoreFile'])
+//            storePassword props['storePassword']
+//            keyAlias props['keyAlias']
+//            keyPassword props['keyPassword']
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+//    }
 //指定keystore路径,密码
     buildTypes {
         debug {
@@ -88,7 +88,7 @@ android {
             buildConfigField "boolean", "isModule", "$project.ext.isModule"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
 
         }
     }
