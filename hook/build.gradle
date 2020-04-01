@@ -20,7 +20,7 @@ android {
         versionName project.ext.param.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        resourcePrefix "hook_"
+//        resourcePrefix "hook_"
 
         javaCompileOptions {
             annotationProcessorOptions {
