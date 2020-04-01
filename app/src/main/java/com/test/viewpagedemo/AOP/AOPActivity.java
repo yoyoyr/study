@@ -1,5 +1,6 @@
 package com.test.viewpagedemo.AOP;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ public class AOPActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        LoggerUtils.LOGD("onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aop);
 

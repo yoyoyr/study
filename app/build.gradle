@@ -1,3 +1,9 @@
+ext {
+    var = 'meet'
+    var1 = 'meet123'
+    var2 = 'meet123'
+    var3 = '/Users/yangrong/AndroidStudioProjects/demo/study/app/meet.keystore'
+}
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 import org.aspectj.bridge.IMessage
@@ -7,9 +13,22 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 //apply plugin: 'walle'
 //apply plugin: 'com.test.plugin.mygroovy'
-//apply from: file("${project.project(":hotfix").projectDir}/tinker.gradle")
+apply from: file("${project.project(":hotfix").projectDir}/tinker.gradle")
+
+Properties props = new Properties()
+props.load(new FileInputStream(file(rootProject.file("signing.properties"))))
+
 
 android {
+    signingConfigs {
+        release {
+            storeFile file(var3)
+            storePassword var2
+            keyAlias = var
+            keyPassword var1
+        }
+    }
+
 //    构建项目sdk版本号
     compileSdkVersion project.ext.param.compileSdkVersion
 //    替换manifest属性
@@ -42,12 +61,21 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            java.srcDirs = ['src']
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(props['keyStoreFile'])
+            storePassword props['storePassword']
+            keyAlias props['keyAlias']
+            keyPassword props['keyPassword']
+            v1SigningEnabled true
+            v2SigningEnabled true
         }
     }
 //指定keystore路径,密码
-    signingConfigs {
-
-    }
     buildTypes {
         debug {
 //            sdk 17以后支持
@@ -60,8 +88,11 @@ android {
             buildConfigField "boolean", "isModule", "$project.ext.isModule"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
         }
     }
+
     packagingOptions {
         exclude 'META-INF/MANIFEST.MF'
         exclude 'META-INF/LICENSE.txt'
@@ -71,6 +102,16 @@ android {
     dataBinding {
         enabled = true;
     }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
 
 }
 
@@ -179,7 +220,6 @@ dependencies {
 }
 
 
-
 final def log = project.logger
 final def variants = project.android.applicationVariants
 
@@ -223,3 +263,17 @@ variants.all { variant ->
         }
     }
 }
+
+task before{
+    doLast{
+        println "task before"
+    }
+}
+task after{
+    doLast{
+        println "task after task"
+    }
+}
+
+
+after.mustRunAfter(before)

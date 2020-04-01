@@ -1,9 +1,11 @@
 package com.test.viewpagedemo.Views.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,6 +45,7 @@ public class FragmentBaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //如果savedInstanceState ！=null，这调用FragmentController.restoreAllState恢复fragment。然后调用dispatchCreate
         //重新初始化fragment在界面显示
+        LoggerUtils.LOGV("onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
 
@@ -79,21 +82,53 @@ public class FragmentBaseActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.addf1)).setText(text);
     }
 
+
+    @Override
+    protected void onPause() {
+        LoggerUtils.LOGD("onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        LoggerUtils.LOGD("onStop");
+        super.onStop();
+    }
+
     @Override
     protected void onDestroy() {
+        LoggerUtils.LOGD("onDestroy");
         super.onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        System.out.println("activity onSaveInstanceState");
+        LoggerUtils.LOGD("onSaveInstanceState");
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        System.out.println("activity onRestoreInstanceState");
+        LoggerUtils.LOGD("onRestoreInstanceState");
         super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        LoggerUtils.LOGD("onNewIntent");
+        super.onNewIntent(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        LoggerUtils.LOGD("onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        LoggerUtils.LOGD("onResume");
+        super.onResume();
     }
 
     //detach remove都会触发mAdded删除fragment，只有remove会触发mActive删除fragment;
@@ -103,12 +138,13 @@ public class FragmentBaseActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.addf1:
-                    getSupportFragmentManager().
-                            beginTransaction()
-                            //这里传入的vp是一个ViewGroup，使用的时候container.addView(f.mView);
-                            .add(R.id.vp, f1, Fragment1.getFragmentTag())
-                            //调用fragmentmanger.addFragment(),然后backstackRecord.moveToState
-                            .commit();
+//                    getSupportFragmentManager().
+//                            beginTransaction()
+//                            //这里传入的vp是一个ViewGroup，使用的时候container.addView(f.mView);
+//                            .add(R.id.vp, f1, Fragment1.getFragmentTag())
+//                            //调用fragmentmanger.addFragment(),然后backstackRecord.moveToState
+//                            .commit();
+                    startActivity(new Intent(getBaseContext(), FragmentBaseActivity.class));
                     break;
                 case R.id.addf2:
                     getSupportFragmentManager().beginTransaction().add(R.id.vp, f2)

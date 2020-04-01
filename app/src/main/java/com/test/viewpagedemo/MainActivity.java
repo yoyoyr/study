@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.ArrayMap;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -19,7 +22,9 @@ import com.study.point.R;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        加载热修复文件 /storage/emulated/0/Android/data/com.androidstudypoint/cache/patch_signed.apk
-        mPath = getExternalCacheDir().getAbsolutePath() + File.separatorChar + "patch_signed.apk";
+        mPath = getCacheDir().getAbsolutePath() + File.separatorChar + "patch_signed.apk";
         LoggerUtils.LOGD("path = " + mPath);
         File patchFile = new File(mPath);
         if (patchFile.exists()) {

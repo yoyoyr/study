@@ -55,7 +55,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.test.viewpagedemo.MainActivity">
+        <activity
+            android:name="com.test.viewpagedemo.MainActivity"
+            android:theme="@style/SplashTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,7 +69,7 @@
         <!--<activity android:name="com.test.viewpagedemo.Views.viewpage.restore.RestoreViewPageAdapterActivity" />-->
         <activity
             android:name="com.test.viewpagedemo.Views.fragment.FragmentBaseActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:launchMode="singleTask" />
         <activity android:name="com.test.viewpagedemo.Views.viewpage.fragmentadapter.FragmentadapterActivity" />
         <activity android:name="com.test.viewpagedemo.Views.viewpage.fragmentstateadapter.FragmentStateadapterActivity" />
         <!--<activity android:name="com.test.viewpagedemo.Views.fragment.DialogFragmentTest.DialogFragmentActivity" />-->
@@ -87,7 +89,9 @@
         <activity android:name="com.test.viewpagedemo.Bitmap.BitmapActivity" />
         <activity android:name="com.test.viewpagedemo.EventBus.EventBusActivity" />
         <activity android:name="com.test.viewpagedemo.DaggerNew.NewDaggerActivity" />
-        <activity android:name="com.test.viewpagedemo.AOP.AOPActivity" />
+        <activity
+            android:name="com.test.viewpagedemo.AOP.AOPActivity"
+            android:launchMode="singleTop" />
         <activity android:name="com.test.viewpagedemo.Views.SelfView.MySlideActivity" />
         <activity android:name="com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity" />
         <activity android:name="com.test.viewpagedemo.SVG.SVGActivity" />
@@ -95,6 +99,8 @@
         <activity android:name="com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1" />
         <activity android:name="com.test.viewpagedemo.Views.shareanim.ShareAnimActivity2" />
         <activity android:name="com.test.viewpagedemo.Views.motionlayout.MotionLayoutActivity" />
+        <activity android:name="main.java.com.test.viewpagedemo.WebView.WebViewActivity" />
+
 
         <meta-data
             android:name="com.test.viewpagedemo.Glide.MyGlideModule"

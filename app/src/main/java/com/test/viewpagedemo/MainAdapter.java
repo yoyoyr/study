@@ -36,6 +36,8 @@ import com.test.viewpagedemo.Views.viewpage.adapter.BaseViewPageAdapterActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.com.test.viewpagedemo.WebView.WebViewActivity;
+
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
 
     static {
@@ -60,7 +62,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         titles.add("fragment");
         intents.add(new Intent(context, FragmentBaseActivity.class));
         titles.add("ViewPage");
-        intents.add(new Intent(context, BaseViewPageAdapterActivity.class));
+        intents.add(new Intent(context, com.test.viewpagedemo.Views.viewpage.fragmentadapter.FragmentadapterActivity.class));
 //        titles.add("fragmentadapter 和懒加载机制实现");
 //        intents.add(new Intent(context, FragmentadapterActivity.class));
 //        titles.add("fragmentStateadapter");
@@ -101,6 +103,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, ShareAnimActivity.class));
         titles.add("MotionLyout");
         intents.add(new Intent(context, MotionLayoutActivity.class));
+        titles.add("WebView");
+        intents.add(new Intent(context, WebViewActivity.class));
 //        titles.add("SPI");
 //        intents.add(new Intent(context, SPIActivity.class));
 //        titles.add("MVVM");

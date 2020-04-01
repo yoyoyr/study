@@ -14,6 +14,7 @@ public class ScrollAtivity extends AppCompatActivity {
 
     Button test;
     int count = 0;
+    long time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +38,9 @@ public class ScrollAtivity extends AppCompatActivity {
         ((Button) findViewById(R.id.scroll)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                time = System.currentTimeMillis();
                 ((View) test.getParent()).scrollBy(0, -100);
-                LoggerUtils.LOGD("test = " + test.toString());
+                LoggerUtils.LOGD("test = " + test.toString() + ",time = " + (System.currentTimeMillis() - time));
                 LoggerUtils.LOGD("top = " + test.getTop() + ",translate y = " + test.getTranslationY()
                         + ",scroll y = " + test.getScrollY() + ",y = " + test.getY() +
                         ",parent scroll y = " + ((View) test.getParent()).getScrollY());
@@ -53,8 +55,10 @@ public class ScrollAtivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count += 100;
+
+                time = System.currentTimeMillis();
                 test.setTranslationY(count);
-                LoggerUtils.LOGD("test = " + test.toString());
+                LoggerUtils.LOGD("test = " + test.toString() + ",time = " + (System.currentTimeMillis() - time));
                 LoggerUtils.LOGD("top = " + test.getTop() + ",translate y = " + test.getTranslationY()
                         + ",scroll y = " + test.getScrollY() + ",y = " + test.getY() +
                         ",parent scroll y = " + ((View) test.getParent()).getScrollY());
@@ -70,8 +74,9 @@ public class ScrollAtivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //直接设置子view的l，r
+                time = System.currentTimeMillis();
                 test.offsetTopAndBottom(100);
-                LoggerUtils.LOGD("test = " + test.toString());
+                LoggerUtils.LOGD("test = " + test.toString() + ",time = " + (System.currentTimeMillis() - time));
                 LoggerUtils.LOGD("top = " + test.getTop() + ",translate y = " + test.getTranslationY()
                         + ",scroll y = " + test.getScrollY() + ",y = " + test.getY() +
                         ",parent scroll y = " + ((View) test.getParent()).getScrollY());

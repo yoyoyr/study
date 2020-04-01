@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
@@ -61,9 +62,11 @@ public class MyViewGroup extends ViewGroup {
         ViewConfiguration.getWindowTouchSlop();
     }
 
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
+        LoggerUtils.LOGV("onMeasure");
         int widthModel = MeasureSpec.getMode(widthMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int heightModel = MeasureSpec.getMode(heightMeasureSpec);
@@ -98,6 +101,7 @@ public class MyViewGroup extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        LoggerUtils.LOGV("onLayout");
         int childTop = t;
         final int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -113,8 +117,90 @@ public class MyViewGroup extends ViewGroup {
     }
 
     @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        LoggerUtils.LOGV("onDraw");
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        LoggerUtils.LOGV("onDraw");
+    }
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
+
+        boolean r = super.dispatchTouchEvent(ev);
+        LoggerUtils.LOGV("event = " + ev.getAction() + "r = " + r);
+        return r;
+    }
+
+    @Override
+    public boolean onTouchEvent(@NonNull MotionEvent ev) {
+        LoggerUtils.LOGV("onTouchEvent");
+        boolean r = false;
+        if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) {
+            r = true;
+        }
+        LoggerUtils.LOGV("event = " + ev.getAction() + "r = " + r);
+        return r;
+
+
+//        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+////            LoggerUtils.LOGD("move " + Math.abs(ev.getX() - lastX));
+//            if (touchView != null && (Math.abs(ev.getX() - lastX) >= mSlop
+//                    || Math.abs(ev.getY() - lastY) >= mSlop)) {
+//                touchView.offsetLeftAndRight((int) (ev.getX() - lastX));
+//                touchView.offsetTopAndBottom((int) (ev.getY() - lastY));
+////                LoggerUtils.LOGD("lastX = " + lastX);
+//                lastX = ev.getX();
+//                lastY = ev.getY();
+//            }
+//            return true;
+//        } else if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+//
+//            if (touchView != null) {
+//                lastX = touchView.getLeft();
+//                lastY = touchView.getTop();
+////                LoggerUtils.LOGD("origX = " + origX + ",ev.getX() = " + ev.getX() + ",left = " + touchView.getLeft());
+//                ValueAnimator xAnimator = ValueAnimator.ofInt((int) touchView.getLeft(), (int) origX);
+//
+//                xAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+//
+//                        int x = (Integer) animation.getAnimatedValue();
+////                        LoggerUtils.LOGD("x = " + x + ",move = " + (x - lastX));
+//                        touchView.offsetLeftAndRight((int) (x - lastX));
+//                        lastX = x;
+//                    }
+//                });
+//
+//                ValueAnimator yAnimator = ValueAnimator.ofInt(touchView.getTop(), (int) origY);
+//                yAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+//                        int y = (int) animation.getAnimatedValue();
+//                        touchView.offsetTopAndBottom((int) (y - lastY));
+//                        lastY = y;
+//                    }
+//                });
+//                AnimatorSet animatorSet = new AnimatorSet();
+//                animatorSet.play(xAnimator).with(yAnimator);
+//                animatorSet.addListener(new AnimatorListenerAdapter() {
+//                    @Override
+//                    public void onAnimationEnd(Animator animation) {
+//                        touchView = null;
+//                        origX = origY = lastX = lastY = 0;
+//                    }
+//                });
+//                animatorSet.start();
+//            }
+//
+//            return false;
+//        }
+//        return false;
     }
 
     /**
@@ -132,25 +218,32 @@ public class MyViewGroup extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(@NonNull MotionEvent ev) {
 
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-
-            lastX = ev.getX();
-            lastY = ev.getY();
-            touchView = getTouchView(ev.getX(), ev.getY());
-            return false;
-        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            if (touchView != null && (Math.abs(ev.getX() - lastX) >= mSlop
-                    || Math.abs(ev.getY() - lastY) >= mSlop)) {
-//                LoggerUtils.LOGD("group  true");
-                return true;
-            }
-            return false;
-
-        } else if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
-            return false;
-        } else {
-            return false;
+//        boolean r = super.onInterceptTouchEvent(ev);
+        boolean r = false;
+        if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL || ev.getAction() == MotionEvent.ACTION_MOVE) {
+            r = true;
         }
+        LoggerUtils.LOGV("event = " + ev.getAction() + "r = " + r);
+        return r;
+//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+//
+//            lastX = ev.getX();
+//            lastY = ev.getY();
+//            touchView = getTouchView(ev.getX(), ev.getY());
+//            return false;
+//        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+//            if (touchView != null && (Math.abs(ev.getX() - lastX) >= mSlop
+//                    || Math.abs(ev.getY() - lastY) >= mSlop)) {
+////                LoggerUtils.LOGD("group  true");
+//                return true;
+//            }
+//            return false;
+//
+//        } else if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+//            return false;
+//        } else {
+//            return false;
+//        }
 
     }
 
@@ -171,68 +264,5 @@ public class MyViewGroup extends ViewGroup {
         return null;
     }
 
-    @Override
-    public ViewParent invalidateChildInParent(final int[] location, final Rect dirty) {
-        LoggerUtils.LOGD("invalidateChildInParent ");
-        return super.invalidateChildInParent(location, dirty);
-    }
 
-    @Override
-    public boolean onTouchEvent(@NonNull MotionEvent ev) {
-//        LoggerUtils.LOGD("event = " + ev.getAction());
-        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-//            LoggerUtils.LOGD("move " + Math.abs(ev.getX() - lastX));
-            if (touchView != null && (Math.abs(ev.getX() - lastX) >= mSlop
-                    || Math.abs(ev.getY() - lastY) >= mSlop)) {
-                touchView.offsetLeftAndRight((int) (ev.getX() - lastX));
-                touchView.offsetTopAndBottom((int) (ev.getY() - lastY));
-//                LoggerUtils.LOGD("lastX = " + lastX);
-                lastX = ev.getX();
-                lastY = ev.getY();
-            }
-            return true;
-        } else if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
-
-            if (touchView != null) {
-                lastX = touchView.getLeft();
-                lastY = touchView.getTop();
-//                LoggerUtils.LOGD("origX = " + origX + ",ev.getX() = " + ev.getX() + ",left = " + touchView.getLeft());
-                ValueAnimator xAnimator = ValueAnimator.ofInt((int) touchView.getLeft(), (int) origX);
-
-                xAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-
-                        int x = (Integer) animation.getAnimatedValue();
-//                        LoggerUtils.LOGD("x = " + x + ",move = " + (x - lastX));
-                        touchView.offsetLeftAndRight((int) (x - lastX));
-                        lastX = x;
-                    }
-                });
-
-                ValueAnimator yAnimator = ValueAnimator.ofInt(touchView.getTop(), (int) origY);
-                yAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-                        int y = (int) animation.getAnimatedValue();
-                        touchView.offsetTopAndBottom((int) (y - lastY));
-                        lastY = y;
-                    }
-                });
-                AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.play(xAnimator).with(yAnimator);
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        touchView = null;
-                        origX = origY = lastX = lastY = 0;
-                    }
-                });
-                animatorSet.start();
-            }
-
-            return false;
-        }
-        return false;
-    }
 }

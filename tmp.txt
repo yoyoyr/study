@@ -9,8 +9,8 @@
  			  被完全遮挡，不可见  onStop--onStart
  			  内存不足	onPause/onStop--onCreate
  			  横竖屏切换时的生命周期	
-				  启动activity	 A  onCreate--onStart--onResume
-				  开始切换		 A onPause--onSaveInstanceState	B onCreate(bundle)--onStart--onPause    A onStop--onDestory
+				  启动activity	 fx.A  onCreate--onStart--onResume
+				  开始切换		 fx.A onPause--onSaveInstanceState	B onCreate(bundle)--onStart--onPause    fx.A onStop--onDestory
 				  设置了orientation|screenSize  横竖屏切换仅仅会调用onConfigurationChanged()方法
 			  被系统栏/对话框挡住	onWindowFocusChange()
 			  5s anr
@@ -45,12 +45,12 @@
 	SingleTask 栈内复用，仍然只调用noNewIntent。
 			   如果Activity栈S  ABCD  启动E，taskAffinity S  则Activity栈S 变成ABCDE
 			   如果Activity栈S  ABCD  启动A，taskAffinity S  则Activity栈S 变成A
-			   如果Activity栈S  ABCD  启动A  taskAffinity S1  则Activity栈S  ABCD Activity栈S1 A
+			   如果Activity栈S  ABCD  启动A  taskAffinity S1  则Activity栈S  ABCD Activity栈S1 fx.A
 	SingleInstance 具有SingleTask特性以外，这个栈只能有这个Activity
 
 
 5.两个activity间跳转必然执行的方法 onPause.
-	一般情况下	A onPause  B onCreate--onStart--onResume  A onStop--onDestory
+	一般情况下	fx.A onPause  B onCreate--onStart--onResume  fx.A onStop--onDestory
 	如果B为透明或者对话框模式	没有onStop--onDestory
 	SingleTop，SingleTask模式	没有onCreate--onStart--onResume
 

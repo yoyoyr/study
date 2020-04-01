@@ -59,7 +59,7 @@ public class FragmentA extends Fragment {
      *             EventBus.getDefault().postSticky(new MessageEvent("粘性事件"));
      *             @Subscribe(sticky = true ,threadMode = ThreadMode.MAIN)
      */
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN,priority = 1,sticky = true)
     public void onEvent(@NonNull Message data) {
         textView.setText(data.content);
     }

@@ -1,8 +1,14 @@
 package refle;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.management.relation.Relation;
 
 /**
  * 反射给程序员提供了站在jvm角度编程的视角
@@ -12,8 +18,14 @@ import java.lang.reflect.Modifier;
  */
 public class Test {
 
-    public static void main(String[] args) throws ClassNotFoundException {
-//        获取类的class对象
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+
+//        refle();
+        linkedTest();
+    }
+
+    private static void refle() throws ClassNotFoundException {
+        //        获取类的class对象
 //        Class refle =  RefleDemo.class;//返回jvm真正指向方法区的类 对象
 //        Class refle =  new RefleDemo().getClass();//仅仅装载不初始  化
         Class refle = Class.forName("refle.RefleDemo");//初始化并装载类
@@ -24,6 +36,7 @@ public class Test {
         System.out.println("class identify = " + Modifier.toString(refle.getModifiers()));
         System.out.println("-----------------------------");
 
+        ;
 
 //        获取public属性，包括父类
         Field[] fields = refle.getFields();
@@ -49,6 +62,42 @@ public class Test {
         }
         System.out.println("-----------------------------");
 
+        int end;
+        for (end = 1; end < 10; end++) {
+
+        }
+        System.out.println("-----------------------------" + end);
+
+    }
+
+    private static void linkedTest() {
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("1", "a");
+        map.put("2", "b");
+        map.put("3", "c");
+        map.put("4", "d");
+
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        System.out.println("以下是accessOrder=true的情况:");
+
+        map = new LinkedHashMap<String, String>(10, 0.75f, true);
+        map.put("1", "a");
+        map.put("2", "b");
+        map.put("3", "c");
+        map.put("4", "d");
+        map.get("2");//2移动到了内部的链表末尾
+//        map.get("4");//4调整至末尾
+//        map.put("3", "e");//3调整至末尾
+//        map.put(null, null);//插入两个新的节点 null
+//        map.put("5", null);//5
+        iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 
 }

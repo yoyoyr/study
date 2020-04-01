@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.study.point.R;
+import com.test.viewpagedemo.LoggerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,6 +111,7 @@ public class Arc extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        LoggerUtils.LOGD("onMeasure");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int widthModel = MeasureSpec.getMode(widthMeasureSpec);
@@ -130,13 +132,13 @@ public class Arc extends View {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-//        LoggerUtils.LOGD("onLayout");
+        LoggerUtils.LOGD("onLayout");
         super.onLayout(changed, left, top, right, bottom);
     }
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
-//        LoggerUtils.LOGD("onDraw");
+        LoggerUtils.LOGD("onDraw");
         super.onDraw(canvas);
         //画圆弧
         if (arcs.size() <= 0) {
@@ -173,51 +175,69 @@ public class Arc extends View {
     }
 
     @Override
-    public boolean dispatchTouchEvent(@NonNull MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (Math.pow(Math.abs(event.getY() - y), 2) +
-                    Math.pow(Math.abs(event.getX() - x), 2) <=
-                    Math.pow(getWidth() * 3 / 8, 2)) {
-//                LoggerUtils.LOGD("down point on inner circle!");
-                return false;
-            } else if (Math.pow(Math.abs(event.getY() - y), 2) +
-                    Math.pow(Math.abs(event.getX() - x), 2) >
-                    Math.pow(getWidth() / 2, 2)) {
-//                LoggerUtils.LOGD("down point out outter circle!");
-                return false;
+    public boolean dispatchTouchEvent(MotionEvent ev) {
 
-            }
-        }
-        return super.dispatchTouchEvent(event);
+        boolean r = super.dispatchTouchEvent(ev);
+        LoggerUtils.LOGV("event = " + ev.getAction() + "r = " + r);
+        return r;
     }
 
-    /**
-     * 坐标已经转换为子控件的
-     *
-     * @param event
-     * @return
-     */
     @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            float clickX = event.getX();
-            float clickY = event.getY();
-            //计算 弧度
-            double atan2 = Math.atan2(clickY - y, clickX - x);
-            //根据弧度算出角度
-            double angle = atan2 * 180 / Math.PI;
-            if (angle < 0) {
-                angle = 360 + angle;
-            }
+    public boolean onTouchEvent(@NonNull MotionEvent ev) {
 
-            for (int i = 0; i < arcs.size(); ++i) {
-                if (arcs.get(i).startAngle < angle && arcs.get(i).endAngle >= angle) {
-//                    LoggerUtils.LOGD("click arc" + i);
-                }
-            }
+        boolean r = super.onTouchEvent(ev);
+        if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+            r = false;
         }
+        LoggerUtils.LOGV("event = " + ev.getAction() + "r = " + r);
         return true;
     }
+//    @Override
+//    public boolean dispatchTouchEvent(@NonNull MotionEvent event) {
+//        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//            if (Math.pow(Math.abs(event.getY() - y), 2) +
+//                    Math.pow(Math.abs(event.getX() - x), 2) <=
+//                    Math.pow(getWidth() * 3 / 8, 2)) {
+////                LoggerUtils.LOGD("down point on inner circle!");
+//                return false;
+//            } else if (Math.pow(Math.abs(event.getY() - y), 2) +
+//                    Math.pow(Math.abs(event.getX() - x), 2) >
+//                    Math.pow(getWidth() / 2, 2)) {
+////                LoggerUtils.LOGD("down point out outter circle!");
+//                return false;
+//
+//            }
+//        }
+//        return super.dispatchTouchEvent(event);
+//    }
+//
+//    /**
+//     * 坐标已经转换为子控件的
+//     *
+//     * @param event
+//     * @return
+//     */
+//    @Override
+//    public boolean onTouchEvent(@NonNull MotionEvent event) {
+//        if (event.getAction() == MotionEvent.ACTION_UP) {
+//            float clickX = event.getX();
+//            float clickY = event.getY();
+//            //计算 弧度
+//            double atan2 = Math.atan2(clickY - y, clickX - x);
+//            //根据弧度算出角度
+//            double angle = atan2 * 180 / Math.PI;
+//            if (angle < 0) {
+//                angle = 360 + angle;
+//            }
+//
+//            for (int i = 0; i < arcs.size(); ++i) {
+//                if (arcs.get(i).startAngle < angle && arcs.get(i).endAngle >= angle) {
+////                    LoggerUtils.LOGD("click arc" + i);
+//                }
+//            }
+//        }
+//        return true;
+//    }
 
     public void setData(@Nullable List<Integer> data, @NonNull List<Integer> colors) {
         if (data != null && data.size() > 0) {

@@ -3,12 +3,12 @@ package com.hotfix;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.lib.patch.UpgradePatch;
 import com.tencent.tinker.lib.reporter.DefaultLoadReporter;
 import com.tencent.tinker.lib.reporter.DefaultPatchReporter;
 import com.tencent.tinker.lib.tinker.Tinker;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
-import com.tencent.tinker.loader.app.ApplicationLike;
 import com.test.viewpagedemo.LoggerUtils;
 
 public class TinkerManager {

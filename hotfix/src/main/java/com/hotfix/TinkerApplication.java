@@ -3,10 +3,11 @@ package com.hotfix;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.support.multidex.MultiDex;
 
 import com.annotation.ApplicationAsyncInit;
 import com.tencent.tinker.anno.DefaultLifeCycle;
-import com.tencent.tinker.loader.app.ApplicationLike;
+import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.test.viewpagedemo.LoggerUtils;
 
@@ -28,6 +29,7 @@ public class TinkerApplication extends ApplicationLike {
     @Override
     public void onBaseContextAttached(Context base) {
         super.onBaseContextAttached(base);
+        MultiDex.install(base);
         TinkerManager.installTinker(this, base);
 
     }

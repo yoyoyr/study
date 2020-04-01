@@ -7,15 +7,15 @@ def bakPath = file("${project.project(":app").buildDir}/bak")
 ext {
     tinkerEnabled = true
     tinkerId = project.ext.param.versionName    //替换为需要热修复app版本号
-    time = "1126-15-55-46"  //base app生成时间
+    time = "0330-17-08-"  //base app生成时间
     loader = "com.test.viewpagedemo.MyTinkerApplication"   //tinkerApplication的实现类
+    buildType = "release"
 
-
-    oldApkPath = "${bakPath}/app-release-${time}.apk"
+    oldApkPath = "${bakPath}/app-${buildType}-${time}.apk"
     //proguard相关
-    tinkerApplyMappingPath = "${bakPath}/app-release-${time}-mapping.txt"
+    tinkerApplyMappingPath = "${bakPath}/app-${buildType}-${time}-mapping.txt"
     //资源文件混淆
-    tinkerApplyResourcePath = "${bakPath}/app-release-${time}-R.txt"
+    tinkerApplyResourcePath = "${bakPath}/app-${buildType}-${time}-R.txt"
 
     //多渠道
     tinkerBuildFlavorDirectory = "${bakPath}/app-${time}"

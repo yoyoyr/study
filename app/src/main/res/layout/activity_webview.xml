@@ -9,25 +9,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/hotfix"
+            android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="hot fix " />
+            android:text="reLoad" />
 
-        <Button
-            android:id="@+id/arouter"
+        <WebView
+            android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="arouter" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </layout>
