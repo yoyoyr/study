@@ -60,12 +60,12 @@ android {
                 GETUI_APP_SECRET: "LVMcNMNJeq7UfUNfuo4dP4"
         ]
     }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-            java.srcDirs = ['src']
-        }
-    }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//            java.srcDirs = ['src']
+//        }
+//    }
 
 //    signingConfigs {
 //        release {
@@ -186,15 +186,17 @@ dependencies {
     implementation 'org.greenrobot:greendao-generator:3.2.2'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.didi.virtualapk:core:0.9.6'
-    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
-    annotationProcessor 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'org.aspectj:aspectjrt:1.9.1'
     //多渠道打包
     implementation 'com.meituan.android.walle:library:1.1.6'
     if (project.ext.isModule) {
         //组件化代码隔离，主工程无法访问module代码，带运行时可以访问
-        runtimeOnly project(':assembly')
+//        runtimeOnly project(':assembly')
         runtimeOnly project(':hook')
     }
     implementation project(':aop')
@@ -264,13 +266,13 @@ variants.all { variant ->
     }
 }
 
-task before{
-    doLast{
+task before {
+    doLast {
         println "task before"
     }
 }
-task after{
-    doLast{
+task after {
+    doLast {
         println "task after task"
     }
 }

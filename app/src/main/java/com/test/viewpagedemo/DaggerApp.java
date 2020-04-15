@@ -93,6 +93,7 @@ public class DaggerApp {
         appComponent.inject(this);
 
         LoggerUtils.LOGD("---------init leakcanary");
+
         refWatcher = LeakCanary.refWatcher(context).listenerServiceClass(DisplayLeakService.class)
                 .excludedRefs(AndroidExcludedRefs.createAppDefaults().build())
                 .buildAndInstall();

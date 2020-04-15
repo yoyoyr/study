@@ -7,6 +7,7 @@ import android.os.Debug;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,11 +19,16 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.hotfix.TinkerManager;
 import com.study.point.BuildConfig;
 import com.study.point.R;
+import com.test.viewpagedemo.Views.viewpage.fragmentadapter.BaseFragmentViewPageAdapter;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +70,40 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("错误", null)
                 .create();
 
+//        hookVPAdapter();
+        hookQueuedWork();
+    }
+
+    private void hookQueuedWork() {
+        try {
+            Class c = Class.forName("android.app.QueuedWork");
+            Field sFinishers = c.getDeclaredField("sFinishers");
+            sFinishers.setAccessible(true);
+            LinkedList<Runnable> runnables = (LinkedList<Runnable>) sFinishers.get(c);
+            LoggerUtils.LOGV("size = " + runnables.size());
+            runnables.clear();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hookVPAdapter() {
+        try {
+            Method makeFragmentName = FragmentPagerAdapter.class.getDeclaredMethod("makeFragmentName", int.class, long.class);
+            BaseFragmentViewPageAdapter fragmentPagerAdapter = new BaseFragmentViewPageAdapter(getSupportFragmentManager(), null);
+            makeFragmentName.setAccessible(true);
+            LoggerUtils.LOGV("tag = " + makeFragmentName.invoke(fragmentPagerAdapter, 1, 2));
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.hotfix)
@@ -83,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private void startTract(Context context) {
         //启动app时间统计
         File file = new File(context.getCacheDir() + "/hello.trace");
@@ -97,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Debug.startMethodTracing(context.getCacheDir() + "/hello.trace");
     }
+
     //aroute初始化时间接近2s，用异步方式解决
     @SuppressLint("CheckResult")
     @OnClick(R.id.arouter)

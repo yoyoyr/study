@@ -441,13 +441,14 @@ public class RxJavaNew extends AppCompatActivity {
 
     @OnClick(R.id.map)
     void exchange() {
-        Observable map = observable.map(new Function<Integer, Integer>() {
-            @NonNull
-            @Override
-            public Integer apply(Integer o) throws Exception {
-                return o * 2;
-            }
-        });
+        Observable map = Observable.just(1)
+                .map(new Function<Integer, Integer>() {
+                    @NonNull
+                    @Override
+                    public Integer apply(Integer o) throws Exception {
+                        return o * 2;
+                    }
+                });
 
         //多线程的情况下，flatmap发出的事件是无序的.一个Observable.fromIterable(lists)对应一个InnerObserver，多线程情况下各自发送事件
         Observable flatMap = observable.flatMap(new Function<Integer, Observable>() {
@@ -499,9 +500,14 @@ public class RxJavaNew extends AppCompatActivity {
             }
         });
 
-        create.subscribeOn(AndroidSchedulers.mainThread())
+        disposable = create.subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
-                .subscribe(observer);
+                .subscribe(new Consumer() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+
+                    }
+                });
 
     }
 

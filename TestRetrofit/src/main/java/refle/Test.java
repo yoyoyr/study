@@ -18,10 +18,18 @@ import javax.management.relation.Relation;
  */
 public class Test {
 
+    private static boolean INIT_RESULT = true;
+
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
 //        refle();
-        linkedTest();
+//        linkedTest();
+
+        for (int i = 0; i < 5; i++) {
+            if (i % 7 == 6)
+                INIT_RESULT &= false;
+        }
+        System.out.println(INIT_RESULT);
     }
 
     private static void refle() throws ClassNotFoundException {
@@ -77,10 +85,10 @@ public class Test {
         map.put("3", "c");
         map.put("4", "d");
 
-        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
+//        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+//        while (iterator.hasNext()) {
+//            System.out.println(iterator.next());
+//        }
 
         System.out.println("以下是accessOrder=true的情况:");
 
@@ -89,15 +97,18 @@ public class Test {
         map.put("2", "b");
         map.put("3", "c");
         map.put("4", "d");
-        map.get("2");//2移动到了内部的链表末尾
+        map.get("3");//2移动到了内部的链表末尾
 //        map.get("4");//4调整至末尾
 //        map.put("3", "e");//3调整至末尾
 //        map.put(null, null);//插入两个新的节点 null
 //        map.put("5", null);//5
-        iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+        Map.Entry toEvict = null;
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            toEvict = entry;
         }
+
+        System.out.println(toEvict.getKey() + "--" + toEvict.getValue());
+
     }
 
 }

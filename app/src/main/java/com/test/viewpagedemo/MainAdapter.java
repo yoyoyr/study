@@ -28,6 +28,7 @@ import com.test.viewpagedemo.Views.RecyclerView.RecyclerViewAct;
 import com.test.viewpagedemo.Views.ScrollTest.ScrollAtivity;
 import com.test.viewpagedemo.Views.SelfView.MySlideActivity;
 import com.test.viewpagedemo.Views.TestCoordinatorLayout.TestCoordinatorLayoutActivity;
+import com.test.viewpagedemo.Views.event.EventTestAct;
 import com.test.viewpagedemo.Views.fragment.FragmentBaseActivity;
 import com.test.viewpagedemo.Views.motionlayout.MotionLayoutActivity;
 import com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1;
@@ -61,6 +62,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, AOPActivity.class));
         titles.add("fragment");
         intents.add(new Intent(context, FragmentBaseActivity.class));
+        titles.add("touch event");
+        intents.add(new Intent(context, EventTestAct.class));
         titles.add("ViewPage");
         intents.add(new Intent(context, com.test.viewpagedemo.Views.viewpage.fragmentadapter.FragmentadapterActivity.class));
 //        titles.add("fragmentadapter 和懒加载机制实现");
@@ -134,9 +137,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
                 @Override
                 public void onClick(View v) {
                     LoggerUtils.LOGD("route");
-                    ARouter.getInstance().build(RouteBean.hook).navigation();
+//                    ARouter.getInstance().build(RouteBean.hook).navigation();
+                    while (true) {
+                        List<String> list = new ArrayList<>();
+                        for (int i = 0; i < 10000; ++i) {
+                            list.add("" + i);
+                        }
+                    }
+
                 }
             });
+
         } else {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
