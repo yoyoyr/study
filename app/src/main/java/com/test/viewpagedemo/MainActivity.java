@@ -2,6 +2,7 @@ package com.test.viewpagedemo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.Handler;
@@ -16,10 +17,15 @@ import android.util.ArrayMap;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
+import com.github.moduth.blockcanary.BlockCanary;
 import com.hotfix.TinkerManager;
+import com.squareup.leakcanary.LeakCanary;
 import com.study.point.BuildConfig;
 import com.study.point.R;
+import com.tencent.mmkv.MMKV;
 import com.test.viewpagedemo.Views.viewpage.fragmentadapter.BaseFragmentViewPageAdapter;
+import com.test.viewpagedemo.WebView.OnePxActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         startTract(this);
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        LeakCanary.install(getApplication());
         ButterKnife.bind(this);
         recyclerView = findViewById(R.id.rv);
 
@@ -70,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("错误", null)
                 .create();
 
+//        startActivity(new Intent(this, OnePxActivity.class));
 //        hookVPAdapter();
-        hookQueuedWork();
+//        hookQueuedWork();
+
+
     }
 
     private void hookQueuedWork() {
@@ -109,17 +119,40 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.hotfix)
     void hotfix() {
 
-
 //        加载热修复文件 /storage/emulated/0/Android/data/com.androidstudypoint/cache/patch_signed.apk
-        mPath = getCacheDir().getAbsolutePath() + File.separatorChar + "patch_signed.apk";
-        LoggerUtils.LOGD("path = " + mPath);
-        File patchFile = new File(mPath);
-        if (patchFile.exists()) {
-            TinkerManager.loadPatch(mPath);
-            Toast.makeText(this, "File Exists,Please wait a moment ", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "File No Exists", Toast.LENGTH_SHORT).show();
-        }
+//        mPath = getCacheDir().getAbsolutePath() + File.separatorChar + "patch_signed.apk";
+//        LoggerUtils.LOGD("path = " + mPath);
+//        File patchFile = new File(mPath);
+//        if (patchFile.exists()) {
+//            TinkerManager.loadPatch(mPath);
+//            Toast.makeText(this, "File Exists,Please wait a moment ", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "File No Exists", Toast.LENGTH_SHORT).show();
+//        }
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                a();
+                b();
+                c();
+            }
+
+            private void b() {
+                try {
+                    Thread.sleep(900);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(MainActivity.this, "task finish", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void c() {
+    }
+
+    private void a() {
     }
 
 
@@ -141,74 +174,82 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.arouter)
     void initModuleAsync() {
 
+
+        Runtime rt = Runtime.getRuntime();
+        long maxMemory = rt.maxMemory();
+        LoggerUtils.LOGV("maxMemory:" + Long.toString(maxMemory / (1024 * 1024)));
+        long totalMemory = rt.totalMemory();
+        LoggerUtils.LOGV("totalMemory:" + Long.toString(totalMemory / (1024 * 1024)));
+        long freeMemory = rt.freeMemory();
+        LoggerUtils.LOGV("freeMemory:" + Long.toString(freeMemory / (1024 * 1024)));
         long start = System.currentTimeMillis();
         LoggerUtils.LOGD("isModule = " + BuildConfig.isModule);
-        if (BuildConfig.isModule) {
-            List observables = new ArrayList<ObservableSource>();
-            observables.add(Observable.create(new ObservableOnSubscribe<Object>() {
-                @Override
-                public void subscribe(@NonNull ObservableEmitter<Object> emitter) {
-                    LoggerUtils.LOGD("work in " + Thread.currentThread().getName());
-                    showDialog();
-                    emitter.onNext(true);
-                }
-            }).subscribeOn(AndroidSchedulers.mainThread()));
-
-            observables.add(Observable.create(new ObservableOnSubscribe<Object>() {
-                @Override
-                public void subscribe(@NonNull ObservableEmitter<Object> emitter) {
-                    LoggerUtils.LOGD("init arouter work in " + Thread.currentThread().getName());
-                    ARouter.openLog();
-                    ARouter.openDebug();
-                    ARouter.init(MainActivity.this.getApplication());
-                    emitter.onNext(true);
-                }
-            }).subscribeOn(Schedulers.io()));
-//            for (final String clazz : AppConfig.initApps) {
-//                Observable observable = Observable.create(new ObservableOnSubscribe<Object>() {
-//                    @Override
-//                    public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
-//                        LoggerUtils.LOGD("-------------init clazz " + clazz);
-//                        try {
-//                            ((BaseApp) Reflector.on(clazz)
-//                                    .constructor()
-//                                    .newInstance())
-//                                    .initSyn(MainActivity.this.getApplication());
-//                            LoggerUtils.LOGD("-------------end clazz " + clazz);
-//                            emitter.onNext(true);
-//                        } catch (Reflector.ReflectedException e) {
-//                            e.printStackTrace();
-//                            emitter.onNext(false);
-//                        }
+//        if (BuildConfig.isModule) {
+//            List observables = new ArrayList<ObservableSource>();
+//            observables.add(Observable.create(new ObservableOnSubscribe<Object>() {
+//                @Override
+//                public void subscribe(@NonNull ObservableEmitter<Object> emitter) {
+//                    LoggerUtils.LOGD("work in " + Thread.currentThread().getName());
+//                    showDialog();
+//                    emitter.onNext(true);
+//                }
+//            }).subscribeOn(AndroidSchedulers.mainThread()));
+//
+//            observables.add(Observable.create(new ObservableOnSubscribe<Object>() {
+//                @Override
+//                public void subscribe(@NonNull ObservableEmitter<Object> emitter) {
+//                    LoggerUtils.LOGD("init arouter work in " + Thread.currentThread().getName());
+//                    ARouter.openLog();
+//                    ARouter.openDebug();
+//                    ARouter.init(MainActivity.this.getApplication());
+//                    emitter.onNext(true);
+//                }
+//            }).subscribeOn(Schedulers.io()));
+////            for (final String clazz : AppConfig.initApps) {
+////                Observable observable = Observable.create(new ObservableOnSubscribe<Object>() {
+////                    @Override
+////                    public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+////                        LoggerUtils.LOGD("-------------init clazz " + clazz);
+////                        try {
+////                            ((BaseApp) Reflector.on(clazz)
+////                                    .constructor()
+////                                    .newInstance())
+////                                    .initSyn(MainActivity.this.getApplication());
+////                            LoggerUtils.LOGD("-------------end clazz " + clazz);
+////                            emitter.onNext(true);
+////                        } catch (Reflector.ReflectedException e) {
+////                            e.printStackTrace();
+////                            emitter.onNext(false);
+////                        }
+////                    }
+////                }).subscribeOn(Schedulers.io());
+////                observables.add(observable);
+////            }
+//            Observable.zip(observables, new Function<Object[], Boolean>() {
+//                @Override
+//                public Boolean apply(@NonNull Object[] aBoolean) throws Exception {
+//                    boolean flag = true;
+//                    for (int i = 0; i < aBoolean.length; ++i) {
+//                        LoggerUtils.LOGD("result = " + (boolean) aBoolean[i]);
+//                        flag &= (boolean) aBoolean[i];
 //                    }
-//                }).subscribeOn(Schedulers.io());
-//                observables.add(observable);
-//            }
-            Observable.zip(observables, new Function<Object[], Boolean>() {
-                @Override
-                public Boolean apply(@NonNull Object[] aBoolean) throws Exception {
-                    boolean flag = true;
-                    for (int i = 0; i < aBoolean.length; ++i) {
-                        LoggerUtils.LOGD("result = " + (boolean) aBoolean[i]);
-                        flag &= (boolean) aBoolean[i];
-                    }
-                    return flag;
-                }
-            }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                    .subscribe(new Consumer() {
-                        @Override
-                        public void accept(Object o) throws Exception {
-                            if ((boolean) o) {
-                                LoggerUtils.LOGD("----------------init finish");
-                                dismissDialog();
-                            } else {
-                                LoggerUtils.LOGD("----------------init fail");
-                                errorDialog();
-                            }
-                        }
-                    });
-        }
-        LoggerUtils.LOGD("reflect time = " + (System.currentTimeMillis() - start));
+//                    return flag;
+//                }
+//            }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+//                    .subscribe(new Consumer() {
+//                        @Override
+//                        public void accept(Object o) throws Exception {
+//                            if ((boolean) o) {
+//                                LoggerUtils.LOGD("----------------init finish");
+//                                dismissDialog();
+//                            } else {
+//                                LoggerUtils.LOGD("----------------init fail");
+//                                errorDialog();
+//                            }
+//                        }
+//                    });
+//        }
+//        LoggerUtils.LOGD("reflect time = " + (System.currentTimeMillis() - start));
     }
 
     @Override

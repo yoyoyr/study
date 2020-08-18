@@ -1,4 +1,5 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -18,8 +19,8 @@
             android:id="@+id/toolbar"
             style="@style/MaterialAnimations.TextAppearance.Title"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="?android:colorPrimary"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
             android:elevation="@dimen/elevation_header">
 
             <TextView
@@ -35,7 +36,7 @@
         <ImageView
             android:id="@+id/square_green"
             style="@style/AppTheme.Icon.Big"
-            android:src="@drawable/circle_24dp"
+            app:srcCompat="@drawable/circle_24dp"
             android:tint="@{animationsSample.color}" />
 
 

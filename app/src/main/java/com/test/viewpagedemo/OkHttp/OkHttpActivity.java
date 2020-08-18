@@ -17,6 +17,9 @@ import java.security.SecureRandom;
 import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -41,10 +44,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
 import okhttp3.internal.Util;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okio.BufferedSink;
 import okio.BufferedSource;
+import okio.ByteString;
 import okio.Okio;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -82,6 +88,71 @@ public class OkHttpActivity extends AppCompatActivity {
 
         unbinder = ButterKnife.bind(this);
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    }
+
+    @OnClick({R.id.webSocket})
+    void webSocket() {
+        OkHttpClient mOkHttpClient = new OkHttpClient.Builder()
+                .readTimeout(3, TimeUnit.SECONDS)//设置读取超时时间
+                .writeTimeout(3, TimeUnit.SECONDS)//设置写的超时时间
+                .connectTimeout(3, TimeUnit.SECONDS)//设置连接超时时间
+                .pingInterval(3, TimeUnit.SECONDS) // 设置 PING 帧发送间隔
+                .build();
+
+        Request request = new Request.Builder().url("wss://cdn.1tokentrade.cn/api/v1/ws/tick").build();
+        mOkHttpClient.newWebSocket(request, new WebSocketListener() {
+
+            @Override
+            public void onOpen(WebSocket webSocket, Response response) {
+                super.onOpen(webSocket, response);
+                String openid = "1";
+                //连接成功后，发送登录信息
+                String message = "{\"type\":\"login\",\"user_id\":\"" + openid + "\"}";
+                webSocket.send(message);
+                LoggerUtils.LOGV("连接成功！");
+
+            }
+
+            @Override
+            public void onMessage(WebSocket webSocket, ByteString bytes) {
+                super.onMessage(webSocket, bytes);
+                LoggerUtils.LOGV("receive bytes:" + bytes.hex());
+            }
+
+            @Override
+            public void onMessage(final WebSocket webSocket, String text) {
+                super.onMessage(webSocket, text);
+                LoggerUtils.LOGV("receive text:" + text);
+                //收到服务器端发送来的信息后，每隔25秒发送一次心跳包
+//                final String message = "{\"type\":\"heartbeat\",\"user_id\":\"heartbeat\"}";
+//                Timer timer = new Timer();
+//                timer.schedule(new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        webSocket.send(message);
+//                    }
+//                }, 25000);
+            }
+
+            @Override
+            public void onClosed(WebSocket webSocket, int code, String reason) {
+                super.onClosed(webSocket, code, reason);
+                LoggerUtils.LOGV("closed:" + reason);
+            }
+
+            @Override
+            public void onClosing(WebSocket webSocket, int code, String reason) {
+                super.onClosing(webSocket, code, reason);
+                LoggerUtils.LOGV("closing:" + reason);
+            }
+
+            @Override
+            public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+                super.onFailure(webSocket, t, response);
+                LoggerUtils.LOGV("failure:" + t.getMessage());
+            }
+        });
+        mOkHttpClient.dispatcher().executorService().shutdown();
     }
 
     @OnClick({R.id.cache})
@@ -423,4 +494,6 @@ public class OkHttpActivity extends AppCompatActivity {
             LoggerUtils.LOGE(e);
         }
     }
+
+
 }

@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.study.point.R;
 import com.test.viewpagedemo.LoggerUtils;
@@ -35,148 +36,148 @@ public class MySlideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_view);
 
-        final Arc viewGroup = findViewById(R.id.myConverter);
-        findViewById(R.id.requestLayout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewGroup.requestLayout();
-            }
-        });
-        findViewById(R.id.invalidate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewGroup.invalidate();
-            }
-        });
-//        initLine();
-    }
-
-//    private void initLine() {
-//        List<LineB> lines = new ArrayList<LineB>();
-//        lines.add(new LineB("4000", "五折", "节省2000"));
-//        lines.add(new LineB("2000", "五折", "节省1000"));
-//        lines.add(new LineB("1000", "五折", "节省500"));
-//        Line line = ((Line) findViewById(R.id.linechar));
-//        line.setData(lines);
-//        line.setOnPointClickListener(new Line.onPointClickListener() {
+//        final Arc viewGroup = findViewById(R.id.myConverter);
+//        findViewById(R.id.requestLayout).setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(@NonNull LineB lineB) {
-//                LoggerUtils.LOGD("line = " + lineB.toString());
+//            public void onClick(View v) {
+//                viewGroup.requestLayout();
 //            }
 //        });
-//
-//        List<Integer> data = new ArrayList<>();
-//        data.add(1);
-//        data.add(2);
-//        data.add(3);
-//        data.add(4);
-//        data.add(1);
-//
-//        List<Integer> colors = new ArrayList<>();
-//        colors.add(Color.BLUE);
-//        colors.add(Color.BLACK);
-//        colors.add(Color.GRAY);
-//        colors.add(Color.GREEN);
-//        colors.add(Color.YELLOW);
-//
-//        ((Arc) findViewById(R.id.arc)).setData(data, colors);
-//
-//
-//        List<Integer> values = new ArrayList<>();
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//
-//
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//
-//
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//
-//
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//        values.add(1);
-//        values.add(2);
-//        values.add(3);
-//        values.add(4);
-//        List<String> txs = new ArrayList<>();
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//        txs.add("1");
-//        txs.add("2");
-//        txs.add("3");
-//        txs.add("4");
-//        ((LineChar) findViewById(R.id.line)).setData(values, txs);
-//    }
+//        findViewById(R.id.invalidate).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                viewGroup.invalidate();
+//            }
+//        });
+        initLine();
+    }
+
+    private void initLine() {
+        List<LineB> lines = new ArrayList<LineB>();
+        lines.add(new LineB("4000", "五折", "节省2000"));
+        lines.add(new LineB("2000", "五折", "节省1000"));
+        lines.add(new LineB("1000", "五折", "节省500"));
+        Line line = ((Line) findViewById(R.id.linechar));
+        line.setData(lines);
+        line.setOnPointClickListener(new Line.onPointClickListener() {
+            @Override
+            public void onClick(@NonNull LineB lineB) {
+                LoggerUtils.LOGD("line = " + lineB.toString());
+            }
+        });
+
+        List<Integer> data = new ArrayList<>();
+        data.add(1);
+        data.add(2);
+        data.add(3);
+        data.add(4);
+        data.add(1);
+
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.BLUE);
+        colors.add(Color.BLACK);
+        colors.add(Color.GRAY);
+        colors.add(Color.GREEN);
+        colors.add(Color.YELLOW);
+
+        ((Arc) findViewById(R.id.arc)).setData(data, colors);
+
+
+        List<Integer> values = new ArrayList<>();
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+
+
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+
+
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+
+
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+        values.add(1);
+        values.add(2);
+        values.add(3);
+        values.add(4);
+        List<String> txs = new ArrayList<>();
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+        txs.add("1");
+        txs.add("2");
+        txs.add("3");
+        txs.add("4");
+        ((LineChar) findViewById(R.id.line)).setData(values, txs);
+    }
 
 //    StatFs获取外部存储空间的大小
 

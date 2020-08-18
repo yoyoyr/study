@@ -1,4 +1,4 @@
-include ':app', ':hotfix', ':shareanim'//, ':libuuos'
+include ':app', ':hotfix', ':shareanim'
 include ':hook'
 include':mygroovy'
 include ':aop'

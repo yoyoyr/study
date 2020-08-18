@@ -3,6 +3,7 @@ package com.test.viewpagedemo.Views.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -41,6 +42,9 @@ public class FragmentBaseActivity extends AppCompatActivity {
     Fragment1 f1;
     Fragment2 f2;
 
+    Handler handler = new Handler();
+    Handler handler2 = new Handler();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //如果savedInstanceState ！=null，这调用FragmentController.restoreAllState恢复fragment。然后调用dispatchCreate
@@ -71,7 +75,13 @@ public class FragmentBaseActivity extends AppCompatActivity {
         findViewById(R.id.show1).setOnClickListener(listener);
         findViewById(R.id.hide1).setOnClickListener(listener);
         findViewById(R.id.attachf1).setOnClickListener(listener);
-
+//        handler.postDelayed(new HandlerTask(), 10 * 1000);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                LoggerUtils.LOGV("delay message");
+            }
+        });
     }
 
     public void setDataFromFragment(String data) {
@@ -192,9 +202,10 @@ public class FragmentBaseActivity extends AppCompatActivity {
                             .commit();
                     break;
                 case R.id.attachf1:
-                    getSupportFragmentManager().beginTransaction()
-                            .attach(f1)
-                            .commit();
+//                    getSupportFragmentManager().beginTransaction()
+//                            .attach(f1)
+//                            .commit();
+                    handler.removeCallbacksAndMessages(null);
                     break;
                 /**
                  * 参数string name是transaction.addToBackStack(String tag)中的tag值；
@@ -213,4 +224,11 @@ public class FragmentBaseActivity extends AppCompatActivity {
     };
 
 
+    static class HandlerTask implements Runnable {
+
+        @Override
+        public void run() {
+            LoggerUtils.LOGV("delay message");
+        }
+    }
 }

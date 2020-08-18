@@ -3,6 +3,8 @@ package Gson;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.apache.commons.math3.analysis.function.Sin;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,7 +52,15 @@ public class Main {
 //        System.out.println("adapter result = " + result);
 //        System.out.println("serialize result = " + gsAdapter.fromJson(result, Book.class));
 
-        System.out.println("result = "+subZeroAndDot("0.000000"));
+        for (int i = 0; i < 2000; ++i) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Singleton2 singleton2 = Singleton2.getInstance();
+                    System.out.println(singleton2.toString());
+                }
+            }).start();
+        }
     }
 
 

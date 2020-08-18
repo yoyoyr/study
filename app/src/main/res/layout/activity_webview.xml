@@ -7,6 +7,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/llParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -17,10 +18,16 @@
             android:layout_height="50dp"
             android:text="reLoad" />
 
-        <WebView
-            android:id="@+id/webView"
+        <Button
+            android:id="@+id/memory"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="50dp"
+            android:text="memory" />
 
+        <LinearLayout
+            android:id="@+id/llContent"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical" />
     </LinearLayout>
 </layout>

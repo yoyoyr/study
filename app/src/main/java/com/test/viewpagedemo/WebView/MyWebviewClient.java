@@ -1,8 +1,9 @@
-package main.java.com.test.viewpagedemo.WebView;
+package com.test.viewpagedemo.WebView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Debug;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -39,7 +40,8 @@ public class MyWebviewClient extends WebViewClient {
     //页面加载结束
     @Override
     public void onPageFinished(WebView view, String url) {
-
+        LoggerUtils.LOGV("page end");
+        Debug.stopMethodTracing();
     }
 
 

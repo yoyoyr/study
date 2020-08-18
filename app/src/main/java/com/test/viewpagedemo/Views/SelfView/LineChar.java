@@ -26,11 +26,12 @@ import java.util.List;
 public class LineChar extends View {
 
     Paint paint, shaderPaint;
+    Paint linkPaint;//画链接xy轴的画笔
     float x, y;
     float width, height;
     List<Point> xPoint, yPoint;
-    List<LineBean> points;
-    int selectPoint;
+    List<LineBean> points;//point集合
+    int selectPoint;//点击的点所在索引
     float percent;
     int xPointCount;
     Path path;
@@ -71,6 +72,11 @@ public class LineChar extends View {
         paint.setColor(Color.BLACK);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
+        linkPaint = new Paint();
+        linkPaint.setColor(Color.GRAY);
+        linkPaint.setAntiAlias(true);
+        linkPaint.setStyle(Paint.Style.FILL);
+        linkPaint.setStrokeWidth(5);
         shaderPaint = new Paint();
         shaderPaint.setColor(Color.BLACK);
         shaderPaint.setAntiAlias(true);
@@ -131,9 +137,6 @@ public class LineChar extends View {
         int height = MeasureSpec.getSize(heightMeasureSpec);
         int heightModel = MeasureSpec.getMode(heightMeasureSpec);
 
-        if (heightModel == MeasureSpec.AT_MOST) {
-            height = 500;
-        }
         //无论什么模式，都填充满父控件
         setMeasuredDimension(width, height);
     }
@@ -189,12 +192,12 @@ public class LineChar extends View {
 
     private void drawPoint(@NonNull Canvas canvas) {
         int drawPointCount = (int) (percent * points.size());
+        paint.setStrokeWidth(5);
         if (drawPointCount > 0) {
             path.reset();
             paint.setStyle(Paint.Style.FILL);
             float deviX = (getWidth() - x) / 5;
             for (int i = 0; i < drawPointCount; ++i) {
-                canvas.drawCircle(points.get(i).x - moveLeft, points.get(i).y, 5, paint);
                 if (i == 0) {
 //                    LoggerUtils.LOGD("first point = " + (points.get(i).x - moveLeft) +
 //                            "point x = " + points.get(i).x + ",left = " + moveLeft);
@@ -206,9 +209,13 @@ public class LineChar extends View {
                             points.get(i).x - moveLeft, points.get(i).y);
                 }
 
-                if (selectPoint == i) {
-                    String text = points.get(i).text;
+                if (selectPoint == i) { //选择的点
+                    LineBean point = points.get(i);
+                    String text = point.text;
                     float len = paint.measureText(text);
+                    canvas.drawCircle(points.get(i).x - moveLeft, points.get(i).y, 10, paint);
+                    canvas.drawLine(0, point.y, getWidth(), point.y, linkPaint);
+                    canvas.drawLine(point.x, 0, point.x, getHeight(), linkPaint);
                     canvas.drawText(text, points.get(i).x - len / 2 - moveLeft, points.get(i).y - 10, paint);
                 }
             }
@@ -283,6 +290,7 @@ public class LineChar extends View {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            selectPoint = -1;
             downX = oldTouchX = event.getX();
             downY = oldTouchY = event.getY();
             //关闭动画
@@ -314,15 +322,34 @@ public class LineChar extends View {
 
             return true;
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (Math.abs(downX - event.getX()) <= 20 && Math.abs(downY - event.getY()) <= 20) {
+            if (Math.abs(downX - event.getX()) <= 20 && Math.abs(downY - event.getY()) <= 20) {//点击事件，选择出点击的点
                 upMotionEvent = 0;
-                for (int i = 0; i < points.size(); ++i) {
-                    if (points.get(i).x + 20 >= event.getX() && points.get(i).x - 20 <= event.getX()) {
+                for (int i = 0; i < points.size() - 1; ++i) {
+                    LineBean left = points.get(i);
+                    LineBean right = points.get(i + 1);
+                    float pointX = event.getX();
+
+                    if (Math.abs(left.x - pointX) <= 5) {
                         selectPoint = i;
-//                        LoggerUtils.LOGD("click " + selectPoint);
                         postInvalidate();
                         return true;
+                    } else if (Math.abs(right.x - pointX) <= 5) {
+                        selectPoint = i + 1;
+                        postInvalidate();
+                        return true;
+                    } else if (left.x < pointX && right.x > pointX) {
+                        if (Math.abs(left.x - pointX) <= Math.abs(right.x - pointX)) {
+                            selectPoint = i;
+                            postInvalidate();
+                            return true;
+                        } else {
+                            selectPoint = i + 1;
+                            postInvalidate();
+                            return true;
+                        }
+
                     }
+
                 }
             } else if (moveLeft < 0) {
 //                LoggerUtils.LOGD("move left = " + moveLeft);

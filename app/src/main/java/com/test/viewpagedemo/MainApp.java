@@ -2,12 +2,16 @@ package com.test.viewpagedemo;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.AsyncTask;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 //import com.squareup.leakcanary.AndroidExcludedRefs;
 //import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.test.viewpagedemo.LoggerUtils;
+import com.test.viewpagedemo.WebView.MyWebviewClient;
 
 public class MainApp extends Application {
 
@@ -19,18 +23,14 @@ public class MainApp extends Application {
 
     private static RefWatcher refWatcher;
 
-    public static  Object object;
+    public static Object object;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        LoggerUtils.LOGD("---------init leakcanary");
-
-        refWatcher =  LeakCanary.install(this);
-//         = LeakCanary.refWatcher(this).listenerServiceClass(DisplayLeakService.class)
-//                .excludedRefs(AndroidExcludedRefs.createAppDefaults().build())
-//                .buildAndInstall();
     }
+
+
 }

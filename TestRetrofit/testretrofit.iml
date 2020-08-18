@@ -57,6 +57,9 @@
     <orderEntry type="library" exported="" name="Gradle: commons-collections4-4.3" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-math3-3.6.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: xmlbeans-3.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: ant" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: ums_plu" level="project" />
     <orderEntry type="library" exported="" name="Gradle: dom4j-2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: bcprov-jdk16-146" level="project" />
   </component>
 </module>

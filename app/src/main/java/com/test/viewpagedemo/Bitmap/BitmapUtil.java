@@ -317,7 +317,7 @@ public class BitmapUtil {
     }
 
 
-    public static Data saveBitmap(Context context, byte[] datas, float percent, String name) {
+    public static void saveBitmap(Context context, byte[] datas, float percent, String name) {
         String newFilePath = context.getFilesDir().getAbsolutePath() + "/"
                 + name + ".png";
         File file = new File(newFilePath);
@@ -349,11 +349,10 @@ public class BitmapUtil {
 
             try {
                 fos.close();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new Data(file, bm);
     }
 
     /**

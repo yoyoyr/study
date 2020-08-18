@@ -1,9 +1,9 @@
 package com.lyl.animationtest;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class TransitionHelper {
      * @param includeStatusBar 如果是错误的，状态栏将不会被添加为过渡参与者
      * @return All transition participants.
      */
-    public static Pair<View, String>[] createSafeTransitionParticipants(@NonNull Activity activity, boolean
+    public static Pair<View, String>[] createSafeTransitionParticipants(@NonNull AppCompatActivity activity, boolean
             includeStatusBar, @Nullable Pair... otherParticipants) {
         // Avoid system UI glitches as described here:
         // https://plus.google.com/+AlexLockwood/posts/RPtwZ5nNebb

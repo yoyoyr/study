@@ -1,0 +1,68 @@
+
+.bodys{
+    text-align: center;
+}
+
+.header .logo-container {
+	display: inline-block;
+	margin:19px 40px 19px 0;
+	width:100px;
+	height:50px;
+	background-image:url(./img/txly.png);
+	-moz-background-size:100% auto;
+	background-size:100% auto
+}
+
+.header .header-ul {
+	display: inline-block;
+
+}
+
+.header ul{
+    list-style: none;
+}
+
+.header{
+    background-color:rgba(245,245,245);}
+
+.header a,a:hover,a:active,a:visited,a:link,a:focus{
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+        outline:none;
+        background: none;
+        text-decoration: none;
+        color:#333;
+        }
+
+.header li {
+	float:left;
+	display: inline;
+	line-height:80px;
+	margin-right:40px
+}
+
+
+.product {
+    text-align: center;
+    background-color:rgba(245,245,245);
+}
+.product .logo {
+	width:346px;
+	height:160px;
+	margin:0 auto;
+	background-image:url(./img/txly.png);
+	-moz-background-size:cover;
+	background-size:cover
+}
+.product .text {
+	width:398px;
+}
+
+.product .slogan{
+	display: inline-block;
+}
+
+.product .btncontainer{
+	display: inline-block;
+}
+

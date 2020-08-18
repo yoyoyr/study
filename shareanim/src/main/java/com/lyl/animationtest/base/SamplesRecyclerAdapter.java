@@ -1,10 +1,10 @@
 package com.lyl.animationtest.base;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +27,10 @@ import java.util.List;
  */
 public class SamplesRecyclerAdapter extends RecyclerView.Adapter<SamplesRecyclerAdapter.SamplesViewHolder> {
 
-    private final Activity activity;
+    private final AppCompatActivity activity;
     private final List<Sample> samples;
 
-    public SamplesRecyclerAdapter(Activity activity, List<Sample> samples) {
+    public SamplesRecyclerAdapter(AppCompatActivity activity, List<Sample> samples) {
         this.activity = activity;
         this.samples = samples;
     }

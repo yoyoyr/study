@@ -25,7 +25,7 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 //#org.gradle.jvmargs=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
 //#-Dorg.gradle.debug=true
-@AutoService(Processor.class)//自动在mate-info生成配置文件
+@AutoService(Processor.class)//注册
 @SupportedAnnotationTypes({"com.annotation.ApplicationAsyncInit"})
 public class InitProcess extends AbstractProcessor {
 
@@ -37,6 +37,7 @@ public class InitProcess extends AbstractProcessor {
         messager = processingEnv.getMessager();
     }
 
+    //处理注解
     @Override
     public boolean process(@NonNull Set<? extends TypeElement> annotations, @NonNull RoundEnvironment roundEnv) {
         logE("------------------------------------------process");

@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,10 +47,30 @@ public class EncryptUtil {
 //        String key = "from";
 //        String s = "\\{\\{\\s*" + key + "\\s*}}";
 //        System.out.println(ricardian.replaceAll(s, "yoyo"));
+
+        ExecutorService service = Executors.newCachedThreadPool();
+
+        final long time = System.currentTimeMillis();
+        for (int i = 0; i <= 1000000; ++i) {
+            final int tmp = i;
+            service.submit(new Runnable() {
+                @Override
+                public void run() {
+                    String t = " i = " + tmp;
+                    if(tmp%100 == 0)
+                        System.out.println(t);
+
+                    if(tmp == 1000000)
+                    System.out.println(" time = " + (System.currentTimeMillis() - time));
+                }
+            });
+        }
+
     }
 
     /**
      * 将字节数组转换为16进制字符串
+     *
      * @param bytes
      * @return
      */
@@ -72,11 +95,11 @@ public class EncryptUtil {
 
 
     // 打乱列表实现方法1
-    public static  <T> void shuffle1(List<T> list) {
+    public static <T> void shuffle1(List<T> list) {
         int size = list.size();
         Random random = new Random();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             // 获取随机位置
             int randomPos = random.nextInt(size);
 

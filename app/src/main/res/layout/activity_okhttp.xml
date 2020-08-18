@@ -37,4 +37,10 @@
         android:layout_height="50dp"
         android:text="cache" />
 
+    <Button
+        android:id="@+id/webSocket"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="webSocket" />
+
 </LinearLayout>

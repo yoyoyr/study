@@ -60,49 +60,55 @@
             android:text="zip" />
 
         <Button
-            android:id="@+id/function"
+            android:id="@+id/errorOnSuccess"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="function" />
+            android:text="errorOnSuccess" />
 
-        <Button
-            android:id="@+id/fliter"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="fliter" />
+<!--        <Button-->
+<!--            android:id="@+id/function"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="function" />-->
 
-        <Button
-            android:id="@+id/selection"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="selection" />
+<!--        <Button-->
+<!--            android:id="@+id/fliter"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="fliter" />-->
 
-        <Button
-            android:id="@+id/backpressure"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="backpressure" />
+<!--        <Button-->
+<!--            android:id="@+id/selection"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="selection" />-->
 
-
-        <Button
-            android:id="@+id/request48"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="request48" />
-
+<!--        <Button-->
+<!--            android:id="@+id/backpressure"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="backpressure" />-->
 
 
-        <Button
-            android:id="@+id/selfObservable"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="selfObservable" />
+<!--        <Button-->
+<!--            android:id="@+id/request48"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="request48" />-->
 
-        <Button
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="list get data" />
+
+
+<!--        <Button-->
+<!--            android:id="@+id/selfObservable"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="selfObservable" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/list"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="list get data" />-->
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -17,13 +17,13 @@
         android:clipToPadding="false"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackground"
         android:padding="@dimen/spacing_double">
 
         <ImageView
             android:id="@+id/sample_icon"
             style="@style/AppTheme.Icon.Small"
-            android:src="@drawable/circle_24dp"
+            app:srcCompat="@drawable/circle_24dp"
             android:tint="@{Sample.color}"
             />
 

@@ -44,17 +44,17 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/fitCenter"
+            android:id="@+id/clearMemory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fit center" />
+            android:text="clearMemory" />
 
 
         <!--<Button-->
-            <!--android:id="@+id/centerCrop"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="centerCrop" />-->
+        <!--android:id="@+id/centerCrop"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="centerCrop" />-->
 
         <Button
             android:id="@+id/gif"
@@ -69,13 +69,25 @@
             android:layout_height="wrap_content"
             android:text="self circle" />
 
+        <Button
+            android:id="@+id/memory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get memory" />
+
+        <Button
+            android:id="@+id/reduceMemory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reduce memory" />
+
     </LinearLayout>
 
 
     <ImageView
-        android:background="@color/colorAccent"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent" />
 
 </com.test.viewpagedemo.Glide.MyLinearLayout>

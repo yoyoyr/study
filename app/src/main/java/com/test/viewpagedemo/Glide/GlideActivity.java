@@ -1,6 +1,7 @@
 package com.test.viewpagedemo.Glide;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +12,19 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.load.Encoder;
+import com.bumptech.glide.load.ResourceDecoder;
+import com.bumptech.glide.load.ResourceEncoder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapDecoder;
+import com.bumptech.glide.load.resource.bitmap.Downsampler;
+import com.bumptech.glide.load.resource.bitmap.FileDescriptorBitmapDecoder;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.provider.DataLoadProvider;
+import com.bumptech.glide.provider.DataLoadProviderRegistry;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
@@ -20,12 +32,21 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.util.MultiClassKey;
 import com.study.point.R;
 import com.test.viewpagedemo.LoggerUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -88,6 +109,22 @@ public class GlideActivity extends AppCompatActivity {
                 .into(imageView);
     }
 
+    @OnClick({R.id.memory})
+    void memory() {
+        Runtime rt = Runtime.getRuntime();
+        long maxMemory = rt.maxMemory();
+        LoggerUtils.LOGV("maxMemory:" + Long.toString(maxMemory / (1024 * 1024)));
+        long totalMemory = rt.totalMemory();
+        LoggerUtils.LOGV("totalMemory:" + Long.toString(totalMemory / (1024 * 1024)));
+        long freeMemory = rt.freeMemory();
+        LoggerUtils.LOGV("freeMemory:" + Long.toString(freeMemory / (1024 * 1024)));
+    }
+
+    @OnClick({R.id.reduceMemory})
+    void reduceMemory() {
+        Util.reduce(getClassLoader(), getBaseContext());
+    }
+
     //图片等比缩放，知道填充满整个imageview。如果图片宽度比较小，则按照图片宽度填充imageview为止。高比较小，这同理
 //    @OnClick({R.id.centerCrop})
 //    void centerCrop() {
@@ -98,12 +135,10 @@ public class GlideActivity extends AppCompatActivity {
 //    }
 
     //图片等比缩放，如果图片宽度比较大，则按照图片宽度填充imageview为止。高比较大，这同理
-    @OnClick({R.id.fitCenter})
+    @OnClick({R.id.clearMemory})
     void fitCenter() {
-        Glide.with(this)
-                .load(jpg)
-                .fitCenter()
-                .into(imageView);
+        //通过这个方法清除内存缓存
+        Glide.get(this).clearMemory();
     }
 
     @OnClick({R.id.preLoad})
@@ -176,7 +211,21 @@ public class GlideActivity extends AppCompatActivity {
     public void loadUrl() {
         Glide.with(this)
                 .load(jpg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        LoggerUtils.LOGE(e);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        //返回false表示事件还没有处理完毕，会接着下发处理
+                        return false;
+                    }
+                })
                 .into(imageView);
     }
 
@@ -265,8 +314,6 @@ public class GlideActivity extends AppCompatActivity {
         super.onDestroy();
         unbinder.unbind();
         LoggerUtils.LOGD("destory");
-        //通过这个方法清除内存缓存
-        Glide.get(this).clearMemory();
     }
 
     @Override

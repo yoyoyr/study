@@ -1,6 +1,5 @@
 package com.test.viewpagedemo;
 
-import android.arch.lifecycle.LifecycleObserver;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +14,8 @@ import com.study.point.R;
 import com.test.viewpagedemo.AOP.AOPActivity;
 import com.test.viewpagedemo.Bitmap.BitmapActivity;
 import com.test.viewpagedemo.DaggerNew.NewDaggerActivity;
+import com.test.viewpagedemo.Views.DrawerLayout.DrawerActivity;
+import com.test.viewpagedemo.inding.DatabindingActivity;
 import com.test.viewpagedemo.EventBus.EventBusActivity;
 import com.test.viewpagedemo.Glide.GlideActivity;
 import com.test.viewpagedemo.GreenDao.GreenDaoActivity;
@@ -31,13 +32,11 @@ import com.test.viewpagedemo.Views.TestCoordinatorLayout.TestCoordinatorLayoutAc
 import com.test.viewpagedemo.Views.event.EventTestAct;
 import com.test.viewpagedemo.Views.fragment.FragmentBaseActivity;
 import com.test.viewpagedemo.Views.motionlayout.MotionLayoutActivity;
-import com.test.viewpagedemo.Views.shareanim.ShareAnimActivity1;
-import com.test.viewpagedemo.Views.viewpage.adapter.BaseViewPageAdapterActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.test.viewpagedemo.WebView.WebViewActivity;
+import com.test.viewpagedemo.WebView.WebViewActivity;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
 
@@ -64,6 +63,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
         intents.add(new Intent(context, FragmentBaseActivity.class));
         titles.add("touch event");
         intents.add(new Intent(context, EventTestAct.class));
+        titles.add("DrawerActivity");
+        intents.add(new Intent(context, DrawerActivity.class));
         titles.add("ViewPage");
         intents.add(new Intent(context, com.test.viewpagedemo.Views.viewpage.fragmentadapter.FragmentadapterActivity.class));
 //        titles.add("fragmentadapter 和懒加载机制实现");
@@ -74,6 +75,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.VH> {
 //        intents.add(new Intent(context, DrawerActivity.class));
         titles.add("CoordinatorLayout");
         intents.add(new Intent(context, TestCoordinatorLayoutActivity.class));
+        titles.add("Databinding");
+        intents.add(new Intent(context, DatabindingActivity.class));
         titles.add("RecyclerView");
         intents.add(new Intent(context, RecyclerViewAct.class));
         titles.add("self view");

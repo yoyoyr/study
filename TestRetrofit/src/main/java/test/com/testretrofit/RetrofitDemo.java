@@ -2,6 +2,9 @@ package test.com.testretrofit;
 
 import android.support.annotation.NonNull;
 
+import com.newpostech.commonpos.CommonPosUtils;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,22 +24,24 @@ public class RetrofitDemo {
     static int count = 0;
     static int count2 = 0;
 
+    //    private static String pkFilePath = "rsa_private_key2.pem";
+//
+//    private static String srcDir = "TMS-061803";
+    //    private static String targetDir = "D:\\1panjianping\\UMS-test\\pkg\\sgn";
+    private static String ROOT_PATH; // 当前路径
+
     public static void main(String[] args) {
 
-        final List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        list.add("6");
-        list.remove(1);
-        for (String data:list) {
-            System.out.println("data = " + data);
-        }
+        File file = new File("");
+        ROOT_PATH = file.getAbsolutePath();
+        String pkFilePath = ROOT_PATH + "/rsa_private_key2.pem";
 
-
-
+        String srcDir = ROOT_PATH + "/TMS-061803";
+        String targetDir = ROOT_PATH + "/result";
+        System.out.println("Hello World!");
+        String[] result = CommonPosUtils.sign(pkFilePath, srcDir, targetDir);
+        System.out.println(result[0] + "," + result[1]);
     }
+
 
 }

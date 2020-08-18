@@ -8,7 +8,7 @@
         android:id="@+id/toolbar"
         style="@style/MaterialAnimations.TextAppearance.Title"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/material_animations_primary"
         android:elevation="@dimen/elevation_header">
 

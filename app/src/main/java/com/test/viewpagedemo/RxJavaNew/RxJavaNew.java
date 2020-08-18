@@ -42,6 +42,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Function3;
 import io.reactivex.functions.Predicate;
+import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -52,6 +53,7 @@ import retrofit2.Retrofit;
 
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.plugins.RxJavaErrorHandler;
 
 public class RxJavaNew extends AppCompatActivity {
 
@@ -72,6 +74,7 @@ public class RxJavaNew extends AppCompatActivity {
         }
     }
 
+
     class Data {
         String key;
         String value;
@@ -85,296 +88,32 @@ public class RxJavaNew extends AppCompatActivity {
         }
     }
 
-    /**
-     * 更新列表数据后，返回列表
-     */
-    @OnClick(R.id.list)
-    void list() {
-        final List<Data> datas = new ArrayList<>();
-        final List<Data> result = new ArrayList<>();
-
-//        for (int i = 0; i < 10; ++i) {
-//            Data data = new Data();
-//            data.key = i + "";
-//            datas.add(data);
-//        }
-        disposable = Observable.just(datas)
-                .flatMap(new Function<List<Data>, Observable<List<Data>>>() {
+    @OnClick(R.id.errorOnSuccess)
+    void errorOnSuccess() {
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                LoggerUtils.LOGE(throwable);
+            }
+        });
+        disposable = Single.just(1)
+                .doOnSuccess(new Consumer<Integer>() {
                     @Override
-                    public Observable<List<Data>> apply(List<Data> data) throws Exception {
-                        LoggerUtils.LOGD(datas.toString());
-                        return Observable.fromIterable(datas).map(new Function<Data, Data>() {
-                            @Override
-                            public Data apply(Data data) throws Exception {
-                                data.value = data.key + "--";
-                                return data;
-                            }
-                        }).collect(new Callable<List<Data>>() {
+                    public void accept(Integer integer) throws Exception {
 
-                            @Override
-                            public List<Data> call() throws Exception {
-                                return result;
-                            }
-                        }, new BiConsumer<List<Data>, Data>() {
-                            @Override
-                            public void accept(List<Data> datas, Data data) throws Exception {
-                                result.add(data);
-                            }
-                        }).toObservable().subscribeOn(Schedulers.io())
-                                .onErrorReturn(new Function<Throwable, List<Data>>() {
-                                    @Override
-                                    public List<Data> apply(Throwable throwable) throws Exception {
-                                        LoggerUtils.LOGE(throwable);
-                                        return null;
-                                    }
-                                });
-                    }
-                }).subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .onErrorReturn(new Function<Throwable, List<Data>>() {
-                    @Override
-                    public List<Data> apply(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE(throwable);
-                        return null;
+                        LoggerUtils.LOGV("on success");
                     }
                 })
-                .subscribe(new Consumer<List<Data>>() {
-                    @Override
-                    public void accept(List<Data> data) throws Exception {
-                        LoggerUtils.LOGV(result.toString());
-                    }
-                }, new Consumer<Throwable>() {
+                .doOnError(new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE(throwable);
-                    }
-                });
-    }
-
-    @OnClick(R.id.selfObservable)
-    void selfObservable() {
-        disposable = Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("1");
-                emitter.onNext("2");
-                emitter.onNext("3");
-            }
-        }).map(new Function<String, String>() {
-            @NonNull
-            @Override
-            public String apply(String s) throws Exception {
-                LoggerUtils.LOGD("apply " + s);
-                return "map" + s;
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        LoggerUtils.LOGD("accept " + s);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE(throwable);
-                    }
-                });
-    }
-
-    @OnClick(R.id.request48)
-    void request48() {
-        subscription.request(48);
-    }
-
-    @OnClick(R.id.backpressure)
-    void backpressure() {
-        //模拟不用背压
-//        observableFast.subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(observer);
-
-        Flowable.create(new FlowableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(@NonNull FlowableEmitter<Integer> emitter) throws Exception {
-
-                LoggerUtils.LOGD("观察者可接收事件数量 = " + emitter.requested());
-                boolean flag; //设置标记位控制
-
-                // 被观察者一共需要发送500个事件
-                for (int i = 0; i < 500; i++) {
-                    flag = false;
-
-                    // 若requested() == 0则不发送
-                    while (emitter.requested() == 0) {
-                        if (!flag) {
-                            LoggerUtils.LOGD("不再发送");
-                            flag = true;
-                        }
-                    }
-                    // requested() ≠ 0 才发送
-                    LoggerUtils.LOGD("发送了事件" + i + "，观察者可接收事件数量 = " + emitter.requested());
-                    emitter.onNext(i);
-
-
-                }
-            }
-        }, BackpressureStrategy.ERROR).subscribeOn(Schedulers.io()) // 设置被观察者在io线程中进行
-                .observeOn(AndroidSchedulers.mainThread()) // 设置观察者在主线程中进行
-                .subscribe(new Subscriber<Integer>() {
-                    @Override
-                    public void onSubscribe(Subscription s) {
-                        LoggerUtils.LOGD("onSubscribe");
-                        subscription = s;
-                        // 初始状态 = 不接收事件；通过点击按钮接收事件
-                    }
-
-                    @Override
-                    public void onNext(Integer integer) {
-                        LoggerUtils.LOGD("接收到了事件" + integer);
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        LoggerUtils.LOGE("onError: ", t);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        LoggerUtils.LOGD("onComplete");
-                    }
-                });
-
-//        flowableSyn.subscribe(subscriber);
-    }
-
-    @OnClick(R.id.selection)
-    void selection() {
-
-        //所有的都返回true，onSuccess才会接收到true
-        Single all = Observable.just(1, 2, 3, 4, 5)
-                .all(new Predicate<Integer>() {
-                    @Override
-                    public boolean test(Integer integer) throws Exception {
-                        return integer > 3;
-                    }
-                });
-
-        //观察者能够接收到5,6.能够接收到返回true，一旦条件不符合就停止
-        Observable takeWhile = Observable.just(5, 6, 7, 8, 1)
-                .takeWhile(new Predicate<Integer>() {
-                    @Override
-                    public boolean test(Integer integer) throws Exception {
-                        LoggerUtils.LOGD("test = " + integer);
-                        return integer < 7;
-                    }
-                });
-
-        //观察者能够接收到3,4,5,1,2.接收到返回false。一旦条件符合就不会停止
-        Observable skipWhile = Observable.just(1, 2, 3, 4, 5, 1, 2)
-                .skipWhile(new Predicate<Integer>() {
-                    @Override
-                    public boolean test(Integer integer) throws Exception {
-                        return integer < 3;
-                    }
-                });
-
-
-        Single sequenceEqual = Observable.sequenceEqual(Observable.just(1, 2, 3), Observable.just(1, 2, 3));
-
-        //接收到先接收的observable对象发送的数据
-        List<ObservableSource<Integer>> ambs = new ArrayList<>();
-        ambs.add(Observable.just(1, 2, 3).delay(1, TimeUnit.SECONDS));
-        ambs.add(Observable.just(4, 5, 6));
-        Observable amb = Observable.amb(ambs);
-
-
-//        all.subscribe(singleBoolean);
-//        takeWhile.subscribe(observer);
-//        skipWhile.subscribe(observer);
-//        sequenceEqual.subscribe(new Consumer<Boolean>() {
-//            @Override
-//            public void accept(Boolean o) throws Exception {
-//                LoggerUtils.LOGD("equal ? " + o);
-//            }
-//        });
-        amb.subscribe(observer);
-    }
-
-    int count = 0;
-
-    @OnClick(R.id.fliter)
-    void fliter() {
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new HttpCode429Intercept())
-                .build();
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl("http://www.baidu.com/")
-                .build();
-
-        final LXRequest request = retrofit.create(LXRequest.class);
-        disposable = request.baidu()
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe(new Consumer<ResponseBody>() {
-                    @Override
-                    public void accept(@NonNull ResponseBody responseBody) throws Exception {
-                        LoggerUtils.LOGV(responseBody.toString());
-                        LoggerUtils.LOGV(responseBody.string());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE(throwable);
-                    }
-                });
-    }
-
-    @OnClick(R.id.function)
-    void function() {
-//        observable.subscribeOn(Schedulers.io())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .doOnNext(new Consumer() {
-//                    @Override
-//                    public void accept(Object o) throws Exception {
-//                        LoggerUtils.LOGD("do next on thread = " + Thread.currentThread().getName());
-//                    }
-//                })
-//                .observeOn(Schedulers.io())
-//                .subscribe(observer);
-
-        observable
-                .onErrorReturn(new Function<Throwable, Integer>() {
-                    @NonNull
-                    @Override
-                    public Integer apply(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE("onErrorReturn recv error.");//捕获到throw new NullPointerException("throw from next!");
-                        return 6;
+                        throw new NullPointerException("yoyo");
                     }
                 })
-                .doOnNext(new Consumer() {
+                .subscribe(new Consumer<Integer>() {
                     @Override
-                    public void accept(Object o) throws Exception {
-                        LoggerUtils.LOGD("doOnNext i = " + o);
-//                        throw new NullPointerException("throw from next!");
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe(new Consumer() {
-                    @Override
-                    public void accept(@NonNull Object o) throws Exception {
-                        LoggerUtils.LOGD(o.toString());
-                        throw new NullPointerException("throw from accept!");
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        LoggerUtils.LOGE(throwable);//捕获到throw new NullPointerException("throw from accept!");
-                        return;
+                    public void accept(Integer integer) throws Exception {
+                        LoggerUtils.LOGV("on accept");
                     }
                 });
     }
@@ -500,14 +239,12 @@ public class RxJavaNew extends AppCompatActivity {
             }
         });
 
-        disposable = create.subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(Schedulers.io())
-                .subscribe(new Consumer() {
-                    @Override
-                    public void accept(Object o) throws Exception {
+        disposable = create.subscribe(new Consumer() {
+            @Override
+            public void accept(Object o) throws Exception {
 
-                    }
-                });
+            }
+        });
 
     }
 
