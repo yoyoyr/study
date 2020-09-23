@@ -4,6 +4,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/res" />
     </CLASSES>

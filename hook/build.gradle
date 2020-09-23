@@ -66,5 +66,5 @@ dependencies {
     //    implementation 'org.jooq:joor:0.9.9'
 //    implementation project(':annotation')
     implementation 'com.android.support:support-annotations:28.0.0'
-    compile project(path: ':annotation')
+    implementation project(path: ':annotation')
 }

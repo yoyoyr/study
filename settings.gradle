@@ -1,6 +1,6 @@
 include ':app', ':hotfix', ':shareanim'
 include ':hook'
-include':mygroovy'
+//include':mygroovy'
 include ':aop'
 include ':log'
 //include ':assembly'

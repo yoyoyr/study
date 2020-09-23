@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("错误", null)
                 .create();
 
-//        startActivity(new Intent(this, OnePxActivity.class));
+        startActivity(new Intent(this, OnePxActivity.class));
 //        hookVPAdapter();
 //        hookQueuedWork();
 

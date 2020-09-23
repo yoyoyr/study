@@ -74,10 +74,9 @@
         <activity android:name="com.test.viewpagedemo.Views.motionlayout.MotionLayoutActivity" />
         <activity
             android:name="com.test.viewpagedemo.WebView.WebViewActivity"
-            android:process=":remote"/>
+            />
         <activity
             android:name="com.test.viewpagedemo.WebView.OnePxActivity"
-            android:process=":remote"
             android:screenOrientation="portrait"
             android:theme="@style/OnePxActivityStyle"/>
 

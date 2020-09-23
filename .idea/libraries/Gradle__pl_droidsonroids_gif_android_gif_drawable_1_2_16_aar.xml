@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: pl.droidsonroids.gif:android-gif-drawable:1.2.16@aar">
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-gif-drawable-1.2.16.aar/0e691e384fa47eba09ceea8a1dfd99ad/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-gif-drawable-1.2.16.aar/0e691e384fa47eba09ceea8a1dfd99ad/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-gif-drawable-1.2.16.aar/0e691e384fa47eba09ceea8a1dfd99ad/res" />
     </CLASSES>

@@ -20,15 +20,16 @@ public class MyWebviewClient extends WebViewClient {
      * 当加载的网页需要重定向的时候就会回调这个函数告知我们应用程序是否需要接管控制网页加载，如果应用程序接管，
      * 并且return true意味着主程序接管网页加载，如果返回false让webview自己处理。
      */
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        if (request.getUrl().getHost().equals("www.baidu.com")) {
-            //todo
-            return true;
-        }
-        return false;
-
-    }
+//    @Override
+//    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//        String url = request.getUrl().toString();
+//        if (url.contains("uniswap-info")) {
+//            view.loadUrl(request.getUrl().toString());
+//            return true;
+//        }
+//        return false;
+//
+//    }
 
     //页面开始加载
     @Override
@@ -46,7 +47,8 @@ public class MyWebviewClient extends WebViewClient {
 
 
     @Override
-    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError
+            error) {
     }
 
     @Override

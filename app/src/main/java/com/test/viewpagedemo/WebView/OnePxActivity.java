@@ -2,6 +2,9 @@ package com.test.viewpagedemo.WebView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Window;
@@ -11,9 +14,15 @@ import android.webkit.WebView;
 
 import com.test.viewpagedemo.LoggerUtils;
 
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 public class OnePxActivity extends AppCompatActivity {
 
-    public static WebView webView;
+    public static TopWebView mWebView;
+
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +36,16 @@ public class OnePxActivity extends AppCompatActivity {
         params.width = 1;
         window.setAttributes(params);
 
-        webView = new WebView(getApplicationContext());
-        setWebView(webView);
-        webView.setWebViewClient(new MyWebviewClient());
-        webView.loadUrl("https://pinyin.sogou.com/mac");
-        LoggerUtils.LOGV("init web = " + webView);
 
+        Looper.getMainLooper().getQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+            @Override
+            public boolean queueIdle() {
+                mWebView = new TopWebView(OnePxActivity.this);
+                mWebView.loadUrl("https://more.ethte.com/web/uniswap-info/#/home");
+                return false;//true一直执行 false执行一次
+            }
+        });
     }
 
 
-    @SuppressLint("SetJavaScriptEnabled")
-    private void setWebView(WebView webView) {
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        webSettings.setDatabaseEnabled(true);
-        webSettings.setGeolocationEnabled(true);
-        webSettings.setAllowUniversalAccessFromFileURLs(true);
-    }
 }
