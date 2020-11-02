@@ -9,9 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import com.squareup.leakcanary.LeakCanary;
 import com.study.point.R;
-import com.test.viewpagedemo.DaggerApp;
 import com.test.viewpagedemo.GreenDao.User;
 import com.test.viewpagedemo.LoggerUtils;
 import com.test.viewpagedemo.MainApp;
@@ -89,7 +87,7 @@ public class TestLeakCanaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_leakcanary);
 
         ButterKnife.bind(this);
-        MainApp.getRefWatcher().watch(user);
+
 //        MainApp.object = this;
     }
 

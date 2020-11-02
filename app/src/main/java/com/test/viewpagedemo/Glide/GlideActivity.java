@@ -1,7 +1,6 @@
 package com.test.viewpagedemo.Glide;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,19 +11,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.DecodeFormat;
-import com.bumptech.glide.load.Encoder;
-import com.bumptech.glide.load.ResourceDecoder;
-import com.bumptech.glide.load.ResourceEncoder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.Resource;
-import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
-import com.bumptech.glide.load.resource.bitmap.BitmapDecoder;
-import com.bumptech.glide.load.resource.bitmap.Downsampler;
-import com.bumptech.glide.load.resource.bitmap.FileDescriptorBitmapDecoder;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.provider.DataLoadProvider;
-import com.bumptech.glide.provider.DataLoadProviderRegistry;
 import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
@@ -32,21 +20,14 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.util.MultiClassKey;
 import com.study.point.R;
 import com.test.viewpagedemo.LoggerUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -63,8 +44,12 @@ public class GlideActivity extends AppCompatActivity {
     Button button;
 
     @Nullable
-    @BindView(R.id.imageView)
-    ImageView imageView;
+    @BindView(R.id.imageView1)
+    ImageView imageView1;
+
+    @Nullable
+    @BindView(R.id.imageView2)
+    ImageView imageView2;
 
     @Nullable
     @BindView(R.id.layout)
@@ -95,6 +80,15 @@ public class GlideActivity extends AppCompatActivity {
 //        recyclerView.setAdapter(imageLoaderAdapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
+        Glide.with(this)
+                .load(R.mipmap.imgwebp)
+                .into(imageView2);
+
+        Glide.with(this)
+                .load(R.mipmap.imgpng)
+                .skipMemoryCache(true)
+                .into(imageView1);
     }
 
     @OnClick({R.id.circleImage})
@@ -106,7 +100,7 @@ public class GlideActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .transform(new CircleCrop(this))
                 .skipMemoryCache(true)
-                .into(imageView);
+                .into(imageView1);
     }
 
     @OnClick({R.id.memory})
@@ -196,7 +190,7 @@ public class GlideActivity extends AppCompatActivity {
                 .load(gifFile)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(imageView);
+                .into(imageView1);
     }
 
     @OnClick({R.id.simpleTarget})
@@ -226,7 +220,7 @@ public class GlideActivity extends AppCompatActivity {
                         return false;
                     }
                 })
-                .into(imageView);
+                .into(imageView1);
     }
 
     //GlideDrawable可用以动图和静态图片。如果指定了asBitmap，可以用BitmapDrawable
@@ -234,7 +228,7 @@ public class GlideActivity extends AppCompatActivity {
     SimpleTarget<GlideDrawable> mySimpleTarger = new SimpleTarget<GlideDrawable>() {
         @Override
         public void onResourceReady(GlideDrawable resource, GlideAnimation glideAnimation) {
-            imageView.setImageDrawable(resource);
+            imageView1.setImageDrawable(resource);
         }
     };
 

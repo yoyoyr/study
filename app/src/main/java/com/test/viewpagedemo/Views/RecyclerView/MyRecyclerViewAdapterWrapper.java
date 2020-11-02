@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.study.point.R;
+import com.test.viewpagedemo.LoggerUtils;
 
 
 public class MyRecyclerViewAdapterWrapper extends RecyclerView.Adapter {
@@ -36,6 +37,7 @@ public class MyRecyclerViewAdapterWrapper extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         if (getItemViewType(position) == NORMAL) {
             adapter.onBindViewHolder((MyRecyclerViewAdapter.VH) holder, position - 1);
         }

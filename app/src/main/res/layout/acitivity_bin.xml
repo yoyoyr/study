@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="progress"
-            type="com.test.viewpagedemo.inding.Progress" />
+            name="dataBindingVM"
+            type="com.test.viewpagedemo.inding.DataBindingVM" />
     </data>
 
     <LinearLayout
@@ -14,22 +14,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.test.viewpagedemo.inding.PhilSeekBar
-            android:id="@+id/seekBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:progress="21"
-            app:philprogress="@={progress.porgress}" />
-
-        <TextView
+        <EditText
             android:id="@+id/add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{String.valueOf(progress.porgress)}"
+            android:text="@={dataBindingVM.data}"
             android:textColor="@android:color/holo_blue_light"
             android:textSize="50dp" />
 
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{dataBindingVM.data}"/>
     </LinearLayout>
 </layout>

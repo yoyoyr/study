@@ -7,12 +7,9 @@ import android.support.multidex.MultiDex;
 
 import com.annotation.ApplicationAsyncInit;
 
+import com.github.moduth.blockcanary.BlockCanary;
 import com.meituan.android.walle.ChannelInfo;
 import com.meituan.android.walle.WalleChannelReader;
-import com.squareup.leakcanary.AndroidExcludedRefs;
-import com.squareup.leakcanary.DisplayLeakService;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.test.viewpagedemo.GreenDao.resource.DaoSession;
 //import com.test.viewpagedemo.mqttGetTui.DemoIntentService;
 //import com.test.viewpagedemo.mqttGetTui.DemoPushService;
@@ -34,14 +31,6 @@ public class DaggerApp {
         return appComponent;
     }
 
-    //提供给外层RefWatcher，监控变量是否内存泄露
-    public static RefWatcher getRefWatcher() {
-        return refWatcher;
-    }
-
-    private static RefWatcher refWatcher;
-
-
     @ApplicationAsyncInit
     public void init(@NonNull Context context) {
         startTract(context);
@@ -50,6 +39,7 @@ public class DaggerApp {
         initCompoment(context);
         initWalle(context);
         startTract(context);
+        BlockCanary.install(context, new AppBlockCanaryContext()).start();
 //        initPush(context);
     }
 
@@ -93,10 +83,6 @@ public class DaggerApp {
         appComponent.inject(this);
 
         LoggerUtils.LOGD("---------init leakcanary");
-
-        refWatcher = LeakCanary.refWatcher(context).listenerServiceClass(DisplayLeakService.class)
-                .excludedRefs(AndroidExcludedRefs.createAppDefaults().build())
-                .buildAndInstall();
     }
 
 

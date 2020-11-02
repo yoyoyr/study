@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.alibaba:arouter-api:1.4.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/4b28d4aad2b74fb3aa81b65da34072a9/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/ac1b550a2fa6546b13fa8ca3eb59b33e/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/4b28d4aad2b74fb3aa81b65da34072a9/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/4b28d4aad2b74fb3aa81b65da34072a9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/arouter-api-1.4.0.aar/4b28d4aad2b74fb3aa81b65da34072a9/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

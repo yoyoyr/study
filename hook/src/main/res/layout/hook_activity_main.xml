@@ -26,4 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
+
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="250dp"
+        android:src="@mipmap/hook_imgpng"
+        android:layout_height="250dp" />
 </LinearLayout>

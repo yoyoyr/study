@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.test.viewpagedemo.LoggerUtils;
+
 class MyItemDecoration extends RecyclerView.ItemDecoration {
 
     /**
@@ -15,6 +17,7 @@ class MyItemDecoration extends RecyclerView.ItemDecoration {
      */
     @Override
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, RecyclerView.State state) {
+        LoggerUtils.LOGV("item draw");
         super.onDraw(c, parent, state);
         for (int i = 0; i < parent.getChildCount(); ++i) {
             View view = parent.getChildAt(i);

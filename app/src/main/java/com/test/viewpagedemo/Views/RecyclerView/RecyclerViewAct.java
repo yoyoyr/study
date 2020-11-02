@@ -13,9 +13,13 @@ import com.test.viewpagedemo.LoggerUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 
 public class RecyclerViewAct extends AppCompatActivity {
 
@@ -42,11 +46,23 @@ public class RecyclerViewAct extends AppCompatActivity {
             @Override
             public void onViewRecycled(RecyclerView.ViewHolder holder) {
                 if (holder instanceof MyRecyclerViewAdapter.VH) {
-                    LoggerUtils.LOGD("recycler text " + ((MyRecyclerViewAdapter.VH) holder).textView.getText());
                 }
             }
         });
         recyclerView.addOnItemTouchListener(onItemTouchListener);
+
+//        Observable.interval(100, TimeUnit.MICROSECONDS, AndroidSchedulers.mainThread())
+//                .map(new Function<Long, Boolean>() {
+//                    @Override
+//                    public Boolean apply(Long aLong) throws Exception {
+//                        long start = System.currentTimeMillis();
+//                        for (int i = 0; i < 3000000; ++i) {
+//                            data.get(0);
+//                        }
+//                        LoggerUtils.LOGV(Thread.currentThread().getName() + " , use time = " + (System.currentTimeMillis() - start));
+//                        return true;
+//                    }
+//                }).subscribe();
     }
 
     private void initData() {
@@ -54,6 +70,7 @@ public class RecyclerViewAct extends AppCompatActivity {
             data.add(i);
         }
     }
+
     @NonNull
     RecyclerView.OnItemTouchListener onItemTouchListener = new RecyclerView.OnItemTouchListener() {
         @Override

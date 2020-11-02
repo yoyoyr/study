@@ -32,16 +32,29 @@ public class RetrofitDemo {
 
     public static void main(String[] args) {
 
-        File file = new File("");
-        ROOT_PATH = file.getAbsolutePath();
-        String pkFilePath = ROOT_PATH + "/rsa_private_key2.pem";
-
-        String srcDir = ROOT_PATH + "/TMS-061803";
-        String targetDir = ROOT_PATH + "/result";
-        System.out.println("Hello World!");
-        String[] result = CommonPosUtils.sign(pkFilePath, srcDir, targetDir);
-        System.out.println(result[0] + "," + result[1]);
+        System.out.println(merge());
+//        File file = new File("");
+//        ROOT_PATH = file.getAbsolutePath();
+//        String pkFilePath = ROOT_PATH + "/rsa_private_key2.pem";
+//
+//        String srcDir = ROOT_PATH + "/TMS-061803";
+//        String targetDir = ROOT_PATH + "/result";
+//        System.out.println("Hello World!");
+//        String[] result = CommonPosUtils.sign(pkFilePath, srcDir, targetDir);
+//        System.out.println(result[0] + "," + result[1]);
     }
 
-
+    //    nums1 = [1,2,3,0,0,0], m = 3
+//    nums2 = [2,5,6],       n = 3
+    public static boolean merge() {
+        String datas = "A man, a plan, a canal: Panama".toLowerCase().replaceAll(" ","").replaceAll("[^a-zA-Z0-9]", "");
+        System.out.println("datas = "+datas);
+        int point1 = 0;
+        int point2 = datas.length()-1;
+        while (point1 < point2) {
+            if (datas.charAt(point1++) != datas.charAt(point2--))
+                return false;
+        }
+        return true;
+    }
 }

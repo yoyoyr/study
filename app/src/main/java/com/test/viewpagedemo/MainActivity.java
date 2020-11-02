@@ -1,16 +1,21 @@
 package com.test.viewpagedemo;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ActivityChooserView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.ArrayMap;
@@ -18,14 +23,10 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
-import com.github.moduth.blockcanary.BlockCanary;
 import com.hotfix.TinkerManager;
-import com.squareup.leakcanary.LeakCanary;
 import com.study.point.BuildConfig;
 import com.study.point.R;
-import com.tencent.mmkv.MMKV;
 import com.test.viewpagedemo.Views.viewpage.fragmentadapter.BaseFragmentViewPageAdapter;
-import com.test.viewpagedemo.WebView.OnePxActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,19 +36,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,11 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        startTract(this);
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LeakCanary.install(getApplication());
+
         ButterKnife.bind(this);
         recyclerView = findViewById(R.id.rv);
 
@@ -77,12 +66,28 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("错误", null)
                 .create();
 
-        startActivity(new Intent(this, OnePxActivity.class));
 //        hookVPAdapter();
 //        hookQueuedWork();
+        int REQUEST_EXTERNAL_STORAGE = 1;
+        String[] PERMISSIONS_STORAGE = {
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+        int permission = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    MainActivity.this,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
+
+//    static {
+//        System.loadLibrary("jni");
+//    }
 
     private void hookQueuedWork() {
         try {
@@ -118,41 +123,18 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.hotfix)
     void hotfix() {
-
+///       storage/emulated/0/patch_signed_7zip.apk
 //        加载热修复文件 /storage/emulated/0/Android/data/com.androidstudypoint/cache/patch_signed.apk
-//        mPath = getCacheDir().getAbsolutePath() + File.separatorChar + "patch_signed.apk";
-//        LoggerUtils.LOGD("path = " + mPath);
-//        File patchFile = new File(mPath);
-//        if (patchFile.exists()) {
-//            TinkerManager.loadPatch(mPath);
-//            Toast.makeText(this, "File Exists,Please wait a moment ", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "File No Exists", Toast.LENGTH_SHORT).show();
-//        }
+        mPath = getCacheDir().getAbsolutePath() + File.separatorChar + "patch_signed.apk";
+        LoggerUtils.LOGD("path = " + mPath);
+        File patchFile = new File(mPath);
+        if (patchFile.exists()) {
+            TinkerManager.loadPatch(mPath);
+            Toast.makeText(this, "File Exists,Please wait a moment ", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "File No Exists", Toast.LENGTH_SHORT).show();
+        }
 
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                a();
-                b();
-                c();
-            }
-
-            private void b() {
-                try {
-                    Thread.sleep(900);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(MainActivity.this, "task finish", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void c() {
-    }
-
-    private void a() {
     }
 
 

@@ -7,7 +7,7 @@ def bakPath = file("${project.project(":app").buildDir}/bak")
 ext {
     tinkerEnabled = true
     tinkerId = project.ext.param.versionName    //替换为需要热修复app版本号
-    time = "0424-14-33-40"  //base app生成时间
+    time = "1029-13-58-05"  //base app生成时间
     loader = "com.test.viewpagedemo.MyTinkerApplication"   //tinkerApplication的实现类
     buildType = "debug"
 
